@@ -1,0 +1,19 @@
+{
+  "name": "bluerabbit",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "1.2.6",
+    "angular-resource": "1.2.6",
+    "angular-sanitize": "1.2.6",
+    "angular-route": "1.2.6",
+    "angular-animate": "1.2.6",
+    "jquery": "*",
+    "modernizr": "*" 
+  },
+  "devDependencies": {
+
+  },
+  "overrides": {
+
+  }
+}
