@@ -7,8 +7,7 @@
     "angular-sanitize": "1.2.6",
     "angular-route": "1.2.6",
     "angular-animate": "1.2.6",
-    "jquery": "*",
-    "modernizr": "*" 
+    "jquery": "*"
   },
   "devDependencies": {
 

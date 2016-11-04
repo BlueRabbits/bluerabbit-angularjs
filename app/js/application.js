@@ -7,10 +7,10 @@ var app = angular.module('bluerabbit', ['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-    	.when('', {
+    	.when('/product-description', {
             controller: '',
-            templateUrl: ''
+            templateUrl: './partials/_product-description.html'
     	})
 
-    	.otherwise({ redirectTo: '/' });
+    	.otherwise({ redirectTo: '/product-description' });
 }]);

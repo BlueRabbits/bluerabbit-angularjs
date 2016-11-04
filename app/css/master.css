@@ -99,7 +99,7 @@ TODO ::
 SMACSS: BASE
 -------------------------------------------------*/
 body {
-  background: #22272a;
+  background: #f7f7f7;
   color: #ced9e0;
   font-family: "Open Sans", "Arial", sans-serif; }
 
@@ -153,3 +153,70 @@ footer {
 /*-------------------------------------------------
 SMACSS: PAGE - LANDING
 -------------------------------------------------*/
+.header {
+  background-color: #e40046;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px; }
+
+.logo img {
+  height: 40px; }
+
+.search-bar__input {
+  width: 390px;
+  height: 30px; }
+
+.search-button {
+  width: 90px;
+  height: 35px;
+  background-color: black;
+  color: white;
+  border: none; }
+
+.profile_details {
+  display: flex;
+  justify-content: space-around; }
+  .profile_details p {
+    margin-left: 20px; }
+
+.prodcut-section {
+  display: flex; }
+
+.prodcut-section__image {
+  background-color: white;
+  height: 550px;
+  width: 50%;
+  border-radius: 3px;
+  margin: 20px 1px 20px 20px;
+  border: 1px solid #efefef; }
+
+.prodcut-section__data {
+  background-color: white;
+  height: 550px;
+  width: 50%;
+  border-radius: 3px;
+  margin: 20px 20px 20px 0px;
+  border: 1px solid #efefef; }
+
+.desctiion-data {
+  display: flex; }
+
+.Item-details {
+  margin: 20px 20px 20px 20px;
+  background-color: white;
+  height: 200px;
+  width: 80%; }
+
+.side-bar {
+  margin: 20px 20px 20px 0px;
+  background-color: white;
+  height: 200px;
+  width: 20%; }
+
+.tabs ul {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+  border-bottom: solid 1px #efefef; }
