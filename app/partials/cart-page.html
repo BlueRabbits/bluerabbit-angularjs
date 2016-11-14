@@ -1,0 +1,169 @@
+@@include('_header.html')
+  <!-- multistep form -->
+  <form id="msform"  novalidate="" >
+  	<!-- progressbar -->
+    <div class="step-by-step-process">
+      <ul id="progressbar">
+    		<li class="active">CART</li>
+    		<li>DELIVERY</li>
+    		<li>PAYMENT</li>
+    		<li>CONFORMATION</li>
+    	</ul>
+    </div>
+
+  	<!-- fieldsets -->
+    <!-- <div class="product-details">
+      <div class="product-image">
+        <img src="images/LG-G3-D855-32-WH.jpg" alt=""  width="60px" height="80px"/>
+      </div>
+      <div class="product-title">
+        <p> this is new mobie in lG</p>
+      </div>
+      <div class="product-quantity">
+        <input type="number" name="number" class="product-quantity__count">
+      </div>
+      <div class="cancel-button">
+        <img src="images/close-button@2x.png" alt="" />
+      </div>
+    </div>
+    <div class="product-details-button">
+  		<input type="button" name="next" class="next action-button" value="To Checkout" />
+    </div>
+
+    <div class="product-details">
+      <div class="product-image">
+        <img src="images/LG-G3-D855-32-WH.jpg" alt=""  width="60px" height="80px"/>
+      </div>
+      <div class="product-title">
+        <p> this is new mobie in lG</p>
+      </div>
+      <div class="product-quantity">
+        <input type="number" name="number" class="product-quantity__count">
+      </div>
+      <div class="cancel-button">
+        <img src="images/close-button@2x.png" alt="" />
+      </div>
+    </div>
+    <div class="product-details-button">
+      <input type="button" name="previous" class="previous action-button" value="Back to Cart" />
+  		<input type="button" name="next" class="next action-button" value="To Checkout" />
+    </div> -->
+  	<fieldset>
+      <div class="product-details">
+        <div class="product-image">
+          <img src="images/LG-G3-D855-32-WH.jpg" alt=""  width="60px" height="80px"/>
+        </div>
+        <div class="product-title">
+          <p> this is new mobie in lG</p>
+        </div>
+        <div class="product-quantity">
+          <input type="number" name="number" class="product-quantity__count" value="1">
+        </div>
+        <div class="cancel-button">
+          <img src="images/close-button@2x.png" alt="" />
+        </div>
+      </div>
+      <div class="product-details">
+        <div class="product-image">
+          <img src="images/LG-G3-D855-32-WH.jpg" alt=""  width="60px" height="80px"/>
+        </div>
+        <div class="product-title">
+          <p> this is new mobie in lG</p>
+        </div>
+        <div class="product-quantity">
+          <input type="number" name="number" class="product-quantity__count" value="1">
+        </div>
+        <div class="cancel-button">
+          <img src="images/close-button@2x.png" alt="" />
+        </div>
+      </div>
+      <div class="product-details">
+        <div class="product-image">
+          <img src="images/LG-G3-D855-32-WH.jpg" alt=""  width="60px" height="80px"/>
+        </div>
+        <div class="product-title">
+          <p> this is new mobie in lG</p>
+        </div>
+        <div class="product-quantity">
+          <input type="number" name="number" class="product-quantity__count" value="1">
+        </div>
+        <div class="cancel-button">
+          <img src="images/close-button@2x.png" alt="" />
+        </div>
+      </div>
+  		<input type="button" name="next" class="next action-button" value="To Checkout" />
+  	</fieldset>
+  	<fieldset>
+      <div class="delivery-address">
+        <div class="delivery-address--field first-name">
+          <label>First Name</label>
+          <input type="text" name="name" value="" placeholder="First Name">
+        </div>
+        <div class="delivery-address--field last-name">
+          <label>Last Name</label>
+          <input type="text" name="name" value="" placeholder="Last Name">
+        </div>
+        <div class="delivery-address--field Email Address">
+          <label>Email Address</label>
+          <input type="text" name="name" value="" placeholder="Email Address">
+        </div>
+        <div class="delivery-address--field Phone Number">
+          <label>Phone Number</label>
+          <input type="text" name="name" value="" placeholder="Phone Number">
+        </div>
+      </div>
+      <div class="delivery-address">
+        <div class="delivery-address--field first-name">
+          <label>Address Line 1</label>
+          <input type="text" name="name" value="" placeholder="First Name">
+        </div>
+        <div class="delivery-address--field last-name">
+          <label>Address Line 2(optional)</label>
+          <input type="text" name="name" value="" placeholder="Last Name">
+        </div>
+        <div class="delivery-address--field Email Address">
+          <label>City</label>
+          <input type="text" name="name" value="" placeholder="Email Address">
+        </div>
+        <div class="delivery-address--field Phone Number">
+          <label>Zip Code</label>
+          <input type="text" name="name" value="" placeholder="Phone Number">
+        </div>
+      </div>
+  		<input type="button" name="previous" class="previous action-button" value="Back to Cart" />
+  		<input type="button" name="next" class="next action-button" value="To Checkout" />
+  	</fieldset>
+  	<fieldset>
+      <div class="payment-details">
+        <div class="delivery-address--field card-number">
+          <label>Credit card number</label>
+          <input type="text" name="name" value="" placeholder="Card Number">
+        </div>
+        <div class="delivery-address--field Expiray-date">
+          <label>Expiray Date</label>
+          <div class="Expiray-date-inputs">
+            <input type="text" name="name" value="" placeholder="1234">
+            <input type="text" name="name" value="" placeholder="5678">
+            <input type="text" name="name" value="" placeholder="9000">
+          </div>
+        </div>
+        <div class="delivery-address--field card-name">
+          <label>Name On card</label>
+          <input type="text" name="name" value="" placeholder="Name On Card">
+        </div>
+        <input type="checkbox" value="Save card information">Save card information
+      </div>
+  		<input type="button" name="previous" class="previous action-button" value="Back" />
+  		<input type="button" name="next" class="next action-button" value="To Checkout" />
+  	</fieldset>
+  	<fieldset>
+      <div class="order-placed">
+        <div class="order-success">
+          <p>Yaay!YOUR ORDER PLACED SUCCESSFULLY</p>
+        </div>
+      </div>
+  		<input type="submit" name="submit" class="submit action-button" value="Go Back To Shop" />
+  	</fieldset>
+  </form>
+
+</div>

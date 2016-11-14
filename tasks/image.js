@@ -11,7 +11,7 @@ gulp.task('image', function () {
 
     console.log(config.notify.update('\n--------- Image Minification --------------------------------------------\n'));
     return gulp.src([config.source.images + '/*.*', config.source.images + '/**/*.*'])
-        .pipe(plugins.imagemin())
+        // .pipe(plugins.imagemin())
         .pipe(plugins.size())
         .pipe(gulp.dest(config.build.images));
 });

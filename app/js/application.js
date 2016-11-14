@@ -11,6 +11,12 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: '',
             templateUrl: './partials/_product-description.html'
     	})
+    	.when('/cart-description', {
+            controller: 'checkoutCtrl',
+            templateUrl: './partials/cart-page.html'
+    	})
 
     	.otherwise({ redirectTo: '/product-description' });
+
+
 }]);
