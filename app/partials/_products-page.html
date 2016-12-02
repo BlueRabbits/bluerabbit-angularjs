@@ -1,0 +1,16 @@
+@@include('sub-header.html')
+<div class="Products">
+  <div class="products-items" ng-repeat="list in productslist">
+    <div class="products-items__thumbnail"  >
+      <div class="products-items__thumbnail--image" style="background-image: url({{list.imag_url}});">
+      </div>
+    </div>
+    <div class="products-items__data">
+      <!-- <p>{{list.id}}</p> -->
+      <p>{{list.name}}</p>
+      <p>{{list.description}}</p>
+      <p>{{list.price}}$</p>
+      <button type="button" name="button" ng-click="addToCart()">Add to cart</button>
+    </div>
+  </div>
+</div>

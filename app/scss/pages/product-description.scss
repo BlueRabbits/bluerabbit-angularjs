@@ -31,6 +31,7 @@ SMACSS: PAGE - LANDING
 	background-color:white;
 	height:200px;
 	width:80%;
+	border: 2px solid;
 }
 
 .side-bar {
@@ -45,4 +46,49 @@ SMACSS: PAGE - LANDING
 	justify-content:space-around;
 	padding:30px;
 	border-bottom: solid 1px #efefef;
+}
+
+
+//product-items
+
+//To-Do have to move different page
+
+.Products {
+	margin:30px;
+	display:flex;
+	justify-content:space-around;
+	flex-wrap: wrap;
+}
+
+.products-items {
+	display: flex;
+	justify-content: space-between;
+	background-color:grey;
+	width:26%;
+	height:170px;
+	margin: 12px 0;
+}
+
+.products-items__thumbnail {
+	width: 50%
+}
+.products-items__thumbnail--image {
+	background-position: center;
+  background-repeat: no-repeat;
+  background-size: 94%;
+  height: 108px;
+}
+
+.products-items__data {
+	padding: 10px;
+	color: white;
+	text-align: center;
+	button {
+		width: 95px;
+		height: 36px;
+		border-radius: 13px;
+		border: none;
+		background-color: green;
+		color: white;
+	}
 }

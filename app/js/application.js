@@ -15,8 +15,20 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'checkoutCtrl',
             templateUrl: './partials/cart-page.html'
     	})
+    	.when('/login', {
+            controller: 'loginController',
+            templateUrl: './partials/login.html'
+    	})
+    	.when('/signup', {
+            controller: 'loginController',
+            templateUrl: './partials/signup.html'
+    	})
+    	.when('/products', {
+            controller: 'productController',
+            templateUrl: './partials/_products-page.html'
+    	})
 
-    	.otherwise({ redirectTo: '/product-description' });
+    	.otherwise({ redirectTo: '/login' });
 
 
 }]);
