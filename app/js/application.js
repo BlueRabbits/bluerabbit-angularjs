@@ -15,10 +15,14 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'checkoutCtrl',
             templateUrl: './partials/cart-page.html'
     	})
-    	.when('/login', {
-            controller: 'loginController',
-            templateUrl: './partials/login.html'
+    	.when('/landing', {
+            controller: 'mainController',
+            templateUrl: './partials/_page-landing.html'
     	})
+    	// .when('/login', {
+      //       controller: 'loginController',
+      //       templateUrl: './partials/login.html'
+    	// })
     	.when('/signup', {
             controller: 'loginController',
             templateUrl: './partials/signup.html'

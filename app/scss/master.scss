@@ -21,6 +21,8 @@ MASTER: IMPORTING STYLESHEETS
 @import "mixins";
 @import "base";
 @import "header";
+@import "footer";
+@import "fonts";
 
 @import "layout";
 
@@ -28,4 +30,4 @@ MASTER: IMPORTING STYLESHEETS
 @import "pages/product-description";
 @import "pages/cart-page";
 @import "pages/login";
-//@import "pages/header";
+@import "pages/page-landing";

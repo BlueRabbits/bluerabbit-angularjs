@@ -1,15 +1,15 @@
 .header {
 	background-color: #e40046;
-	height: 50px;
+	height: 97px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 15px;
+	padding: 0px 75px;
 }
 
 .logo {
 	img {
-		height:40px;
+		height:30px;
 	}
 }
 
@@ -31,10 +31,15 @@
 	justify-content: space-around;
 
 	p {
-	   margin-left:20px;
+	   margin-left:4px;
      a{
        color: white;
        text-decoration: none;
      }
+	}
+
+	img {
+		margin-left: 10px;
+		margin-top: -5px;
 	}
 }
