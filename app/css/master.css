@@ -576,6 +576,7 @@ SMACSS: PAGE - LANDING
     margin: 10px;
     font-size: 14px;
     color: white;
+    text-transform: uppercase;
     font-family: "Lato-Regular"; }
     .header-menu__list p a,
     .search_favorites p a {
@@ -584,6 +585,21 @@ SMACSS: PAGE - LANDING
 
 .search_favorites img {
   height: 15px; }
+
+.social-images {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 210px; }
+  .social-images img {
+    height: 58px;
+    width: 58px; }
+  .social-images img:hover {
+    width: 90px !important; }
+
+.facebook {
+  width: 85px !important; }
 
 .section-main-content {
   background-image: url(../images/section1-bg.png);
@@ -723,6 +739,78 @@ SMACSS: PAGE - LANDING
   height: 760px;
   background-repeat: round;
   padding: 32px 100px; }
+
+.location-section-heading {
+  font-family: "Lato-Light";
+  font-size: 52px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: -1.2px;
+  color: #333333;
+  margin-bottom: 20px; }
+
+.location-services {
+  background-color: #dbe272;
+  width: 100%;
+  height: 590px;
+  box-shadow: 0px 3px 5px 5px rgba(136, 136, 136, 0.11);
+  display: flex; }
+
+.location-services-heading {
+  font-family: "Lato-Black";
+  font-size: 24px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff; }
+
+.location-search {
+  width: 485px;
+  height: 45.6px;
+  padding: 10px;
+  object-fit: contain;
+  border-radius: 100px;
+  background-color: #eff4f6;
+  border: none;
+  outline: none;
+  background-image: url(../images/location-search.png);
+  background-repeat: no-repeat;
+  background-size: 3%;
+  background-position: right 21px center; }
+
+.location-services__search {
+  width: 50%;
+  padding: 35px 0 35px 35px; }
+
+.location-search-places {
+  display: flex;
+  padding: 24px 0;
+  border-bottom: 1px solid white; }
+  .location-search-places img {
+    height: 52px; }
+  .location-search-places p {
+    width: 157px;
+    font-family: "Lato-Regular";
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.2px;
+    color: #474442; }
+  .location-search-places:last-child {
+    border-bottom: none; }
+
+.search-place__address {
+  width: 47%; }
+
+.location-services__map {
+  width: 53%;
+  background-image: url(../images/map@3x.png);
+  background-size: 107%;
+  background-repeat: no-repeat;
+  margin-top: -11px; }
 
 .aboutus-section {
   background-color: #d42841;
@@ -897,8 +985,85 @@ SMACSS: PAGE - LANDING
   letter-spacing: 0.2px;
   color: #ffffff; }
 
+.app-store-buttons {
+  display: flex;
+  margin-top: 50px; }
+  .app-store-buttons img {
+    height: 50px;
+    margin-right: 20px;
+    cursor: pointer; }
+
 .blog-section {
-  background-color: #f3f7f8;
+  background-image: url(../images/blog-bg.png);
   height: 508px;
   background-repeat: round;
   padding: 32px 100px; }
+
+.blog-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .blog-section__header p {
+    font-family: "Lato-Light";
+    font-size: 52px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.19;
+    letter-spacing: -1px;
+    color: #474442; }
+  .blog-section__header button {
+    width: 125px;
+    height: 36.4px;
+    border-radius: 40px;
+    border: solid 1px #d42841;
+    background: none;
+    font-family: "Lato-Regular";
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #d42841; }
+
+.blog__content {
+  display: flex; }
+
+.blog__content__text {
+  width: 50%;
+  display: flex;
+  justify-content: space-between; }
+
+.content__text {
+  padding: 0 30px; }
+
+.content__text--heading {
+  opacity: 0.5;
+  font-family: "Lato-Regular";
+  font-size: 24px;
+  letter-spacing: -0.6px;
+  color: #000000; }
+
+.comments-location {
+  display: flex;
+  padding: 8px 0; }
+  .comments-location li {
+    opacity: 0.5;
+    font-family: "Lato-Regular";
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #000000; }
+    .comments-location li img {
+      height: 10px; }
+
+.blog-description {
+  opacity: 0.5;
+  font-family: "Lato-Regular";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  letter-spacing: 0.2px;
+  color: #50545c; }
+
+.blog__content__image img {
+  height: 406px; }
