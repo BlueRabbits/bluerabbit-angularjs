@@ -593,13 +593,102 @@ SMACSS: PAGE - LANDING
   left: 0;
   top: 210px; }
   .social-images img {
-    height: 58px;
-    width: 58px; }
-  .social-images img:hover {
-    width: 90px !important; }
+    height: 18px; }
 
-.facebook {
-  width: 85px !important; }
+.fb-btn {
+  width: 80px;
+  background-color: #3c5a96; }
+  .fb-btn:before {
+    border-top: 0px solid #3c5a96;
+    border-left: 18px solid #3c5a96; }
+  .fb-btn:after {
+    border-bottom: 0px solid #3c5a96;
+    border-left: 18px solid #3c5a96; }
+  .fb-btn:hover {
+    width: 90px; }
+
+.tw-btn {
+  width: 41px;
+  background-color: #59adeb; }
+  .tw-btn:before {
+    border-top: 0px solid #59adeb;
+    border-left: 18px solid #59adeb; }
+  .tw-btn:after {
+    border-bottom: 0px solid #59adeb;
+    border-left: 18px solid #59adeb; }
+  .tw-btn:hover {
+    width: 55px; }
+
+.google-btn {
+  width: 41px;
+  background-color: #da5047; }
+  .google-btn:before {
+    border-top: 0px solid #da5047;
+    border-left: 18px solid #da5047; }
+  .google-btn:after {
+    border-bottom: 0px solid #da5047;
+    border-left: 18px solid #da5047; }
+  .google-btn:hover {
+    width: 55px; }
+
+.instagram-btn {
+  width: 41px;
+  background-color: #ab4496;
+  background: linear-gradient(to left, #c7357d, #8054b1); }
+  .instagram-btn:before {
+    border-top: 0px solid #c7357d;
+    border-left: 18px solid #c7357d; }
+  .instagram-btn:after {
+    border-bottom: 0px solid #c7357d;
+    border-left: 18px solid #c7357d; }
+  .instagram-btn:hover {
+    width: 55px; }
+
+.fb-btn,
+.tw-btn,
+.google-btn,
+.instagram-btn {
+  margin-top: 5px;
+  height: 30px;
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  position: relative;
+  margin-left: -6px;
+  transition: 0.3s margin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; }
+  .fb-btn:before,
+  .tw-btn:before,
+  .google-btn:before,
+  .instagram-btn:before {
+    content: '';
+    position: absolute;
+    border-bottom: 18px solid transparent;
+    width: 0;
+    height: 0px;
+    right: -18px;
+    top: 0px;
+    z-index: -1; }
+  .fb-btn:after,
+  .tw-btn:after,
+  .google-btn:after,
+  .instagram-btn:after {
+    content: '';
+    position: absolute;
+    border-top: 18px solid transparent;
+    width: 0;
+    height: 0px;
+    right: -18px;
+    bottom: 0px;
+    z-index: -1; }
+  .fb-btn:hover,
+  .tw-btn:hover,
+  .google-btn:hover,
+  .instagram-btn:hover {
+    margin-left: 0px; }
 
 .section-main-content {
   background-image: url(../images/section1-bg.png);
