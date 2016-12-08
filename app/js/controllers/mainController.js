@@ -23,15 +23,41 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
     return false;
   });
 
+  $(document).ready(function(){
+  	$('.search-icon').click(function() {
+  		$('.search-box').show();
+      $('.close-icon').show();
+  	});
+  	$('.close-icon').click(function() {
+  		$('.search-box').hide();
+      $('.close-icon').hide();
+  	});
+  });
+
+  //redirection
+  $(".search-box").keypress(function (e) {
+      var code = e.keyCode ? e.keyCode : e.which;
+      if (code.toString() == 13) {
+         nextpage(); // call the function to redirect to another page
+          return false;
+      }
+    });
+
+  // Function that redirect the user to another page
+  function nextpage() {
+    window.location = "#/product-description";
+  }
+
+
+  //scrooling page,showing header fixed
+
   var elementPosition = $('#scroll-menu-fixed').offset();
 
   $(window).scroll(function(){
     if($(window).scrollTop() > elementPosition.top){
           $('#scroll-menu-fixed').css('position','fixed').css({"top":"0","right":"0","left":"0"});
-          //$('.header').css({"background-color":"white"});
     } else {
         $('#scroll-menu-fixed').css('position','static');
-        //$('.header').css({"background-color":"#e40046"});
     }
   });
   var elementPosition = $('#scroll-menu-fixed1').offset();
