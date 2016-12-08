@@ -9,9 +9,11 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
           email: $scope.email,
           password: $scope.password,
         }
+        
 
     Auth.register(signupcredintials).success(function(data) {
     localStorage.setItem("token", data.token);
+    localStorage.setItem("userId", data._id);
     localStorage.setItem("name", data.email);
     //localStorage.setItem("loggedIn", true);
     $location.path('/cart-description');
@@ -31,6 +33,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
       password: $scope.password,
     }).success(function (data) {
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data._id);
       localStorage.setItem("email", data.email);
       localStorage.setItem('loggedIn', true);
       $location.path('/cart-description');
@@ -42,6 +45,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
 
   $scope.logout = function () {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     localStorage.removeItem("email");
     localStorage.setItem('loggedIn', false);
     $location.path('/login');
