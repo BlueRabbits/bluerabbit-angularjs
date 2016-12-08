@@ -12,17 +12,17 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: './partials/_product-description.html'
     	})
     	.when('/cart-description', {
-            controller: 'checkoutCtrl',
+            controller: 'productController',
             templateUrl: './partials/cart-page.html'
     	})
     	.when('/landing', {
             controller: 'mainController',
             templateUrl: './partials/_page-landing.html'
     	})
-    	// .when('/login', {
-      //       controller: 'loginController',
-      //       templateUrl: './partials/login.html'
-    	// })
+    	.when('/login', {
+            controller: 'loginController',
+            templateUrl: './partials/login.html'
+    	})
     	.when('/signup', {
             controller: 'loginController',
             templateUrl: './partials/signup.html'

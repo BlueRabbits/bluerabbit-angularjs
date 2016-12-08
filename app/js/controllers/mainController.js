@@ -70,6 +70,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
     }
   });
 
+  //get all products in landing page
   $scope.product = function() {
     $scope.productslist = [];
     Auth.products().success(function(data) {
@@ -85,11 +86,54 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
          "imag_url" : value.mainImageUrl
        };
        $scope.productslist.push(obj);
+       console.log("product id", $scope.productslist);
      });
     }).error(function(data) {
       console.log('data', data);
         alert ("no Products")
     });
   }
+  $scope.product();
+
+  //POST create add to cart
+  //POST create add to cart
+  var count = 0;
+  $scope.addToCart = function (productId) {
+    count++;
+    console.log("quantity count",count);
+    $scope.getUserId = localStorage.getItem('userId');
+    $scope.userToken = localStorage.getItem('token');
+    $scope.sessionId = "aa565asdasdy87sadasd987";
+    $scope.cartlist =[];
+    var productInfo = {
+      product:productId,
+      quantity: count,
+      UserID:$scope.getUserId,
+      sessionID:$scope.sessionId,
+      authToken: $scope.userToken,
+      isDeleted: false
+    }
+    Auth.addCart(productInfo)
+    .success(function(data){
+      //console.log('data', data);
+      alert('Added to cart');
+      // $scope.quantity = data.quantity;
+      // $scope.user_id = data.UserID;
+      // console.log('id',$scope.user_id);
+
+      angular.forEach(data, function (value, key) {
+        var obj = {
+          "user_id" : value.UserID,
+          "productId" : value.product,
+          "quantity" : value.quantity,
+        };
+        $scope.cartlist.push(obj);
+        console.log("cart",$scope.cartlist);
+      });
+    }).error(function(data){
+      alert('Not Added to cart');
+    });
+  };
+
 
 })

@@ -62,22 +62,22 @@
     <div class="menu-tabs__products-list ">
       <div class="menu-tabs__breakfast products-tab" id="breakfast-tab">
         <!-- 1-->
-        <div class="breakfast-products">
+        <div class="breakfast-products"  ng-repeat="list in productslist | limitTo:4">
           <div class="breakfast-products__iamge">
 
           </div>
           <div class="breakfast-products__content">
             <img src="images/heart-icon-black.png" height="26px" alt="" />
             <div class="products__description">
-              <p>name1</p>
-              <p>data</p>
-              <p>Price</p>
+              <p>{{list.name}}</p>
+              <p>{{list.description}}</p>
+              <p>{{list.price}}AED</p>
             </div>
-            <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png"> Add to cart</button>
+            <button type="button" name="button" ng-click="addToCart(list.id)"><img src="images/add-cart-icon.png"> Add to cart</button>
           </div>
         </div>
         <!-- 2-->
-        <div class="breakfast-products">
+        <!-- <div class="breakfast-products">
           <div class="breakfast-products__iamge" style="background-image: url(images/plate-chicken.png);">
 
           </div>
@@ -90,9 +90,9 @@
             </div>
             <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png">Add to cart</button>
           </div>
-        </div>
+        </div> -->
         <!-- 3 -->
-        <div class="breakfast-products">
+        <!-- <div class="breakfast-products">
           <div class="breakfast-products__iamge" style="background-image: url(images/seafood-art.png);">
 
           </div>
@@ -105,9 +105,9 @@
             </div>
             <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png">Add to cart</button>
           </div>
-        </div>
+        </div> -->
         <!-- 4 -->
-        <div class="breakfast-products">
+        <!-- <div class="breakfast-products">
           <div class="breakfast-products__iamge" style="background-image: url(images/salad.png);">
 
           </div>
@@ -120,7 +120,7 @@
             </div>
             <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png">Add to cart</button>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <!-- Lunch Tab -->

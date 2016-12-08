@@ -29,7 +29,7 @@ app.factory('Auth', function($http, $window) {
       });
     },
     addCart : function(inputs) {
-      return $http.get(BASE_URL + '/api/shoppingCart', inputs, {
+      return $http.post(BASE_URL + '/api/shoppingCart', inputs, {
       headers: {
         'Content-Type': 'application/json'
         }
