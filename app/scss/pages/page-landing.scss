@@ -1,6 +1,6 @@
 .section-header-menu {
   background-color: #515356;
-  opacity: 0.5;
+  opacity: 0.9;
   height: 36px;
   display: flex;
   justify-content: space-between;
@@ -18,18 +18,42 @@
     color: white;
     text-transform: uppercase;
     font-family: $font-Lato-regular;
+    cursor: pointer;
     a{
       color: white;
       text-decoration: none;
-
+      cursor: pointer;
     }
   }
 }
 .search_favorites {
   img {
     height: 15px;
+    cursor: pointer;
   }
 }
+
+.search-box {
+  display: none;
+  border: none;
+  font-size: 18px;
+  width: 86%;
+  position: absolute;
+  height: 36px;
+  background-color: #fff;
+  right: 14%;
+  left: 0;
+  padding: 0 35px;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
+}
+.close-icon {
+  display: none;
+  position: relative;
+  height: 15px;
+  cursor: pointer;
+}
+
 
 //social-logins
 .social-images {
