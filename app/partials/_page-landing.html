@@ -64,7 +64,7 @@
     <div class="menu-tabs__products-list ">
       <div class="menu-tabs__breakfast products-tab" id="breakfast-tab">
         <!-- 1-->
-        <div class="breakfast-products"  ng-repeat="list in productslist | filter:{cat:'Recommended'}:true">
+        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'Recommended'}:true">
           <div class="breakfast-products__iamge">
 
           </div>
@@ -73,7 +73,7 @@
             <div class="products__description">
               <p>{{list.name}}</p>
               <p>{{list.description}}</p>
-              <p class="products__price">{{list.price}}AED</p>
+              <p class="products__price">{{list.salePrice}}AED</p>
             </div>
             <button type="button" name="button" ng-click="addToCart(list.id)"><img src="images/add-cart-icon.png"> Add to cart</button>
           </div>
