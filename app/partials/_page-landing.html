@@ -51,18 +51,20 @@
     <h1>Our Menu</h1>
     <div class="menu-tabs">
       <ul class="menu-tabs__list" id="tabs-menu">
-        <li><a href="#breakfast-tab" data-toggle="tab"> Breakfast</a></li>
-        <li><a href="#lunch-tab" data-toggle="tab">Lunch</a></li>
-        <li><a href="#dinner-tab" data-toggle="tab">Dinner</a></li>
-        <li><a href="#salads-tab" data-toggle="tab">Salads</a></li>
-        <li><a href="#rolls-tab" data-toggle="tab">Rolls</a></li>
+        <li><a href="#breakfast-tab" data-toggle="tab"> Recommended</a></li>
+        <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
+        <li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
+        <li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
+        <li><a href="#rolls-tab" data-toggle="tab">Soups & Broth</a></li>
+        <li><a href="#rolls-tab" data-toggle="tab">Krazy Toss</a></li>
+        <li><a href="#rolls-tab" data-toggle="tab"> Dessert/Yogurt/Beverages</a></li>
         <button type="button" name="button">view all</button>
       </ul>
     </div>
     <div class="menu-tabs__products-list ">
       <div class="menu-tabs__breakfast products-tab" id="breakfast-tab">
         <!-- 1-->
-        <div class="breakfast-products"  ng-repeat="list in productslist | limitTo:4">
+        <div class="breakfast-products"  ng-repeat="list in productslist | filter:{cat:'Recommended'}:true">
           <div class="breakfast-products__iamge">
 
           </div>

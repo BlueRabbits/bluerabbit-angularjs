@@ -77,7 +77,6 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
     Auth.products().success(function(data) {
     console.log('data',data);
     $scope.allProducts = data;
-
      angular.forEach($scope.allProducts, function (value, key) {
        var obj = {
          "id" : value._id,
