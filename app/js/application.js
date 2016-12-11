@@ -7,17 +7,21 @@ var app = angular.module('bluerabbit', ['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
+    .when('/landing', {
+          controller: 'mainController',
+          templateUrl: './partials/_page-landing.html'
+    })
     	.when('/product-description', {
             controller: '',
             templateUrl: './partials/_product-description.html'
     	})
     	.when('/cart-description', {
-            controller: 'productController',
+            controller: 'checkoutCtrl',
             templateUrl: './partials/cart-page.html'
     	})
-    	.when('/landing', {
-            controller: 'mainController',
-            templateUrl: './partials/_page-landing.html'
+    	.when('/search-page', {
+            controller: 'productController',
+            templateUrl: './partials/_page-search.html'
     	})
     	.when('/login', {
             controller: 'loginController',
@@ -28,11 +32,11 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: './partials/signup.html'
     	})
     	.when('/products', {
-            controller: 'productController',
+            controller: '',
             templateUrl: './partials/_products-page.html'
     	})
 
-    	.otherwise({ redirectTo: '/login' });
+    	.otherwise({ redirectTo: '/landing' });
 
 
 }]);

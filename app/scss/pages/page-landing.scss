@@ -376,17 +376,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     img {
       height: 12px;
       margin-right: 10px;
-
+      cursor: pointer;
     }
 	}
 }
 
 .products__description {
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p{
+    font-family: $font-Lato-black;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.17;
+    color: #515356;
+  }
+}
+
+.products__price {
+  color: #d92e4a !important;
 }
 
 //location-section

@@ -35,6 +35,21 @@ app.factory('Auth', function($http, $window) {
         }
       });
     },
+    getCartList : function(inputs) {
+      return $http.post(BASE_URL + '/api/shoppingCart/getCartItems', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    searchItem : function(inputs) {
+      return $http.get(BASE_URL + '/api/products/searchProducts/chicken', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+
 
   };
 });

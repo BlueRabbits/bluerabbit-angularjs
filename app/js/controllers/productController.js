@@ -26,7 +26,6 @@ app.controller('productController', function($scope, $location, $rootScope, $win
   //
   // $scope.product();
 
-  
   $scope.createUUID = function() {
     // http://www.ietf.org/rfc/rfc4122.txt
     var s = [];
@@ -41,8 +40,70 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     var uuid = s.join("");
     console.log("uuid",uuid);
     return uuid;
-}
-$scope.createUUID();
+  }
+  $scope.createUUID();
+
+
+  $scope.getcartItems = function () {
+    $scope.getUserId = localStorage.getItem('userId');
+    $scope.sessionId = "aa565asdasdy87sadasd987";
+    $scope.gettingCartData =[];
+    console.log('cart page');
+    Auth.getCartList({
+      UserId : $scope.getUserId,
+      sessionID: $scope.sessionId,
+    })
+    .success(function (data) {
+      console.log(data.length);
+      $scope.cartLength = data.length;
+      $scope.allCartItems = data;
+      console.log('narendra',data);
+      angular.forEach($scope.allCartItems, function (value, key) {
+        var obj = {
+          "imag_url" : value.mainImageUrl,
+          "description" : value.description,
+          "cartquantity":value.quantity,
+          "cartPrice" : value.salePrice
+        };
+        $scope.gettingCartData.push(obj);
+
+      });
+      console.log("cartquantity", $scope.gettingCartData);
+
+    }).error(function(data){
+      alert('Not Added to cart');
+    });
+  };
+  $scope.getcartItems();
+
+  $scope.searchList = function () {
+    Auth.searchItem ({
+    'str': $scope.searchitem
+    }).success ( function (data) {
+      console.log('dachu', data);
+      $scope.search_result = data;
+
+    }).error({
+
+    });
+  };
+
+
+    $(document).ready(function(){
+          //var counter = $('#TextBox').val();
+          $('#AddButton').click( function() {
+            	$('#minusButton').hide();
+              var counter = $('#TextBox').val();
+              counter++ ;
+              $('#TextBox').val(counter);
+      });
+      $('#minusButton').click( function() {
+              var counter = $('#TextBox').val();
+              counter-- ;
+              $('#TextBox').val(counter);
+      });
+  });
+
 
 
 })

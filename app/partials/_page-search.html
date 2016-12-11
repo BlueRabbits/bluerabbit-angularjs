@@ -1,0 +1,51 @@
+@@include('_header.html')
+<div class="section-header-menu" id="scroll-menu-fixed1">
+	<div class="search_favorites">
+		<input type="search" class="search-order" ng-model="searchitem" ng-change="searchList(searchitem)" placeholder="Find The Things What You Want Here" >
+		<img src="images/heart-icon@2x.png" >
+		<p>favorites</p>
+		<p><a href="#/"> |</a></p>
+		<img src="images/search-icon@2x.png" class="search-icon" ng-click="searchList(searchitem)">
+
+
+	</div>
+</div>
+<div class="search-order-section">
+	<div class="search-secction"  >
+		<div class="search-secction__data" ng-repeat="results in search_result">
+			<div class="search-section__image">
+				<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
+				</div>
+			</div>
+			<p>{{results.description}}</p>
+			<!-- <p>{{results.name}}</p> -->
+			<p>{{results.salePrice}}</p>
+			<div class="search-secction__buttons">
+				<button type="button" name="button">Add to Cart</button>
+				<button type="button" name="button">Add to Wish</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="order-section">
+		<div class="search-secction__data" ng-repeat="cartList in allCartItems">
+			<div class="search-section__image">
+				<div class="image__thumbnail" style="background-image:url({{rcartList.product.mainImageUrl}})">
+				</div>
+			</div>
+			<p>{{cartList.quantity}}</p>
+			<p>{{cartList.product.name}}</p>
+			<p>{{cartList.product.salePrice}}</p>
+			<div class="product-quantity">
+
+				<!-- <button id='minusButton'>-</button>
+				<input type="text" name="TextBox" id="TextBox" value="0" />
+				<button id='AddButton'>+</button> -->
+				<!-- <button class="minus" style="cursor:pointer">-</button>
+				<input type="text" name="number" class="quantity__count" value="1">
+				<button class="add" style="cursor:pointer">+</button> -->
+				<!-- <input type="number" name="number" class="product-quantity__count" value="1"> -->
+			</div>
+		</div>
+	</div>
+</div>

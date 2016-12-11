@@ -20,7 +20,7 @@
         </div> -->
         <input type="search" class="search-box" placeholder="Find The Things What You Want Here">
         <img src="images/close-button@2x.png" class="close-icon" >
-        <img src="images/search-icon@2x.png" class="search-icon">
+        <a href="#/search-page"><img src="images/search-icon@2x.png" class="search-icon"></a>
         <p><a href="#/"> |</a></p>
         <img src="images/heart-icon@2x.png">
     		<p>favorites</p>
@@ -28,7 +28,7 @@
     </div>
     <div class="section-content">
       <div class="social-images">
-        <div class="fb-btn"><p>Facebook</p><img src="images/twitter-icon-copy-2@3x.png" alt="Facebook" /></div>
+        <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
         <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
         <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
         <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
@@ -71,7 +71,7 @@
             <div class="products__description">
               <p>{{list.name}}</p>
               <p>{{list.description}}</p>
-              <p>{{list.price}}AED</p>
+              <p class="products__price">{{list.price}}AED</p>
             </div>
             <button type="button" name="button" ng-click="addToCart(list.id)"><img src="images/add-cart-icon.png"> Add to cart</button>
           </div>
