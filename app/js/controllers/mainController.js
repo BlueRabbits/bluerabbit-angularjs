@@ -34,6 +34,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   	});
   });
 
+
   //redirection
   $(".search-box").keypress(function (e) {
       var code = e.keyCode ? e.keyCode : e.which;
@@ -45,7 +46,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
 
   // Function that redirect the user to another page
   function nextpage() {
-    window.location = "#/product-description";
+    window.location = "#/search-page";
   }
 
 
@@ -122,18 +123,16 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
       // console.log('id',$scope.user_id);
 
       angular.forEach(data, function (value, key) {
-        var obj = {
-          "user_id" : value.UserID,
-          "productId" : value.product,
-          "quantity" : value.quantity,
-        };
-        $scope.cartlist.push(obj);
-        console.log("cart",$scope.cartlist);
-      });
-    }).error(function(data){
-      alert('Not Added to cart');
-    });
-  };
-
-
+            var obj = {
+              "user_id" : value.UserID,
+              "productId" : value.product,
+              "quantity" : value.quantity,
+            };
+            $scope.cartlist.push(obj);
+            console.log("cart",$scope.cartlist);
+          });
+        }).error(function(data){
+          alert('Not Added to cart');
+        });
+      };
 })

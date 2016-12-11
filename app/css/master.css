@@ -601,7 +601,8 @@ SMACSS: PAGE - LANDING
   left: 0;
   padding: 0 35px;
   border-radius: 2px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); }
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  outline: none; }
 
 .close-icon {
   display: none;
@@ -619,7 +620,7 @@ SMACSS: PAGE - LANDING
     height: 18px; }
 
 .fb-btn {
-  width: 80px;
+  width: 40px;
   background-color: #3c5a96; }
   .fb-btn:before {
     border-top: 0px solid #3c5a96;
@@ -627,8 +628,15 @@ SMACSS: PAGE - LANDING
   .fb-btn:after {
     border-bottom: 0px solid #3c5a96;
     border-left: 18px solid #3c5a96; }
+  .fb-btn p {
+    display: none !important;
+    color: white !important;
+    font-size: 12px !important; }
   .fb-btn:hover {
     width: 90px; }
+    .fb-btn:hover p {
+      display: block !important;
+      margin-top: 5px !important; }
 
 .tw-btn {
   width: 41px;
@@ -639,8 +647,15 @@ SMACSS: PAGE - LANDING
   .tw-btn:after {
     border-bottom: 0px solid #59adeb;
     border-left: 18px solid #59adeb; }
+  .tw-btn p {
+    display: none !important;
+    color: white !important;
+    font-size: 12px !important; }
   .tw-btn:hover {
-    width: 55px; }
+    width: 100px; }
+    .tw-btn:hover p {
+      display: block !important;
+      margin-top: 5px !important; }
 
 .google-btn {
   width: 41px;
@@ -651,8 +666,15 @@ SMACSS: PAGE - LANDING
   .google-btn:after {
     border-bottom: 0px solid #da5047;
     border-left: 18px solid #da5047; }
+  .google-btn p {
+    display: none !important;
+    color: white !important;
+    font-size: 12px !important; }
   .google-btn:hover {
-    width: 55px; }
+    width: 90px; }
+    .google-btn:hover p {
+      display: block !important;
+      margin-top: 5px !important; }
 
 .instagram-btn {
   width: 41px;
@@ -664,8 +686,15 @@ SMACSS: PAGE - LANDING
   .instagram-btn:after {
     border-bottom: 0px solid #c7357d;
     border-left: 18px solid #c7357d; }
+  .instagram-btn p {
+    display: none !important;
+    color: white !important;
+    font-size: 12px !important; }
   .instagram-btn:hover {
-    width: 55px; }
+    width: 90px; }
+    .instagram-btn:hover p {
+      display: block !important;
+      margin-top: 5px !important; }
 
 .fb-btn,
 .tw-btn,
@@ -711,7 +740,9 @@ SMACSS: PAGE - LANDING
   .tw-btn:hover,
   .google-btn:hover,
   .instagram-btn:hover {
-    margin-left: 0px; }
+    margin-left: 0px;
+    display: flex;
+    justify-content: space-between; }
 
 .section-main-content {
   background-image: url(../images/section1-bg.png);
@@ -838,13 +869,27 @@ SMACSS: PAGE - LANDING
     font-size: 13px;
     display: flex;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    cursor: pointer; }
     .breakfast-products__content button img {
       height: 12px;
-      margin-right: 10px; }
+      margin-right: 10px;
+      cursor: pointer; }
 
 .products__description {
-  margin: 20px; }
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .products__description p {
+    font-family: "Lato-Black";
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.17;
+    color: #515356; }
+
+.products__price {
+  color: #d92e4a !important; }
 
 .location-section {
   background-image: url(../images/location-services-bg.png);
@@ -1179,3 +1224,59 @@ SMACSS: PAGE - LANDING
 
 .blog__content__image img {
   height: 406px; }
+
+.search-order-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px; }
+
+.search-order {
+  border: none;
+  height: 34px;
+  width: 1061px;
+  position: absolute;
+  right: 0;
+  /* left: 0; */
+  border-radius: 3px;
+  padding: 17px;
+  outline: none; }
+
+.search-secction {
+  width: 55%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  height: auto;
+  min-height: 900px; }
+
+.search-secction__data {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  margin: 10px;
+  padding: 10px; }
+
+.search-section__image,
+.image__thumbnail {
+  width: 131px;
+  height: 85px; }
+
+.image__thumbnail {
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+.search-secction__buttons button {
+  width: 105px;
+  height: 36px;
+  background-color: #64922a;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px; }
+
+.order-section {
+  width: 44%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  height: auto;
+  min-height: 900px; }

@@ -1,7 +1,7 @@
 <!-- Header -->
-<div class="header" ng-controller="loginController">
+<div class="header" ng-controller="productController">
 	<div class="logo">
-		<img src="images/l-o-g-o@2x.png">
+		<a href="#/landing"><img src="images/l-o-g-o@2x.png"></a>
 	</div>
 	<!-- <div class="search-bar">
 		<input type="search-bar" name="" class="search-bar__input">
@@ -10,9 +10,12 @@
 	<div class="profile_details">
 		<!-- <p><a href="#/cart-description">CART</a></p>
 		<p><a href="#/product-description">Account-name</a></p> -->
-		<p><a href="#/login">Login  /</a></p>
+		<p><a href="#loginmaodal" data-toggle="modal">Login  /</a></p>
 		<p><a href="#/signup">Register</a></p>
-		<img src="images/basket@2x.png" height="26px">
+		<a href="#/cart-description"><img src="images/basket@2x.png" height="26px" ng-click="getcartItems()"></a>
+		<p>
+			{{cartLength}}
+		</p>
 		<!-- <p><a href="" ng-click="logout()">Logout</a></p> -->
 	</div>
 </div>

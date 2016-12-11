@@ -46,6 +46,7 @@
   padding: 0 35px;
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
+  outline: none;
 }
 .close-icon {
   display: none;
@@ -69,7 +70,7 @@
 }
 
 .fb-btn {
-  width: 80px;
+  width: 40px;
   background-color: #3c5a96;
 
   &:before {
@@ -80,8 +81,17 @@
     border-bottom: 0px solid #3c5a96;
     border-left: 18px solid #3c5a96;
   }
+  p {
+    display: none !important;
+    color:white !important;
+    font-size: 12px !important;
+  }
   &:hover {
     width: 90px;
+    p{
+      display: block !important;
+      margin-top: 5px !important;
+    }
   }
 }
 
@@ -97,8 +107,18 @@
     border-bottom: 0px solid #59adeb;
     border-left: 18px solid #59adeb;
   }
+
+  p {
+    display: none !important;
+    color:white !important;
+    font-size: 12px !important;
+  }
   &:hover {
-    width: 55px;
+    width: 100px;
+    p{
+      display: block !important;
+      margin-top: 5px !important;
+    }
   }
 }
 
@@ -114,8 +134,17 @@
     border-bottom: 0px solid #da5047;
     border-left: 18px solid #da5047;
   }
+  p {
+    display: none !important;
+    color:white !important;
+    font-size: 12px !important;
+  }
   &:hover {
-    width: 55px;
+    width: 90px;
+    p{
+      display: block !important;
+      margin-top: 5px !important;
+    }
   }
 }
 .instagram-btn {
@@ -131,8 +160,17 @@
     border-bottom: 0px solid #c7357d;
     border-left: 18px solid #c7357d;
   }
+  p {
+    display: none !important;
+    color:white !important;
+    font-size: 12px !important;
+  }
   &:hover {
-    width: 55px;
+    width: 90px;
+    p{
+      display: block !important;
+      margin-top: 5px !important;
+    }
   }
 }
 
@@ -175,6 +213,8 @@
 
   &:hover {
     margin-left: 0px;
+    display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -336,17 +376,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     img {
       height: 12px;
       margin-right: 10px;
-
+      cursor: pointer;
     }
 	}
 }
 
 .products__description {
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p{
+    font-family: $font-Lato-black;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.17;
+    color: #515356;
+  }
+}
+
+.products__price {
+  color: #d92e4a !important;
 }
 
 //location-section
