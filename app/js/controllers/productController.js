@@ -1,5 +1,26 @@
 app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout){
   'use strict';
+
+  //scrooling page,showing header fixed
+
+  var elementPosition = $('#scroll-menu-fixed').offset();
+
+  $(window).scroll(function(){
+    if($(window).scrollTop() > elementPosition.top){
+          $('#scroll-menu-fixed').css('position','fixed').css({"top":"0","right":"0","left":"0"});
+    } else {
+        $('#scroll-menu-fixed').css('position','static');
+    }
+  });
+  var elementPosition = $('#scroll-menu-fixed1').offset();
+
+  $(window).scroll(function(){
+    if($(window).scrollTop() > elementPosition.top){
+          $('#scroll-menu-fixed1').css('position','fixed').css({"top":"97px","right":"0","left":"0"});
+    } else {
+        $('#scroll-menu-fixed1').css('position','static');
+    }
+  });
   //
   // $scope.product = function() {
   //   $scope.productslist = [];
@@ -88,21 +109,47 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     });
   };
 
+  $scope.deleteCart = function (productId,quantity) {
+    $scope.getUserId = localStorage.getItem('userId');
+    $scope.userToken = localStorage.getItem('token');
+    $scope.sessionId = "aa565asdasdy87sadasd987";
+    $scope.cartlist =[];
+    var productInfo = {
+      product:productId,
+      quantity : quantity,
+      UserID:$scope.getUserId,
+      sessionID:$scope.sessionId,
+      authToken: $scope.userToken,
+      isDeleted: true
+    }
+    Auth.addCart(productInfo)
+    .success(function(data){
+      //console.log('data', data);
+      alert('deleted from cart');
+      // $scope.quantity = data.quantity;
+      // $scope.user_id = data.UserID;
+      // console.log('id',$scope.user_id);
 
-    $(document).ready(function(){
-          //var counter = $('#TextBox').val();
-          $('#AddButton').click( function() {
-            	$('#minusButton').hide();
-              var counter = $('#TextBox').val();
-              counter++ ;
-              $('#TextBox').val(counter);
-      });
-      $('#minusButton').click( function() {
-              var counter = $('#TextBox').val();
-              counter-- ;
-              $('#TextBox').val(counter);
-      });
-  });
+        }).error(function(data){
+          alert('Not deleted from cart');
+        });
+      };
+
+
+  //   $(document).ready(function(){
+  //         //var counter = $('#TextBox').val();
+  //         $('#AddButton').click( function() {
+  //           	$('#minusButton').hide();
+  //             var counter = $('#TextBox').val();
+  //             counter++ ;
+  //             $('#TextBox').val(counter);
+  //     });
+  //     $('#minusButton').click( function() {
+  //             var counter = $('#TextBox').val();
+  //             counter-- ;
+  //             $('#TextBox').val(counter);
+  //     });
+  // })
 
 
 

@@ -1,4 +1,6 @@
-@@include('_header.html')
+<div class="" id="scroll-menu-fixed">
+  @@include('_header.html')
+</div>
 <div class="section-header-menu" id="scroll-menu-fixed1">
 	<div class="search_favorites">
 		<input type="search" class="search-order" ng-model="searchitem" ng-change="searchList(searchitem)" placeholder="Find The Things What You Want Here" >
@@ -45,6 +47,9 @@
 				<input type="text" name="number" class="quantity__count" value="1">
 				<button class="add" style="cursor:pointer">+</button> -->
 				<!-- <input type="number" name="number" class="product-quantity__count" value="1"> -->
+			</div>
+			<div class="cancel-button" style="cursor:pointer">
+				<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
 			</div>
 		</div>
 	</div>
