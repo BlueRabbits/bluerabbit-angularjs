@@ -48,7 +48,6 @@ app.controller('productController', function($scope, $location, $rootScope, $win
   // $scope.product();
 
   $scope.createUUID = function() {
-    // http://www.ietf.org/rfc/rfc4122.txt
     var s = [];
     var hexDigits = "0123456789abcdef";
     for (var i = 0; i < 36; i++) {
@@ -78,7 +77,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       console.log(data.length);
       $scope.cartLength = data.length;
       $scope.allCartItems = data;
-      console.log('narendra',data);
+      console.log('get cart data',data);
       angular.forEach($scope.allCartItems, function (value, key) {
         var obj = {
           "imag_url" : value.mainImageUrl,
@@ -101,7 +100,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     Auth.searchItem ({
     'str': $scope.searchitem
     }).success ( function (data) {
-      console.log('dachu', data);
+      console.log('search data', data);
       $scope.search_result = data;
 
     }).error({
@@ -124,7 +123,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     }
     Auth.addCart(productInfo)
     .success(function(data){
-      //console.log('data', data);
+      console.log('deleted resp', data);
       alert('deleted from cart');
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
