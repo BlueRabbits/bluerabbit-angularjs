@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout) {
+app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth) {
 
   //jQuery time
   var current_fs, next_fs, previous_fs; //fieldsets
@@ -80,4 +80,40 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
   $(".submit").click(function(){
   return false;
   })
+
+  //post address
+  $scope.addAddress = function () {
+
+    $scope.getUserId = localStorage.getItem('userId');
+    $scope.userToken = localStorage.getItem('token');
+
+    var addressDetails = {
+      userID:$scope.getUserId,
+      name:$scope.name,
+      addressType:$scope.addressType,
+      authToken: $scope.userToken,
+      street1:$scope.street1,
+      street2:$scope.street2,
+      street3: $scope.street3,
+      street4: $scope.street3,
+      companyName:$scope.companyName,
+      officeNumber:$scope.officeNumber,
+      mobileNumber:$scope.mobileNumber,
+      landLineNumber:$scope.landlineNumber,
+      pinCode: $scope.pincode,
+      city:$scope.city,
+      state: $scope.state,
+      country:$scope.country
+    }
+    Auth.addAddress(addressDetails)
+    .success(function(data){
+      console.log('addressDetails', data);
+      alert('address added');
+      // $scope.quantity = data.quantity;
+      // $scope.user_id = data.UserID;
+      // console.log('id',$scope.user_id);
+        }).error(function(data){
+          alert('Not Added to cart');
+        });
+      };
 });

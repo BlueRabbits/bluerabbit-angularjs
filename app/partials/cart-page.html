@@ -58,42 +58,63 @@
   	<fieldset>
       <div class="delivery-address">
         <div class="delivery-address--field first-name">
-          <label>First Name</label>
-          <input type="text" name="name" value="" placeholder="First Name">
+          <label>Name</label>
+          <input type="text" ng-model="name" name="name" value="" placeholder="First Name">
         </div>
         <div class="delivery-address--field last-name">
-          <label>Last Name</label>
-          <input type="text" name="name" value="" placeholder="Last Name">
+          <label>Company Name</label>
+          <input type="text" ng-model="companyName" name="name" value="" placeholder="Last Name">
         </div>
         <div class="delivery-address--field Email Address">
-          <label>Email Address</label>
-          <input type="text" name="name" value="" placeholder="Email Address">
+          <label>Address Type</label>
+          <input type="text" ng-model="addressType" name="name" value="" placeholder="Email Address">
         </div>
         <div class="delivery-address--field Phone Number">
-          <label>Phone Number</label>
-          <input type="text" name="name" value="" placeholder="Phone Number">
+          <label>Office Number</label>
+          <input type="text" ng-model="officeNumber" name="name" value="" placeholder="Phone Number">
+        </div>
+        <div class="delivery-address--field Phone Number">
+          <label>Mobile Number</label>
+          <input type="text" ng-model="mobileNumber" name="name" value="" placeholder="Phone Number">
+        </div>
+        <div class="delivery-address--field Phone Number">
+          <label>LandLine Number</label>
+          <input type="text" ng-model="landlineNumber" name="name" value="" placeholder="Phone Number">
         </div>
       </div>
       <div class="delivery-address">
         <div class="delivery-address--field first-name">
           <label>Address Line 1</label>
-          <input type="text" name="name" value="" placeholder="First Name">
+          <input type="text" ng-model="street1" name="name" value="" placeholder="First Name">
         </div>
         <div class="delivery-address--field last-name">
           <label>Address Line 2(optional)</label>
-          <input type="text" name="name" value="" placeholder="Last Name">
+          <input type="text" ng-model="street2" name="name" value="" placeholder="Last Name">
+        </div>
+        <div class="delivery-address--field last-name">
+          <label>Address Line 3(optional)</label>
+          <input type="text" ng-model="street3" name="name" value="" placeholder="Last Name">
         </div>
         <div class="delivery-address--field Email Address">
           <label>City</label>
-          <input type="text" name="name" value="" placeholder="Email Address">
+          <input type="text" ng-model="city" name="name" value="" placeholder="Email Address">
+        </div>
+        <div class="delivery-address--field Email Address">
+          <label>state</label>
+          <input type="text" ng-model="state" name="name" value="" placeholder="Email Address">
+        </div>
+        <div class="delivery-address--field Email Address">
+          <label>Country</label>
+          <input type="text" ng-model="country" name="name" value="" placeholder="Email Address">
         </div>
         <div class="delivery-address--field Phone Number">
           <label>Zip Code</label>
-          <input type="text" name="name" value="" placeholder="Phone Number">
+          <input type="text" name="name" ng-model="pincode" value="" placeholder="Phone Number">
         </div>
       </div>
   		<input type="button" name="previous" class="previous action-button" value="Back to Cart" />
-  		<input type="button" name="next" class="next action-button" value="To Checkout" />
+  		<!-- <input type="button" name="next" class="next action-button" value="To Checkout" /> -->
+  		<input type="button" name="next" ng-click="addAddress()" class=" action-button" value="Add" />
   	</fieldset>
   	<fieldset>
       <div class="payment-details">

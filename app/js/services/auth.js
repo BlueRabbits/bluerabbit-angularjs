@@ -42,6 +42,13 @@ app.factory('Auth', function($http, $window) {
         }
       });
     },
+    addAddress : function(inputs) {
+      return $http.post(BASE_URL + '/api/address', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
     searchItem : function(inputs) {
       return $http.get(BASE_URL + '/api/products/searchProducts/chicken', inputs, {
       headers: {
