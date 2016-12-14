@@ -1,6 +1,7 @@
-app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout){
+app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout ){
   'use strict';
-  $(document).ready(function() {
+
+  $scope.init = function() {
     $('.products-tab').hide();
     $('.products-tab').first().show();
     $('#tabs-menu a').first().addClass('active');
@@ -14,7 +15,8 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
       var thisTab = $(this).attr('href');
       $(thisTab).show();
     });
-  });
+  }
+
 
   $('.header-menu__list').find('a').click(function(){
     var $href = $(this).attr('href');
@@ -69,6 +71,22 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
     } else {
         $('#scroll-menu-fixed1').css('position','static');
     }
+  });
+
+
+//   if(typeof owlCarousel === 'function') {
+//   $(".owl-carousel").owlCarousel({
+//     navigation : true
+//   });
+// }
+
+
+  // $scope.slider = function () {
+  //   $('.owl-carousel').owlCarousel();
+  // }
+
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel();
   });
 
   //get all products in landing page
@@ -134,4 +152,5 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
           alert('Not Added to cart');
         });
       };
+  $scope.init();
 })
