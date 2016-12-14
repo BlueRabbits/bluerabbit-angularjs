@@ -112,16 +112,8 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     $scope.getUserId = localStorage.getItem('userId');
     $scope.userToken = localStorage.getItem('token');
     $scope.sessionId = "aa565asdasdy87sadasd987";
-    $scope.cartlist =[];
-    var productInfo = {
-      product:productId,
-      quantity : quantity,
-      UserID:$scope.getUserId,
-      sessionID:$scope.sessionId,
-      authToken: $scope.userToken,
-      isDeleted: true
-    }
-    Auth.addCart(productInfo)
+
+    Auth.deleteCart({UserID:$scope.getUserId,sessionID : $scope.sessionId,isDeleted: true}, productId)
     .success(function(data){
       console.log('deleted resp', data);
       alert('deleted from cart');

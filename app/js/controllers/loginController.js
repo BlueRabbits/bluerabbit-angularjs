@@ -9,7 +9,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
           email: $scope.email,
           password: $scope.password,
         }
-        
+
 
     Auth.register(signupcredintials).success(function(data) {
     localStorage.setItem("token", data.token);
@@ -36,6 +36,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
       localStorage.setItem("userId", data._id);
       localStorage.setItem("email", data.email);
       localStorage.setItem('loggedIn', true);
+      
       $location.path('/cart-description');
     }).error(function(data) {
       console.log('data', data);
