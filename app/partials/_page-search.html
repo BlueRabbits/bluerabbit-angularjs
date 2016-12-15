@@ -1,56 +1,174 @@
-<div class="" id="scroll-menu-fixed">
-  @@include('_header.html')
-</div>
-<div class="section-header-menu" id="scroll-menu-fixed1">
-	<div class="search_favorites">
-		<input type="search" class="search-order" ng-model="searchitem" ng-change="searchList(searchitem)" placeholder="Find The Things What You Want Here" >
-		<img src="images/heart-icon@2x.png" >
-		<p>favorites</p>
-		<p><a href="#/"> |</a></p>
-		<img src="images/search-icon@2x.png" class="search-icon" ng-click="searchList(searchitem)">
-
-
-	</div>
-</div>
 <div class="search-order-section">
-	<div class="search-secction"  >
-		<div class="search-secction__data" ng-repeat="results in search_result">
-			<div class="search-section__image">
-				<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
-				</div>
+	<div class="search-page">
+		<div class="search-page__header" id="sub-menu1">
+		  @@include('_header.html')
+		</div>
+		<div class="search-page-menu sub-menu" id="sub-menu">
+			<div class="sub-menu__search">
+				<img src="images/search-icon@2x.png" class="search-icon" ng-click="searchList(searchitem)">
+				<input type="search" class="cart__search" ng-model="searchitem" ng-change="searchList(searchitem)" placeholder="Find The Things What You Want Here" >
 			</div>
-			<p>{{results.description}}</p>
-			<!-- <p>{{results.name}}</p> -->
-			<p>{{results.salePrice}}</p>
-			<div class="search-secction__buttons">
-				<button type="button" name="button">Add to Cart</button>
-				<button type="button" name="button">Add to Wish</button>
+			<div class="sub-menu__favorites">
+				<img src="images/heart-icon@2x.png" >
+				<p>favorites</p>
 			</div>
 		</div>
+		<div class="search-page__tab-menu">
+			<ul class="search-page__tab-list" id="tabs-menu">
+        <li><a href="#breakfast-tab" data-toggle="tab"> Recommended</a></li>
+        <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
+        <li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
+        <li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
+        <li><a href="#rolls-tab" data-toggle="tab">Soups & Broth</a></li>
+        <li><a href="#rolls-tab" data-toggle="tab">Krazy Toss</a></li>
+        <li><a href="#rolls-tab" data-toggle="tab"> Desserts</a></li>
+      </ul>
+			<div class="nav-arrow left-arrow">
+				<p><</p>
+			</div>
+			<div class="nav-arrow right-arrow">
+				<p>></p>
+			</div>
+		</div>
+		<div class="search-secction">
+			<div class="search-secction__content" ng-repeat="results in search_result">
+				<div class="search-secction__data">
+					<div class="search-section__image">
+						<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
+						</div>
+					</div>
+					<div class="search-section__description">
+						<p class="product-name">Product Name </p>
+						<p class="product-sub-title">{{results.description}}</p>
+							<div class="product-view">
+									<img src="images/heart-icon-black.png" >
+									<p id="view-more" ng-click="showdiv = !showdiv">View More</p>
+							</div>
+					</div>
+					<p class="product-price">{{results.salePrice}}<span>AED</span></p>
+					<div class="search-secction__buttons">
+						<button type="button" name="button">Add to Cart</button>
+					</div>
+				</div>
+				<div class="description__section" ng-show="showdiv">
+					<div class="description__section--header">
+						<div class="description-list">
+							<p>Serve: 2 People </p>
+							<span>|</span>
+							<p>Prep time:30 min</p>
+							<span>|</span>
+							<p>Calories: 100 Kcal</p>
+
+						</div>
+					</div>
+					<div class="description__section--content">
+						<p class="product-name">Product Description </p>
+						<p class="product-sub-title">
+							The HTML markup consists of an HTML DIV and a Button.
+							The HTML DIV has been assigned ng-show directive.
+							The value of ng-show directive has been set using the variable IsVisible
+							which is initially set to false and hence the HTML DIV is hidden when page loads.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		@@include('_footer.html')
 	</div>
 
 	<div class="order-section">
-		<div class="search-secction__data" ng-repeat="cartList in allCartItems">
-			<div class="search-section__image">
-				<div class="image__thumbnail" style="background-image:url({{rcartList.product.mainImageUrl}})">
+		<div class="">
+			<div class="cart-section__header">
+				<p>Mycart</p>
+				<a href="#/cart-description"><img src="images/basket@2x.png" height="26px" ng-click="getcartItems()">
+					{{cartLength}}
+				</a>
+			</div>
+			<div class="cart-section__sub-header">
+				<ul class="cart-header__list">
+					<li>Item</li>
+					<li>Quantity</li>
+					<li>Rate</li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="cart-section__data" >
+				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
+				<div class="cart__quantity">
+					<input type="Button" id='minusButton' value="-" />
+					<input type="text" name="TextBox" id="TextBox" class="textbox" value="0" />
+					<input type="Button" id='AddButton' value="+" />
+				</div>
+				<p class="product-cart__price"><span>ASED</span>300.00</p>
+				<!-- <p>{{cartList.product.salePrice}}</p> -->
+				<div class="cancel-button" style="cursor:pointer">
+					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
 				</div>
 			</div>
-			<p>{{cartList.quantity}}</p>
-			<p>{{cartList.product.name}}</p>
-			<p>{{cartList.product.salePrice}}</p>
-			<div class="product-quantity">
-
-				<!-- <button id='minusButton'>-</button>
-				<input type="text" name="TextBox" id="TextBox" value="0" />
-				<button id='AddButton'>+</button> -->
-				<!-- <button class="minus" style="cursor:pointer">-</button>
-				<input type="text" name="number" class="quantity__count" value="1">
-				<button class="add" style="cursor:pointer">+</button> -->
-				<!-- <input type="number" name="number" class="product-quantity__count" value="1"> -->
+			<div class="cart-section__data" >
+				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
+				<div class="cart__quantity">
+					<input type="Button" id='minusButton' value="-" />
+					<input type="text" name="TextBox" id="TextBox" class="textbox" value="0" />
+					<input type="Button" id='AddButton' value="+" />
+				</div>
+				<p class="product-cart__price"><span>ASED</span>300.00</p>
+				<!-- <p>{{cartList.product.salePrice}}</p> -->
+				<div class="cancel-button" style="cursor:pointer">
+					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+				</div>
 			</div>
-			<div class="cancel-button" style="cursor:pointer">
-				<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+			<div class="cart-section__data" >
+				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
+				<div class="cart__quantity">
+					<input type="Button" id='minusButton' value="-" />
+					<input type="text" name="TextBox" id="TextBox" class="textbox" value="0" />
+					<input type="Button" id='AddButton' value="+" />
+				</div>
+				<p class="product-cart__price"><span>ASED</span>300.00</p>
+				<!-- <p>{{cartList.product.salePrice}}</p> -->
+				<div class="cancel-button" style="cursor:pointer">
+					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+				</div>
 			</div>
+			<div class="cart-section__data" >
+				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
+				<div class="cart__quantity">
+					<input type="Button" id='minusButton' value="-" />
+					<input type="text" name="TextBox" id="TextBox" class="textbox" value="0" />
+					<input type="Button" id='AddButton' value="+" />
+				</div>
+				<p class="product-cart__price"><span>ASED</span>300.00</p>
+				<!-- <p>{{cartList.product.salePrice}}</p> -->
+				<div class="cancel-button" style="cursor:pointer">
+					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+				</div>
+			</div>
+			<div class="cart-section__data" >
+				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
+				<div class="cart__quantity">
+					<input type="Button" id='minusButton' value="-" />
+					<input type="text" name="TextBox" id="TextBox" class="textbox" value="0" />
+					<input type="Button" id='AddButton' value="+" />
+				</div>
+				<p class="product-cart__price"><span>ASED</span>300.00</p>
+				<!-- <p>{{cartList.product.salePrice}}</p> -->
+				<div class="cancel-button" style="cursor:pointer">
+					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+				</div>
+			</div>
+		</div>
+		<div class="cart-section__footer">
+			<div class="total-section">
+				<p>Total</p>
+				<p class="total-section__cost"><span>ASED</span>400</p>
+			</div>
+			<button type="button" name="button">Checkout</button>
 		</div>
 	</div>
 </div>

@@ -39,3 +39,13 @@ FONTS: FAMILY :: Lato-Black
     font-weight: normal;
     font-style: normal;
 }
+/*-------------------------------------------------
+FONTS: FAMILY :: Lato-semibold
+-------------------------------------------------*/
+@font-face {
+    font-family: 'Lato-Semibold';
+    src: url('../fonts/Lato-Semibold.ttf');
+    src: url('../fonts/Lato-Semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

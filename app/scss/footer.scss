@@ -1,8 +1,8 @@
 footer {
-  height: 253px;
   background-color: #333333;
   color: grey;
   padding: 44px 80px 30px 80px;
+  
 }
 
 .footer-menu {
@@ -55,4 +55,16 @@ footer {
   img {
     margin-right: 20px;
   }
+}
+
+
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 50px;
 }
