@@ -1,15 +1,32 @@
 app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout){
   'use strict';
 
+
+  $(document).ready(function(){
+          //var counter = $('#TextBox').val();
+    $('#AddButton').click( function() {
+        var counter = $('#TextBox').val();
+        counter++ ;
+        $('#TextBox').val(counter);
+        console.log('click');
+    });
+    $('#minusButton').click( function() {
+      var counter = $('#TextBox').val();
+      counter-- ;
+      $('#TextBox').val(counter);
+    });
+  });
+
+
   //scrooling page,showing header fixed
 
-  var elementPosition = $('#scroll-menu-fixed').offset();
+  var elementPosition = $('#sub-menu').offset();
 
   $(window).scroll(function(){
     if($(window).scrollTop() > elementPosition.top){
-          $('#scroll-menu-fixed').css('position','fixed').css({"top":"0","right":"0","left":"0"});
+          $('#sub-menu').css('position','fixed').css({"top":"0","right":"30%","left":"0"});
     } else {
-        $('#scroll-menu-fixed').css('position','static');
+        $('#sub-menu').css('position','static');
     }
   });
   var elementPosition = $('#scroll-menu-fixed1').offset();
@@ -125,23 +142,5 @@ app.controller('productController', function($scope, $location, $rootScope, $win
           alert('Not deleted from cart');
         });
       };
-
-
-  //   $(document).ready(function(){
-  //         //var counter = $('#TextBox').val();
-  //         $('#AddButton').click( function() {
-  //           	$('#minusButton').hide();
-  //             var counter = $('#TextBox').val();
-  //             counter++ ;
-  //             $('#TextBox').val(counter);
-  //     });
-  //     $('#minusButton').click( function() {
-  //             var counter = $('#TextBox').val();
-  //             counter-- ;
-  //             $('#TextBox').val(counter);
-  //     });
-  // })
-
-
 
 })
