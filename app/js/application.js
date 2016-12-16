@@ -3,7 +3,7 @@ App bluerabbit
 ==================================================================*/
 'use strict';
 
-var app = angular.module('bluerabbit', ['ngRoute','ngResource']);
+var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider

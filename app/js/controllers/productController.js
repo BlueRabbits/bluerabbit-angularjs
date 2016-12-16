@@ -1,4 +1,4 @@
-app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout){
+app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore){
   'use strict';
 
 
@@ -76,14 +76,30 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
     var uuid = s.join("");
     console.log("uuid",uuid);
+    //cookie store
+    //cookieStore
+     $cookieStore.put("sessionId", uuid);
     return uuid;
   }
-  $scope.createUUID();
 
+  if ($cookieStore.get('sessionId')) {
+    //$scope.createUUID();
+    console.log("cookie will not store sessionId as there is  session id");
+  } else {
+    console.log("cookie will  store sessionId ");
+    $scope.createUUID();
+  }
+
+  console.log("cookie",$cookieStore.get('sessionId'));
 
   $scope.getcartItems = function () {
-    $scope.getUserId = localStorage.getItem('userId');
-    $scope.sessionId = "aa565asdasdy87sadasd987";
+    // $scope.getUserId = localStorage.getItem('userId');
+    // $scope.sessionId = "aa565asdasdy87sadasd987";
+    //cookieStore
+    $scope.getUserId = $cookieStore.get('userId');
+    $scope.userToken = $cookieStore.get('token');
+    $scope.sessionId = $cookieStore.get('sessionId');
+
     $scope.gettingCartData =[];
     console.log('cart page');
     Auth.getCartList({
@@ -126,9 +142,12 @@ app.controller('productController', function($scope, $location, $rootScope, $win
   };
 
   $scope.deleteCart = function (productId,quantity) {
-    $scope.getUserId = localStorage.getItem('userId');
-    $scope.userToken = localStorage.getItem('token');
-    $scope.sessionId = "aa565asdasdy87sadasd987";
+    // $scope.getUserId = localStorage.getItem('userId');
+    // $scope.userToken = localStorage.getItem('token');
+    // $scope.sessionId = "aa565asdasdy87sadasd987";
+    $scope.getUserId = $cookieStore.get('userId');
+    $scope.userToken = $cookieStore.get('token');
+    $scope.sessionId = $cookieStore.get('sessionId');
 
     Auth.deleteCart({UserID:$scope.getUserId,sessionID : $scope.sessionId,isDeleted: true}, productId)
     .success(function(data){

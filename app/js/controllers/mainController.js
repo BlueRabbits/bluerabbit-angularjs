@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout){
+app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore ){
   'use strict';
   $(document).ready(function() {
     $('.products-tab').hide();
@@ -101,9 +101,15 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   $scope.addToCart = function (productId) {
     count++;
     console.log("quantity count",count);
-    $scope.getUserId = localStorage.getItem('userId');
-    $scope.userToken = localStorage.getItem('token');
-    $scope.sessionId = "aa565asdasdy87sadasd987";
+    // $scope.getUserId = localStorage.getItem('userId');
+    // $scope.userToken = localStorage.getItem('token');
+    // $scope.sessionId = "aa565asdasdy87sadasd987";
+    //cookieStore
+    $scope.getUserId = $cookieStore.get('userId');
+    $scope.userToken = $cookieStore.get('token');
+    $scope.sessionId = $cookieStore.get('sessionId');
+
+
     $scope.cartlist =[];
     var productInfo = {
       product:productId,
