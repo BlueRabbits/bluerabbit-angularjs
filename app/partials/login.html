@@ -1,64 +1,34 @@
-@@include('_header.html')
-<div class="container " id="loginmaodal">
-    <div class="omb_login">
-    	<h3 class="omb_authTitle">Login or <a href="#/signup">Sign up</a></h3>
-		<!-- <div class="row omb_row-sm-offset-3 omb_socialButtons">
-    	    <div class="col-xs-4 col-sm-2">
-		        <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
-			        <i class="fa fa-facebook visible-xs"></i>
-			        <span class="hidden-xs">Facebook</span>
-		        </a>
-	        </div>
-        	<div class="col-xs-4 col-sm-2">
-		        <a href="#" class="btn btn-lg btn-block omb_btn-twitter">
-			        <i class="fa fa-twitter visible-xs"></i>
-			        <span class="hidden-xs">Twitter</span>
-		        </a>
-	        </div>
-        	<div class="col-xs-4 col-sm-2">
-		        <a href="#" class="btn btn-lg btn-block omb_btn-google">
-			        <i class="fa fa-google-plus visible-xs"></i>
-			        <span class="hidden-xs">Google+</span>
-		        </a>
-	        </div>
-		</div>
-
-		<div class="row omb_row-sm-offset-3 omb_loginOr">
-			<div class="col-xs-12 col-sm-6">
-				<hr class="omb_hrOr">
-				<span class="omb_spanOr">or</span>
-			</div>
-		</div> -->
-
-		<div class="row omb_row-sm-offset-3">
-			<div class="col-xs-12 col-sm-6">
-			    <form class="omb_loginForm" ng-submit="loginform()" method="POST">
-					<div class="input-group">
-						<span class="input-group-addon"><i class="fa fa-user"></i></span>
-						<input type="text" class="form-control" name="username" ng-model="email" placeholder="email address">
-					</div>
-					<span class="help-block"></span>
-
-					<div class="input-group">
-						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-						<input  type="password" class="form-control" name="password" ng-model="password" placeholder="Password">
-					</div>
-                    <span class="help-block"></span>
-
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-				</form>
-			</div>
-    	</div>
-		<div class="row omb_row-sm-offset-3">
-			<div class="col-xs-12 col-sm-3">
-				<label class="checkbox">
-					<input type="checkbox" value="remember-me">Remember Me
-				</label>
-			</div>
-			<div class="col-xs-12 col-sm-3">
-				<p class="omb_forgotPwd">
-					<a href="#">Forgot password?</a>
-				</p>
-			</div>
-		</div>
-	</div>
+<div class="modal fade bd-example-modal-lg" id="loginmodal" ng-controller="loginController" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-container" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-container__body">
+        <form class="loginform" ng-submit="loginform()" method="POST">
+          <div class="loginform__manually">
+            <div class="loginForm--fields">
+              <div class="loginForm__inputs loginForm__username">
+                <input type="text" class="loginForm__inputs--username" name="username" ng-model="email" placeholder="Email Address">
+              </div>
+              <div class="loginForm__inputs loginForm__password">
+                <input type="text" class="loginForm__inputs--password" name="username" ng-model="password" placeholder="Password">
+              </div>
+            </div>
+            <button class="modal__submit" type="submit">Login</button>
+          </div>
+          <div class="social-login__buttons">
+            <div class="social-login__connect facebook">
+              <p>Facebook</p>
+            </div>
+            <div class="social-login__connect google">
+              <p>Google +</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
