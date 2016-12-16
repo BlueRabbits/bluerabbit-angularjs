@@ -515,66 +515,66 @@ SMACSS: PAGE - LANDING
   color: #2196f3;
   font-size: 25px; }
 
-@media (min-width: 768px) {
-  .omb_row-sm-offset-3 div:first-child[class*="col-"] {
-    margin-left: 25%; } }
+.modal-container {
+  margin: 150px auto !important; }
 
-.omb_login .omb_authTitle {
-  text-align: center;
-  line-height: 300%; }
+.modal-container__body {
+  padding: 30px 20px !important; }
 
-.omb_login .omb_socialButtons a {
-  color: white;
-  opacity: 0.9; }
+.loginform {
+  display: flex;
+  justify-content: space-between; }
 
-.omb_login .omb_socialButtons a:hover {
-  color: white;
-  opacity: 1; }
+.loginForm__inputs {
+  margin-top: 10px; }
+  .loginForm__inputs input {
+    background-color: #fff;
+    border-radius: 2px;
+    border: solid 1px #ceced2;
+    font-size: 1em;
+    font-family: "Lato-Regular";
+    height: 32px;
+    margin-bottom: 16px;
+    padding-left: 11px;
+    position: relative;
+    width: 260px; }
 
-.omb_login .omb_socialButtons .omb_btn-facebook {
-  background: #3b5998; }
+.modal__submit {
+  background-color: #e40046;
+  border-radius: 2px;
+  border: none;
+  color: #fff;
+  font-family: "Lato-Bold";
+  font-size: 1em;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 260px; }
 
-.omb_login .omb_socialButtons .omb_btn-twitter {
-  background: #00aced; }
+.social-login__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
 
-.omb_login .omb_socialButtons .omb_btn-google {
-  background: #c32f10; }
+.social-login__connect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lato-Bold";
+  font-size: 0.75em;
+  border-radius: 3px;
+  height: 42px;
+  text-transform: uppercase;
+  width: 260px;
+  margin-bottom: 15px; }
 
-.omb_login .omb_loginOr {
-  position: relative;
-  font-size: 1.5em;
-  color: #aaa;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em; }
+.facebook {
+  background: #3b5998;
+  color: #fff; }
 
-.omb_login .omb_loginOr .omb_hrOr {
-  background-color: #cdcdcd;
-  height: 1px;
-  margin-top: 0px !important;
-  margin-bottom: 0px !important; }
-
-.omb_login .omb_loginOr .omb_spanOr {
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: -0.6em;
-  margin-left: -1.5em;
-  background-color: white;
-  width: 3em;
-  text-align: center; }
-
-.omb_login .omb_loginForm .input-group.i {
-  width: 2em; }
-
-.omb_login .omb_loginForm .help-block {
-  color: red; }
-
-@media (min-width: 768px) {
-  .omb_login .omb_forgotPwd {
-    text-align: right;
-    margin-top: 10px; } }
+.google {
+  background: #f64925;
+  color: #fff; }
 
 .section-header-menu {
   background-color: #515356;
