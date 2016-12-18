@@ -43,7 +43,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "angular-cookies": "^1.6.0",
+    "angular-cookies": "1.2.1",
     "angularjs-oauth2": "^1.2.1"
   }
 }

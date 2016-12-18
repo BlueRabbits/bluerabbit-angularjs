@@ -2,14 +2,14 @@
   "name": "bluerabbit",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "1.2.6",
-    "angular-resource": "1.2.6",
-    "angular-sanitize": "1.2.6",
-    "angular-route": "1.2.6",
-    "angular-animate": "1.2.6",
+    "angular": ">=1.2.1",
+    "angular-resource": "1.2.1",
+    "angular-sanitize": "1.2.1",
+    "angular-route": "1.2.1",
+    "angular-animate": "1.2.1",
     "jquery": "*",
     "bootstrap": "^3.3.7",
-    "oauth-ng": "^0.4.10"
+    "angular-cookies": "1.2.1"
   },
   "devDependencies": {},
   "overrides": {}
