@@ -106,15 +106,33 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
     location.reload();
     $location.path('/landing');
   }
-  $scope.product = function() {
-    Auth.products().success(function(data) {
-    console.log('data',data);
-  }).error(function(data) {
-    console.log('data', data);
-      alert ("Account Created unsuccess")
-  });
 
+  $scope.forgotPassword = function () {
+    Auth.forgotpassword({
+      email: $scope.forgot.email
+    }).success(function (data) {
+      $scope.forgotalert = true;
+      $scope.forgotError = "Email is sent to registered ID";
+    }).error(function (data) {
+      $scope.forgotalert = true;
+      $scope.forgotError = data.error;
+    });
+  }
+
+  $scope.product = function() {
+      Auth.products().success(function(data) {
+      console.log('data',data);
+    }).error(function(data) {
+      console.log('data', data);
+        alert ("Account Created unsuccess")
+    });
   }
   //   $scope.product();
+
+
+//closing pop-up on redirect to another pop-up
+  $scope.closeModal = function() {
+    $('.modal').click();
+  }
 
 })

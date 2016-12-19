@@ -21,6 +21,15 @@ app.factory('Auth', function($http, $window) {
       });
     },
 
+    forgotpassword : function (inputs) {
+      return $http.post(BASE_URL + '/api/users/forgotpassword', inputs,{
+        header: {
+          'sender': 'web',
+          'Content-Type': 'application/json'
+        }
+      });
+    },
+
     products : function(inputs) {
       return $http.get(BASE_URL + '/api/products', inputs, {
       headers: {
