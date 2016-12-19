@@ -7,17 +7,20 @@
         </button>
       </div>
       <div class="modal-body modal-container__body">
-        <form class="loginform" ng-submit="Signupform()" method="POST">
+        <div ng-show="erroralert" style="padding-bottom: 10px; color: red;">
+        {{errorMessage}}
+      </div>
+        <form class="loginform" ng-submit="Signupform(signupform)" name="signupform" method="POST" novalidate>
           <div class="loginform__manually">
             <div class="loginForm--fields">
               <div class="loginForm__inputs loginForm__username">
-                <input type="text" class="loginForm__inputs--username" name="username" ng-model="name" placeholder="Name">
+                <input type="text" class="loginForm__inputs--username" name="username" ng-model="name" placeholder="Name" required>
               </div>
               <div class="loginForm__inputs loginForm__username">
-                <input type="text" class="loginForm__inputs--username" name="email" ng-model="email" placeholder="Email Address">
+                <input type="text" class="loginForm__inputs--username" name="email" ng-model="email" ng-pattern="regexEmail" placeholder="Email Address" required>
               </div>
               <div class="loginForm__inputs loginForm__password">
-                <input type="text" class="loginForm__inputs--password" name="password" ng-model="password" placeholder="Password">
+                <input type="password" class="loginForm__inputs--password" name="password" ng-minlength="6" ng-model="password" placeholder="Password" required>
               </div>
             </div>
             <button class="modal__submit" type="submit">Signup</button>

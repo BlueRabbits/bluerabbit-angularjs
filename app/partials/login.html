@@ -1,4 +1,4 @@
-<div class="modal fade bd-example-modal-lg" id="loginmodal" ng-controller="loginController" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal bd-example-modal-lg" id="loginmodal" ng-controller="loginController" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-container" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,15 +7,19 @@
         </button>
       </div>
       <div class="modal-body modal-container__body">
-        <form class="loginform" ng-submit="loginform()" method="POST">
+        <div ng-show="erroralert" style="padding-bottom: 10px; color: red;">
+        {{errorMessage}}
+      </div>
+        <form class="loginform" ng-submit="loginform()" name="krazyloginform" method="POST" novalidate>
           <div class="loginform__manually">
             <div class="loginForm--fields">
               <div class="loginForm__inputs loginForm__username">
-                <input type="text" class="loginForm__inputs--username" name="username" ng-model="email" placeholder="Email Address">
+                <input type="text" class="loginForm__inputs--username" name="username" ng-model="email" placeholder="Email Address" required>
               </div>
               <div class="loginForm__inputs loginForm__password">
-                <input type="text" class="loginForm__inputs--password" name="username" ng-model="password" placeholder="Password">
+                <input type="text" class="loginForm__inputs--password" name="username" ng-model="password" placeholder="Password" required>
               </div>
+              <p><a href="#forgotpassword" data-toggle="modal" ng-click="closeModal()">Forgot password</a></p>
             </div>
             <button class="modal__submit" type="submit">Login</button>
           </div>

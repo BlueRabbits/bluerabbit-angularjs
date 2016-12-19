@@ -23,14 +23,14 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'productController',
             templateUrl: './partials/_page-search.html'
     	})
-    	.when('/login', {
-            controller: 'loginController',
-            templateUrl: './partials/login.html'
-    	})
-    	.when('/signup', {
-            controller: 'loginController',
-            templateUrl: './partials/signup.html'
-    	})
+    	// .when('/login', {
+      //       controller: 'loginController',
+      //       templateUrl: './partials/login.html'
+    	// })
+    	// .when('/signup', {
+      //       controller: 'loginController',
+      //       templateUrl: './partials/signup.html'
+    	// })
     	.when('/products', {
             controller: '',
             templateUrl: './partials/_products-page.html'

@@ -108,7 +108,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     })
     .success(function (data) {
       console.log(data.length);
-      $scope.cartLength = data.length;
+      $rootScope.cartLength = data.length;
       $scope.allCartItems = data;
       console.log('get cart data',data);
       angular.forEach($scope.allCartItems, function (value, key) {
