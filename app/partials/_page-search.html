@@ -47,7 +47,7 @@
 					</div>
 					<p class="product-price">{{results.salePrice}}<span>AED</span></p>
 					<div class="search-secction__buttons">
-						<button type="button" name="button">Add to Cart</button>
+						<button type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
 					</div>
 				</div>
 				<div class="description__section" ng-show="showdiv">
@@ -64,10 +64,7 @@
 					<div class="description__section--content">
 						<p class="product-name">Product Description </p>
 						<p class="product-sub-title">
-							The HTML markup consists of an HTML DIV and a Button.
-							The HTML DIV has been assigned ng-show directive.
-							The value of ng-show directive has been set using the variable IsVisible
-							which is initially set to false and hence the HTML DIV is hidden when page loads.
+							{{results.description}}
 						</p>
 					</div>
 				</div>
@@ -92,8 +89,22 @@
 					<li></li>
 				</ul>
 			</div>
-			<div class="cart-section__data" >
+			<div class="cart-section__data" ng-repeat="cartList in allCartItems">
 				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+				<p class="product-item__name">{{cartList.product.name}}</p>
+				<div class="cart__quantity">
+					<input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
+					<input type="text" name="TextBox" id="TextBox" class="textbox" ng-value="cartList.quantity" ng-model="cartList.quantity" />
+					<input type="Button" id='AddButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+				</div>
+				<p class="product-cart__price"><span>AED</span>{{cartList.product.salePrice * cartList.quantity}}</p>
+				<!-- <p>{{cartList.product.salePrice}}</p> -->
+				<div class="cancel-button" style="cursor:pointer">
+					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+				</div>
+			</div>
+				<!--	<div class="cart-section__data" >
+
 				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
 				<div class="cart__quantity">
 					<input type="Button" id='minusButton' value="-" />
@@ -101,13 +112,13 @@
 					<input type="Button" id='AddButton' value="+" />
 				</div>
 				<p class="product-cart__price"><span>ASED</span>300.00</p>
-				<!-- <p>{{cartList.product.salePrice}}</p> -->
+
 				<div class="cancel-button" style="cursor:pointer">
 					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
 				</div>
-			</div>
-			<div class="cart-section__data" >
-				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+			</div>-->
+			<!-- <div class="cart-section__data" >
+
 				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
 				<div class="cart__quantity">
 					<input type="Button" id='minusButton' value="-" />
@@ -115,13 +126,13 @@
 					<input type="Button" id='AddButton' value="+" />
 				</div>
 				<p class="product-cart__price"><span>ASED</span>300.00</p>
-				<!-- <p>{{cartList.product.salePrice}}</p> -->
+
 				<div class="cancel-button" style="cursor:pointer">
 					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
 				</div>
-			</div>
-			<div class="cart-section__data" >
-				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+			</div> -->
+			<!-- <div class="cart-section__data" >
+
 				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
 				<div class="cart__quantity">
 					<input type="Button" id='minusButton' value="-" />
@@ -129,13 +140,13 @@
 					<input type="Button" id='AddButton' value="+" />
 				</div>
 				<p class="product-cart__price"><span>ASED</span>300.00</p>
-				<!-- <p>{{cartList.product.salePrice}}</p> -->
+
 				<div class="cancel-button" style="cursor:pointer">
 					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
 				</div>
-			</div>
-			<div class="cart-section__data" >
-				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+			</div> -->
+			<!-- <div class="cart-section__data" >
+
 				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
 				<div class="cart__quantity">
 					<input type="Button" id='minusButton' value="-" />
@@ -143,30 +154,16 @@
 					<input type="Button" id='AddButton' value="+" />
 				</div>
 				<p class="product-cart__price"><span>ASED</span>300.00</p>
-				<!-- <p>{{cartList.product.salePrice}}</p> -->
+
 				<div class="cancel-button" style="cursor:pointer">
 					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
 				</div>
-			</div>
-			<div class="cart-section__data" >
-				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
-				<p class="product-item__name">Missha All Around Safe Block Sebum Zero Sun</p>
-				<div class="cart__quantity">
-					<input type="Button" id='minusButton' value="-" />
-					<input type="text" name="TextBox" id="TextBox" class="textbox" value="0" />
-					<input type="Button" id='AddButton' value="+" />
-				</div>
-				<p class="product-cart__price"><span>ASED</span>300.00</p>
-				<!-- <p>{{cartList.product.salePrice}}</p> -->
-				<div class="cancel-button" style="cursor:pointer">
-					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
-				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="cart-section__footer">
 			<div class="total-section">
 				<p>Total</p>
-				<p class="total-section__cost"><span>ASED</span>400</p>
+				<p class="total-section__cost"><span>AED</span>{{totalCost}}</p>
 			</div>
 			<button type="button" name="button">Checkout</button>
 		</div>

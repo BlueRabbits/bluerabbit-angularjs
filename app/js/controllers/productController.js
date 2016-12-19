@@ -113,15 +113,18 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       console.log('get cart data',data);
       angular.forEach($scope.allCartItems, function (value, key) {
         var obj = {
-          "imag_url" : value.mainImageUrl,
-          "description" : value.description,
-          "cartquantity":value.quantity,
-          "cartPrice" : value.salePrice
+
+          "cartPrice" : value.product.salePrice
         };
-        $scope.gettingCartData.push(obj);
+        $scope.gettingCartData.push(obj.cartPrice);
 
       });
-      console.log("cartquantity", $scope.gettingCartData);
+      $scope.totalCost = 0;
+      for (var i = 0; i < $scope.gettingCartData.length; i++) {
+          $scope.totalCost += $scope.gettingCartData[i];
+            console.log("prce", $scope.totalCost++);
+      }
+
 
     }).error(function(data){
       alert('Not Added to cart');
@@ -129,6 +132,37 @@ app.controller('productController', function($scope, $location, $rootScope, $win
   };
   $scope.getcartItems();
 
+  //updateCart increment
+  //$scope.countQuantity = 0;
+  $scope.updateCartByIncrement = function(quantity,productId) {
+    $scope.countQuantity =quantity + 1;
+    console.log("countQuantity",$scope.countQuantity);
+    $scope.getUserId = $cookieStore.get('userId');
+    Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
+    .success(function(data){
+      console.log('updated resp', data);
+      $scope.getcartItems();
+        }).error(function(data){
+          alert('Not updated in cart');
+        });
+  }
+
+  //updateCart on decrement
+  //$scope.countQuantity = 0;
+  $scope.updateCartByDecrementing = function(quantity,productId) {
+    $scope.countQuantity =quantity - 1;
+    console.log("countQuantity",$scope.countQuantity);
+    $scope.getUserId = $cookieStore.get('userId');
+    Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
+    .success(function(data){
+      console.log('updated decrement', data);
+      $scope.getcartItems();
+        }).error(function(data){
+          alert('Not updated in cart');
+        });
+  }
+
+  //search
   $scope.searchList = function () {
     Auth.searchItem ({
     'str': $scope.searchitem
@@ -141,6 +175,53 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     });
   };
 
+  //POST create add to cart
+  var count = 0;
+  $scope.addToCart = function (productId) {
+    count++;
+    console.log("quantity count",count);
+    // $scope.getUserId = localStorage.getItem('userId');
+    // $scope.userToken = localStorage.getItem('token');
+    // $scope.sessionId = "aa565asdasdy87sadasd987";
+    //cookieStore
+    $scope.getUserId = $cookieStore.get('userId');
+    $scope.userToken = $cookieStore.get('token');
+    $scope.sessionId = $cookieStore.get('sessionId');
+
+
+    $scope.cartlist =[];
+    var productInfo = {
+      product:productId,
+      quantity: count,
+      UserID:$scope.getUserId,
+      sessionID:$scope.sessionId,
+      authToken: $scope.userToken,
+      isDeleted: false
+    }
+    Auth.addCart(productInfo)
+    .success(function(data){
+      //console.log('data', data);
+      $scope.getcartItems();
+      alert('Added to cart');
+      // $scope.quantity = data.quantity;
+      // $scope.user_id = data.UserID;
+      // console.log('id',$scope.user_id);
+
+      angular.forEach(data, function (value, key) {
+            var obj = {
+              "user_id" : value.UserID,
+              "productId" : value.product,
+              "quantity" : value.quantity,
+            };
+            $scope.cartlist.push(obj);
+            console.log("cart",$scope.cartlist);
+          });
+        }).error(function(data){
+          alert('Not Added to cart');
+        });
+      };
+
+  //delte cart
   $scope.deleteCart = function (productId,quantity) {
     // $scope.getUserId = localStorage.getItem('userId');
     // $scope.userToken = localStorage.getItem('token');
@@ -152,6 +233,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     Auth.deleteCart({UserID:$scope.getUserId,sessionID : $scope.sessionId,isDeleted: true}, productId)
     .success(function(data){
       console.log('deleted resp', data);
+      $scope.getcartItems();
       alert('deleted from cart');
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;

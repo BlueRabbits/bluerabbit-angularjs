@@ -49,6 +49,13 @@ app.factory('Auth', function($http, $window) {
         }
       });
     },
+    updateCart : function(inputs,id) {
+      return $http.post(BASE_URL + '/api/shoppingCart/updateCart/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
     addAddress : function(inputs) {
       return $http.post(BASE_URL + '/api/address', inputs, {
       headers: {
