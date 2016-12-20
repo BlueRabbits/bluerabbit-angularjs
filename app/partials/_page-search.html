@@ -41,7 +41,7 @@
 						<p class="product-name">Product Name </p>
 						<p class="product-sub-title">{{results.description}}</p>
 							<div class="product-view">
-									<img src="images/heart-icon-black.png" >
+									<img src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
 									<p id="view-more" ng-click="showdiv = !showdiv">View More</p>
 							</div>
 					</div>
@@ -72,20 +72,20 @@
 
 			<!-- Wish list -->
 			<div class="search-secction__content wish-list" ng-show="show_wishlist">
-				<div class="search-secction__data">
+				<div class="search-secction__data" ng-repeat="wishLists in getWishlistData">
 					<div class="search-section__image">
-						<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
+						<div class="image__thumbnail" style="background-image:url({{wishLists.product.mainImageUrl}})">
 						</div>
 					</div>
 					<div class="search-section__description">
-						<p class="product-name">Product Name </p>
-						<p class="product-sub-title">{{results.description}}</p>
+						<p class="product-name">{{wishLists.product.name}}</p>
+						<p class="product-sub-title">{{wishLists.product.description}}</p>
 							<div class="product-view">
-									<img src="images/heart-icon-black.png" >
+									<!-- <img src="images/heart-icon-black.png" > -->
 									<p id="view-more" ng-click="showdiv = !showdiv">View More</p>
 							</div>
 					</div>
-					<p class="product-price">{{results.salePrice}}<span>AED</span></p>
+					<p class="product-price">{{wishLists.product.salePrice}}<span>AED</span></p>
 					<div class="search-secction__buttons">
 						<button type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
 					</div>

@@ -249,6 +249,97 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       $scope.wishListShow = function () {
         $scope.searchPagelist = false;
         $scope.show_wishlist  = true;
+        $scope.getWishList();
       }
+
+      //POST create wish list
+      var count = 0;
+      $scope.addWishList = function (productId) {
+        count++;
+        console.log("quantity count",count);
+        // $scope.getUserId = localStorage.getItem('userId');
+        // $scope.userToken = localStorage.getItem('token');
+        // $scope.sessionId = "aa565asdasdy87sadasd987";
+        //cookieStore
+        $scope.getUserId = $cookieStore.get('userId');
+        $scope.userToken = $cookieStore.get('token');
+        $scope.sessionId = $cookieStore.get('sessionId');
+
+
+        $scope.cartlist =[];
+        var wishListInfo = {
+          product:productId,
+          quantity: count,
+          UserID:$scope.getUserId,
+          sessionID:$scope.sessionId,
+          authToken: $scope.userToken,
+          isDeleted: false
+        }
+        Auth.addWishList(wishListInfo)
+        .success(function(data){
+          //console.log('data', data);
+          $scope.getcartItems();
+          alert('Added to wishLists');
+          // $scope.quantity = data.quantity;
+          // $scope.user_id = data.UserID;
+          // console.log('id',$scope.user_id);
+
+          angular.forEach(data, function (value, key) {
+                var obj = {
+                  "user_id" : value.UserID,
+                  "productId" : value.product,
+                  "quantity" : value.quantity,
+                };
+                $scope.cartlist.push(obj);
+                console.log("cart",$scope.cartlist);
+              });
+            }).error(function(data){
+              alert('Not Added to wish');
+            });
+          };
+
+          //get wish list
+
+          $scope.getWishList = function () {
+            // $scope.getUserId = localStorage.getItem('userId');
+            // $scope.sessionId = "aa565asdasdy87sadasd987";
+            //cookieStore
+            $scope.getUserId = $cookieStore.get('userId');
+            $scope.userToken = $cookieStore.get('token');
+            $scope.sessionId = $cookieStore.get('sessionId');
+
+            $scope.gettingCartData =[];
+            console.log('cart page');
+            Auth.getWishList({
+              UserId : $scope.getUserId,
+              sessionID: $scope.sessionId
+            })
+            .success(function (data) {
+              console.log(data.length);
+              $scope.getWishlistData = data;
+              console.log("$scope.getWishlistData",$scope.getWishlistData);
+              // $rootScope.cartLength = data.length;
+              // $scope.allCartItems = data;
+              // console.log('get cart data',data);
+              // angular.forEach($scope.allCartItems, function (value, key) {
+              //   var obj = {
+              //
+              //     "cartPrice" : value.product.salePrice
+              //   };
+              //   $scope.gettingCartData.push(obj.cartPrice);
+              //
+              // });
+              // $scope.totalCost = 0;
+              // for (var i = 0; i < $scope.gettingCartData.length; i++) {
+              //     $scope.totalCost += $scope.gettingCartData[i];
+              //       console.log("prce", $scope.totalCost++);
+              // }
+
+
+            }).error(function(data){
+              alert('Not Added to cart');
+            });
+          };
+
 
 })
