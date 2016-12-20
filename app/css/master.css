@@ -143,6 +143,27 @@ a:hover {
     margin-left: 10px;
     margin-top: -5px; }
 
+.user__login {
+  display: flex; }
+
+.dropdown {
+  position: relative;
+  display: inline-block; }
+  .dropdown p {
+    color: #fff; }
+
+.dropdown__list {
+  display: none;
+  position: absolute;
+  background-color: rgba(130, 76, 95, 0.76);
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px; }
+
+.dropdown:hover .dropdown__list {
+  display: block;
+  z-index: 1; }
+
 footer {
   background-color: #333333;
   color: grey;

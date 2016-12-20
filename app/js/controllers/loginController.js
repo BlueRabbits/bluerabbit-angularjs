@@ -6,6 +6,15 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
     $scope.errorMessage =  "";
   })
 
+  if ($cookieStore.get('userId')) {
+    $scope.show_myaccnt = true;
+    $scope.not__logged = false;
+  } else {
+    $scope.show_myaccnt = false;
+    $scope.not__logged = true;
+  }
+
+
   $scope.regexEmail = new RegExp(/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/);
   $scope.Signupform = function(signupform) {
     var regexEmail = new RegExp(/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/);
