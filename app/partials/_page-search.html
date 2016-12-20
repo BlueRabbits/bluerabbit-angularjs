@@ -9,7 +9,7 @@
 				<input type="search" class="cart__search" ng-model="searchitem" ng-change="searchList(searchitem)" placeholder="Find The Things What You Want Here" >
 			</div>
 			<div class="sub-menu__favorites">
-				<img src="images/heart-icon@2x.png" >
+				<img src="images/heart-icon@2x.png" ng-click="wishListShow()">
 				<p>favorites</p>
 			</div>
 		</div>
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 		<div class="search-secction">
-			<div class="search-secction__content" ng-repeat="results in search_result">
+			<div class="search-secction__content" ng-repeat="results in search_result" ng-show="searchPagelist">
 				<div class="search-secction__data">
 					<div class="search-section__image">
 						<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
@@ -66,6 +66,28 @@
 						<p class="product-sub-title">
 							{{results.description}}
 						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Wish list -->
+			<div class="search-secction__content wish-list" ng-show="show_wishlist">
+				<div class="search-secction__data">
+					<div class="search-section__image">
+						<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
+						</div>
+					</div>
+					<div class="search-section__description">
+						<p class="product-name">Product Name </p>
+						<p class="product-sub-title">{{results.description}}</p>
+							<div class="product-view">
+									<img src="images/heart-icon-black.png" >
+									<p id="view-more" ng-click="showdiv = !showdiv">View More</p>
+							</div>
+					</div>
+					<p class="product-price">{{results.salePrice}}<span>AED</span></p>
+					<div class="search-secction__buttons">
+						<button type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
 					</div>
 				</div>
 			</div>

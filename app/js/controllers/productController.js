@@ -167,6 +167,8 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     Auth.searchItem ({
     'str': $scope.searchitem
     }).success ( function (data) {
+      $scope.searchPagelist = true;
+      $scope.show_wishlist  = false;
       console.log('search data', data);
       $scope.search_result = data;
 
@@ -243,5 +245,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
           alert('Not deleted from cart');
         });
       };
+
+      $scope.wishListShow = function () {
+        $scope.searchPagelist = false;
+        $scope.show_wishlist  = true;
+      }
 
 })
