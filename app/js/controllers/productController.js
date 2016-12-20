@@ -2,22 +2,19 @@ app.controller('productController', function($scope, $location, $rootScope, $win
   'use strict';
 
 
-  $(document).ready(function(){
-          //var counter = $('#TextBox').val();
-    $('#AddButton').click( function() {
-        var counter = $('#TextBox').val();
-        counter++ ;
-        $('#TextBox').val(counter);
-        console.log('click');
-    });
-    $('#minusButton').click( function() {
-      var counter = $('#TextBox').val();
-      counter-- ;
-      $('#TextBox').val(counter);
-    });
-  });
 
 
+$scope.init = function () {
+  // $(document).ready(function(){
+  var target = angular.element('.searchslider');
+  angular.element(document).find('.searchslider').slick({
+      infinite: true,
+      slidesToShow: 5,
+      slidesToScroll: 3,
+    });
+
+//  });
+}
   //scrooling page,showing header fixed
 
   var elementPosition = $('#sub-menu').offset();
@@ -243,5 +240,6 @@ app.controller('productController', function($scope, $location, $rootScope, $win
           alert('Not deleted from cart');
         });
       };
+      $scope.init();
 
 })

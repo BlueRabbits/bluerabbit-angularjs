@@ -109,6 +109,18 @@ a {
 a:hover {
   color: #ced9e0; }
 
+.slick-prev {
+  position: absolute;
+  left: 0 !important;
+  z-index: 1;
+  background: #eff4f6 !important; }
+
+.slick-next {
+  position: absolute;
+  right: 0 !important;
+  z-index: 1;
+  background: #eff4f6 !important; }
+
 .header {
   background-color: #e40046;
   height: 97px;
@@ -810,7 +822,17 @@ SMACSS: PAGE - LANDING
 .slider-section {
   background-image: url(../images/slider-bg.png);
   height: 360px;
-  background-repeat: round; }
+  background-repeat: round;
+  padding: 32px 100px; }
+
+.slick-prev:before, .slick-next:before {
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.5;
+  color: #0e0e0e !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 .tab_section {
   background-image: url(../images/tab-section-bg.png);

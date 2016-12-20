@@ -1,5 +1,6 @@
 app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore ){
   'use strict';
+
   $(document).ready(function() {
     $('.products-tab').hide();
     $('.products-tab').first().show();
@@ -14,6 +15,13 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
       var thisTab = $(this).attr('href');
       $(thisTab).show();
     });
+
+      $('.slider').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 3,
+
+      });
   });
 
   $('.header-menu__list').find('a').click(function(){

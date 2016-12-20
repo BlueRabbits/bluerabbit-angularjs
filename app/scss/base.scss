@@ -13,3 +13,16 @@ a {
 a:hover {
     color: #ced9e0;
 }
+
+.slick-prev {
+  position: absolute;
+  left: 0 !important;
+  z-index: 1;
+  background: #eff4f6 !important;
+}
+.slick-next {
+  position: absolute;
+  right: 0 !important;
+  z-index: 1;
+  background: #eff4f6 !important;
+}
