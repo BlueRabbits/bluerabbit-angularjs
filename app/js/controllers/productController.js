@@ -162,11 +162,21 @@ app.controller('productController', function($scope, $location, $rootScope, $win
         });
   }
 
+  //search -autoComplete
+  $scope.autocompleteSearch = function (searchNames) {
+    Auth.autocompleteSearchItem (searchNames).success ( function (data) {
+      $scope.searchPagelist = true;
+      $scope.show_wishlist  = false;
+      console.log('autcomplete data', data);
+      $scope.searchAutocompleteId = data;
+    }).error({
+
+    });
+  };
+
   //search
-  $scope.searchList = function () {
-    Auth.searchItem ({
-    'str': $scope.searchitem
-    }).success ( function (data) {
+  $scope.searchList = function (searchName) {
+    Auth.searchItem (searchName).success ( function (data) {
       $scope.searchPagelist = true;
       $scope.show_wishlist  = false;
       console.log('search data', data);

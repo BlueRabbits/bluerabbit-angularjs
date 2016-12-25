@@ -86,8 +86,15 @@ app.factory('Auth', function($http, $window) {
         }
       });
     },
-    searchItem : function(inputs) {
-      return $http.get(BASE_URL + '/api/products/searchProducts/chicken', inputs, {
+    autocompleteSearchItem : function(id,inputs) {
+      return $http.get(BASE_URL + '/api/autocompleteSearchs/autoComplete/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    searchItem : function(id,inputs) {
+      return $http.get(BASE_URL + '/api/products/searchProducts/'+id, inputs, {
       headers: {
         'Content-Type': 'application/json'
         }

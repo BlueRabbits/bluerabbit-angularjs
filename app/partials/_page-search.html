@@ -5,13 +5,25 @@
 		</div>
 		<div class="search-page-menu sub-menu" id="sub-menu">
 			<div class="sub-menu__search">
-				<img src="images/search-icon@2x.png" class="search-icon" ng-click="searchList(searchitem)">
-				<input type="search" class="cart__search" ng-model="searchitem" ng-change="searchList(searchitem)" placeholder="Find The Things What You Want Here" >
+				<img src="images/search-icon@2x.png" class="search-icon" ng-click="autocompleteSearch(searchitem)">
+				<input type="search" class="cart__search" ng-model="searchitem" ng-change="autocompleteSearch(searchitem)" placeholder="Find The Things What You Want Here" >
 			</div>
 			<div class="sub-menu__favorites">
 				<img src="images/heart-icon@2x.png" ng-click="wishListShow()">
 				<p>favorites</p>
+				<p>
+					<ul style="
+    left: 120px;
+    position: absolute;
+    border: 1px solid black;
+    top: 139px;
+    color: red;
+">
+						<li ng-repeat="items in searchAutocompleteId" ng-click="searchList(items._id)">{{items._id}}</li>
+					</ul>
+				</p>
 			</div>
+
 		</div>
 		<div class="search-page__tab-menu">
 			<ul class="search-page__tab-list" id="tabs-menu">
