@@ -1263,6 +1263,30 @@ SMACSS: PAGE - LANDING
 .blog__content__image img {
   height: 406px; }
 
+.carousel-inner .active.left {
+  left: -33%; }
+
+.carousel-inner .active.right {
+  left: 33%; }
+
+.carousel-inner .next {
+  left: 33%; }
+
+.carousel-inner .prev {
+  left: -33%; }
+
+.carousel-control.left {
+  background-image: none; }
+
+.carousel-control.right {
+  background-image: none; }
+
+.carousel-inner .item {
+  background: white; }
+
+.carousel-inner {
+  overflow: hidden !important; }
+
 .search-order-section {
   display: flex; }
 

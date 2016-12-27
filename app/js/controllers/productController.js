@@ -350,6 +350,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
               alert('Not Added to cart');
             });
           };
+          
 
 
 })
