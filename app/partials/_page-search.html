@@ -14,7 +14,7 @@
 			</div>
 			<p>
 				<ul class="search-list-dropdown">
-					<li ng-repeat="items in searchAutocompleteId" ng-click="searchList(items._id)">{{items._id}}</li>
+					<li ng-show="hideAutocomplete" ng-repeat="items in searchAutocompleteId" ng-click="searchList(items._id)">{{items._id}}</li>
 				</ul>
 			</p>
 		</div>
@@ -136,7 +136,7 @@
 				<p>Total</p>
 				<p class="total-section__cost"><span>AED</span>{{totalCost}}</p>
 			</div>
-			<button type="button" name="button">Checkout</button>
+			<button type="button" ng-click="checkout()" name="button">Checkout</button>
 		</div>
 	</div>
 </div>

@@ -113,16 +113,16 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       console.log('get cart data',data);
       angular.forEach($scope.allCartItems, function (value, key) {
         var obj = {
-
+          "qty":value.quantity,
           "cartPrice" : value.product.salePrice
         };
-        $scope.gettingCartData.push(obj.cartPrice);
+        $scope.gettingCartData.push(obj);
 
       });
       $scope.totalCost = 0;
       for (var i = 0; i < $scope.gettingCartData.length; i++) {
-          $scope.totalCost += $scope.gettingCartData[i];
-            console.log("prce", $scope.totalCost++);
+          $scope.totalCost += $scope.gettingCartData[i].qty * $scope.gettingCartData[i].cartPrice ;
+            console.log("prce", $scope.totalCost);
       }
 
 
@@ -167,6 +167,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     Auth.autocompleteSearchItem (searchNames).success ( function (data) {
       $scope.searchPagelist = true;
       $scope.show_wishlist  = false;
+      $scope.hideAutocomplete = true;
       console.log('autcomplete data', data);
       $scope.searchAutocompleteId = data;
     }).error({
@@ -179,6 +180,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     Auth.searchItem (searchName).success ( function (data) {
       $scope.searchPagelist = true;
       $scope.show_wishlist  = false;
+      $scope.hideAutocomplete = false;
       console.log('search data', data);
       $scope.search_result = data;
 
@@ -350,7 +352,11 @@ app.controller('productController', function($scope, $location, $rootScope, $win
               alert('Not Added to cart');
             });
           };
-          
+
+          //checkout
+          $scope.checkout = function() {
+            window.location = "#/cart-description";
+          }
 
 
 })
