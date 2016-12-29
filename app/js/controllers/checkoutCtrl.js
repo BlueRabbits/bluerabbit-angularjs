@@ -2,84 +2,61 @@
 
 app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth) {
 
-  //jQuery time
-  var current_fs, next_fs, previous_fs; //fieldsets
-  var left, opacity, scale; //fieldset properties which we will animate
-  var animating; //flag to prevent quick multi-click glitches
 
-  $(".next").click(function(){
-  if(animating) return false;
-  animating = true;
+  // Activate Next Step
 
-  current_fs = $(this).parent();
-  next_fs = $(this).parent().next();
+  $(document).ready(function() {
 
-  //activate next step on progressbar using the index of next_fs
-  $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+      var navListItems = $('ul.setup-panel li a'),
+          allWells = $('.setup-content');
 
-  //show the next fieldset
-  next_fs.show();
-  //hide the current fieldset with style
-  current_fs.animate({opacity: 0}, {
-    step: function(now, mx) {
-      //as the opacity of current_fs reduces to 0 - stored in "now"
-      //1. scale current_fs down to 80%
-      scale = 1 - (1 - now) * 0.2;
-      //2. bring next_fs from the right(50%)
-      left = (now * 50)+"%";
-      //3. increase opacity of next_fs to 1 as it moves in
-      opacity = 1 - now;
-      current_fs.css({'transform': 'scale('+scale+')'});
-      next_fs.css({'left': left, 'opacity': opacity});
-    },
-    duration: 800,
-    complete: function(){
-      current_fs.hide();
-      animating = false;
-    },
-    //this comes from the custom easing plugin
-    easing: 'easeInOutBack'
-  });
-  });
+      allWells.hide();
 
-  $(".previous").click(function(){
-  if(animating) return false;
-  animating = true;
+      navListItems.click(function(e)
+      {
+        e.preventDefault();
+        var $target = $($(this).attr('href')),
+            $item = $(this).closest('li');
 
-  current_fs = $(this).parent();
-  previous_fs = $(this).parent().prev();
+        if (!$item.hasClass('disabled')) {
+            navListItems.closest('li').removeClass('active');
+            $item.addClass('active');
+            allWells.hide();
+            $target.show();
+        }
+      });
 
-  //de-activate current step on progressbar
-  $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+      $('ul.setup-panel li.active a').trigger('click');
 
-  //show the previous fieldset
-  previous_fs.show();
-  //hide the current fieldset with style
-  current_fs.animate({opacity: 0}, {
-    step: function(now, mx) {
-      //as the opacity of current_fs reduces to 0 - stored in "now"
-      //1. scale previous_fs from 80% to 100%
-      scale = 0.8 + (1 - now) * 0.2;
-      //2. take current_fs to the right(50%) - from 0%
-      left = ((1-now) * 50)+"%";
-      //3. increase opacity of previous_fs to 1 as it moves in
-      opacity = 1 - now;
-      current_fs.css({'left': left});
-      previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-    },
-    duration: 800,
-    complete: function(){
-      current_fs.hide();
-      animating = false;
-    },
-    //this comes from the custom easing plugin
-    easing: 'easeInOutBack'
-  });
+      // DEMO ONLY //
+      $('#activate-step-2').on('click', function(e) {
+          $('ul.setup-panel li:eq(1)').removeClass('disabled');
+          $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+          //$(this).remove();
+      })
+      $('#step-back-1').on('click', function(e) {
+          //$('ul.setup-panel li:eq(1)').removeClass('disabled');
+          $('ul.setup-panel li a[href="#step-1"]').trigger('click');
+          //$(this).remove();
+      })
+
+      $('#activate-step-3').on('click', function(e) {
+          $('ul.setup-panel li:eq(2)').removeClass('disabled');
+          $('ul.setup-panel li a[href="#step-3"]').trigger('click');
+          //$(this).remove();
+      })
+
+      $('#activate-step-4').on('click', function(e) {
+          $('ul.setup-panel li:eq(3)').removeClass('disabled');
+          $('ul.setup-panel li a[href="#step-4"]').trigger('click');
+          //$(this).remove();
+      })
+
   });
 
-  $(".submit").click(function(){
-  return false;
-  })
+
+
+
 
   //post address
   $scope.addAddress = function () {

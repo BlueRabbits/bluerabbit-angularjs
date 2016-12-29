@@ -6,6 +6,34 @@
   width: 70%
 }
 
+.search-list-dropdown {
+  left: 7px;
+  position: absolute;
+  top: 143px;
+  width: 50%;
+  z-index: 1;
+  width: 692px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+  li {
+    height: 40px;
+    font-family: $font-Lato-black;
+    font-size: 13px;
+    font-weight: 500;
+    color: #000000;
+    display: flex;
+    align-items: center;
+      padding: 20px;
+
+    &:hover {
+      //opacity: 0.2;
+      background-color: #d8d8d8;
+    }
+  }
+}
+
 .sub-menu {
   display: flex;
   height: 46px;
