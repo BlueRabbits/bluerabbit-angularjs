@@ -1,8 +1,8 @@
-@@include('sub-header.html')
+
   <!-- multistep form -->
-  <form id="msform"  novalidate="" >
+  <!-- <form id="msform"  novalidate="" > -->
   	<!-- progressbar -->
-    <div class="step-by-step-process">
+    <!-- <div class="step-by-step-process">
       <ul id="progressbar">
     		<li class="active">CART</li>
     		<li>DELIVERY</li>
@@ -114,7 +114,7 @@
       </div>
   		<input type="button" name="previous" class="previous action-button" value="Back to Cart" />
   		<!-- <input type="button" name="next" class="next action-button" value="To Checkout" /> -->
-  		<input type="button" name="next" ng-click="addAddress()" class=" action-button" value="Add" />
+  	<!--	<input type="button" name="next" ng-click="addAddress()" class=" action-button" value="Add" />
   	</fieldset>
   	<fieldset>
       <div class="payment-details">
@@ -149,4 +149,219 @@
   	</fieldset>
   </form>
 
+</div> -->
+
+
+@@include('_header.html')
+<div class="container checkout-page">
+	<div class="row form-group">
+    <div class="col-xs-12">
+      <ul class="nav nav-pills nav-justified thumbnail setup-panel setup-panel--steps">
+        <li class="active">
+          <a href="#step-1">
+            <h4 class="list-group-item-heading">My Cart</h4>
+          </a>
+        </li>
+        <li class="disabled">
+          <a href="#step-2">
+            <h4 class="list-group-item-heading">Delivery</h4>
+          </a>
+        </li>
+        <li class="disabled">
+          <a href="#step-3">
+            <h4 class="list-group-item-heading">Payment</h4>
+          </a>
+        </li>
+
+        <li class="disabled">
+          <a href="#step-4">
+            <h4 class="list-group-item-heading">Recepit</h4>
+          </a>
+        </li>
+      </ul>
+    </div>
+	</div>
+  <div class="row setup-content" id="step-1">
+    <div class="col-xs-12">
+      <div class="col-md-12 checkout-page__forms text-center">
+        <form>
+          <div class="container">
+            <div class="row clearfix">
+              <div class="col-md-12 column">
+                <div class="checkout-cart-header">
+                  <ul class="checkout-cart-header__list col-md-12">
+          					<li class="col-md-3">Item</li>
+          					<li class="col-md-3">Quantity</li>
+          					<li class="col-md-3">Rate</li>
+          					<li class="col-md-3"></li>
+          				</ul>
+                </div>
+                <div class="checkout-cart__items col-md-12">
+                  <div class="checkout-cart__list-description col-md-3">
+                    <div class="product-image">
+                      <img src="images/seafood-platter-1@3x.png" alt=""  width="50px" height="50px"/>
+                    </div>
+                    <div class="product-title">
+                      <p> this is new mobie in lG</p>
+                    </div>
+                  </div>
+                  <div class="checkout-cart__quantity col-md-3">
+                    <input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
+                    <input type="text" name="TextBox" id="TextBox" class="textbox" ng-value="cartList.quantity" ng-model="cartList.quantity" />
+                    <input type="Button" id='addButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+                  </div>
+                  <p class="product-cart__price col-md-3"><span>AED</span>300</p>
+          				<!-- <p>{{cartList.product.salePrice}}</p> -->
+          				<div class="cancel-button col-md-3" style="cursor:pointer">
+          					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+          				</div>
+                </div>
+                <div class="checkout-cart__items col-md-12">
+                  <div class="checkout-cart__list-description col-md-3">
+                    <div class="product-image">
+                      <img src="images/seafood-platter-1@3x.png" alt=""  width="50px" height="50px"/>
+                    </div>
+                    <div class="product-title">
+                      <p> this is new mobie in lG</p>
+                    </div>
+                  </div>
+                  <div class="checkout-cart__quantity col-md-3">
+                    <input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
+                    <input type="text" name="TextBox" id="TextBox" class="textbox" />
+                    <input type="Button" id='addButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+                  </div>
+                  <p class="product-cart__price col-md-3"><span>AED</span>300</p>
+          				<!-- <p>{{cartList.product.salePrice}}</p> -->
+          				<div class="cancel-button col-md-3" style="cursor:pointer">
+          					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+          				</div>
+                </div>
+                <div class="checkout-cart__items col-md-12">
+                  <div class="checkout-cart__list-description col-md-3">
+                    <div class="product-image">
+                      <img src="images/seafood-platter-1@3x.png" alt=""  width="50px" height="50px"/>
+                    </div>
+                    <div class="product-title">
+                      <p> this is new mobie in lG</p>
+                    </div>
+                  </div>
+                  <div class="checkout-cart__quantity col-md-3">
+                    <input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
+                    <input type="text" name="TextBox" id="TextBox" class="textbox"  />
+                    <input type="Button" id='addButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+                  </div>
+                  <p class="product-cart__price col-md-3"><span>AED</span>300</p>
+          				<!-- <p>{{cartList.product.salePrice}}</p> -->
+          				<div class="cancel-button col-md-3" style="cursor:pointer">
+          					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+          				</div>
+                </div>
+                <div class="checkout-cart__items col-md-12">
+                  <div class="checkout-cart__list-description col-md-3">
+                    <div class="product-image">
+                      <img src="images/seafood-platter-1@3x.png" alt=""  width="50px" height="50px"/>
+                    </div>
+                    <div class="product-title">
+                      <p> this is new mobie in lG</p>
+                    </div>
+                  </div>
+                  <div class="checkout-cart__quantity col-md-3">
+                    <input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
+                    <input type="text" name="TextBox" id="TextBox" class="textbox" />
+                    <input type="Button" id='addButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+                  </div>
+                  <p class="product-cart__price col-md-3"><span>AED</span>300</p>
+          				<!-- <p>{{cartList.product.salePrice}}</p> -->
+          				<div class="cancel-button col-md-3" style="cursor:pointer">
+          					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+          				</div>
+                </div>  <!-- carts list ends -->
+              </div>
+            </div>
+          </div>
+          <div class="checkout-page__button-section">
+            <div class="checkout-page_total">
+              <button name="button" class="checkout-page__buttons promo-code_button">Promo Code</button>
+              <div class="checkout-total_section">
+                <p>Total Price</p>
+                <p>14<span>AED</span></p>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="process-button-section">
+          <button id="continue-shopping-button" class=" checkout-page__buttons">Continue Shopping</button>
+          <button id="activate-step-2" class=" checkout-page__buttons active">Proceed To Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row setup-content shipping-address" id="step-2">
+    <div class="col-xs-12">
+      <div class="col-md-12  text-center">
+        <h1 class="text-center"> Shipping Information</h1>
+        <form name="shipping-form" class="shipping__form">
+          <div class="shipping-form__names">
+            <input type="text" name="name" value="" class=" form-inputs first-name" placeholder="First Name">
+            <input type="text" name="name" value="" class=" form-inputs last-name" placeholder="Last Name">
+          </div>
+          <div class="shipping-form__contacts">
+            <input type="text" name="name" value="" class=" form-inputs telephone" placeholder="Telephone">
+            <input type="text" name="name" value="" class=" form-inputs company-phone" placeholder="Company">
+          </div>
+          <div class="shipping-form__street">
+            <input type="text" name="name" value="" class=" form-inputs Street-address" placeholder="Street Address">
+          </div>
+          <div class="shipping-form__postal">
+            <input type="text" name="name" value="" class=" form-inputs city-address" placeholder="City">
+            <input type="text" name="name" value="" class=" form-inputs Zipcode" placeholder="Zipcode">
+          </div>
+          <div class="shipping-form__location">
+            <input type="text" name="name" value="" class=" form-inputs state-name" placeholder="State">
+            <input type="text" name="name" value="" class=" form-inputs country-name" placeholder="Country">
+          </div>
+        </form>
+        <div class="process-button-section">
+          <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button>
+          <button id="activate-step-3" class=" checkout-page__buttons active">Proceed To Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row setup-content" id="step-3">
+    <div class="col-xs-12">
+      <div class="col-md-12 text-center">
+          <h1 class="text-center"> Payment Details</h1>
+          <p class="thanks-message">
+            The wide ranging nature of items and practices to which the term creative can be sensibly applied also makes a
+            straightforward definition difficult
+          </p>
+          <form>
+
+          </form>
+          <div class="process-button-section process-button-section__center">
+            <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
+            <button id="activate-step-4" class=" checkout-page__buttons active">Proceed To Payment</button>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row setup-content" id="step-4">
+    <div class="col-xs-12">
+      <div class="col-md-12 text-center">
+          <h1 class="text-center"> Thank You For Your Order</h1>
+          <form>
+            <p class="thanks-message">
+              The wide ranging nature of items and practices to which the term creative can be sensibly applied also makes a
+              straightforward definition difficult
+            </p>
+          </form>
+          <div class="process-button-section process-button-section__center">
+            <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
+            <button  class=" checkout-page__buttons print-recipt__button active">Print Recipt</button>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
+@@include('_footer.html')
