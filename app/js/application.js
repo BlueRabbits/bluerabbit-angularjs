@@ -15,7 +15,7 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: '',
             templateUrl: './partials/_product-description.html'
     	})
-    	.when('/cart-description', {
+    	.when('/checkout', {
             controller: 'checkoutCtrl',
             templateUrl: './partials/cart-page.html'
     	})

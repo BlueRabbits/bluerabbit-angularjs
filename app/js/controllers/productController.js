@@ -355,7 +355,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
           //checkout
           $scope.checkout = function() {
-            window.location = "#/cart-description";
+            window.location = "#/checkout";
           }
 
 
