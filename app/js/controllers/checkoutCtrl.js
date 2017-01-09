@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth) {
+app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth,  $cookies, $cookieStore) {
 
 
   // Activate Next Step
@@ -55,14 +55,126 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
   });
 
 
+//get cart details
+  $scope.getcartItems = function () {
+    // $scope.getUserId = localStorage.getItem('userId');
+    // $scope.sessionId = "aa565asdasdy87sadasd987";
+    //cookieStore
+    $scope.getUserId = $cookieStore.get('userId');
+    $scope.userToken = $cookieStore.get('token');
+    $scope.sessionId = $cookieStore.get('sessionId');
 
+    $scope.gettingCartData =[];
+    console.log('cart page');
+    Auth.getCartList({
+      UserId : $scope.getUserId,
+      sessionID: $scope.sessionId,
+    })
+    .success(function (data) {
+      console.log(data.length);
+      $rootScope.cartLength = data.length;
+      $scope.allCartItems = data;
+      console.log('get cart data',data);
+      angular.forEach($scope.allCartItems, function (value, key) {
+        var obj = {
+          "qty":value.quantity,
+          "cartPrice" : value.product.salePrice
+        };
+        $scope.gettingCartData.push(obj);
+
+      });
+      $scope.totalCost = 0;
+      for (var i = 0; i < $scope.gettingCartData.length; i++) {
+          $scope.totalCost += $scope.gettingCartData[i].qty * $scope.gettingCartData[i].cartPrice ;
+            console.log("prce", $scope.totalCost);
+      }
+
+
+    }).error(function(data){
+      alert('Not Added to cart');
+    });
+  };
+  $scope.getcartItems();
+
+  //updateCart increment
+  //$scope.countQuantity = 0;
+  $scope.updateCartByIncrement = function(quantity,productId) {
+    $scope.countQuantity =quantity + 1;
+    console.log("countQuantity",$scope.countQuantity);
+    $scope.getUserId = $cookieStore.get('userId');
+    Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
+    .success(function(data){
+      console.log('updated resp', data);
+      $scope.getcartItems();
+        }).error(function(data){
+          alert('Not updated in cart');
+        });
+  }
+
+  //updateCart on decrement
+  //$scope.countQuantity = 0;
+  $scope.updateCartByDecrementing = function(quantity,productId) {
+    $scope.countQuantity =quantity - 1;
+    console.log("countQuantity",$scope.countQuantity);
+    $scope.getUserId = $cookieStore.get('userId');
+    Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
+    .success(function(data){
+      console.log('updated decrement', data);
+      $scope.getcartItems();
+        }).error(function(data){
+          alert('Not updated in cart');
+        });
+  }
+
+  //delte cart
+  $scope.deleteCart = function (productId,quantity) {
+    // $scope.getUserId = localStorage.getItem('userId');
+    // $scope.userToken = localStorage.getItem('token');
+    // $scope.sessionId = "aa565asdasdy87sadasd987";
+    $scope.getUserId = $cookieStore.get('userId');
+    $scope.userToken = $cookieStore.get('token');
+    $scope.sessionId = $cookieStore.get('sessionId');
+
+    Auth.deleteCart({UserID:$scope.getUserId,sessionID : $scope.sessionId,isDeleted: true}, productId)
+    .success(function(data){
+      console.log('deleted resp', data);
+      $scope.getcartItems();
+      alert('deleted from cart');
+      // $scope.quantity = data.quantity;
+      // $scope.user_id = data.UserID;
+      // console.log('id',$scope.user_id);
+
+        }).error(function(data){
+          alert('Not deleted from cart');
+        });
+      };
+
+      //continue shipping
+      $scope.continueShipping = function(){
+          $location.path('/search-page')
+      }
+
+    //get address by userId
+    $scope.getAddressByUserId = function(){
+      $scope.getUserId = $cookieStore.get('userId');
+      Auth.getAddressByUserId($scope.getUserId)
+      .success(function(data){
+        console.log('address by UserID resp', data);
+          $scope.getAddressByUserId = data;
+
+          }).error(function(data){
+            alert('Not deleted from cart');
+          });
+    }
+    $scope.getAddressByUserId ();
 
 
   //post address
+  $scope.addressType = [];
   $scope.addAddress = function () {
-
-    $scope.getUserId = localStorage.getItem('userId');
-    $scope.userToken = localStorage.getItem('token');
+  console.log("addressTypeHome",$scope.addressType);
+    $scope.getUserId = $cookieStore.get('userId');
+    $scope.userToken = $cookieStore.get('token');
 
     var addressDetails = {
       userID:$scope.getUserId,
@@ -86,6 +198,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     .success(function(data){
       console.log('addressDetails', data);
       alert('address added');
+      $scope.getAddressByUserId ();
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);

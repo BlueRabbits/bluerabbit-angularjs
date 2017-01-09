@@ -86,6 +86,13 @@ app.factory('Auth', function($http, $window) {
         }
       });
     },
+    getAddressByUserId : function(id,inputs) {
+      return $http.get(BASE_URL + '/api/address/getaddressByUserId/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
     autocompleteSearchItem : function(id,inputs) {
       return $http.get(BASE_URL + '/api/autocompleteSearchs/autoComplete/'+id, inputs, {
       headers: {

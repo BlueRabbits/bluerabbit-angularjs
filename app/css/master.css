@@ -497,6 +497,12 @@ SMACSS: PAGE - LANDING
   text-align: center;
   color: #b1b1b1; }
 
+.checkout-address {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 36px; }
+
 .modal-container {
   margin: 150px auto !important; }
 
