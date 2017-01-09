@@ -9,6 +9,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
   if ($cookieStore.get('userId')) {
     $scope.show_myaccnt = true;
     $scope.not__logged = false;
+    $scope.getEmailId = $cookieStore.get('email');
   } else {
     $scope.show_myaccnt = false;
     $scope.not__logged = true;
@@ -80,7 +81,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
         //cookieStore
          $cookieStore.put("token", data.token);
          $cookieStore.put("userId", data._id);
-         $cookieStore.put("email", data.email);
+         $cookieStore.put("email", $scope.email);
          $cookieStore.put('loggedIn', true);
 
          $scope.userId = $cookieStore.get('userId');

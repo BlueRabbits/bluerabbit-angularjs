@@ -425,7 +425,8 @@ SMACSS: PAGE - LANDING
   height: 46px;
   border: 1px solid #dddddd;
   background-color: #fff;
-  margin: 0 8px; }
+  margin: 0 8px;
+  text-align: center; }
 
 .checkout-cart__quantity #minusButton,
 .checkout-cart__quantity #addButton {
@@ -497,7 +498,7 @@ SMACSS: PAGE - LANDING
   text-align: center;
   color: #b1b1b1; }
 
-.checkout-address {
+.checkout-page__address {
   display: flex;
   flex-direction: column;
   position: relative;
