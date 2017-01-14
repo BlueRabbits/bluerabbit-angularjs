@@ -175,7 +175,7 @@
 
         <li class="disabled">
           <a href="#step-4">
-            <h4 class="list-group-item-heading">Recepit</h4>
+            <h4 class="list-group-item-heading">Order Details</h4>
           </a>
         </li>
       </ul>
@@ -293,16 +293,39 @@
       <div class="col-md-12 text-center">
           <h1 class="text-center"> Payment Details</h1>
           <p class="thanks-message">
-            The wide ranging nature of items and practices to which the term creative can be sensibly applied also makes a
-            straightforward definition difficult
-          </p>
-          <form>
+						<h1 class="text-center"> Thank You For Your Order</h1>
+						<form>
+							<p class="thanks-message">
+								Payment Type : COD
+								<div ng-repeat="getAddress in getAddressByUserId">
+								We will be delivering to your <p> {{getAddress.addressType}} Address.</p>
 
-          </form>
+									<p>Address Details: {{getAddress.street}} {{getAddress.street1}}</p>
+									<p>Company Name: {{getAddress.companyName}}</p>
+								<p>	Landline No :{{getAddress.landLineNumber}}</p>
+									<p>Mobile No: {{getAddress.mobileNumber}}</p>
+								<p>	State: {{getAddress.state}}</p>
+									<p>City: {{getAddress.city}}</p>
+								</div>
+							</p>
+						</form>
+          </p>
+					<form  action="http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000/api/checkout/makePayment" method="POST">
+						<div >
+						  <input type="hidden" name="UserID" ng-value="getUserId"><br>
+						   <input type="hidden" name="coupon"><br>
+							  <input type="hidden" name="ip" value="192.168.1.1"><br>
+						  	<input type="hidden" name="paymentMethod" value="1"><br>
+							   <input type="hidden" name="address" ng-value="addressId"><br>
+							   <input type="hidden" name="billingAddress" ng-value="addressId"><br>
+							   <input type="hidden" name="returnURL" value="http://localhost:3000"><br>
+							  <!-- <input type="submit" value="Submit"> -->
+							</div>
           <div class="process-button-section process-button-section__center">
             <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-            <button id="activate-step-4" class=" checkout-page__buttons active">Proceed To Payment</button>
+            <button type="submit" id="activate-step-4" class=" checkout-page__buttons active">Proceed To Payment</button>
           </div>
+						</form>
       </div>
     </div>
   </div>

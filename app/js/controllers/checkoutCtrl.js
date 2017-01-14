@@ -161,7 +161,8 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       .success(function(data){
         console.log('address by UserID resp', data);
           $scope.getAddressByUserId = data;
-
+          $scope.addressId = data[0]._id;
+          console.log("$scope.addressId",$scope.addressId);
           }).error(function(data){
             alert('Not deleted from cart');
           });
