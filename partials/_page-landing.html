@@ -197,22 +197,22 @@
       <!-- Lunch Tab -->
       <div class="menu-tabs__breakfast products-tab" id="lunch-tab">
         <!-- 1-->
-        <div class="breakfast-products">
-          <div class="breakfast-products__iamge" style="background-image: url(images/plate-chicken.png);">
+        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'All Day Meals'}:true">
+          <div class="breakfast-products__iamge">
 
           </div>
           <div class="breakfast-products__content">
             <img src="images/heart-icon-black.png" height="26px" alt="" />
             <div class="products__description">
-              <p>name1</p>
-              <p>data</p>
-              <p>Price</p>
+              <p>{{list.name}}</p>
+              <p>{{list.description}}</p>
+              <p class="products__price">{{list.salePrice}}AED</p>
             </div>
-            <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png"> Add to cart</button>
+            <button type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
           </div>
         </div>
         <!-- 2-->
-        <div class="breakfast-products">
+        <!-- <div class="breakfast-products">
           <div class="breakfast-products__iamge" >
 
           </div>
@@ -225,27 +225,27 @@
             </div>
             <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png">Add to cart</button>
           </div>
-        </div>
+        </div>-->
       </div>
       <!-- Dinner Tab -->
       <div class="menu-tabs__breakfast products-tab" id="dinner-tab">
         <!-- 1-->
-        <div class="breakfast-products">
+        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'All Day Meals'}:true">
           <div class="breakfast-products__iamge">
 
           </div>
           <div class="breakfast-products__content">
             <img src="images/heart-icon-black.png" height="26px" alt="" />
             <div class="products__description">
-              <p>name1</p>
-              <p>data</p>
-              <p>Price</p>
+              <p>{{list.name}}</p>
+              <p>{{list.description}}</p>
+              <p class="products__price">{{list.salePrice}}AED</p>
             </div>
-            <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png"> Add to cart</button>
+            <button type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
           </div>
         </div>
         <!-- 2-->
-        <div class="breakfast-products">
+        <!-- <div class="breakfast-products">
           <div class="breakfast-products__iamge">
 
           </div>
@@ -258,27 +258,27 @@
             </div>
             <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png">Add to cart</button>
           </div>
-        </div>
+        </div>-->
       </div>
       <!-- Salads tab -->
       <div class="menu-tabs__breakfast products-tab" id="salads-tab">
         <!-- 1-->
-        <div class="breakfast-products">
+        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'Recommended'}:true">
           <div class="breakfast-products__iamge">
 
           </div>
           <div class="breakfast-products__content">
             <img src="images/heart-icon-black.png" height="26px" alt="" />
             <div class="products__description">
-              <p>name1</p>
-              <p>data</p>
-              <p>Price</p>
+              <p>{{list.name}}</p>
+              <p>{{list.description}}</p>
+              <p class="products__price">{{list.salePrice}}AED</p>
             </div>
-            <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png"> Add to cart</button>
+            <button type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
           </div>
         </div>
         <!-- 2-->
-        <div class="breakfast-products">
+        <!-- <div class="breakfast-products">
           <div class="breakfast-products__iamge" style="background-image: url(images/plate-chicken.png);">
 
           </div>
@@ -291,12 +291,25 @@
             </div>
             <button type="button" name="button" ng-click="addToCart()"><img src="images/add-cart-icon.png">Add to cart</button>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- Salads tab -->
       <div class="menu-tabs__rolls products-tab" id="rolls-tab">
         <!-- 1-->
-        <h1>Coming Soon.....</p>
+        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'Recommended'}:true">
+          <div class="breakfast-products__iamge">
+
+          </div>
+          <div class="breakfast-products__content">
+            <img src="images/heart-icon-black.png" height="26px" alt="" />
+            <div class="products__description">
+              <p>{{list.name}}</p>
+              <p>{{list.description}}</p>
+              <p class="products__price">{{list.salePrice}}AED</p>
+            </div>
+            <button type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
