@@ -71,6 +71,12 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
     }
   });
 
+  //slider
+  $scope.myInterval = 5000;
+  $scope.noWrapSlides = false;
+  $scope.active = 0;
+  var currIndex = 0;
+
   //get all products in landing page
   $scope.product = function() {
     $scope.productslist = [];

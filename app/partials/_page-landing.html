@@ -1,10 +1,10 @@
 
-<div class="" id="scroll-menu-fixed">
+<div class="" id="scroll-menu-fixed" style="z-index:1">
   @@include('_header.html')
 </div>
 <div class="">
   <div class="section-main-content">
-    <div class="section-header-menu" id="scroll-menu-fixed1">
+    <div class="section-header-menu" id="scroll-menu-fixed1" style="z-index:1">
       <div class="header-menu__list">
         <p><a href="#menu">Menu </a></p>
     		<p><a href="#locations">Locations</a></p>
@@ -77,6 +77,20 @@
     <span class="sr-only">Next</span>
   </a>
 </div> -->
+
+<div class="">
+  <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+    <div uib-slide ng-repeat="list in allProducts track by $index" index="$index">
+      <!-- <img ng-src="{{slide.image}}" style="margin:auto;"> -->
+      <div class="">
+        <h4> {{list.name}}</h4>
+        <h4> {{list.description}}</h4>
+        <h4> {{list.salePrice}}</h4>
+        <!-- <p>{{slide.text}}</p> -->
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 
   <!-- Tab section -->
