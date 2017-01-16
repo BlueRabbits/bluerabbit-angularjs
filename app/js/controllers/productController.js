@@ -355,7 +355,12 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
           //checkout
           $scope.checkout = function() {
-            window.location = "#/checkout";
+            if($cookieStore.get('userId')){
+              window.location = "#/checkout";
+            } else {
+              alert("Please Login")
+              window.location = "#/landing";
+            }
           }
 
 
