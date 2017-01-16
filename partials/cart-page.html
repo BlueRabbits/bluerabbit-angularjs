@@ -152,7 +152,43 @@
 </div> -->
 
 
-@@include('_header.html')
+<!-- Header -->
+<div class="header" ng-controller="loginController">
+	<div class="logo">
+		<a href="#/landing"><img src="images/l-o-g-o@2x.png"></a>
+	</div>
+	<!-- <div class="search-bar">
+		<input type="search-bar" name="" class="search-bar__input">
+		<button class="search-button">Search</button>
+	</div> -->
+	<div class="profile_details">
+		<!-- <p><a href="#/cart-description">CART</a></p>
+		<p><a href="#/product-description">Account-name</a></p> -->
+		<div class="user__login" ng-show="not__logged">
+			<p><a href="#loginmodal" data-toggle="modal">Login  /</a></p>
+			<p><a href="#signupmodal" data-toggle="modal">Register</a></p>
+		</div>
+
+		<div class="myaccount" ng-show="show_myaccnt">
+			<div class="dropdown">
+			 <p class="dropdown__myaccount" id="menu1" type="button" >{{getEmailId}}
+			 <span class="caret"></span></p>
+			 <div class="dropdown__list">
+			 	<p>profile</p>
+				<p><a href="" ng-click="logout()">Logout</a></p>
+			 </div>
+		 </div>
+		 <!-- <p><a href="" ng-click="logout()">Logout</a></p> -->
+		</div>
+
+		<a href="#/search-page"><img src="images/basket@2x.png" height="26px" ng-click="getcartItems()"></a>
+		<p>
+			{{cartLength}}
+		</p>
+
+	</div>
+</div>
+
 <div class="container checkout-page">
 	<div class="row form-group">
     <div class="col-xs-12">
@@ -347,4 +383,71 @@
     </div>
   </div>
 </div>
-@@include('_footer.html')
+<!-- Footer -->
+<footer>
+  <div class="footer-menu">
+    <div class="footer-menu__breakfast">
+      <ul class="footer-menu__breakfast--list ">
+        <li>Breakfast</li>
+        <li>Choco's</li>
+        <li>Dosa</li>
+        <li>Toast</li>
+        <li>Pizza</li>
+      </ul>
+    </div>
+    <div class="footer-menu__lunch">
+      <ul class="footer-menu__lunch--list ">
+        <li>Lunch</li>
+        <li>North Indian</li>
+        <li>South Indian</li>
+        <li>Chinese</li>
+        <li>Briyani</li>
+      </ul>
+    </div>
+    <div class="footer-menu__dinner">
+      <ul class="footer-menu__dinner--list ">
+        <li>Dinner</li>
+        <li>Choco's</li>
+        <li>Dosa</li>
+        <li>Toast</li>
+        <li>Pizza</li>
+      </ul>
+    </div>
+    <div class="footer-menu__salad">
+      <ul class="footer-menu__salad--list ">
+        <li>Salad</li>
+        <li>Choco's</li>
+        <li>Dosa</li>
+        <li>Toast</li>
+        <li>Pizza</li>
+      </ul>
+    </div>
+    <div class="footer-menu__rolls">
+      <ul class="footer-menu__rolls--list ">
+        <li>Rolls</li>
+        <li>Choco's</li>
+        <li>Dosa</li>
+        <li>Toast</li>
+        <li>Pizza</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-logos">
+    <div class="footer-logos__company">
+      <img src="images/footer-logo-icon.png" alt="" />
+      <img src="images/footer-logo.png" alt="" />
+    </div>
+    <div class="footer-logos__payment">
+      <img src="images/pay-pal-logo@3x.png" alt="" />
+      <img src="images/visa-logo@3x.png" alt="" />
+      <img src="images/master-card-logo@3x.png" alt="" />
+    </div>
+    <div class="footer-logos__social-icons">
+      <img src="images/facebook-icon@3x.png" alt="" />
+      <img src="images/google-icon@3x.png" alt="" />
+      <img src="images/twitter-icon@3x.png" alt="" />
+      <img src="images/r-s-s-icon@3x.png" alt="" />
+    </div>
+  </div>
+</footer>
+

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html ng-app="bluerabbit">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bluerabbit</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- CSS files -->
+    <link rel="stylesheet" href="css/master.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+</head>
+<body>
+  <div ng-view></div>
+
+  <div class="modal bd-example-modal-lg" id="loginmodal" ng-controller="loginController" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-container" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-container__body">
+        <div ng-show="erroralert" style="padding-bottom: 10px; color: red;">
+        {{errorMessage}}
+      </div>
+        <form class="loginform" ng-submit="loginform()" name="krazyloginform" method="POST" novalidate>
+          <div class="loginform__manually">
+            <div class="loginForm--fields">
+              <div class="loginForm__inputs loginForm__username">
+                <input type="text" class="loginForm__inputs--username" name="username" ng-model="email" placeholder="Email Address" required>
+              </div>
+              <div class="loginForm__inputs loginForm__password">
+                <input type="password" class="loginForm__inputs--password" name="username" ng-model="password" placeholder="Password" required>
+              </div>
+              <p><a href="#forgotpassword" data-toggle="modal" ng-click="closeModal()">Forgot password</a></p>
+            </div>
+            <button class="modal__submit" type="submit">Login</button>
+          </div>
+          <div class="social-login__buttons">
+            <div class="social-login__connect facebook">
+              <p>Facebook</p>
+            </div>
+            <div class="social-login__connect google">
+              <p>Google +</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal fade bd-example-modal-lg" id="signupmodal" ng-controller="loginController" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-container" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-container__body">
+        <div ng-show="erroralert" style="padding-bottom: 10px; color: red;">
+        {{errorMessage}}
+      </div>
+        <form class="loginform" ng-submit="Signupform(signupform)" name="signupform" method="POST" novalidate>
+          <div class="loginform__manually">
+            <div class="loginForm--fields">
+              <div class="loginForm__inputs loginForm__username">
+                <input type="text" class="loginForm__inputs--username" name="username" ng-model="name" placeholder="Name" required>
+              </div>
+              <div class="loginForm__inputs loginForm__username">
+                <input type="text" class="loginForm__inputs--username" name="email" ng-model="email" ng-pattern="regexEmail" placeholder="Email Address" required>
+              </div>
+              <div class="loginForm__inputs loginForm__password">
+                <input type="password" class="loginForm__inputs--password" name="password" ng-minlength="6" ng-model="password" placeholder="Password" required>
+              </div>
+            </div>
+            <button class="modal__submit" type="submit">Signup</button>
+          </div>
+          <div class="social-login__buttons">
+            <div class="social-login__connect facebook">
+              <p>Facebook</p>
+            </div>
+            <div class="social-login__connect google">
+              <p>Google +</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal bd-example-modal-lg" id="forgotpassword" ng-controller="loginController" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-container" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-container__body">
+        <!-- <div ng-show="forgotalert" style="padding-bottom: 10px; color: red;">
+        {{forgotError}}
+      </div> -->
+      <div ng-class="forgotalert ? 'text-danger' : 'text-success'">{{forgotError}}</div>
+        <form class="loginform" ng-submit="forgotPassword()" name="forgot-password-form" method="POST" novalidate>
+          <div class="loginform__manually">
+            <div class="loginForm--fields">
+              <div class="loginForm__inputs loginForm__username">
+                <input type="text" class="loginForm__inputs--username" name="username" ng-model="forgot.email" placeholder="Email Address" required>
+              </div>
+            </div>
+            <button class="modal__submit" type="submit">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- JS files -->
+
+    <script src="js/bower.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <!-- <script src="http://thecodeplayer.com/uploads/js/jquery-1.9.1.min.js" type="text/javascript"></script> -->
+
+</html>
