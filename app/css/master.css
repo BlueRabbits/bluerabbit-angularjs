@@ -1231,29 +1231,26 @@ SMACSS: PAGE - LANDING
 .blog__content__image img {
   height: 406px; }
 
-.carousel-inner .active.left {
-  left: -33%; }
+#carousel-wrap {
+  /* border: 1px solid #000; */
+  width: 485px;
+  overflow: hidden;
+  text-align: center;
+  left: 223px;
+  position: relative; }
 
-.carousel-inner .active.right {
-  left: 33%; }
+#testimonial-list {
+  overflow: hidden;
+  /* padding: 10px; */
+  width: 1600px;
+  height: 94px;
+  display: flex; }
 
-.carousel-inner .next {
-  left: 33%; }
-
-.carousel-inner .prev {
-  left: -33%; }
-
-.carousel-control.left {
-  background-image: none; }
-
-.carousel-control.right {
-  background-image: none; }
-
-.carousel-inner .item {
-  background: white; }
-
-.carousel-inner {
-  overflow: hidden !important; }
+#testimonial-list > li {
+  overflow: hidden;
+  padding: 0;
+  width: 400px;
+  display: flex; }
 
 .search-order-section {
   display: flex; }

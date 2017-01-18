@@ -41,46 +41,75 @@
     </div>
   </div>
 <!-- slider section -->
+
+  <p style="text-align:center;padding-top:50px;">Slider section</p>
   <div class="slider-section">
-      <p style="text-align:center;padding-top:50px;">Slider section</p>
-      <!-- @@include('_products-page.html') -->
-      <!-- <div id="myCarousel" class="carousel slide">
+    <div class="clearfix" style="position:relative;height: 69px;display: flex;justify-content: flex-end;margin-right: 34px;">
+      <img src="img/prev.png" id="prv-testimonial" alt="PREV"  />
+      <img src="img/next.png" id="nxt-testimonial" alt="NEXT" />
+      </div>
+      <div id="carousel-wrap">
+        <ul id="testimonial-list" class="clearfix">
+          <li ng-repeat="lists in allProducts">
+            <div class="" style="background-image:url({{lists.mainImageUrl}}); width: 62%;background-size: 100%;background-repeat: no-repeat;">
 
-  <div class="carousel-inner">
-    <div class="item active">
-      <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/bbbbbb/fff&amp;text=1" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/CCCCCC&amp;text=2" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=3" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/f4f4f4&amp;text=4" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/fcfcfc/333&amp;text=5" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/f477f4/fff&amp;text=6" class="img-responsive"></a></div>
-    </div>
-  </div>
+            </div>
+            <div>
+            <p class="context">{{lists.name}}</p>
+            <p class="creds">{{lists.description}}</p>
+            <p class="creds">{{lists.salePrice}}</p>
+          </div>
+          </li>
+          <!-- <li>
+            <p class="context">"We could not be more pleased. A++ efforts!"</p>
+            <span class="creds">Alan Goodwrench</span>
+          </li>
+          <li>
+            <p class="context">"After just one purchase, we know this is the company to stick with."</p>
+            <span class="creds">Butters Stotch</span>
+          </li> -->
+        </ul>
+      </div>
 
 
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> -->
-  </div>
+
+      <!-- <div class="carousel slide" id="myCarousel" >
+        <div class="carousel-inner carousel-scroll" >
+          <div class="item active">
+            <div class="col-xs-3" >
+              {{name.name}}
+            </div>
+          </div>
+          <div class="item">
+            <div class="col-xs-3">
+              {{productslist[1].name}}
+            </div>
+          </div>
+          <div class="item">
+            <div class="col-xs-3">
+              {{productslist[2].name}}
+            </div>
+          </div>
+          <div class="item">
+            <div class="col-xs-3">
+              {{productslist[3].name}}
+            </div>
+          </div>
+          <div class="item">
+            <div class="col-xs-3">
+              {{productslist[4].name}}
+            </div>
+          </div>
+
+
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+      </div>
+      </div> -->
 
   <!-- Tab section -->
-  <div class="tab_section" id="menu">
+  <div class="tab_section" id="menu" >
     <h1>Our Menu</h1>
     <div class="menu-tabs">
       <ul class="menu-tabs__list" id="tabs-menu">
