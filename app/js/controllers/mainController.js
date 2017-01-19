@@ -125,8 +125,9 @@ $('#nxt-testimonial').on('click', function(){
     });
   }
   $scope.activeTab = 0;
-  $scope.setActiveTab = function(tabToSet){
+  $scope.setActiveTab = function(tabToSet, categoryName){
       $scope.activeTab = tabToSet;
+      $scope.categoryNames = categoryName;
       console.log("clicked",tabToSet);
   }
 
