@@ -37,17 +37,17 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   //slider
 
   $('#prv-testimonial').on('click', function(){
-    var $last = $('#testimonial-list li:last');
+    var $last = $('#testimonial-list .slide-list:last');
     $last.remove().css({ 'margin-left': '-400px' });
-    $('#testimonial-list li:first').before($last);
+    $('#testimonial-list .slide-list:first').before($last);
     $last.animate({ 'margin-left': '0px' }, 1000);
 });
 
 $('#nxt-testimonial').on('click', function(){
-    var $first = $('#testimonial-list li:first');
+    var $first = $('#testimonial-list .slide-list:first');
     $first.animate({ 'margin-left': '-400px' }, 1000, function() {
         $first.remove().css({ 'margin-left': '0px' });
-        $('#testimonial-list li:last').after($first);
+        $('#testimonial-list .slide-list:last').after($first);
     });
 });
 

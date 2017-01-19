@@ -48,9 +48,9 @@
       <img src="img/prev.png" id="prv-testimonial" alt="PREV"  />
       <img src="img/next.png" id="nxt-testimonial" alt="NEXT" />
       </div>
-      <div id="carousel-wrap">
-        <ul id="testimonial-list" class="clearfix">
-          <li ng-repeat="lists in allProducts">
+      <div id="carousel-wrap" style="width:54%;">
+        <ul id="testimonial-list" class="clearfix" style="height:100%">
+          <!-- <li ng-repeat="lists in allProducts">
             <div class="" style="background-image:url({{lists.mainImageUrl}}); width: 62%;background-size: 100%;background-repeat: no-repeat;">
 
             </div>
@@ -59,54 +59,23 @@
             <p class="creds">{{lists.description}}</p>
             <p class="creds">{{lists.salePrice}}</p>
           </div>
-          </li>
-          <!-- <li>
-            <p class="context">"We could not be more pleased. A++ efforts!"</p>
-            <span class="creds">Alan Goodwrench</span>
-          </li>
-          <li>
-            <p class="context">"After just one purchase, we know this is the company to stick with."</p>
-            <span class="creds">Butters Stotch</span>
           </li> -->
+          <div class="slide-list" ng-repeat="lists in allProducts">
+            <li class=""  style="background-color: white; width: 346px;margin-left: 20px;margin-right: 20px;display:flex;align-items:center">
+              <div class="" style="background-image:url({{lists.mainImageUrl}});height:117px; width: 62%;background-size: 100%;background-repeat: no-repeat;">
+
+              </div>
+                <div class="">
+                  <p class="context">{{lists.name}}</p>
+                  <p class="creds">{{lists.description}}</p>
+                  <p class="creds">{{lists.salePrice}}</p>
+                </div>
+            </li>
+          </div>
+
         </ul>
       </div>
-
-
-
-      <!-- <div class="carousel slide" id="myCarousel" >
-        <div class="carousel-inner carousel-scroll" >
-          <div class="item active">
-            <div class="col-xs-3" >
-              {{name.name}}
-            </div>
-          </div>
-          <div class="item">
-            <div class="col-xs-3">
-              {{productslist[1].name}}
-            </div>
-          </div>
-          <div class="item">
-            <div class="col-xs-3">
-              {{productslist[2].name}}
-            </div>
-          </div>
-          <div class="item">
-            <div class="col-xs-3">
-              {{productslist[3].name}}
-            </div>
-          </div>
-          <div class="item">
-            <div class="col-xs-3">
-              {{productslist[4].name}}
-            </div>
-          </div>
-
-
-        </div>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-      </div>
-      </div> -->
+    </div>
 
   <!-- Tab section -->
   <div class="tab_section" id="menu" >
