@@ -799,7 +799,8 @@ SMACSS: PAGE - LANDING
 .slider-section {
   background-image: url(../images/slider-bg.png);
   height: 360px;
-  background-repeat: round; }
+  background-repeat: round;
+  padding: 10px 100px; }
 
 .tab_section {
   background-image: url(../images/tab-section-bg.png);
@@ -1236,8 +1237,7 @@ SMACSS: PAGE - LANDING
   width: 485px;
   overflow: hidden;
   text-align: center;
-  left: 223px;
-  position: relative; }
+  left: 223px; }
 
 #testimonial-list {
   overflow: hidden;
