@@ -80,20 +80,20 @@
   <!-- Tab section -->
   <div class="tab_section" id="menu" >
     <h1>Our Menu</h1>
-    <div class="menu-tabs">
-      <ul class="menu-tabs__list" id="tabs-menu">
-        <li><a href="#breakfast-tab" data-toggle="tab"> Recommended</a></li>
-        <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
+    <div class="menu-tabs" style="display: flex;justify-content: space-between;">
+      <ul class="menu-tabs__list" id="tabs-menu" ng-repeat="categories in getCategoryList">
+        <li><a data-toggle="tab" ng-click="setActiveTab(categories._id)"> {{categories.name}}</a></li>
+        <!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
         <li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
         <li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
         <li><a href="#rolls-tab" data-toggle="tab">Soups & Broth</a></li>
         <li><a href="#rolls-tab" data-toggle="tab">Krazy Toss</a></li>
         <li><a href="#rolls-tab" data-toggle="tab"> Dessert/Yogurt/Beverages</a></li>
-        <button type="button" name="button">view all</button>
+        <button type="button" name="button">view all</button> -->
       </ul>
     </div>
     <div class="menu-tabs__products-list ">
-      <div class="menu-tabs__breakfast products-tab" id="breakfast-tab">
+      <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == 0">
         <!-- 1-->
         <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'Recommended'}:true">
           <div class="breakfast-products__iamge">
@@ -157,7 +157,7 @@
       </div>
 
       <!-- Lunch Tab -->
-      <div class="menu-tabs__breakfast products-tab" id="lunch-tab">
+      <div class="menu-tabs__breakfast products-tab" ng-if="activeTab == 1">
         <!-- 1-->
         <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'All Day Meals'}:true">
           <div class="breakfast-products__iamge">
@@ -190,9 +190,9 @@
         </div>-->
       </div>
       <!-- Dinner Tab -->
-      <div class="menu-tabs__breakfast products-tab" id="dinner-tab">
+      <div class="menu-tabs__breakfast products-tab" ng-if="activeTab == 2">
         <!-- 1-->
-        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'All Day Meals'}:true">
+        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'Banquet For 2'}:true">
           <div class="breakfast-products__iamge">
 
           </div>
@@ -223,9 +223,9 @@
         </div>-->
       </div>
       <!-- Salads tab -->
-      <div class="menu-tabs__breakfast products-tab" id="salads-tab">
+      <div class="menu-tabs__breakfast products-tab" ng-if="activeTab == 3">
         <!-- 1-->
-        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'Recommended'}:true">
+        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'Add-ons'}:true">
           <div class="breakfast-products__iamge">
 
           </div>
@@ -256,9 +256,9 @@
         </div> -->
       </div>
       <!-- Salads tab -->
-      <div class="menu-tabs__rolls products-tab" id="rolls-tab">
+      <div class="menu-tabs__rolls products-tab" ng-if="activeTab == 4">
         <!-- 1-->
-        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'Recommended'}:true">
+        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:'Soups & Broth'}:true">
           <div class="breakfast-products__iamge">
 
           </div>

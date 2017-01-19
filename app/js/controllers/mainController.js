@@ -1,5 +1,6 @@
 app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore ){
   'use strict';
+  $scope.showTab = "Recommended";
   $(document).ready(function() {
     $('.products-tab').hide();
     $('.products-tab').first().show();
@@ -104,12 +105,30 @@ $('#nxt-testimonial').on('click', function(){
        $scope.productslist.push(obj);
        console.log("product id", $scope.productslist);
      });
+       $scope.getCategoriesList ();
     }).error(function(data) {
       console.log('data', data);
         alert ("no Products")
     });
   }
   $scope.product();
+
+  //get list of categories
+  $scope.getCategoriesList = function(){
+
+    Auth.getCategories().success (function (data) {
+      console.log('get cat data', data);
+      $scope.getCategoryList = data;
+    }).error(function(data){
+      console.log('data', data);
+        alert ("no categories");
+    });
+  }
+  $scope.activeTab = 0;
+  $scope.setActiveTab = function(tabToSet){
+      $scope.activeTab = tabToSet;
+      console.log("clicked",tabToSet);
+  }
 
   //POST create add to cart
   //POST create add to cart
@@ -176,4 +195,7 @@ $('#nxt-testimonial').on('click', function(){
         	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
         }
       });
+
+
+
 })

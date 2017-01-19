@@ -107,6 +107,13 @@ app.factory('Auth', function($http, $window) {
         }
       });
     },
+    getCategories : function(inputs) {
+      return $http.get(BASE_URL + '/api/categories', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
 
 
   };
