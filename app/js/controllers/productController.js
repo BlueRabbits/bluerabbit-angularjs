@@ -111,6 +111,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       $rootScope.cartLength = data.length;
       $scope.allCartItems = data;
       console.log('get cart data',data);
+      $scope.getCategoriesList();
       angular.forEach($scope.allCartItems, function (value, key) {
         var obj = {
           "qty":value.quantity,
@@ -167,6 +168,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     Auth.autocompleteSearchItem (searchNames).success ( function (data) {
       $scope.searchPagelist = true;
       $scope.show_wishlist  = false;
+      $scope.showMenuResult  = false;
       $scope.hideAutocomplete = true;
       console.log('autcomplete data', data);
       $scope.searchAutocompleteId = data;
@@ -180,6 +182,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     Auth.searchItem (searchName).success ( function (data) {
       $scope.searchPagelist = true;
       $scope.show_wishlist  = false;
+      $scope.showMenuResult  = false;
       $scope.hideAutocomplete = false;
       console.log('search data', data);
       $scope.search_result = data;
@@ -261,6 +264,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       $scope.wishListShow = function () {
         $scope.searchPagelist = false;
         $scope.show_wishlist  = true;
+        $scope.showMenuResult  = false;
         $scope.getWishList();
       }
 
@@ -362,6 +366,43 @@ app.controller('productController', function($scope, $location, $rootScope, $win
               window.location = "#/landing";
             }
           }
+
+          //get list of categories
+          $scope.getCategoriesList = function(){
+
+            Auth.getCategories().success (function (data) {
+              console.log('get cat data', data);
+              $scope.getCategoryList = data;
+            }).error(function(data){
+              console.log('data', data);
+                alert ("no categories");
+            });
+          }
+
+          $scope.setActiveTab = function(tabToSet, categoryName){
+              $scope.activeTab = tabToSet;
+              $scope.categoryNames = categoryName;
+              console.log("clicked",tabToSet);
+              $scope.searchPagelist = false;
+              $scope.show_wishlist  = false;
+              $scope.showMenuResult  = true;
+              $scope.product();
+          }
+
+          //get all products in landing page
+          $scope.product = function() {
+            $scope.productslist = [];
+            Auth.products().success(function(data) {
+            console.log('data',data);
+            $scope.allProducts = data;
+
+               $scope.getCategoriesList ();
+            }).error(function(data) {
+              console.log('data', data);
+                alert ("no Products")
+            });
+          }
+
 
 
 })

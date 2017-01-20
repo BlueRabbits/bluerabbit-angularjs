@@ -18,21 +18,22 @@
 				</ul>
 			</p>
 		</div>
-		<div class="search-page__tab-menu">
-			<ul class="search-page__tab-list" id="tabs-menu">
-        <li><a href="#breakfast-tab" data-toggle="tab"> Recommended</a></li>
-        <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
-        <li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
-        <li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
-        <li><a href="#rolls-tab" data-toggle="tab">Soups & Broth</a></li>
-        <li><a href="#rolls-tab" data-toggle="tab">Krazy Toss</a></li>
-        <li><a href="#rolls-tab" data-toggle="tab"> Desserts</a></li>
-      </ul>
-			<div class="nav-arrow left-arrow">
-				<p>></p>
+		<div class="search-page__tab-menu" style="display: flex;justify-content: space-between;">
+			<ul class="search-page__tab-list" id="tabs-menu" ng-repeat="categories in getCategoryList">
+				<li><a data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
+				<!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
+				<li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
+				<li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
+				<li><a href="#rolls-tab" data-toggle="tab">Soups & Broth</a></li>
+				<li><a href="#rolls-tab" data-toggle="tab">Krazy Toss</a></li>
+				<li><a href="#rolls-tab" data-toggle="tab"> Dessert/Yogurt/Beverages</a></li>
+				<button type="button" name="button">view all</button> -->
+			</ul>
+			<div class="nav-arrow left-arrow" id="left">
+				<p id="left">></p>
 			</div>
-			<div class="nav-arrow right-arrow">
-				<p>></p>
+			<div class="nav-arrow right-arrow"id="right">
+				<p id="right"><</p>
 			</div>
 		</div>
 		<div class="search-secction">
@@ -114,6 +115,47 @@
 					</div>
 				</div>
 			</div>
+			<!-- wish list end-->
+			<!-- menu result -->
+			<div class="search-secction__content wish-list" ng-show="showMenuResult" ng-repeat="list in allProducts | filter:{cat:categoryNames}:true">
+				<div class="search-secction__data" >
+					<div class="search-section__image">
+						<div class="image__thumbnail" style="background-image:url({{list.mainImageUrl}})">
+						</div>
+					</div>
+					<div class="search-section__description">
+						<p class="product-name">{{list.name}}</p>
+						<p class="product-sub-title">{{list.description}}</p>
+							<div class="product-view">
+									<!-- <img src="images/heart-icon-black.png" > -->
+									<p id="view-more" ng-click="showdiv = !showdiv">View More</p>
+							</div>
+					</div>
+					<p class="product-price">{{list.salePrice}}<span>AED</span></p>
+					<div class="search-secction__buttons">
+						<button type="button" name="button" ng-click="addToCart(list._id)">Add to Cart</button>
+					</div>
+				</div>
+				<div class="description__section" ng-show="showdiv">
+					<div class="description__section--header">
+						<div class="description-list">
+							<p>Serve: 2 People </p>
+							<span>|</span>
+							<p>Prep time:30 min</p>
+							<span>|</span>
+							<p>Calories: 100 Kcal</p>
+
+						</div>
+					</div>
+					<div class="description__section--content">
+						<p class="product-name">Product Description </p>
+						<p class="product-sub-title">
+							{{list.description}}
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- menu result -->
 		</div>
 		@@include('_footer.html')
 	</div>
