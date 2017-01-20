@@ -99,11 +99,9 @@
       <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
         <!-- 1-->
         <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
-          <div class="breakfast-products__iamge">
-
-          </div>
+          <div class="breakfast-products__iamge" style="background-image:url({{list.mainImageUrl}});"></div>
           <div class="breakfast-products__content">
-            <img src="images/heart-icon-black.png" height="26px" alt="" />
+
             <div class="products__description">
               <p>{{list.name}}</p>
               <p>{{list.description}}</p>

@@ -855,8 +855,7 @@ SMACSS: PAGE - LANDING
   margin-bottom: 20px; }
 
 .breakfast-products__iamge {
-  background-image: url(../images/fish.png);
-  width: 50%;
+  width: 78%;
   background-size: 100%;
   background-repeat: no-repeat; }
 

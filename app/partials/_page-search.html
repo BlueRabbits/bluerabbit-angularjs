@@ -29,7 +29,7 @@
         <li><a href="#rolls-tab" data-toggle="tab"> Desserts</a></li>
       </ul>
 			<div class="nav-arrow left-arrow">
-				<p><</p>
+				<p>></p>
 			</div>
 			<div class="nav-arrow right-arrow">
 				<p>></p>
@@ -76,8 +76,8 @@
 			</div>
 
 			<!-- Wish list -->
-			<div class="search-secction__content wish-list" ng-show="show_wishlist">
-				<div class="search-secction__data" ng-repeat="wishLists in getWishlistData">
+			<div class="search-secction__content wish-list" ng-show="show_wishlist" ng-repeat="wishLists in getWishlistData">
+				<div class="search-secction__data" >
 					<div class="search-section__image">
 						<div class="image__thumbnail" style="background-image:url({{wishLists.product.mainImageUrl}})">
 						</div>
@@ -93,6 +93,24 @@
 					<p class="product-price">{{wishLists.product.salePrice}}<span>AED</span></p>
 					<div class="search-secction__buttons">
 						<button type="button" name="button" ng-click="addToCart(wishLists._id)">Add to Cart</button>
+					</div>
+				</div>
+				<div class="description__section" ng-show="showdiv">
+					<div class="description__section--header">
+						<div class="description-list">
+							<p>Serve: 2 People </p>
+							<span>|</span>
+							<p>Prep time:30 min</p>
+							<span>|</span>
+							<p>Calories: 100 Kcal</p>
+
+						</div>
+					</div>
+					<div class="description__section--content">
+						<p class="product-name">Product Description </p>
+						<p class="product-sub-title">
+							{{wishLists.product.name}}
+						</p>
 					</div>
 				</div>
 			</div>
