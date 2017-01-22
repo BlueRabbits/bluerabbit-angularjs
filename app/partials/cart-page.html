@@ -242,13 +242,11 @@
     <div class="col-xs-12">
       <div class="col-md-12 text-center">
         <h1 class="text-center"> Shipping Information</h1>
+				<br/>
 				<div>
-				<label>Add New Address <input type="radio" ng-click="clearAddress()" ng-value="" ng-checked="addNewAddressRadio"></label>
-
-				<!-- <div ng-show="addNewAddressRadio"> -->
-				<div ng-repeat="getMyAddress in getAddressByUserId">
-						<label>{{getMyAddress.addressType}} <input type="radio" ng-model="addrestTypeRadio" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)" ng-checked="addrestTypeRadio"></label>
-					</div>
+						<label>Add New Address <input type="radio" ng-click="clearAddress()" ng-value="" ng-checked="addNewAddressRadio"></label>
+						&nbsp;
+						<label ng-repeat="getMyAddress in getAddressByUserId">{{getMyAddress.addressType}} <input type="radio" ng-model="addrestTypeRadio" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)" ng-checked="addrestTypeRadio"></label>
 					</div>
 				<form name="shipping-form" class="shipping__form" ng-submit="addAddress()" ng-show="showAddressType">
 						<br/>
@@ -331,10 +329,10 @@
   <div class="row setup-content" id="step-3">
     <div class="col-xs-12">
       <div class="col-md-12 text-center">
-          <h1 class="text-center"> Payment Details</h1>
+          <h1 class="text-center"> Payment Type : COD</h1>
           <p class="thanks-message">
 						<h1 class="text-center"> Thank You For Your Order</h1>
-						<form>
+						<!-- <form>
 							<p class="thanks-message">
 								Payment Type : COD
 								<div ng-repeat="getAddress in getAddressByUserId">
@@ -348,7 +346,7 @@
 									<p>City: {{getAddress.city}}</p>
 								</div>
 							</p>
-						</form>
+						</form> -->
           </p>
 					<form  action="http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000/api/checkout/makePayment" method="POST">
 						<div >
@@ -356,8 +354,8 @@
 						   <input type="hidden" name="coupon"><br>
 							  <input type="hidden" name="ip" value="192.168.1.1"><br>
 						  	<input type="hidden" name="paymentMethod" value="1"><br>
-							   <input type="hidden" name="address" ng-value="addressId"><br>
-							   <input type="hidden" name="billingAddress" ng-value="addressId"><br>
+							   <input type="hidden" name="address" ng-value="addressIdSelected"><br>
+							   <input type="hidden" name="billingAddress" ng-value="addressIdSelected"><br>
 							   <input type="hidden" name="returnURL" value="http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/landing"><br>
 							  <!-- <input type="submit" value="Submit"> -->
 							</div>
