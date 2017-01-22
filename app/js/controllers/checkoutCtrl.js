@@ -169,13 +169,44 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     }
     $scope.getAddressByUserId ();
 
+    //selectedAddress
+    $scope.selectedAddress = function(id,addresstype){
+      $scope.showAddressType = false;
+      $scope.addNewAddressRadio = false;
+      $scope.addrestTypeRadio = true;
+
+      console.log("id",id);
+      console.log("addresstype",addresstype);
+      $scope.addressTypeChosen = addresstype;
+      for (var i = 0; i < $scope.getAddressByUserId.length; i++) {
+        if(id == $scope.getAddressByUserId[i]._id){
+          console.log("$scope.getAddressByUserId[i]._id",$scope.getAddressByUserId[i]._id);
+          $scope.name = $scope.getAddressByUserId[i].name;
+          $scope.landlineNumber = $scope.getAddressByUserId[i].landLineNumber;
+          $scope.mobileNumber = $scope.getAddressByUserId[i].mobileNumber;
+          $scope.companyName = $scope.getAddressByUserId[i].companyName;
+          $scope.street1 = $scope.getAddressByUserId[i].street1;
+          $scope.city = $scope.getAddressByUserId[i].city;
+          $scope.pincode = $scope.getAddressByUserId[i].pinCode;
+          $scope.state = $scope.getAddressByUserId[i].state;
+          $scope.country = $scope.getAddressByUserId[i].state;
+        }
+
+      }
+    }
 
   //post address
   $scope.addressType = [];
   $scope.addAddress = function () {
-  console.log("addressTypeHome",$scope.addressType);
+    // $scope.myAddressType = [];
+
+  console.log("addressTypeHome array",$scope.addressType);
     $scope.getUserId = $cookieStore.get('userId');
     $scope.userToken = $cookieStore.get('token');
+
+    //  $scope.addressObject = $scope.addressType.push($('#addressType').val());
+    //  console.log("$scope.addressObject ",$scope.myaddressType[$('#addressType').val()]);
+    // $scope.myAddressType = $scope.addressType;
 
     var addressDetails = {
       userID:$scope.getUserId,
@@ -199,12 +230,31 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     .success(function(data){
       console.log('addressDetails', data);
       alert('address added');
-      $scope.getAddressByUserId ();
+      //$scope.getAddressByUserId ();
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
         }).error(function(data){
-          alert('Not Added to cart');
+          alert('Not Added address');
         });
       };
+
+      $scope.addrestTypeRadio = false;
+      $scope.addNewAddressRadio = false;
+      //clearAddress to add new address
+      $scope.clearAddress = function(){
+        $scope.showAddressType = true;
+        $scope.addrestTypeRadio = false;
+        $scope.addNewAddressRadio = true;
+        //clear textbox
+        // $scope.name = "";
+        // $scope.landlineNumber = "";
+        // $scope.mobileNumber = "";
+        // $scope.companyName = "";
+        // $scope.street1 = "";
+        // $scope.city = "";
+        // $scope.pincode = "";
+        // $scope.state = "";
+        // $scope.country = "";
+      }
 });
