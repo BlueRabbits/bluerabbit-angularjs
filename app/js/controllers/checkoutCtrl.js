@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth,  $cookies, $cookieStore) {
+app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth,  $cookies, $cookieStore, ngToast) {
 
 
   // Activate Next Step
@@ -91,7 +91,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
 
     }).error(function(data){
-      alert('Not Added to cart');
+      ngToast.create({
+        className: 'warning',
+        content: 'Problem in get cart api'
+      });
     });
   };
   $scope.getcartItems();
@@ -107,7 +110,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       console.log('updated resp', data);
       $scope.getcartItems();
         }).error(function(data){
-          alert('Not updated in cart');
+          console.log('Not updated in cart increment ',data);
         });
   }
 
@@ -122,7 +125,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       console.log('updated decrement', data);
       $scope.getcartItems();
         }).error(function(data){
-          alert('Not updated in cart');
+          console.log('Not updated in cart',data);
         });
   }
 
@@ -139,13 +142,19 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     .success(function(data){
       console.log('deleted resp', data);
       $scope.getcartItems();
-      alert('deleted from cart');
+      ngToast.create({
+        className: 'success',
+        content: 'Item Deleted from Cart'
+      });
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
 
         }).error(function(data){
-          alert('Not deleted from cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in deleting from Cart'
+          });
         });
       };
 
@@ -164,7 +173,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
           $scope.addressId = data[0]._id;
           console.log("$scope.addressId",$scope.addressId);
           }).error(function(data){
-            alert('Not deleted from cart');
+            console.log(data);
           });
     }
     $scope.getAddressByUserId ();
@@ -229,13 +238,19 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     Auth.addAddress(addressDetails)
     .success(function(data){
       console.log('addressDetails', data);
-      alert('address added');
+      ngToast.create({
+        className: 'success',
+        content: 'New Address Added'
+      });
       //$scope.getAddressByUserId ();
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
         }).error(function(data){
-          alert('Not Added address');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in adding address'
+          });
         });
       };
 

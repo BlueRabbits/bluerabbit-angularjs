@@ -1,4 +1,4 @@
-app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore){
+app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, ngToast){
   'use strict';
 
 
@@ -128,7 +128,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
 
     }).error(function(data){
-      alert('Not Added to cart');
+      ngToast.create({
+        className: 'warning',
+        content: 'Problem in Get Cart API'
+      });
     });
   };
   $scope.getcartItems();
@@ -144,7 +147,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       console.log('updated resp', data);
       $scope.getcartItems();
         }).error(function(data){
-          alert('Not updated in cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in incrementing cart'
+          });
         });
   }
 
@@ -159,7 +165,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       console.log('updated decrement', data);
       $scope.getcartItems();
         }).error(function(data){
-          alert('Not updated in cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in decrement cart'
+          });
         });
   }
 
@@ -172,8 +181,8 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       $scope.hideAutocomplete = true;
       console.log('autcomplete data', data);
       $scope.searchAutocompleteId = data;
-    }).error({
-
+    }).error(function(data){
+      console.log("autocomplete search",data);
     });
   };
 
@@ -187,8 +196,8 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       console.log('search data', data);
       $scope.search_result = data;
 
-    }).error({
-
+    }).error(function(data){
+      console.log("problem in search term API",data);
     });
   };
 
@@ -219,7 +228,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     .success(function(data){
       //console.log('data', data);
       $scope.getcartItems();
-      alert('Added to cart');
+      ngToast.create({
+        className: 'success',
+        content: 'Item Added to Cart'
+      });
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
@@ -234,7 +246,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
             console.log("cart",$scope.cartlist);
           });
         }).error(function(data){
-          alert('Not Added to cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in Adding to Cart'
+          });
         });
       };
 
@@ -251,14 +266,20 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     .success(function(data){
       console.log('deleted resp', data);
       $scope.getcartItems();
-      alert('deleted from cart');
+      ngToast.create({
+        className: 'success',
+        content: 'Item Deleted from Cart'
+      });
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
 
         }).error(function(data){
-          alert('Not deleted from cart');
-        });
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in deleting from Cart'
+          });
+        });  
       };
 
       $scope.wishListShow = function () {
@@ -295,7 +316,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
         .success(function(data){
           //console.log('data', data);
           $scope.getcartItems();
-          alert('Added to wishLists');
+          ngToast.create({
+            className: 'success',
+            content: 'Item Added to WishList'
+          });
           // $scope.quantity = data.quantity;
           // $scope.user_id = data.UserID;
           // console.log('id',$scope.user_id);
@@ -310,7 +334,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
                 console.log("cart",$scope.cartlist);
               });
             }).error(function(data){
-              alert('Not Added to wish');
+              ngToast.create({
+                className: 'warning',
+                content: 'Problem in deleting from wishList'
+              });
             });
           };
 
@@ -353,7 +380,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
 
             }).error(function(data){
-              alert('Not Added to cart');
+              ngToast.create({
+                className: 'warning',
+                content: 'Problem in getting data from wish list'
+              });
             });
           };
 
@@ -375,7 +405,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
               $scope.getCategoryList = data;
             }).error(function(data){
               console.log('data', data);
-                alert ("no categories");
+              ngToast.create({
+                className: 'warning',
+                content: 'check category api'
+              });
             });
           }
 
@@ -399,7 +432,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
                $scope.getCategoriesList ();
             }).error(function(data) {
               console.log('data', data);
-                alert ("no Products")
+              ngToast.create({
+                className: 'warning',
+                content: 'Check Product list API '
+              });
             });
           }
 

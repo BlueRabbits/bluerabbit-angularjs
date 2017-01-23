@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore ){
+app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, ngToast ){
   'use strict';
   $scope.showTab = "Recommended";
   $(document).ready(function() {
@@ -108,7 +108,7 @@ $('#nxt-testimonial').on('click', function(){
        $scope.getCategoriesList ();
     }).error(function(data) {
       console.log('data', data);
-        alert ("no Products")
+        console.log("no Products",data);
     });
   }
   $scope.product();
@@ -121,7 +121,7 @@ $('#nxt-testimonial').on('click', function(){
       $scope.getCategoryList = data;
     }).error(function(data){
       console.log('data', data);
-        alert ("no categories");
+         console.log("no categories");
     });
   }
   $scope.activeTab = 0;
@@ -158,7 +158,10 @@ $('#nxt-testimonial').on('click', function(){
     Auth.addCart(productInfo)
     .success(function(data){
       //console.log('data', data);
-      alert('Added to cart');
+      ngToast.create({
+        className: 'success',
+        content: 'Item Added to Cart'
+      });
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
@@ -173,7 +176,7 @@ $('#nxt-testimonial').on('click', function(){
             console.log("cart",$scope.cartlist);
           });
         }).error(function(data){
-          alert('Not Added to cart');
+          console.log('Not Added to cart');
         });
       };
 

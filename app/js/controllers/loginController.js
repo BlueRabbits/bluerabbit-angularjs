@@ -50,7 +50,10 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $location.path('/landing');
          location.reload(true);
         //location.reload(true);
-        alert ("Account Created successfully")
+        ngToast.create({
+          className: 'success',
+          content: 'Account created successfully'
+        });
       }).error(function(data) {
         console.log('data', data);
         $scope.erroralert = true;
@@ -134,7 +137,6 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
       console.log('data',data);
     }).error(function(data) {
       console.log('data', data);
-        alert ("Account Created unsuccess")
     });
   }
   //   $scope.product();
