@@ -20,7 +20,7 @@
 		</div>
 		<div class="search-page__tab-menu" style="display: flex;justify-content: space-between;">
 			<ul class="search-page__tab-list" id="tabs-menu" ng-repeat="categories in getCategoryList">
-				<li><a data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
+				<li id="navMenu"><a data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
 				<!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
 				<li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
 				<li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
@@ -29,12 +29,12 @@
 				<li><a href="#rolls-tab" data-toggle="tab"> Dessert/Yogurt/Beverages</a></li>
 				<button type="button" name="button">view all</button> -->
 			</ul>
-			<div class="nav-arrow left-arrow" id="left">
+			<!-- <div class="nav-arrow left-arrow" id="left">
 				<p id="left">></p>
 			</div>
 			<div class="nav-arrow right-arrow"id="right">
-				<p id="right"><</p>
-			</div>
+				<p id="right" ng-click="scrollLeft()"><</p>
+			</div> -->
 		</div>
 		<div class="search-secction">
 			<div class="search-secction__content" ng-repeat="results in search_result" ng-show="searchPagelist">

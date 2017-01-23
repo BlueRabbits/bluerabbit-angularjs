@@ -279,7 +279,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
             className: 'warning',
             content: 'Problem in deleting from Cart'
           });
-        });  
+        });
       };
 
       $scope.wishListShow = function () {
