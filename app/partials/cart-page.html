@@ -244,9 +244,21 @@
         <h1 class="text-center"> Shipping Information</h1>
 				<br/>
 				<div>
-						<label>Add New Address <input type="radio" ng-click="clearAddress()" ng-value="" ng-checked="addNewAddressRadio"></label>
+						<label> <input type="button" ng-click="clearAddress()" class="btn btn-success" value="Add Address" ></label>
 						&nbsp;
-						<label ng-repeat="getMyAddress in getAddressByUserId">{{getMyAddress.addressType}} <input type="radio" ng-model="addrestTypeRadio" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)" ng-checked="addrestTypeRadio"></label>
+						<!-- select availabe address -->
+						<div class="dropdown">
+						  <button class="dropbtn">Select Addresses</button>
+						  <div class="dropdown-content" ng-repeat="getMyAddress in getAddressByUserId">
+						    <a style="cursor:pointer;" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">{{getMyAddress.addressType}} </a>
+						    <!-- <a href="#">Link 2</a>
+						    <a href="#">Link 3</a> -->
+						  </div>
+						</div>
+
+						<!-- select availabe address -->
+
+						<!-- <label ng-repeat="getMyAddress in getAddressByUserId">{{getMyAddress.addressType}} <input type="radio" ng-model="addrestTypeRadio" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)" ng-checked="addrestTypeRadio"></label> -->
 					</div>
 				<form name="shipping-form" class="shipping__form" ng-submit="addAddress()" ng-show="showAddressType">
 						<br/>
@@ -373,13 +385,12 @@
           <h1 class="text-center"> Thank You For Your Order</h1>
           <form>
             <p class="thanks-message">
-              The wide ranging nature of items and practices to which the term creative can be sensibly applied also makes a
-              straightforward definition difficult
+              Your Invoice will be sent once delivered
             </p>
           </form>
           <div class="process-button-section process-button-section__center">
             <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-            <button  class=" checkout-page__buttons print-recipt__button active">Print Recipt</button>
+            <!-- <button  class=" checkout-page__buttons print-recipt__button active">Print Recipt</button> -->
           </div>
       </div>
     </div>
