@@ -3,7 +3,7 @@ App bluerabbit
 ==================================================================*/
 'use strict';
 
-var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies']);
+var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngToast']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -41,9 +41,130 @@ app.config(['$routeProvider', function($routeProvider) {
 
 }]);
 
+'use strict';
+app.factory('Auth', function($http, $window) {
+  var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
+  //var BASE_URL = "http://192.168.0.84:9000";
+
+  return {
+    register : function(inputs) {
+      return $http.post(BASE_URL + '/api/users', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+
+    login : function (inputs) {
+      return $http.post(BASE_URL + '/auth/local', inputs,{
+        header: {
+          'sender': 'web',
+          'Content-Type': 'application/json'
+        }
+      });
+    },
+
+    forgotpassword : function (inputs) {
+      return $http.post(BASE_URL + '/api/users/forgotpassword', inputs,{
+        header: {
+          'sender': 'web',
+          'Content-Type': 'application/json'
+        }
+      });
+    },
+
+    products : function(inputs) {
+      return $http.get(BASE_URL + '/api/products', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    addCart : function(inputs) {
+      return $http.post(BASE_URL + '/api/shoppingCart', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getCartList : function(inputs) {
+      return $http.post(BASE_URL + '/api/shoppingCart/getCartItems', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    deleteCart : function(inputs,id) {
+      return $http.post(BASE_URL + '/api/shoppingCart/updateCart/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    updateCart : function(inputs,id) {
+      return $http.post(BASE_URL + '/api/shoppingCart/updateCart/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    addWishList : function(inputs) {
+      return $http.post(BASE_URL + '/api/wishLists', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getWishList : function(inputs) {
+      return $http.post(BASE_URL + '/api/wishLists/getListItems', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    addAddress : function(inputs) {
+      return $http.post(BASE_URL + '/api/address', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getAddressByUserId : function(id,inputs) {
+      return $http.get(BASE_URL + '/api/address/getaddressByUserId/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    autocompleteSearchItem : function(id,inputs) {
+      return $http.get(BASE_URL + '/api/autocompleteSearchs/autoComplete/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    searchItem : function(id,inputs) {
+      return $http.get(BASE_URL + '/api/products/searchProducts/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getCategories : function(inputs) {
+      return $http.get(BASE_URL + '/api/categories', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+
+
+  };
+});
+
 "use strict";
 
-app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth,  $cookies, $cookieStore) {
+app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth,  $cookies, $cookieStore, ngToast) {
 
 
   // Activate Next Step
@@ -134,7 +255,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
 
     }).error(function(data){
-      alert('Not Added to cart');
+      ngToast.create({
+        className: 'warning',
+        content: 'Problem in get cart api'
+      });
     });
   };
   $scope.getcartItems();
@@ -150,7 +274,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       console.log('updated resp', data);
       $scope.getcartItems();
         }).error(function(data){
-          alert('Not updated in cart');
+          console.log('Not updated in cart increment ',data);
         });
   }
 
@@ -165,7 +289,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       console.log('updated decrement', data);
       $scope.getcartItems();
         }).error(function(data){
-          alert('Not updated in cart');
+          console.log('Not updated in cart',data);
         });
   }
 
@@ -182,13 +306,19 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     .success(function(data){
       console.log('deleted resp', data);
       $scope.getcartItems();
-      alert('deleted from cart');
+      ngToast.create({
+        className: 'success',
+        content: 'Item Deleted from Cart'
+      });
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
 
         }).error(function(data){
-          alert('Not deleted from cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in deleting from Cart'
+          });
         });
       };
 
@@ -207,18 +337,49 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
           $scope.addressId = data[0]._id;
           console.log("$scope.addressId",$scope.addressId);
           }).error(function(data){
-            alert('Not deleted from cart');
+            console.log(data);
           });
     }
     $scope.getAddressByUserId ();
 
+    //selectedAddress
+    $scope.selectedAddress = function(id,addresstype){
+      $scope.showAddressType = false;
+      $scope.addNewAddressRadio = false;
+      $scope.addrestTypeRadio = true;
+      $scope.addressIdSelected = id;
+      console.log("id",id);
+      console.log("addresstype",addresstype);
+      $scope.addressTypeChosen = addresstype;
+      for (var i = 0; i < $scope.getAddressByUserId.length; i++) {
+        if(id == $scope.getAddressByUserId[i]._id){
+          console.log("$scope.getAddressByUserId[i]._id",$scope.getAddressByUserId[i]._id);
+          $scope.name = $scope.getAddressByUserId[i].name;
+          $scope.landlineNumber = $scope.getAddressByUserId[i].landLineNumber;
+          $scope.mobileNumber = $scope.getAddressByUserId[i].mobileNumber;
+          $scope.companyName = $scope.getAddressByUserId[i].companyName;
+          $scope.street1 = $scope.getAddressByUserId[i].street1;
+          $scope.city = $scope.getAddressByUserId[i].city;
+          $scope.pincode = $scope.getAddressByUserId[i].pinCode;
+          $scope.state = $scope.getAddressByUserId[i].state;
+          $scope.country = $scope.getAddressByUserId[i].state;
+        }
+
+      }
+    }
 
   //post address
   $scope.addressType = [];
   $scope.addAddress = function () {
-  console.log("addressTypeHome",$scope.addressType);
+    // $scope.myAddressType = [];
+
+  console.log("addressTypeHome array",$scope.addressType);
     $scope.getUserId = $cookieStore.get('userId');
     $scope.userToken = $cookieStore.get('token');
+
+    //  $scope.addressObject = $scope.addressType.push($('#addressType').val());
+    //  console.log("$scope.addressObject ",$scope.myaddressType[$('#addressType').val()]);
+    // $scope.myAddressType = $scope.addressType;
 
     var addressDetails = {
       userID:$scope.getUserId,
@@ -241,15 +402,40 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     Auth.addAddress(addressDetails)
     .success(function(data){
       console.log('addressDetails', data);
-      alert('address added');
-      $scope.getAddressByUserId ();
+      ngToast.create({
+        className: 'success',
+        content: 'New Address Added'
+      });
+      //$scope.getAddressByUserId ();
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
         }).error(function(data){
-          alert('Not Added to cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in adding address'
+          });
         });
       };
+
+      $scope.addrestTypeRadio = false;
+      $scope.addNewAddressRadio = false;
+      //clearAddress to add new address
+      $scope.clearAddress = function(){
+        $scope.showAddressType = true;
+        $scope.addrestTypeRadio = false;
+        $scope.addNewAddressRadio = true;
+        //clear textbox
+        // $scope.name = "";
+        // $scope.landlineNumber = "";
+        // $scope.mobileNumber = "";
+        // $scope.companyName = "";
+        // $scope.street1 = "";
+        // $scope.city = "";
+        // $scope.pincode = "";
+        // $scope.state = "";
+        // $scope.country = "";
+      }
 });
 
 app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore){
@@ -304,7 +490,10 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $location.path('/landing');
          location.reload(true);
         //location.reload(true);
-        alert ("Account Created successfully")
+        ngToast.create({
+          className: 'success',
+          content: 'Account created successfully'
+        });
       }).error(function(data) {
         console.log('data', data);
         $scope.erroralert = true;
@@ -388,7 +577,6 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
       console.log('data',data);
     }).error(function(data) {
       console.log('data', data);
-        alert ("Account Created unsuccess")
     });
   }
   //   $scope.product();
@@ -401,8 +589,9 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
 
 })
 
-app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore ){
+app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, ngToast ){
   'use strict';
+  $scope.showTab = "Recommended";
   $(document).ready(function() {
     $('.products-tab').hide();
     $('.products-tab').first().show();
@@ -437,6 +626,22 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   	});
   });
 
+  //slider
+
+  $('#prv-testimonial').on('click', function(){
+    var $last = $('#testimonial-list .slide-list:last');
+    $last.remove().css({ 'margin-left': '-400px' });
+    $('#testimonial-list .slide-list:first').before($last);
+    $last.animate({ 'margin-left': '0px' }, 1000);
+});
+
+$('#nxt-testimonial').on('click', function(){
+    var $first = $('#testimonial-list .slide-list:first');
+    $first.animate({ 'margin-left': '-400px' }, 1000, function() {
+        $first.remove().css({ 'margin-left': '0px' });
+        $('#testimonial-list .slide-list:last').after($first);
+    });
+});
 
   //redirection
   $(".search-box").keypress(function (e) {
@@ -491,12 +696,31 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
        $scope.productslist.push(obj);
        console.log("product id", $scope.productslist);
      });
+       $scope.getCategoriesList ();
     }).error(function(data) {
       console.log('data', data);
-        alert ("no Products")
+        console.log("no Products",data);
     });
   }
   $scope.product();
+
+  //get list of categories
+  $scope.getCategoriesList = function(){
+
+    Auth.getCategories().success (function (data) {
+      console.log('get cat data', data);
+      $scope.getCategoryList = data;
+    }).error(function(data){
+      console.log('data', data);
+         console.log("no categories");
+    });
+  }
+  $scope.activeTab = 0;
+  $scope.setActiveTab = function(tabToSet, categoryName){
+      $scope.activeTab = tabToSet;
+      $scope.categoryNames = categoryName;
+      console.log("clicked",tabToSet);
+  }
 
   //POST create add to cart
   //POST create add to cart
@@ -525,7 +749,10 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
     Auth.addCart(productInfo)
     .success(function(data){
       //console.log('data', data);
-      alert('Added to cart');
+      ngToast.create({
+        className: 'success',
+        content: 'Item Added to Cart'
+      });
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
@@ -540,7 +767,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
             console.log("cart",$scope.cartlist);
           });
         }).error(function(data){
-          alert('Not Added to cart');
+          console.log('Not Added to cart');
         });
       };
 
@@ -563,9 +790,12 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
         	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
         }
       });
+
+
+
 })
 
-app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore){
+app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, ngToast){
   'use strict';
 
 
@@ -678,6 +908,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       $rootScope.cartLength = data.length;
       $scope.allCartItems = data;
       console.log('get cart data',data);
+      $scope.getCategoriesList();
       angular.forEach($scope.allCartItems, function (value, key) {
         var obj = {
           "qty":value.quantity,
@@ -694,7 +925,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
 
     }).error(function(data){
-      alert('Not Added to cart');
+      ngToast.create({
+        className: 'warning',
+        content: 'Problem in Get Cart API'
+      });
     });
   };
   $scope.getcartItems();
@@ -710,7 +944,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       console.log('updated resp', data);
       $scope.getcartItems();
         }).error(function(data){
-          alert('Not updated in cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in incrementing cart'
+          });
         });
   }
 
@@ -725,7 +962,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       console.log('updated decrement', data);
       $scope.getcartItems();
         }).error(function(data){
-          alert('Not updated in cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in decrement cart'
+          });
         });
   }
 
@@ -734,11 +974,12 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     Auth.autocompleteSearchItem (searchNames).success ( function (data) {
       $scope.searchPagelist = true;
       $scope.show_wishlist  = false;
+      $scope.showMenuResult  = false;
       $scope.hideAutocomplete = true;
       console.log('autcomplete data', data);
       $scope.searchAutocompleteId = data;
-    }).error({
-
+    }).error(function(data){
+      console.log("autocomplete search",data);
     });
   };
 
@@ -747,12 +988,13 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     Auth.searchItem (searchName).success ( function (data) {
       $scope.searchPagelist = true;
       $scope.show_wishlist  = false;
+      $scope.showMenuResult  = false;
       $scope.hideAutocomplete = false;
       console.log('search data', data);
       $scope.search_result = data;
 
-    }).error({
-
+    }).error(function(data){
+      console.log("problem in search term API",data);
     });
   };
 
@@ -783,7 +1025,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     .success(function(data){
       //console.log('data', data);
       $scope.getcartItems();
-      alert('Added to cart');
+      ngToast.create({
+        className: 'success',
+        content: 'Item Added to Cart'
+      });
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
@@ -798,7 +1043,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
             console.log("cart",$scope.cartlist);
           });
         }).error(function(data){
-          alert('Not Added to cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in Adding to Cart'
+          });
         });
       };
 
@@ -815,19 +1063,26 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     .success(function(data){
       console.log('deleted resp', data);
       $scope.getcartItems();
-      alert('deleted from cart');
+      ngToast.create({
+        className: 'success',
+        content: 'Item Deleted from Cart'
+      });
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
 
         }).error(function(data){
-          alert('Not deleted from cart');
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in deleting from Cart'
+          });
         });
       };
 
       $scope.wishListShow = function () {
         $scope.searchPagelist = false;
         $scope.show_wishlist  = true;
+        $scope.showMenuResult  = false;
         $scope.getWishList();
       }
 
@@ -858,7 +1113,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
         .success(function(data){
           //console.log('data', data);
           $scope.getcartItems();
-          alert('Added to wishLists');
+          ngToast.create({
+            className: 'success',
+            content: 'Item Added to WishList'
+          });
           // $scope.quantity = data.quantity;
           // $scope.user_id = data.UserID;
           // console.log('id',$scope.user_id);
@@ -873,7 +1131,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
                 console.log("cart",$scope.cartlist);
               });
             }).error(function(data){
-              alert('Not Added to wish');
+              ngToast.create({
+                className: 'warning',
+                content: 'Problem in deleting from wishList'
+              });
             });
           };
 
@@ -916,7 +1177,10 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
 
             }).error(function(data){
-              alert('Not Added to cart');
+              ngToast.create({
+                className: 'warning',
+                content: 'Problem in getting data from wish list'
+              });
             });
           };
 
@@ -930,119 +1194,48 @@ app.controller('productController', function($scope, $location, $rootScope, $win
             }
           }
 
+          //get list of categories
+          $scope.getCategoriesList = function(){
+
+            Auth.getCategories().success (function (data) {
+              console.log('get cat data', data);
+              $scope.getCategoryList = data;
+            }).error(function(data){
+              console.log('data', data);
+              ngToast.create({
+                className: 'warning',
+                content: 'check category api'
+              });
+            });
+          }
+
+          $scope.setActiveTab = function(tabToSet, categoryName){
+              $scope.activeTab = tabToSet;
+              $scope.categoryNames = categoryName;
+              console.log("clicked",tabToSet);
+              $scope.searchPagelist = false;
+              $scope.show_wishlist  = false;
+              $scope.showMenuResult  = true;
+              $scope.product();
+          }
+
+          //get all products in landing page
+          $scope.product = function() {
+            $scope.productslist = [];
+            Auth.products().success(function(data) {
+            console.log('data',data);
+            $scope.allProducts = data;
+
+               $scope.getCategoriesList ();
+            }).error(function(data) {
+              console.log('data', data);
+              ngToast.create({
+                className: 'warning',
+                content: 'Check Product list API '
+              });
+            });
+          }
+
+
 
 })
-
-'use strict';
-app.factory('Auth', function($http, $window) {
-  var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
-  //var BASE_URL = "http://192.168.0.84:9000";
-
-  return {
-    register : function(inputs) {
-      return $http.post(BASE_URL + '/api/users', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-
-    login : function (inputs) {
-      return $http.post(BASE_URL + '/auth/local', inputs,{
-        header: {
-          'sender': 'web',
-          'Content-Type': 'application/json'
-        }
-      });
-    },
-
-    forgotpassword : function (inputs) {
-      return $http.post(BASE_URL + '/api/users/forgotpassword', inputs,{
-        header: {
-          'sender': 'web',
-          'Content-Type': 'application/json'
-        }
-      });
-    },
-
-    products : function(inputs) {
-      return $http.get(BASE_URL + '/api/products', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    addCart : function(inputs) {
-      return $http.post(BASE_URL + '/api/shoppingCart', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    getCartList : function(inputs) {
-      return $http.post(BASE_URL + '/api/shoppingCart/getCartItems', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    deleteCart : function(inputs,id) {
-      return $http.post(BASE_URL + '/api/shoppingCart/updateCart/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    updateCart : function(inputs,id) {
-      return $http.post(BASE_URL + '/api/shoppingCart/updateCart/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    addWishList : function(inputs) {
-      return $http.post(BASE_URL + '/api/wishLists', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    getWishList : function(inputs) {
-      return $http.post(BASE_URL + '/api/wishLists/getListItems', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    addAddress : function(inputs) {
-      return $http.post(BASE_URL + '/api/address', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    getAddressByUserId : function(id,inputs) {
-      return $http.get(BASE_URL + '/api/address/getaddressByUserId/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    autocompleteSearchItem : function(id,inputs) {
-      return $http.get(BASE_URL + '/api/autocompleteSearchs/autoComplete/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    searchItem : function(id,inputs) {
-      return $http.get(BASE_URL + '/api/products/searchProducts/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-
-
-  };
-});

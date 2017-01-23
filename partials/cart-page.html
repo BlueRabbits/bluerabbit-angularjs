@@ -276,19 +276,39 @@
   </div>
   <div class="row setup-content shipping-address" id="step-2">
     <div class="col-xs-12">
-      <div class="col-md-6  text-center">
+      <div class="col-md-12 text-center">
         <h1 class="text-center"> Shipping Information</h1>
-        <form name="shipping-form" class="shipping__form" ng-submit="addAddress()">
+				<br/>
+				<div>
+						<label> <input type="button" ng-click="clearAddress()" class="btn btn-success" value="Add Address" ></label>
+						&nbsp;
+						<!-- select availabe address -->
+						<div class="dropdown">
+						  <button class="dropbtn">Select Addresses</button>
+						  <div class="dropdown-content" ng-repeat="getMyAddress in getAddressByUserId">
+						    <a style="cursor:pointer;" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">{{getMyAddress.addressType}} </a>
+						    <!-- <a href="#">Link 2</a>
+						    <a href="#">Link 3</a> -->
+						  </div>
+						</div>
 
+						<!-- select availabe address -->
+
+						<!-- <label ng-repeat="getMyAddress in getAddressByUserId">{{getMyAddress.addressType}} <input type="radio" ng-model="addrestTypeRadio" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)" ng-checked="addrestTypeRadio"></label> -->
+					</div>
+				<form name="shipping-form" class="shipping__form" ng-submit="addAddress()" ng-show="showAddressType">
 						<br/>
-						<label>Home <input type="radio" ng-model="addressType" value="home"></label>
-						<label>Work	 <input type="radio" ng-model="addressType" value="office"></label>
+						<div class="shipping-form__names" >
+							<!-- <input type="text" name="name" value="" class=" form-inputs first-name" placeholder="First Name"> -->
+							<input type="text" name="name" id="addressType" class=" form-inputs last-name" ng-model="addressType" placeholder="Address Type">
+						</div>
           <div class="shipping-form__names">
             <!-- <input type="text" name="name" value="" class=" form-inputs first-name" placeholder="First Name"> -->
             <input type="text" name="name" value="" class=" form-inputs last-name" ng-model="name" placeholder="Name">
+					  <input type="text" name="name" value="" class=" form-inputs telephone" ng-model="landlineNumber" placeholder="Telephone">
           </div>
           <div class="shipping-form__contacts">
-            <input type="text" name="name" value="" class=" form-inputs telephone" ng-model="landlineNumber" placeholder="Telephone">
+
             <input type="text" name="name" value="" class=" form-inputs telephone" ng-model="mobileNumber" placeholder="Mobile">
             <input type="text" name="name" value="" class=" form-inputs company-phone" ng-model="companyName" placeholder="Company">
           </div>
@@ -303,14 +323,44 @@
             <input type="text" name="name" value="" class=" form-inputs state-name" ng-model="state" placeholder="State">
             <input type="text" name="name" value="" class=" form-inputs country-name" ng-model="country" placeholder="Country">
           </div>
-					<button class=" checkout-page__buttons" type="submit">Submit</button>
+					<div style="margin: 20px 20px 20px 20px;">
+						<button class=" checkout-page__buttons" type="submit">Add Address</button>
+					</div>
         </form>
+
+				<form name="shipping-form" class="shipping__form" ng-show="addrestTypeRadio">
+						<br/>
+          <div class="shipping-form__names">
+            <!-- <input type="text" name="name" value="" class=" form-inputs first-name" placeholder="First Name"> -->
+            <input type="text" name="name" value="" class=" form-inputs last-name" ng-model="name" placeholder="Name">
+					  <input type="text" name="name" value="" class=" form-inputs telephone" ng-model="landlineNumber" placeholder="Telephone">
+          </div>
+          <div class="shipping-form__contacts">
+
+            <input type="text" name="name" value="" class=" form-inputs telephone" ng-model="mobileNumber" placeholder="Mobile">
+            <input type="text" name="name" value="" class=" form-inputs company-phone" ng-model="companyName" placeholder="Company">
+          </div>
+          <div class="shipping-form__street">
+            <input type="text" name="name" value="" class=" form-inputs Street-address" ng-model="street1" placeholder="Street Address">
+          </div>
+          <div class="shipping-form__postal">
+            <input type="text" name="name" value="" class=" form-inputs city-address" ng-model="city" placeholder="City">
+            <input type="text" name="name" value="" class=" form-inputs Zipcode" ng-model="pincode" placeholder="Zipcode">
+          </div>
+          <div class="shipping-form__location">
+            <input type="text" name="name" value="" class=" form-inputs state-name" ng-model="state" placeholder="State">
+            <input type="text" name="name" value="" class=" form-inputs country-name" ng-model="country" placeholder="Country">
+          </div>
+					<!-- <button class=" checkout-page__buttons" type="submit">Submit</button> -->
+
+        </form>
+
         <div class="process-button-section">
           <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button>
           <button id="activate-step-3" class=" checkout-page__buttons active">Proceed To Checkout</button>
         </div>
       </div>
-			<div class="col-md-6 text-center checkout-page__address">
+			<!-- <div class="col-md-6 text-center checkout-page__address">
 				<p><b>My Address</b></p>
 				<div ng-repeat="getAddress in getAddressByUserId">
 						<p> {{getAddress.addressType}}</p>
@@ -321,16 +371,16 @@
 				<p>	State: {{getAddress.state}}</p>
 					<p>City: {{getAddress.city}}</p>
 				</div>
-			</div>
+			</div> -->
     </div>
   </div>
   <div class="row setup-content" id="step-3">
     <div class="col-xs-12">
       <div class="col-md-12 text-center">
-          <h1 class="text-center"> Payment Details</h1>
+          <h1 class="text-center"> Payment Type : COD</h1>
           <p class="thanks-message">
 						<h1 class="text-center"> Thank You For Your Order</h1>
-						<form>
+						<!-- <form>
 							<p class="thanks-message">
 								Payment Type : COD
 								<div ng-repeat="getAddress in getAddressByUserId">
@@ -344,7 +394,7 @@
 									<p>City: {{getAddress.city}}</p>
 								</div>
 							</p>
-						</form>
+						</form> -->
           </p>
 					<form  action="http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000/api/checkout/makePayment" method="POST">
 						<div >
@@ -352,8 +402,8 @@
 						   <input type="hidden" name="coupon"><br>
 							  <input type="hidden" name="ip" value="192.168.1.1"><br>
 						  	<input type="hidden" name="paymentMethod" value="1"><br>
-							   <input type="hidden" name="address" ng-value="addressId"><br>
-							   <input type="hidden" name="billingAddress" ng-value="addressId"><br>
+							   <input type="hidden" name="address" ng-value="addressIdSelected"><br>
+							   <input type="hidden" name="billingAddress" ng-value="addressIdSelected"><br>
 							   <input type="hidden" name="returnURL" value="http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/landing"><br>
 							  <!-- <input type="submit" value="Submit"> -->
 							</div>
@@ -371,13 +421,12 @@
           <h1 class="text-center"> Thank You For Your Order</h1>
           <form>
             <p class="thanks-message">
-              The wide ranging nature of items and practices to which the term creative can be sensibly applied also makes a
-              straightforward definition difficult
+              Your Invoice will be sent once delivered
             </p>
           </form>
           <div class="process-button-section process-button-section__center">
             <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-            <button  class=" checkout-page__buttons print-recipt__button active">Print Recipt</button>
+            <!-- <button  class=" checkout-page__buttons print-recipt__button active">Print Recipt</button> -->
           </div>
       </div>
     </div>

@@ -526,6 +526,9 @@ SMACSS: PAGE - LANDING
   letter-spacing: 0.1px;
   color: #b1b1b1; }
 
+.Street-address {
+  width: 854px; }
+
 .thanks-message {
   font-family: "Lato-Regular";
   font-size: 14px;
@@ -541,6 +544,42 @@ SMACSS: PAGE - LANDING
   flex-direction: column;
   position: relative;
   top: 36px; }
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 7px 15px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px; }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin: 13px 12px 14px; }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); }
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block; }
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1; }
+
+.dropdown:hover .dropdown-content {
+  display: block; }
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41; }
 
 .modal-container {
   margin: 150px auto !important; }
@@ -860,7 +899,8 @@ SMACSS: PAGE - LANDING
 .slider-section {
   background-image: url(../images/slider-bg.png);
   height: 360px;
-  background-repeat: round; }
+  background-repeat: round;
+  padding: 10px 100px; }
 
 .tab_section {
   background-image: url(../images/tab-section-bg.png);
@@ -918,12 +958,11 @@ SMACSS: PAGE - LANDING
   display: flex;
   min-width: 490px;
   width: 49%;
-  height: 246px;
+  height: 189px;
   margin-bottom: 20px; }
 
 .breakfast-products__iamge {
-  background-image: url(../images/fish.png);
-  width: 50%;
+  width: 78%;
   background-size: 100%;
   background-repeat: no-repeat; }
 
@@ -1326,29 +1365,27 @@ SMACSS: PAGE - LANDING
 .blog__content__image img {
   height: 406px; }
 
-.carousel-inner .active.left {
-  left: -33%; }
+#carousel-wrap {
+  /* border: 1px solid #000; */
+  width: 485px;
+  overflow: hidden;
+  text-align: center;
+  left: 223px; }
 
-.carousel-inner .active.right {
-  left: 33%; }
+#testimonial-list {
+  overflow: hidden;
+  /* padding: 10px; */
+  width: 1600px;
+  height: 94px;
+  display: -ms-flexbox;
+  display: flex; }
 
-.carousel-inner .next {
-  left: 33%; }
-
-.carousel-inner .prev {
-  left: -33%; }
-
-.carousel-control.left {
-  background-image: none; }
-
-.carousel-control.right {
-  background-image: none; }
-
-.carousel-inner .item {
-  background: white; }
-
-.carousel-inner {
-  overflow: hidden !important; }
+#testimonial-list > li {
+  overflow: hidden;
+  padding: 0;
+  width: 400px;
+  display: -ms-flexbox;
+  display: flex; }
 
 .search-order-section {
   display: -ms-flexbox;
@@ -1712,3 +1749,201 @@ SMACSS: PAGE - LANDING
   background: #fff;
   right: 30%;
   border-left: 1px solid rgba(151, 151, 151, 0.39); }
+
+/*!
+ * ngToast v2.0.0 (http://tameraydin.github.io/ngToast)
+ * Copyright 2016 Tamer Aydin (http://tamerayd.in)
+ * Licensed under MIT (http://tameraydin.mit-license.org/)
+ */
+.ng-toast--animate-fade .ng-enter,
+.ng-toast--animate-fade .ng-leave,
+.ng-toast--animate-fade .ng-move {
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease; }
+
+.ng-toast--animate-fade .ng-enter {
+  opacity: 0; }
+
+.ng-toast--animate-fade .ng-enter.ng-enter-active {
+  opacity: 1; }
+
+.ng-toast--animate-fade .ng-leave {
+  opacity: 1; }
+
+.ng-toast--animate-fade .ng-leave.ng-leave-active {
+  opacity: 0; }
+
+.ng-toast--animate-fade .ng-move {
+  opacity: 0.5; }
+
+.ng-toast--animate-fade .ng-move.ng-move-active {
+  opacity: 1; }
+
+.ng-toast--animate-slide .ng-enter,
+.ng-toast--animate-slide .ng-leave,
+.ng-toast--animate-slide .ng-move {
+  position: relative;
+  transition-duration: 0.3s;
+  transition-timing-function: ease; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--top .ng-toast__message {
+  position: relative;
+  transition-property: top, margin-top, opacity; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--top .ng-toast__message.ng-enter {
+  opacity: 0;
+  top: -100px; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--top .ng-toast__message.ng-enter.ng-enter-active {
+  opacity: 1;
+  top: 0; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--top .ng-toast__message.ng-leave {
+  opacity: 1;
+  top: 0; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--top .ng-toast__message.ng-leave.ng-leave-active {
+  opacity: 0;
+  margin-top: -72px; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--bottom .ng-toast__message {
+  position: relative;
+  transition-property: bottom, margin-bottom, opacity; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--bottom .ng-toast__message.ng-enter {
+  opacity: 0;
+  bottom: -100px; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--bottom .ng-toast__message.ng-enter.ng-enter-active {
+  opacity: 1;
+  bottom: 0; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--bottom .ng-toast__message.ng-leave {
+  opacity: 1;
+  bottom: 0; }
+
+.ng-toast--animate-slide.ng-toast--center.ng-toast--bottom .ng-toast__message.ng-leave.ng-leave-active {
+  opacity: 0;
+  margin-bottom: -72px; }
+
+.ng-toast--animate-slide.ng-toast--right {
+  transition-property: right, margin-right, opacity; }
+
+.ng-toast--animate-slide.ng-toast--right .ng-enter {
+  opacity: 0;
+  right: -200%;
+  margin-right: 20px; }
+
+.ng-toast--animate-slide.ng-toast--right .ng-enter.ng-enter-active {
+  opacity: 1;
+  right: 0;
+  margin-right: 0; }
+
+.ng-toast--animate-slide.ng-toast--right .ng-leave {
+  opacity: 1;
+  right: 0;
+  margin-right: 0; }
+
+.ng-toast--animate-slide.ng-toast--right .ng-leave.ng-leave-active {
+  opacity: 0;
+  right: -200%;
+  margin-right: 20px; }
+
+.ng-toast--animate-slide.ng-toast--left {
+  transition-property: left, margin-left, opacity; }
+
+.ng-toast--animate-slide.ng-toast--left .ng-enter {
+  opacity: 0;
+  left: -200%;
+  margin-left: 20px; }
+
+.ng-toast--animate-slide.ng-toast--left .ng-enter.ng-enter-active {
+  opacity: 1;
+  left: 0;
+  margin-left: 0; }
+
+.ng-toast--animate-slide.ng-toast--left .ng-leave {
+  opacity: 1;
+  left: 0;
+  margin-left: 0; }
+
+.ng-toast--animate-slide.ng-toast--left .ng-leave.ng-leave-active {
+  opacity: 0;
+  left: -200%;
+  margin-left: 20px; }
+
+/*!
+ * ngToast v2.0.0 (http://tameraydin.github.io/ngToast)
+ * Copyright 2016 Tamer Aydin (http://tamerayd.in)
+ * Licensed under MIT (http://tameraydin.mit-license.org/)
+ */
+.ng-toast {
+  position: fixed;
+  z-index: 1080;
+  width: 100%;
+  height: 0;
+  margin-top: 20px;
+  text-align: center; }
+
+.ng-toast.ng-toast--top {
+  top: 0;
+  bottom: auto; }
+
+.ng-toast.ng-toast--top .ng-toast__list {
+  top: 0;
+  bottom: auto; }
+
+.ng-toast.ng-toast--top.ng-toast--center .ng-toast__list {
+  position: static; }
+
+.ng-toast.ng-toast--bottom {
+  top: auto;
+  bottom: 0; }
+
+.ng-toast.ng-toast--bottom .ng-toast__list {
+  top: auto;
+  bottom: 0; }
+
+.ng-toast.ng-toast--bottom.ng-toast--center .ng-toast__list {
+  pointer-events: none; }
+
+.ng-toast.ng-toast--bottom.ng-toast--center .ng-toast__message .alert {
+  pointer-events: auto; }
+
+.ng-toast.ng-toast--right .ng-toast__list {
+  left: auto;
+  right: 0;
+  margin-right: 20px; }
+
+.ng-toast.ng-toast--right .ng-toast__message {
+  text-align: right; }
+
+.ng-toast.ng-toast--left .ng-toast__list {
+  right: auto;
+  left: 0;
+  margin-left: 20px; }
+
+.ng-toast.ng-toast--left .ng-toast__message {
+  text-align: left; }
+
+.ng-toast .ng-toast__list {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none; }
+
+.ng-toast .ng-toast__message {
+  display: block;
+  width: 100%;
+  text-align: center; }
+
+.ng-toast .ng-toast__message .alert {
+  display: inline-block; }
+
+.ng-toast .ng-toast__message__count {
+  display: inline-block;
+  margin: 0 15px 0 5px; }
