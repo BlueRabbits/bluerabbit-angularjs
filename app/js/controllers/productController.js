@@ -392,8 +392,9 @@ app.controller('productController', function($scope, $location, $rootScope, $win
             if($cookieStore.get('userId')){
               window.location = "#/checkout";
             } else {
-              alert("Please Login")
-              window.location = "#/landing";
+              console.log("Please Login");
+              // window.location = "#/landing";
+              $('#loginmodal').modal('toggle');
             }
           }
 

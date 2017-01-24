@@ -1552,8 +1552,8 @@ SMACSS: PAGE - LANDING
   .cart-section__data .cart__quantity #AddButton {
     border-radius: 50%;
     border: none;
-    width: 19px;
-    height: 19px;
+    width: 23px;
+    height: 25px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15); }
   .cart-section__data .cart__quantity .textbox {

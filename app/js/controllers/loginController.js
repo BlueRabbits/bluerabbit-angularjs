@@ -91,9 +91,9 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          console.log("user id ",$scope.userId);
          $('.modal').css("display", "none");
          $('.modal-open').removeClass();
-          $location.path('/landing');
-          location.reload(true);
-
+          //$location.path('/landing');
+          //location.reload(true);
+          $('#loginmodal').modal('hide');
       }).error(function(data) {
         console.log('data', data);
           $scope.erroralert = true;
