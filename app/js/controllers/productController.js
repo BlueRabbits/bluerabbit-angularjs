@@ -1,6 +1,20 @@
 app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, ngToast){
   'use strict';
 
+  $('#next').on('click',function(e){
+    e.preventDefault();
+    $('.search-page__tab-list').animate({'margin-left':'-190px'},2000,function(){
+        $('#next').addClass('hidden');
+        $('#prev').removeClass('hidden');
+    });
+});
+$('#prev').on('click',function(e){
+    e.preventDefault();
+    $('.search-page__tab-list').animate({'margin-left':'0px'},1500,function(){
+        $('#prev').addClass('hidden');
+        $('#next').removeClass('hidden');
+    });
+});
 
   $(document).ready(function(){
           //var counter = $('#TextBox').val();
@@ -115,11 +129,13 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       angular.forEach($scope.allCartItems, function (value, key) {
         var obj = {
           "qty":value.quantity,
-          "cartPrice" : value.product.salePrice
+          "cartPrice" : value.product.salePrice,
+          "productIds" : value.product._id
         };
         $scope.gettingCartData.push(obj);
 
       });
+      console.log("gettingCartData",$scope.gettingCartData);
       $scope.totalCost = 0;
       for (var i = 0; i < $scope.gettingCartData.length; i++) {
           $scope.totalCost += $scope.gettingCartData[i].qty * $scope.gettingCartData[i].cartPrice ;
@@ -213,7 +229,12 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     $scope.getUserId = $cookieStore.get('userId');
     $scope.userToken = $cookieStore.get('token');
     $scope.sessionId = $cookieStore.get('sessionId');
-
+    if (productId == $scope.gettingCartData.productIds) {
+      console.log(productId, $scope.gettingCartData.productIds);
+      //increase quantity
+    } else {
+      // do add to cart
+    }
 
     $scope.cartlist =[];
     var productInfo = {
