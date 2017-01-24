@@ -85,7 +85,7 @@
     <h1>Our Menu</h1>
     <div class="menu-tabs" style="display: flex;justify-content: space-between;">
       <ul class="menu-tabs__list" id="tabs-menu" ng-repeat="categories in getCategoryList">
-        <li><a data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
+        <li><a style="cursor:pointer;" data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
         <!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
         <li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
         <li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>

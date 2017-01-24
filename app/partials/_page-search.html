@@ -9,7 +9,7 @@
 				<input type="search" class="cart__search" ng-model="searchitem" ng-change="autocompleteSearch(searchitem)" placeholder="Find The Things What You Want Here" >
 			</div>
 			<div class="sub-menu__favorites">
-				<img src="images/heart-icon@2x.png" ng-click="wishListShow()">
+				<img src="images/heart-icon@2x.png" style="cursor:pointer;" ng-click="wishListShow()">
 				<p>favorites</p>
 			</div>
 			<p>
@@ -20,7 +20,7 @@
 		</div>
 		<div class="search-page__tab-menu" style="display: flex;justify-content: space-between;">
 			<ul class="search-page__tab-list" id="tabs-menu" ng-repeat="categories in getCategoryList">
-				<li id="navMenu"><a data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
+				<li id="navMenu"><a style="cursor:pointer;" data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
 				<!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
 				<li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
 				<li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="search-section__description">
-						<p class="product-name">Product Name </p>
+						<p class="product-name">{{results.name}}</p>
 						<p class="product-sub-title">{{results.description}}</p>
 							<div class="product-view">
 									<img src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
@@ -127,7 +127,7 @@
 						<p class="product-name">{{list.name}}</p>
 						<p class="product-sub-title">{{list.description}}</p>
 							<div class="product-view">
-									<!-- <img src="images/heart-icon-black.png" > -->
+									<img src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
 									<p id="view-more" ng-click="showdiv = !showdiv">View More</p>
 							</div>
 					</div>
