@@ -1472,7 +1472,7 @@ SMACSS: PAGE - LANDING
   justify-content: space-between;
   -ms-flex-align: center;
   align-items: center;
-  padding: 9px; }
+  padding: 18px; }
   .search-page__tab-list li a {
     color: #000000;
     font-size: 12px;
@@ -1670,13 +1670,13 @@ SMACSS: PAGE - LANDING
     font-family: "Lato-Semibold";
     font-size: 12px;
     font-weight: 600;
-    color: #373738; }
+    color: #636467; }
   .cart-section__data .cart__quantity #minusButton,
   .cart-section__data .cart__quantity #AddButton {
     border-radius: 50%;
     border: none;
-    width: 19px;
-    height: 19px;
+    width: 23px;
+    height: 25px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15); }
   .cart-section__data .cart__quantity .textbox {
@@ -1712,7 +1712,7 @@ SMACSS: PAGE - LANDING
     font-family: "Lato-Regular";
     font-size: 18px;
     font-weight: normal;
-    color: #000000; }
+    color: #636467; }
     .cart-section__footer .total-section .total-section__cost {
       font-family: "Lato-Bold";
       font-size: 25px;
@@ -1720,7 +1720,7 @@ SMACSS: PAGE - LANDING
       font-style: normal;
       font-stretch: normal;
       letter-spacing: 1px;
-      color: #fbad18; }
+      color: #d92e4a; }
   .cart-section__footer button {
     width: 100%;
     height: 56px;
@@ -1732,7 +1732,7 @@ SMACSS: PAGE - LANDING
 
 .nav-arrow {
   position: absolute;
-  width: 34px;
+  width: 20px;
   height: 43px;
   top: 155px;
   cursor: pointer;
