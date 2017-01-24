@@ -229,13 +229,6 @@ $('#prev').on('click',function(e){
     $scope.getUserId = $cookieStore.get('userId');
     $scope.userToken = $cookieStore.get('token');
     $scope.sessionId = $cookieStore.get('sessionId');
-    if (productId == $scope.gettingCartData.productIds) {
-      console.log(productId, $scope.gettingCartData.productIds);
-      //increase quantity
-    } else {
-      // do add to cart
-    }
-
     $scope.cartlist =[];
     var productInfo = {
       product:productId,

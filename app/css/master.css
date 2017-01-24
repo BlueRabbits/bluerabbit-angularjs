@@ -1363,7 +1363,7 @@ SMACSS: PAGE - LANDING
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 9px; }
+  padding: 18px; }
   .search-page__tab-list li a {
     color: #000000;
     font-size: 12px;
