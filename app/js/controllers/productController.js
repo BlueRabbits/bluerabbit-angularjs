@@ -404,7 +404,14 @@ $('#prev').on('click',function(e){
           //checkout
           $scope.checkout = function() {
             if($cookieStore.get('userId')){
-              window.location = "#/checkout";
+              if ($scope.allCartItems.length == 0) {
+                ngToast.create({
+                  className: 'warning',
+                  content: 'Please add item to cart to checkout'
+                });
+              } else {
+                window.location = "#/checkout";
+              }
             } else {
               console.log("Please Login");
               // window.location = "#/landing";
