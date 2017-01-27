@@ -237,7 +237,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
   //POST create add to cart
   var count = 0;
-  $scope.addToCart = function(productId) {
+  $scope.addToCartInSearch = function(productId) {
     count++;
 
     //cookieStore
@@ -258,14 +258,20 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     //loop to check if prodct id exist in cart then increment qty
     for (var i = 0; i < $scope.gettingCartIds.length; i++) {
       console.log($scope.gettingCartIds[i].productIds);
-      if ($scope.gettingCartIds[i].productIds == productId) {
+      if ($scope.gettingCartIds[i].productIds === productId) {
+
         console.log("that cart id of prod",$scope.gettingCartIds[i].cartQty);
         $scope.updateCartByIncrement($scope.gettingCartIds[i].cartQty,$scope.gettingCartIds[i].cartIds);
         console.log("call increment function");
+        $scope.addCart = false;
+        $scope.incrementQty = true;
       } else {
-        console.log("i am here");
-
-        if ($scope.gettingCartIds[i].productIds != productId) {
+              console.log("i am here");
+              $scope.addCart = true;
+              $scope.incrementQty = false;
+        }
+      }
+        if ($scope.addCart == true) {
           // do add to cart if not matching
           console.log("if cart id != to new item ->add to cart");
           var addQuantity = 1;
@@ -303,21 +309,6 @@ app.controller('productController', function($scope, $location, $rootScope, $win
               });
             });
         }
-      }
-
-      //to add to cart if get cart productId != productId
-
-      //check for no dupes on cart
-      // $scope.getProductIdsOfCart = [];
-      // angular.forEach($scope.allCartItems, function(value, key) {
-      //   var objCart = {
-      //     "productId" : value.product._id
-      //   };
-      //   $scope.getProductIdsOfCart.push(objCart.productId);
-      // });
-      // console.log("$scope.getProductIdsOfCart",$scope.getProductIdsOfCart);
-
-  }
 
   };
 

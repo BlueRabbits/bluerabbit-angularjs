@@ -53,7 +53,7 @@
 					</div>
 					<p class="product-price">{{results.salePrice}}<span>AED</span></p>
 					<div class="search-secction__buttons">
-						<button type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
+						<button type="button" name="button" ng-click="addToCartInSearch(results._id)">Add to Cart</button>
 					</div>
 				</div>
 				<div class="description__section" ng-show="showdiv">
@@ -93,7 +93,7 @@
 					</div>
 					<p class="product-price">{{wishLists.product.salePrice}}<span>AED</span></p>
 					<div class="search-secction__buttons">
-						<button type="button" name="button" ng-click="addToCart(wishLists._id)">Add to Cart</button>
+						<button type="button" name="button" ng-click="addToCartInSearch(wishLists._id)">Add to Cart</button>
 					</div>
 				</div>
 				<div class="description__section" ng-show="showdiv">
@@ -133,7 +133,7 @@
 					</div>
 					<p class="product-price">{{list.salePrice}}<span>AED</span></p>
 					<div class="search-secction__buttons">
-						<button type="button" name="button" ng-click="addToCart(list._id)">Add to Cart</button>
+						<button type="button" name="button" ng-click="addToCartInSearch(list._id)">Add to Cart</button>
 					</div>
 				</div>
 				<div class="description__section" ng-show="showdiv">
