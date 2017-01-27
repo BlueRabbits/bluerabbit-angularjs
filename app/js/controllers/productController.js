@@ -258,7 +258,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
     //loop to check if prodct id exist in cart then increment qty
     for (var i = 0; i < $scope.gettingCartIds.length; i++) {
       console.log($scope.gettingCartIds[i].productIds);
-      if (productId === $scope.gettingCartIds[i].productIds) {
+      if ($scope.gettingCartIds[i].productIds == productId) {
         console.log("that cart id of prod",$scope.gettingCartIds[i].cartQty);
         $scope.updateCartByIncrement($scope.gettingCartIds[i].cartQty,$scope.gettingCartIds[i].cartIds);
         console.log("call increment function");
@@ -268,11 +268,11 @@ app.controller('productController', function($scope, $location, $rootScope, $win
         if ($scope.gettingCartIds[i].productIds != productId) {
           // do add to cart if not matching
           console.log("if cart id != to new item ->add to cart");
-
+          var addQuantity = 1;
           $scope.cartlist = [];
           var productInfo = {
             product: productId,
-            quantity: count,
+            quantity: addQuantity,
             UserID: $scope.getUserId,
             sessionID: $scope.sessionId,
             authToken: $scope.userToken,
