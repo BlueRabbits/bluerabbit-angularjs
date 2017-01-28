@@ -275,7 +275,7 @@ app.controller('productController', function($scope, $location, $rootScope, $win
       if ($scope.incrementQty === true) {
         console.log('add to quantity');
          $scope.updateCartByIncrement($scope.cartQuantity, $scope.cartIds);
-      }else if ($scope.incrementQty === false && $scope.addCart === true) {
+      }else if ($scope.incrementQty === false && $scope.addCart === true || $scope.allCartItems.length === 0) {
           // do add to cart if not matching
           console.log('add new item');
           var addQuantity = 1;
