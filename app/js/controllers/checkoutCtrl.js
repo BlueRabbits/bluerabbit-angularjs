@@ -54,6 +54,11 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
   });
 
+  $scope.init = function(){
+    $scope.getcartItems();
+    $scope.getAddressByUserId ();
+  }
+
 
 //get cart details
   $scope.getcartItems = function () {
@@ -97,7 +102,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       });
     });
   };
-  $scope.getcartItems();
+
 
   //updateCart increment
   //$scope.countQuantity = 0;
@@ -176,7 +181,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
             console.log(data);
           });
     }
-    $scope.getAddressByUserId ();
+
 
     //selectedAddress
     $scope.selectedAddress = function(id,addresstype){
@@ -238,6 +243,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     Auth.addAddress(addressDetails)
     .success(function(data){
       console.log('addressDetails', data);
+      //$scope.getAddressByUserId ();
       ngToast.create({
         className: 'success',
         content: 'New Address Added'
@@ -272,4 +278,6 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         // $scope.state = "";
         // $scope.country = "";
       }
+
+      $scope.init();
 });

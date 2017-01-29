@@ -244,17 +244,21 @@
         <h1 class="text-center"> Shipping Information</h1>
 				<br/>
 				<div>
-						<label> <input type="button" ng-click="clearAddress()" class="btn btn-success" value="Add Address" ></label>
-						&nbsp;
+						<!-- <label> <input type="button" ng-click="clearAddress()" class="btn btn-success" value="Add Address" ></label>
+						&nbsp; -->
 						<!-- select availabe address -->
-						<div class="dropdown">
+						<!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist" style="border-bottom:none !important;display: flex;justify-content: center;">
+		 <li class="" ><a  aria-controls="home" id="addAddress" role="tab" data-toggle="tab" ng-click="clearAddress()" >Add Address</a></li>
+  	<li ng-repeat="getMyAddress in getAddressByUserId track by $index" role="presentation" class="" ng-class="{active:$index}"><a  aria-controls="home" role="tab" data-toggle="tab" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">{{getMyAddress.addressType}} </a></li>
+
+  </ul>
+						<!-- <div class="dropdown">
 						  <button class="dropbtn">Select Addresses</button>
 						  <div class="dropdown-content" ng-repeat="getMyAddress in getAddressByUserId">
 						    <a style="cursor:pointer;" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">{{getMyAddress.addressType}} </a>
-						    <!-- <a href="#">Link 2</a>
-						    <a href="#">Link 3</a> -->
 						  </div>
-						</div>
+						</div> -->
 
 						<!-- select availabe address -->
 
@@ -288,7 +292,7 @@
             <input type="text" name="name" value="" class=" form-inputs country-name" ng-model="country" placeholder="Country">
           </div>
 					<div style="margin: 20px 20px 20px 20px;">
-						<button class=" checkout-page__buttons" type="submit">Add Address</button>
+						<button class=" checkout-page__buttons" type="submit" ng-click="getAddressByUserId()">Add Address</button>
 					</div>
         </form>
 
