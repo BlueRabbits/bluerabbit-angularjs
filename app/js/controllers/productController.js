@@ -219,53 +219,83 @@ $('#prev').on('click',function(e){
 
   //POST create add to cart
   var count = 0;
-  $scope.addToCart = function (productId) {
+  $scope.addToCart = function(productId) {
     count++;
-    console.log("quantity count",count);
-    // $scope.getUserId = localStorage.getItem('userId');
-    // $scope.userToken = localStorage.getItem('token');
-    // $scope.sessionId = "aa565asdasdy87sadasd987";
+
     //cookieStore
     $scope.getUserId = $cookieStore.get('userId');
     $scope.userToken = $cookieStore.get('token');
     $scope.sessionId = $cookieStore.get('sessionId');
-    $scope.cartlist =[];
-    var productInfo = {
-      product:productId,
-      quantity: count,
-      UserID:$scope.getUserId,
-      sessionID:$scope.sessionId,
-      authToken: $scope.userToken,
-      isDeleted: false
-    }
-    Auth.addCart(productInfo)
-    .success(function(data){
-      //console.log('data', data);
-      $scope.getcartItems();
-      ngToast.create({
-        className: 'success',
-        content: 'Item Added to Cart'
-      });
-      // $scope.quantity = data.quantity;
-      // $scope.user_id = data.UserID;
-      // console.log('id',$scope.user_id);
+    //check for no dupes on cart
+    $scope.gettingCartIds = [];
+    angular.forEach($scope.allCartItems, function(value, key) {
+      var obj = {
+        "cartIds": value._id,
+        "cartQty": value.quantity,
+        "productIds": value.product._id
+      };
+      $scope.gettingCartIds.push(obj);
+    });
 
-      angular.forEach(data, function (value, key) {
+    //loop to check if prodct id exist in cart then increment qty
+    $scope.incrementQty = false;
+    $scope.addCart = false;
+    for (var i = 0; i < $scope.gettingCartIds.length; i++) {
+      console.log($scope.gettingCartIds[i].productIds);
+      if ($scope.gettingCartIds[i].productIds === productId) {
+        console.log("that cart id of prod", $scope.gettingCartIds[i].cartQty);
+        console.log("call increment function");
+        $scope.cartQuantity = $scope.gettingCartIds[i].cartQty;
+        $scope.cartIds = $scope.gettingCartIds[i].cartIds;
+        $scope.incrementQty = true;
+      } else {
+        console.log("i am here");
+        $scope.addCart = true;
+      }
+    }
+
+    if ($scope.incrementQty === true) {
+      console.log('add to quantity');
+      $scope.updateCartByIncrement($scope.cartQuantity, $scope.cartIds);
+    } else if($scope.incrementQty === false && $scope.addCart === true || $scope.allCartItems.length === 0) {
+      // do add to cart if not matching
+      console.log('add new item');
+      var addQuantity = 1;
+      $scope.cartlist = [];
+      var productInfo = {
+        product: productId,
+        quantity: addQuantity,
+        UserID: $scope.getUserId,
+        sessionID: $scope.sessionId,
+        authToken: $scope.userToken,
+        isDeleted: false
+      }
+      Auth.addCart(productInfo)
+        .success(function(data) {
+          //console.log('data', data);
+          $scope.getcartItems();
+          ngToast.create({
+            className: 'success',
+            content: 'Item Added to Cart'
+          });
+
+          angular.forEach(data, function(value, key) {
             var obj = {
-              "user_id" : value.UserID,
-              "productId" : value.product,
-              "quantity" : value.quantity,
+              "user_id": value.UserID,
+              "productId": value.product,
+              "quantity": value.quantity,
             };
             $scope.cartlist.push(obj);
-            console.log("cart",$scope.cartlist);
+            console.log("cart", $scope.cartlist);
           });
-        }).error(function(data){
+        }).error(function(data) {
           ngToast.create({
             className: 'warning',
             content: 'Problem in Adding to Cart'
           });
         });
-      };
+    }
+  };
 
   //delte cart
   $scope.deleteCart = function (productId,quantity) {
