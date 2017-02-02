@@ -1,0 +1,33 @@
+<div class="row" style="min-height:300px;">
+    <div  class="col-sm-6">
+        <h3>My Account</h3>
+        <hr/>
+        <div class="col-xs-3">
+            <!-- required for floating -->
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tabs-left">
+                <li class="active"><a ng-click="getUserProfile()" data-toggle="tab">User Details</a></li>
+                <li><a ng-click="profile" data-toggle="tab" ng-click="userChangePassword === true">Reset Password</a></li>
+                <li><a href="#messages" data-toggle="tab">Messages</a></li>
+                <li><a href="#settings" data-toggle="tab">Settings</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-9">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="home" ng-show="userProfileShow">
+                  <p>Name : {{userName}}</p>
+                  <p>Email : {{userEmail}}
+                </div>
+                <div class="tab-pane" id="profile" ng-show="userChangePassword">
+                  <p>Old Password : <input type="text" ng-model="oldPassword"></p>
+                  <p>New Password : <input type="text" ng-model="newPassword"></p>
+                  <button ng-click="changePassword()">Submit</button>
+                </div>
+                <div class="tab-pane" id="messages">Messages Tab.</div>
+                <div class="tab-pane" id="settings">Settings Tab.</div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+  </div>

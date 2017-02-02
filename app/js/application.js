@@ -23,6 +23,10 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'productController',
             templateUrl: './partials/_page-search.html'
     	})
+    	.when('/myaccount', {
+            controller: 'loginController',
+            templateUrl: './partials/_myaccount.html'
+    	})
     	// .when('/login', {
       //       controller: 'loginController',
       //       templateUrl: './partials/login.html'
