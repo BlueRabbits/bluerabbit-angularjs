@@ -90,3 +90,13 @@
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
+//bootstrap way
+.fa-fw {width: 2em;}
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: #e40046!important;
+    border-radius: 40px;
+}
+
+.myaccount-main{
+  margin: 49px;
+}

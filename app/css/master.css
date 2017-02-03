@@ -1717,6 +1717,16 @@ SMACSS: PAGE - LANDING
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg); }
 
+.fa-fw {
+  width: 2em; }
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+  background-color: #e40046 !important;
+  border-radius: 40px; }
+
+.myaccount-main {
+  margin: 49px; }
+
 /*!
  * ngToast v2.0.0 (http://tameraydin.github.io/ngToast)
  * Copyright 2016 Tamer Aydin (http://tamerayd.in)

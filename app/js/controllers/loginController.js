@@ -148,6 +148,25 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
     $('.modal').click();
   }
 
+  $scope.tabsMyaccount = function(){
+    var navItems = $('.admin-menu li > a');
+  var navListItems = $('.admin-menu li');
+  var allWells = $('.admin-content');
+  var allWellsExceptFirst = $('.admin-content:not(:first)');
+
+  allWellsExceptFirst.hide();
+  navItems.click(function(e)
+  {
+      e.preventDefault();
+      navListItems.removeClass('active');
+      $(this).closest('li').addClass('active');
+
+      allWells.hide();
+      var target = $(this).attr('data-target-id');
+      $('#' + target).show();
+  });
+  }
+
   //get Profile of users
   $scope.getUserProfile = function() {
     $scope.userProfileShow =  true;
@@ -162,13 +181,19 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
   }
 
   //reset or change password
-  $scope.changePassword = function() {
+  $scope.showChangePassword = function(){
     $scope.userChangePassword =  true;
+  }
+  var authToken = 'Bearer '+$cookieStore.get('token');
+  // var token ={
+  //   "token" : authToken
+  // }
+  $scope.changePassword = function() {
     var passwordToChange = {
       "oldPassword": $scope.oldPassword,
       "newPassword": $scope.newPassword
     }
-    Auth.changePassword(passwordToChange).success(function(data) {
+    Auth.changePassword(passwordToChange,authToken).success(function(data) {
       console.log('user profile', data.name);
       $scope.userName = data.name;
       $scope.userEmail = data.email;
