@@ -33,11 +33,13 @@
         <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
         <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
       </div>
-      <h2>The Best Food Is Here</h2>
-      <p>The kit consists of more than a hundred ready-to-use elements that you can combine to get the exat prototype you want</p>
-      <div class="buy-now-button">
-        <button type="button" name="button"><img src="images/add-cart-icon.png"> Buy Now</button>
-      </div>
+      <div style="padding-top: 100px;padding-left: 108px;">
+          <h2>The Best Food Is Here</h2>
+          <p>The kit consists of more than a hundred ready-to-use elements that you can combine to get the exat prototype you want</p>
+          <div class="buy-now-button">
+            <button type="button" name="button"><img src="images/add-cart-icon.png"> Buy Now</button>
+          </div>
+    </div>
     </div>
   </div>
 <!-- slider section -->
@@ -71,7 +73,7 @@
                   <p class="context">{{lists.name}}</p>
                   <p class="creds">{{lists.description}}</p>
                   <p class="creds">{{lists.salePrice}}</p>
-                  <button type="button" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Buy</button>
+                  <button type="button" ng-click="addToCart(list._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
                 </div>
             </li>
           </div>
@@ -85,7 +87,7 @@
     <h1>Our Menu</h1>
     <div class="menu-tabs" style="display: flex;justify-content: space-between;">
       <ul class="menu-tabs__list" id="tabs-menu" ng-repeat="categories in getCategoryList">
-        <li><a style="cursor:pointer;" data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
+        <li><a style="cursor:pointer;" data-toggle="tab" ng-class="{'active' : categories.name == categoryNames}" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
         <!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
         <li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
         <li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
