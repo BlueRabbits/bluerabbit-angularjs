@@ -6,7 +6,7 @@
   <div class="section-main-content">
     <div class="section-header-menu" id="scroll-menu-fixed1">
       <div class="header-menu__list">
-        <p><a href="#menu">Menu </a></p>
+        <p><a href="#menu" data-target="#menu">Menu </a></p>
     		<p><a href="#locations">Locations</a></p>
     		<p><a href="#about">About us</a></p>
     		<p><a href="#ourpartners">Our Partners</a></p>
@@ -26,20 +26,24 @@
     		<p>favorites</p>
       </div>
     </div>
-    <div class="section-content">
-      <div class="social-images">
-        <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
-        <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
-        <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
-        <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
-      </div>
-      <div style="padding-top: 100px;padding-left: 108px;">
-          <h2>The Best Food Is Here</h2>
-          <p>The kit consists of more than a hundred ready-to-use elements that you can combine to get the exat prototype you want</p>
-          <div class="buy-now-button">
-            <button type="button" name="button"><img src="images/add-cart-icon.png"> Buy Now</button>
+    <div>
+    <!-- <div ng-init="showSlides()" ng-repeat="lists in allProducts"> -->
+      <div class="section-content mySlides">
+      <!-- <div class="section-content mySlides" style="background-image:url({{lists.mainImageUrl}});"> -->
+          <div class="social-images">
+            <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
+            <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
+            <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
+            <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
           </div>
-    </div>
+          <div style="padding-top: 100px;padding-left: 108px;">
+              <h2>The Best Food Is Here</h2>
+              <p>The kit consists of more than a hundred ready-to-use elements that you can combine to get the exat prototype you want</p>
+              <div class="buy-now-button">
+                <button type="button" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
+              </div>
+        </div>
+      </div>
     </div>
   </div>
 <!-- slider section -->
@@ -73,7 +77,7 @@
                   <p class="context">{{lists.name}}</p>
                   <p class="creds">{{lists.description}}</p>
                   <p class="creds">{{lists.salePrice}}</p>
-                  <button type="button" ng-click="addToCart(list._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
+                  <button type="button" ng-click="addToCart(lists._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
                 </div>
             </li>
           </div>
