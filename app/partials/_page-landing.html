@@ -26,10 +26,9 @@
     		<p>favorites</p>
       </div>
     </div>
-    <div>
-    <!-- <div ng-init="showSlides()" ng-repeat="lists in allProducts"> -->
-      <div class="section-content mySlides">
-      <!-- <div class="section-content mySlides" style="background-image:url({{lists.mainImageUrl}});"> -->
+
+    <!-- <div ng-init="showSlides()" ng-repeat="lists in allProducts  | filter:{cat:'Add-ons'}:true | limitTo : 3">
+      <div class="section-content mySlides" style="background-image:url({{lists.mainImageUrl}});">
           <div class="social-images">
             <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
             <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
@@ -37,14 +36,38 @@
             <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
           </div>
           <div style="padding-top: 100px;padding-left: 108px;">
-              <h2>The Best Food Is Here</h2>
-              <p>The kit consists of more than a hundred ready-to-use elements that you can combine to get the exat prototype you want</p>
+              <h2>{{lists.name}}</h2>
+              <p>{{lists.description}}</p>
               <div class="buy-now-button">
-                <button type="button" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
+                <button type="button" ng-click="addToCart(lists._id)" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
               </div>
         </div>
       </div>
+    </div> -->
+    <!-- newslide -->
+  <div class="section-content" style="height: 305px">
+    <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" style="height: 500px;">
+    <div uib-slide ng-repeat="lists in allProducts  track by lists._id " index="$index" style="height: 500px;">
+      <div class="social-images">
+        <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
+        <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
+        <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
+        <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
+      </div>
+      <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%">
+      <div class="carousel-caption">
+        <div style="padding-top: 100px;padding-left: 108px;">>
+          <h2> {{lists.name}}</h2>
+          <p>{{lists.description}}</p>
+      </div>
+      <div class="buy-now-button">
+        <button type="button" style="outline: none;" ng-click="addToCart(lists._id)" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
+      </div>
+      </div>
     </div>
+  </div>
+</div>
+    <!-- newslide -->
   </div>
 <!-- slider section -->
 
