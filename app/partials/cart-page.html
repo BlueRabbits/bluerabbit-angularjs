@@ -157,12 +157,12 @@
 	<div class="row form-group">
     <div class="col-xs-12">
       <ul class="nav nav-pills nav-justified thumbnail setup-panel setup-panel--steps">
-        <li class="active">
+        <!-- <li class="active">
           <a href="#step-1">
             <h4 class="list-group-item-heading">My Cart</h4>
           </a>
-        </li>
-        <li class="disabled">
+        </li> -->
+        <li class="active">
           <a href="#step-2">
             <h4 class="list-group-item-heading">Delivery</h4>
           </a>
@@ -324,7 +324,8 @@
         </form>
 
         <div class="process-button-section">
-          <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button>
+          <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
+					  <button id="continue-shopping-button" ng-click="continueShipping()" class=" checkout-page__buttons">Continue Shopping</button>
           <button id="activate-step-3" class=" checkout-page__buttons active">Proceed To Checkout</button>
         </div>
       </div>

@@ -3,7 +3,7 @@ App bluerabbit
 ==================================================================*/
 'use strict';
 
-var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngToast']);
+var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngToast','ngAnimate','ui.bootstrap']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -22,6 +22,10 @@ app.config(['$routeProvider', function($routeProvider) {
     	.when('/search-page', {
             controller: 'productController',
             templateUrl: './partials/_page-search.html'
+    	})
+    	.when('/myaccount', {
+            controller: 'loginController',
+            templateUrl: './partials/_myaccount.html'
     	})
     	// .when('/login', {
       //       controller: 'loginController',

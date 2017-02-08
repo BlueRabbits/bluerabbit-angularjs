@@ -83,6 +83,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
 
         //cookieStore
          $cookieStore.put("token", data.token);
+         localStorage.setItem("authToken", data.token);
          $cookieStore.put("userId", data._id);
          $cookieStore.put("email", $scope.email);
          $cookieStore.put('loggedIn', true);
@@ -145,6 +146,60 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
 //closing pop-up on redirect to another pop-up
   $scope.closeModal = function() {
     $('.modal').click();
+  }
+
+  $scope.tabsMyaccount = function(){
+    var navItems = $('.admin-menu li > a');
+  var navListItems = $('.admin-menu li');
+  var allWells = $('.admin-content');
+  var allWellsExceptFirst = $('.admin-content:not(:first)');
+
+  allWellsExceptFirst.hide();
+  navItems.click(function(e)
+  {
+      e.preventDefault();
+      navListItems.removeClass('active');
+      $(this).closest('li').addClass('active');
+
+      allWells.hide();
+      var target = $(this).attr('data-target-id');
+      $('#' + target).show();
+  });
+  }
+
+  //get Profile of users
+  $scope.getUserProfile = function() {
+    $scope.userProfileShow =  true;
+    $scope.getUserId = $cookieStore.get('userId');
+      Auth.userProfile({_id:$scope.getUserId }).success(function(data) {
+      console.log('user profile',data.name);
+      $scope.userName = data.name;
+      $scope.userEmail = data.email;
+    }).error(function(data) {
+      console.log('data', data);
+    });
+  }
+
+  //reset or change password
+  $scope.showChangePassword = function(){
+    $scope.userChangePassword =  true;
+  }
+  var authToken = 'Bearer '+$cookieStore.get('token');
+  // var token ={
+  //   "token" : authToken
+  // }
+  $scope.changePassword = function() {
+    var passwordToChange = {
+      "oldPassword": $scope.oldPassword,
+      "newPassword": $scope.newPassword
+    }
+    Auth.changePassword(passwordToChange,authToken).success(function(data) {
+      console.log('user profile', data.name);
+      $scope.userName = data.name;
+      $scope.userEmail = data.email;
+    }).error(function(data) {
+      console.log('data', data);
+    });
   }
 
 })

@@ -10,7 +10,8 @@
     "jquery": "*",
     "bootstrap": "^3.3.7",
     "angular-cookies": "1.5.8",
-    "ngToast": "ngtoast#^2.0.0"
+    "ngToast": "ngtoast#^2.0.0",
+    "angular-bootstrap": "angular-ui-bootstrap-bower#0.13.4"
   },
   "devDependencies": {},
   "overrides": {}

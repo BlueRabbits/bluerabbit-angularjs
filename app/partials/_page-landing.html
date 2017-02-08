@@ -1,12 +1,12 @@
 
-<div class="" id="scroll-menu-fixed">
+<div class="" id="scroll-menu-fixed" style="z-index: 5;">
   @@include('_header.html')
 </div>
 <div class="">
   <div class="section-main-content">
-    <div class="section-header-menu" id="scroll-menu-fixed1">
+    <div class="section-header-menu" id="scroll-menu-fixed1" style="z-index: 5;">
       <div class="header-menu__list">
-        <p><a href="#menu">Menu </a></p>
+        <p><a href="#menu" data-target="#menu">Menu </a></p>
     		<p><a href="#locations">Locations</a></p>
     		<p><a href="#about">About us</a></p>
     		<p><a href="#ourpartners">Our Partners</a></p>
@@ -26,20 +26,53 @@
     		<p>favorites</p>
       </div>
     </div>
-    <div class="section-content">
-      <div class="social-images">
-        <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
-        <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
-        <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
-        <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
+
+    <!-- <div ng-init="showSlides()" ng-repeat="lists in allProducts  | filter:{cat:'Add-ons'}:true | limitTo : 3">
+      <div class="section-content mySlides" style="background-image:url({{lists.mainImageUrl}});">
+          <div class="social-images">
+            <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
+            <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
+            <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
+            <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
+          </div>
+          <div style="padding-top: 100px;padding-left: 108px;">
+              <h2>{{lists.name}}</h2>
+              <p>{{lists.description}}</p>
+              <div class="buy-now-button">
+                <button type="button" ng-click="addToCart(lists._id)" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
+              </div>
+        </div>
       </div>
-      <h2>The Best Food Is Here</h2>
-      <p>The kit consists of more than a hundred ready-to-use elements that you can combine to get the exat prototype you want</p>
-      <div class="buy-now-button">
-        <button type="button" name="button"><img src="images/add-cart-icon.png"> Buy Now</button>
-      </div>
+    </div> -->
+
+  </div>
+  <!-- newslide -->
+<div class="section-content">
+  <div class="social-images" style="z-index: 5;">
+    <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
+    <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
+    <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
+    <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
+  </div>
+  <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" style="height: 500px;    z-index: 0;">
+  <div uib-slide ng-repeat="lists in allProducts  track by lists._id " index="$index" style="height: 500px;">
+    <!-- <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%"> -->
+    <div style="background-image:url({{lists.mainImageUrl}});margin:auto;width: 100%;  height: 600px;z-index:0;background-size: 100%;">
+    </div>
+    <div class="carousel-caption">
+      <div style="padding: 197px 519px 178px 9px;">
+        <h2> {{lists.name}}</h2>
+        <p>{{lists.description}}</p>
+        <div class="buy-now-button" style="margin-left: 91px;">
+          <button type="button" style="outline: none;" ng-click="addToCart(lists._id)" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
+        </div>
+    </div>
+
     </div>
   </div>
+</div>
+</div>
+  <!-- newslide -->
 <!-- slider section -->
 
   <!-- <p style="text-align:center;padding-top:50px;">Slider section</p> -->
@@ -48,7 +81,7 @@
       <img src="images/arrow-left.svg" id="prv-testimonial" alt="PREV"  />
       <img src="images/arrow-right-active.svg" id="nxt-testimonial" alt="NEXT" />
       </div>
-      <div id="carousel-wrap" style="width:84%;margin-left:110px;">
+      <div id="carousel-wrap" style="width:74%;margin-left:110px;">
         <ul id="testimonial-list" class="clearfix" style="height:100%">
           <!-- <li ng-repeat="lists in allProducts">
             <div class="" style="background-image:url({{lists.mainImageUrl}}); width: 62%;background-size: 100%;background-repeat: no-repeat;">
@@ -71,7 +104,7 @@
                   <p class="context">{{lists.name}}</p>
                   <p class="creds">{{lists.description}}</p>
                   <p class="creds">{{lists.salePrice}}</p>
-                  <button type="button" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Buy</button>
+                  <button type="button" ng-click="addToCart(lists._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
                 </div>
             </li>
           </div>
@@ -85,7 +118,7 @@
     <h1>Our Menu</h1>
     <div class="menu-tabs" style="display: flex;justify-content: space-between;">
       <ul class="menu-tabs__list" id="tabs-menu" ng-repeat="categories in getCategoryList">
-        <li><a style="cursor:pointer;" data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
+        <li><a style="cursor:pointer;" data-toggle="tab" ng-class="{'active' : categories.name == categoryNames}" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
         <!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
         <li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
         <li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* -----------------------------------------------------------------------
 Version: 0.1
 
@@ -790,14 +791,10 @@ SMACSS: PAGE - LANDING
     justify-content: space-between; }
 
 .section-main-content {
-  background-image: url(../images/section1-bg.png);
-  height: 500px;
   background-repeat: round; }
 
 .section-content {
-  margin-top: 100px;
-  margin-left: 110px;
-  display: inline-block; }
+  height: 500px; }
   .section-content h2 {
     width: 356.6px;
     font-family: "Lato-Light";
@@ -1290,6 +1287,49 @@ SMACSS: PAGE - LANDING
   width: 400px;
   display: flex; }
 
+.carouselbox {
+  font-family: helvetica,sans-serif;
+  font-size: 14px;
+  width: 100px;
+  position: relative;
+  margin: 1em;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 10px #ccc;
+  overflow: hidden; }
+
+.content {
+  margin: 0;
+  padding: 0; }
+
+.content li {
+  font-size: 100px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+  z-index: 2; }
+
+.buttons {
+  display: none; }
+
+.active .buttons {
+  display: block;
+  padding: 5px 0;
+  background: #eee;
+  z-index: 10;
+  position: relative; }
+
+.carouselbox button {
+  border: none;
+  visibility: hidden; }
+
+.active button {
+  visibility: visible; }
+
+.offscreen {
+  position: absolute;
+  left: -2000px; }
+
 .search-order-section {
   display: flex; }
 
@@ -1624,6 +1664,107 @@ SMACSS: PAGE - LANDING
   background: #fff;
   right: 30%;
   border-left: 1px solid rgba(151, 151, 151, 0.39); }
+
+/*!
+ * bootstrap-vertical-tabs - v1.1.0
+ * https://dbtek.github.io/bootstrap-vertical-tabs
+ * 2014-06-06
+ * Copyright (c) 2014 Ä°smail Demirbilek
+ * License: MIT
+ */
+.tabs-left, .tabs-right {
+  border-bottom: none;
+  padding-top: 2px; }
+
+.tabs-left {
+  border-right: 1px solid #ddd; }
+
+.tabs-right {
+  border-left: 1px solid #ddd; }
+
+.tabs-left > li, .tabs-right > li {
+  float: none;
+  margin-bottom: 2px; }
+
+.tabs-left > li {
+  margin-right: -1px; }
+
+.tabs-right > li {
+  margin-left: -1px; }
+
+.tabs-left > li.active > a,
+.tabs-left > li.active > a:hover,
+.tabs-left > li.active > a:focus {
+  border-bottom-color: #ddd;
+  border-right-color: transparent; }
+
+.tabs-right > li.active > a,
+.tabs-right > li.active > a:hover,
+.tabs-right > li.active > a:focus {
+  border-bottom: 1px solid #ddd;
+  border-left-color: transparent; }
+
+.tabs-left > li > a {
+  border-radius: 4px 0 0 4px;
+  margin-right: 0;
+  display: block; }
+
+.tabs-right > li > a {
+  border-radius: 0 4px 4px 0;
+  margin-right: 0; }
+
+.vertical-text {
+  margin-top: 50px;
+  border: none;
+  position: relative; }
+
+.vertical-text > li {
+  height: 20px;
+  width: 120px;
+  margin-bottom: 100px; }
+
+.vertical-text > li > a {
+  border-bottom: 1px solid #ddd;
+  border-right-color: transparent;
+  text-align: center;
+  border-radius: 4px 4px 0px 0px; }
+
+.vertical-text > li.active > a,
+.vertical-text > li.active > a:hover,
+.vertical-text > li.active > a:focus {
+  border-bottom-color: transparent;
+  border-right-color: #ddd;
+  border-left-color: #ddd; }
+
+.vertical-text.tabs-left {
+  left: -50px; }
+
+.vertical-text.tabs-right {
+  right: -50px; }
+
+.vertical-text.tabs-right > li {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg); }
+
+.vertical-text.tabs-left > li {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg); }
+
+.fa-fw {
+  width: 2em; }
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+  background-color: #e40046 !important;
+  border-radius: 40px; }
+
+.myaccount-main {
+  margin: 49px; }
 
 /*!
  * ngToast v2.0.0 (http://tameraydin.github.io/ngToast)
