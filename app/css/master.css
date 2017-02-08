@@ -791,13 +791,10 @@ SMACSS: PAGE - LANDING
     justify-content: space-between; }
 
 .section-main-content {
-  height: 500px;
   background-repeat: round; }
 
 .section-content {
-  background-image: url(../images/section1-bg.png);
-  height: 500px;
-  background-repeat: round; }
+  height: 500px; }
   .section-content h2 {
     width: 356.6px;
     font-family: "Lato-Light";
@@ -1311,16 +1308,6 @@ SMACSS: PAGE - LANDING
   width: 100%;
   list-style: none;
   z-index: 2; }
-
-.active {
-  height: 130px; }
-
-.active li {
-  position: absolute;
-  top: 200px; }
-
-.active li.current {
-  top: 30px; }
 
 .buttons {
   display: none; }

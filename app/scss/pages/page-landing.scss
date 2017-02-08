@@ -222,14 +222,14 @@
 //main-section
 .section-main-content {
   // background-image:url(../images/section1-bg.png);
-  height:500px;
+  //height:500px;
   background-repeat:round;
 }
 
 .section-content {
-  background-image: url(../images/section1-bg.png);
+  // background-image: url(../images/section1-bg.png);
   height:500px;
-  background-repeat:round;
+  // background-repeat:round;
   //  margin-top: -20px;
   // margin-top: 100px;
   // margin-left: 110px;
@@ -873,16 +873,16 @@
   list-style: none;
   z-index: 2;
 }
-.active {
-  height: 130px;
-}
-.active li {
-  position: absolute;
-  top: 200px;
-}
-.active li.current {
-  top: 30px;
-}
+// .active {
+//   height: 130px;
+// }
+// .active li {
+//   position: absolute;
+//   top: 200px;
+// }
+// .active li.current {
+//   top: 30px;
+// }
 .buttons {
   display: none;
 }
