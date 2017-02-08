@@ -41,13 +41,13 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       })
 
       $('#activate-step-3').on('click', function(e) {
-          $('ul.setup-panel li:eq(2)').removeClass('disabled');
+          $('ul.setup-panel li:eq(1)').removeClass('disabled');
           $('ul.setup-panel li a[href="#step-3"]').trigger('click');
           //$(this).remove();
       })
 
       $('#activate-step-4').on('click', function(e) {
-          $('ul.setup-panel li:eq(3)').removeClass('disabled');
+          $('ul.setup-panel li:eq(2)').removeClass('disabled');
           $('ul.setup-panel li a[href="#step-4"]').trigger('click');
           //$(this).remove();
       })
