@@ -1,4 +1,4 @@
-app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore){
+app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, GooglePlus){
   'use strict';
 
   $('.modal').on('hidden.bs.modal', function (e) {
@@ -201,5 +201,18 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
       console.log('data', data);
     });
   }
+
+  //NOTE : GooglePlus login
+  $scope.googlePlusLogin = function () {
+         GooglePlus.login().then(function (authResult) {
+             console.log("authResult",authResult);
+
+             GooglePlus.getUser().then(function (user) {
+                 console.log("user",user);
+             });
+         }, function (err) {
+             console.log(err);
+         });
+       };
 
 })
