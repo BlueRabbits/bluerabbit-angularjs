@@ -1,4 +1,4 @@
-app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, GooglePlus){
+app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, GooglePlus, Facebook){
   'use strict';
 
   $('.modal').on('hidden.bs.modal', function (e) {
@@ -214,5 +214,53 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
              console.log(err);
          });
        };
+
+  //NOTE : Facebook login
+    /**
+ * Login
+ */
+ // $scope.IntentLogin = function() {
+ //    if(!userIsConnected) {
+ //      $scope.login();
+ //    }
+ //  };
+
+ $scope.loginFB = function() {
+   Facebook.login(function(response) {
+    if (response.status == 'connected') {
+      $scope.logged = true;
+      $scope.me();
+    }
+
+  });
+ };
+
+ /**
+  * me
+  */
+  $scope.me = function() {
+    Facebook.api('/me', function(response) {
+      /**
+       * Using $scope.$apply since this happens outside angular framework.
+       */
+      $scope.$apply(function() {
+        $scope.user = response;
+        console.log("$scope.user",$scope.user);
+      });
+
+    });
+  };
+
+/**
+ * Logout
+ */
+$scope.logout = function() {
+  Facebook.logout(function() {
+    $scope.$apply(function() {
+      $scope.user   = {};
+      $scope.logged = false;
+    });
+  });
+}
 
 })
