@@ -1,4 +1,4 @@
-app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, GooglePlus, Facebook){
+app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, GooglePlus, Facebook, ngToast){
   'use strict';
 
   $('.modal').on('hidden.bs.modal', function (e) {
@@ -46,6 +46,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $cookieStore.put("token", data.token);
          $cookieStore.put("userId", data._id);
          $cookieStore.put("email", data.email);
+         $scope.getEmailId = $cookieStore.get('email');
          $cookieStore.put('loggedIn', true);
          $location.path('/landing');
         // $scope.getUserProfile();
@@ -88,7 +89,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $cookieStore.put("userId", data._id);
          $cookieStore.put("email", $scope.email);
          $cookieStore.put('loggedIn', true);
-
+         $scope.getEmailId = $cookieStore.get('email');
          $scope.userId = $cookieStore.get('userId');
          console.log("user id ",$scope.userId);
          $('.modal').css("display", "none");
