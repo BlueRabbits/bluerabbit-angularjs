@@ -48,7 +48,8 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $cookieStore.put("email", data.email);
          $cookieStore.put('loggedIn', true);
          $location.path('/landing');
-         location.reload(true);
+        // $scope.getUserProfile();
+         //location.reload(true);
         //location.reload(true);
         ngToast.create({
           className: 'success',
@@ -170,11 +171,13 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
   //get Profile of users
   $scope.getUserProfile = function() {
     $scope.userProfileShow =  true;
-    $scope.getUserId = $cookieStore.get('userId');
-      Auth.userProfile({_id:$scope.getUserId }).success(function(data) {
+      Auth.userProfile().success(function(data) {
       console.log('user profile',data.name);
-      $scope.userName = data.name;
-      $scope.userEmail = data.email;
+      $cookieStore.put('userName', data.name);
+      $cookieStore.put('userEmailId', data.email);
+      $scope.userId = $cookieStore.get('userId');
+      $scope.userName = $cookieStore.get('userName');
+      $scope.userEmail = $cookieStore.get('userEmailId');
     }).error(function(data) {
       console.log('data', data);
     });
@@ -184,16 +187,17 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
   $scope.showChangePassword = function(){
     $scope.userChangePassword =  true;
   }
-  var authToken = 'Bearer '+$cookieStore.get('token');
+
   // var token ={
   //   "token" : authToken
   // }
   $scope.changePassword = function() {
+      var authToken = 'Bearer '+$cookieStore.get('token');
     var passwordToChange = {
       "oldPassword": $scope.oldPassword,
       "newPassword": $scope.newPassword
     }
-    Auth.changePassword(passwordToChange,authToken).success(function(data) {
+    Auth.changePassword(authToken,passwordToChange).success(function(data) {
       console.log('user profile', data.name);
       $scope.userName = data.name;
       $scope.userEmail = data.email;
@@ -254,7 +258,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
 /**
  * Logout
  */
-$scope.logout = function() {
+$scope.FBlogout = function() {
   Facebook.logout(function() {
     $scope.$apply(function() {
       $scope.user   = {};

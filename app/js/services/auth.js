@@ -28,14 +28,15 @@ app.factory('Auth', function($http, $window, $cookieStore) {
       });
     },
 
-    userProfile : function (inputs) {
-      return $http.get(BASE_URL + '/api/users/me', inputs,{
+    userProfile : function () {
+      return $http.get(BASE_URL + '/api/users/me',{
         headers: {
+          'Authorization': authToken,
           'Content-Type': 'application/json'
 
         }
       });
-      $http.defaults.headers.common['Authorization'] = 'Bearer ' + authToken;
+      // $http.defaults.headers.common['Authorization'] = 'Bearer ' + authToken;
     },
 
     forgotpassword : function (inputs) {
@@ -48,7 +49,7 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     },
 
     changePassword : function (inputs) {
-      return $http.post(BASE_URL + '/api/users/'+userId+'/password', inputs,{
+      return $http.post(BASE_URL + '/api/users/password', inputs,{
         header: {
           'sender': 'web',
           'Content-Type': 'application/json'
