@@ -1,0 +1,96 @@
+  <div class="" id="scroll-menu-fixed">
+    <!-- Header -->
+<div class="header" ng-controller="loginController">
+	<div class="logo">
+		<a href="#/landing"><img src="images/l-o-g-o@2x.png"></a>
+	</div>
+	<!-- <div class="search-bar">
+		<input type="search-bar" name="" class="search-bar__input">
+		<button class="search-button">Search</button>
+	</div> -->
+	<div class="profile_details">
+		<!-- <p><a href="#/cart-description">CART</a></p>
+		<p><a href="#/product-description">Account-name</a></p> -->
+		<div class="user__login" ng-show="not__logged">
+			<p><a href="#loginmodal" data-toggle="modal">Login  /</a></p>
+			<p><a href="#signupmodal" data-toggle="modal">Register</a></p>
+		</div>
+
+		<div class="myaccount" ng-show="show_myaccnt">
+			<div class="dropdown">
+			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" >{{userName}}
+			 <span class="caret"></span></p> -->
+			 <p class="dropdown__myaccount" id="menu1" type="button" >{{getEmailId}}
+			 <span class="caret"></span></p>
+			 <div class="dropdown__list">
+			 	<p><a href="#/myaccount" >My Account</a></p>
+				<p><a href="" ng-click="logout()">Logout</a></p>
+			 </div>
+		 </div>
+		 <!-- <p><a href="" ng-click="logout()">Logout</a></p> -->
+		</div>
+
+		<a href="#/search-page"><img src="images/basket@2x.png" height="26px" ng-click="getcartItems()"></a>
+		<p>
+			{{cartLength}}
+		</p>
+
+	</div>
+</div>
+
+  </div>
+
+  <div class="container myaccount-main" ng-init="tabsMyaccount()">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked admin-menu">
+                <li class="active"><a href="#" data-target-id="homes" ng-click="getUserProfile()"><i class="fa fa-home fa-fw"></i>My Profile</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="Profile"><i class="fa fa-list-alt fa-fw"></i>Change Password</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="Activity"><i class="fa fa-file-o fa-fw"></i>Order Details</a></li>
+                <!-- <li><a href="http://www.jquery2dotnet.com" data-target-id="Devices"><i class="fa fa-bar-chart-o fa-fw"></i>Devices</a></li> -->
+                <!-- <li><a href="http://www.jquery2dotnet.com" data-target-id="Messaging"><i class="fa fa-table fa-fw"></i>Messaging</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="InstallationJobs"><i class="fa fa-tasks fa-fw"></i>Installation Jobs</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="Settings"><i class="fa fa-cogs fa-fw"></i>Settings</a></li> -->
+            </ul>
+        </div>
+        <div class="col-md-9 well admin-content" id="homes">
+            <p>
+                Hello! This is a forked snippet.<br>
+                It is for users, which use one-page layouts.
+            </p>
+            <p>
+                Here's the original one from BhaumikPatel: <a href="http://bootsnipp.com/snippets/featured/vertical-admin-menu" target="_BLANK">Vertical Admin Menu</a>
+                <br>
+                Thank you Baumik!
+            </p>
+        </div>
+        <div class="col-md-9 well admin-content" id="Profile">
+            <form ng-submit="changePassword()" class="col-lg-6">
+                  <div class="form-group">
+                    <label for="usr">Old Password:</label>
+                    <input type="password" class="form-control" ng-model="oldPassword" id="usr">
+                  </div>
+                  <div class="form-group">
+                    <label for="pwd">New Password:</label>
+                    <input type="password" class="form-control" ng-model="newPassword" id="pwd">
+                  </div>
+                  <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+        </div>
+        <div class="col-md-9 well admin-content" id="Activity">
+            Pages
+        </div>
+        <div class="col-md-9 well admin-content" id="Devices">
+            Charts
+        </div>
+        <div class="col-md-9 well admin-content" id="Messaging">
+            Table
+        </div>
+        <div class="col-md-9 well admin-content" id="InstallationJobs">
+            Forms
+        </div>
+        <div class="col-md-9 well admin-content" id="Settings">
+            Settings
+        </div>
+    </div>
+</div>

@@ -171,10 +171,12 @@
 
 		<div class="myaccount" ng-show="show_myaccnt">
 			<div class="dropdown">
+			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" >{{userName}}
+			 <span class="caret"></span></p> -->
 			 <p class="dropdown__myaccount" id="menu1" type="button" >{{getEmailId}}
 			 <span class="caret"></span></p>
 			 <div class="dropdown__list">
-			 	<p>profile</p>
+			 	<p><a href="#/myaccount" >My Account</a></p>
 				<p><a href="" ng-click="logout()">Logout</a></p>
 			 </div>
 		 </div>
@@ -193,12 +195,12 @@
 	<div class="row form-group">
     <div class="col-xs-12">
       <ul class="nav nav-pills nav-justified thumbnail setup-panel setup-panel--steps">
-        <li class="active">
+        <!-- <li class="active">
           <a href="#step-1">
             <h4 class="list-group-item-heading">My Cart</h4>
           </a>
-        </li>
-        <li class="disabled">
+        </li> -->
+        <li class="active">
           <a href="#step-2">
             <h4 class="list-group-item-heading">Delivery</h4>
           </a>
@@ -280,17 +282,21 @@
         <h1 class="text-center"> Shipping Information</h1>
 				<br/>
 				<div>
-						<label> <input type="button" ng-click="clearAddress()" class="btn btn-success" value="Add Address" ></label>
-						&nbsp;
+						<!-- <label> <input type="button" ng-click="clearAddress()" class="btn btn-success" value="Add Address" ></label>
+						&nbsp; -->
 						<!-- select availabe address -->
-						<div class="dropdown">
+						<!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist" style="border-bottom:none !important;display: flex;justify-content: center;">
+		 <li class="" ><a  aria-controls="home" id="addAddress" role="tab" data-toggle="tab" ng-click="clearAddress()" >Add Address</a></li>
+  	<li ng-repeat="getMyAddress in getAddressByUserId track by $index" role="presentation" class="" ng-class="{active:$index}"><a  aria-controls="home" role="tab" data-toggle="tab" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">{{getMyAddress.addressType}} </a></li>
+
+  </ul>
+						<!-- <div class="dropdown">
 						  <button class="dropbtn">Select Addresses</button>
 						  <div class="dropdown-content" ng-repeat="getMyAddress in getAddressByUserId">
 						    <a style="cursor:pointer;" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">{{getMyAddress.addressType}} </a>
-						    <!-- <a href="#">Link 2</a>
-						    <a href="#">Link 3</a> -->
 						  </div>
-						</div>
+						</div> -->
 
 						<!-- select availabe address -->
 
@@ -324,7 +330,7 @@
             <input type="text" name="name" value="" class=" form-inputs country-name" ng-model="country" placeholder="Country">
           </div>
 					<div style="margin: 20px 20px 20px 20px;">
-						<button class=" checkout-page__buttons" type="submit">Add Address</button>
+						<button class=" checkout-page__buttons" type="submit" ng-click="getAddressByUserId()">Add Address</button>
 					</div>
         </form>
 
@@ -356,7 +362,8 @@
         </form>
 
         <div class="process-button-section">
-          <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button>
+          <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
+					  <button id="continue-shopping-button" ng-click="continueShipping()" class=" checkout-page__buttons">Continue Shopping</button>
           <button id="activate-step-3" class=" checkout-page__buttons active">Proceed To Checkout</button>
         </div>
       </div>
@@ -396,7 +403,7 @@
 							</p>
 						</form> -->
           </p>
-					<form  action="http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000/api/checkout/makePayment" method="POST">
+					<form  action="http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000/api/checkout/makePayment" method="POST">
 						<div >
 						  <input type="hidden" name="UserID" ng-value="getUserId"><br>
 						   <input type="hidden" name="coupon"><br>
@@ -404,7 +411,7 @@
 						  	<input type="hidden" name="paymentMethod" value="1"><br>
 							   <input type="hidden" name="address" ng-value="addressIdSelected"><br>
 							   <input type="hidden" name="billingAddress" ng-value="addressIdSelected"><br>
-							   <input type="hidden" name="returnURL" value="http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/landing"><br>
+							   <input type="hidden" name="returnURL" value="http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/landing"><br>
 							  <!-- <input type="submit" value="Submit"> -->
 							</div>
           <div class="process-button-section process-button-section__center">
@@ -421,12 +428,20 @@
           <h1 class="text-center"> Thank You For Your Order</h1>
           <form>
             <p class="thanks-message">
-              Your Invoice will be sent once delivered
+              Your Invoice will be sent once delivered and Please contact us for more information
             </p>
           </form>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
           <div class="process-button-section process-button-section__center">
             <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-            <!-- <button  class=" checkout-page__buttons print-recipt__button active">Print Recipt</button> -->
+            <button  class=" checkout-page__buttons print-recipt__button active">Thank you</button>
           </div>
       </div>
     </div>

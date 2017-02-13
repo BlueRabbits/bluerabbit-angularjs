@@ -20,10 +20,12 @@
 
 		<div class="myaccount" ng-show="show_myaccnt">
 			<div class="dropdown">
+			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" >{{userName}}
+			 <span class="caret"></span></p> -->
 			 <p class="dropdown__myaccount" id="menu1" type="button" >{{getEmailId}}
 			 <span class="caret"></span></p>
 			 <div class="dropdown__list">
-			 	<p>profile</p>
+			 	<p><a href="#/myaccount" >My Account</a></p>
 				<p><a href="" ng-click="logout()">Logout</a></p>
 			 </div>
 		 </div>

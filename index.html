@@ -47,12 +47,14 @@
             <button class="modal__submit" type="submit">Login</button>
           </div>
           <div class="social-login__buttons">
-            <div class="social-login__connect facebook">
+            <div class="social-login__connect facebook" ng-click="loginFB()">
               <p>Facebook</p>
             </div>
-            <div class="social-login__connect google">
-              <p>Google +</p>
-            </div>
+            <a href="http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000/auth/google" ng-click="googlePlusLogin">
+              <div class="social-login__connect google">
+                <p>Google +</p>
+              </div>
+            </a>
           </div>
         </form>
       </div>
@@ -134,6 +136,7 @@
 
     <script src="js/bower.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
+     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
     <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
