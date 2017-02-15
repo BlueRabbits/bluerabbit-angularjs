@@ -49,9 +49,9 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     },
 
     changePassword : function (inputs) {
-      return $http.post(BASE_URL + '/api/users/password', inputs,{
+      return $http.post(BASE_URL + '/api/users/1/password',inputs,{
         header: {
-          'sender': 'web',
+          'Authorization': authToken,
           'Content-Type': 'application/json'
         }
       });

@@ -194,11 +194,12 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
   // }
   $scope.changePassword = function() {
       var authToken = 'Bearer '+$cookieStore.get('token');
+      console.log("authToken chang pwd",authToken);
     var passwordToChange = {
       "oldPassword": $scope.oldPassword,
       "newPassword": $scope.newPassword
     }
-    Auth.changePassword(authToken,passwordToChange).success(function(data) {
+    Auth.changePassword(passwordToChange).success(function(data) {
       console.log('user profile', data.name);
       $scope.userName = data.name;
       $scope.userEmail = data.email;
