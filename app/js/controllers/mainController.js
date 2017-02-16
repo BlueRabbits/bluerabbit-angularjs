@@ -391,6 +391,13 @@ $('#nxt-testimonial').on('click', function(){
     })(marker, i));
   }
 
+  //Note :redirect to show wish list
+$scope.showWishList = function(){
+  $location.path('/search-page').search({
+    show_wishlist: true,
+
+  });
+}
 
 
 })

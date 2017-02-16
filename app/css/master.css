@@ -148,7 +148,16 @@ input {
     margin-top: -5px; }
 
 .user__login {
-  display: flex; }
+  display: flex;
+  font-family: Lato;
+  font-size: 15px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin-top: 10px; }
 
 .dropdown {
   position: relative;
@@ -1775,6 +1784,16 @@ SMACSS: PAGE - LANDING
 
 .myaccount-main {
   margin: 49px; }
+
+.myaccount-font {
+  font-family: Lato;
+  font-size: 15px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff; }
 
 /*!
  * ngToast v2.0.0 (http://tameraydin.github.io/ngToast)

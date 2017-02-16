@@ -490,7 +490,10 @@ $('#prev').on('click',function(e){
               });
             });
           }
-
+        //invoke wishList on routeParams
+        if($routeParams.show_wishlist === true){
+          $scope.wishListShow();
+        }
 
 
 })
