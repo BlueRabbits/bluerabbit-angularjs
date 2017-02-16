@@ -1002,11 +1002,10 @@ SMACSS: PAGE - LANDING
   width: 47%; }
 
 .location-services__map {
-  width: 53%;
-  background-image: url(../images/map@3x.png);
+  width: 50%;
   background-size: 107%;
   background-repeat: no-repeat;
-  margin-top: -11px; }
+  margin-left: 58px; }
 
 .aboutus-section {
   background-color: #d42841;
