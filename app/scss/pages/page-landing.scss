@@ -514,7 +514,7 @@
 
 .aboutus-section__content {
   //position: absolute;
-  padding: 52px 100px;
+  padding: 0px 50px;
   display: flex;
   justify-content: space-between;
 }
@@ -530,12 +530,13 @@
     letter-spacing: -1.3px;
     color: #ffffff;
     margin: 0;
+    height: 72px;
   }
 }
 
 #descrption-1 {
   width: 530px;
-  height: 84px;
+  height: 91px;
   font-family: Lato-Regular;
   font-size: 20px;
   font-weight: normal;

@@ -1018,7 +1018,7 @@ SMACSS: PAGE - LANDING
   padding: 72px 84px; }
 
 .aboutus-section__content {
-  padding: 52px 100px;
+  padding: 0px 50px;
   display: flex;
   justify-content: space-between; }
 
@@ -1032,11 +1032,12 @@ SMACSS: PAGE - LANDING
     line-height: 1.19;
     letter-spacing: -1.3px;
     color: #ffffff;
-    margin: 0; }
+    margin: 0;
+    height: 72px; }
 
 #descrption-1 {
   width: 530px;
-  height: 84px;
+  height: 91px;
   font-family: Lato-Regular;
   font-size: 20px;
   font-weight: normal;
