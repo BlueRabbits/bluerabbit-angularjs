@@ -20,7 +20,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   $('.header-menu__list').find('a').click(function(){
     var $href = $(this).attr('href');
     var $anchor = $($href).offset();
-    window.scrollTo($anchor.left,$anchor.top);
+    window.scrollTo($anchor.left,$anchor.top  - 100);
     return false;
   });
 
@@ -38,7 +38,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
 
 
   //section slider
-  // $scope.myInterval = 8000;
+  $scope.myInterval = 8000;
   $scope.noWrapSlides = false;
 
 //   var slideIndex = 0;
