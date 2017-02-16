@@ -91,16 +91,16 @@
           </div>
           </li> -->
           <div class="slide-list" ng-repeat="lists in allProducts">
-            <li class=""  style="width: 372px;margin-left: 20px;margin-right: 50px;display:flex;align-items:center;justify-content:space-between;">
+            <li class=""  style="width: 375px;margin-left: 20px;margin-right: 50px;display:flex;align-items:center;justify-content:space-between;">
               <div class="" style="box-shadow: 1px 0px 15px 9px #e3e3e3 ;">
                    <div class="" style="background-image:url({{lists.mainImageUrl}});height:180px;width:232px; background-size: 138%;background-repeat: no-repeat;">
 
                    </div>
                </div>
-                <div class="">
+                <div class="bestoffertext">
                   <p class="context">{{lists.name}}</p>
                   <p class="creds">{{lists.description}}</p>
-                  <p class="creds">{{lists.salePrice}}</p>
+                  <p class="creds">{{lists.salePrice}}AED</p>
                   <button type="button" ng-click="addToCart(lists._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
                 </div>
             </li>
@@ -308,7 +308,7 @@
   <div class="blog-section" id="blog">
     <div class="blog-section__header">
       <p>Our Community</p>
-      <button type="button" name="button">View All</button>
+      <!-- <button type="button" name="button">View All</button> -->
     </div>
     <div class="blog__content">
       <div class="blog__content__text">

@@ -1328,6 +1328,18 @@ SMACSS: PAGE - LANDING
   position: absolute;
   left: -2000px; }
 
+.bestoffertext {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #515356;
+  padding: 12px; }
+
 .search-order-section {
   display: flex; }
 
