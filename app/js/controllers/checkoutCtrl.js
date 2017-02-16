@@ -187,7 +187,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     $scope.selectedAddress = function(id,addresstype){
       $scope.showAddressType = false;
       $scope.addNewAddressRadio = false;
-      $scope.addrestTypeRadio = true;
+      $scope.addrestTypeRadio = false;
       $scope.addressIdSelected = id;
       console.log("id",id);
       console.log("addresstype",addresstype);
@@ -264,7 +264,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       $scope.addNewAddressRadio = false;
       //clearAddress to add new address
       $scope.clearAddress = function(){
-        $scope.showAddressType = true;
+        $scope.showAddressType = false;
         $scope.addrestTypeRadio = false;
         $scope.addNewAddressRadio = true;
         //clear textbox
