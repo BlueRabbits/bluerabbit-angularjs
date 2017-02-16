@@ -796,7 +796,6 @@ SMACSS: PAGE - LANDING
 .section-content {
   height: 500px; }
   .section-content h2 {
-    width: 356.6px;
     font-family: "Lato-Light";
     font-size: 52px;
     font-weight: 300;
@@ -805,7 +804,6 @@ SMACSS: PAGE - LANDING
     line-height: 1.02;
     color: #d92e4a; }
   .section-content p {
-    width: 39%;
     display: inline-block;
     font-family: "Lato-Regular";
     font-size: 20px;
@@ -825,7 +823,6 @@ SMACSS: PAGE - LANDING
   border: none;
   color: #fff;
   font-size: 12px;
-  display: flex;
   justify-content: center;
   align-items: center; }
   .buy-now-button button img {

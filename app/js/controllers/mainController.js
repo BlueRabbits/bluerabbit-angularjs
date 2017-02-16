@@ -38,7 +38,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
 
 
   //section slider
-  $scope.myInterval = 8000;
+  // $scope.myInterval = 8000;
   $scope.noWrapSlides = false;
 
 //   var slideIndex = 0;
