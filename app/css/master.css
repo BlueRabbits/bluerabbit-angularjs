@@ -717,7 +717,8 @@ SMACSS: PAGE - LANDING
   height: 36px;
   display: flex;
   justify-content: space-between;
-  padding: 0 65px; }
+  padding: 0 65px;
+  opacity: 0.6; }
 
 .header-menu__list,
 .search_favorites {
@@ -944,9 +945,9 @@ SMACSS: PAGE - LANDING
 
 .tab_section {
   background-image: url(../images/tab-section-bg.png);
-  height: 779px;
+  height: 675px;
   background-repeat: round;
-  padding: 124px 100px; }
+  padding: 41px 100px; }
   .tab_section h1 {
     font-size: 52px;
     color: #fff;
@@ -1446,6 +1447,34 @@ SMACSS: PAGE - LANDING
   text-align: left;
   color: #515356;
   padding: 12px; }
+
+.blog-date {
+  width: 54px;
+  height: 57px;
+  opacity: 0.3;
+  font-family: Lato;
+  font-size: 48px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -1.2px;
+  color: #000000;
+  margin-right: -25px; }
+
+.blog-year {
+  width: 57px;
+  height: 16px;
+  opacity: 0.4;
+  font-family: Lato;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000000;
+  margin-top: 42px; }
 
 .search-order-section {
   display: flex; }
