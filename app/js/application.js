@@ -49,7 +49,7 @@ app.config(['$routeProvider', function($routeProvider) {
 app.config(['GooglePlusProvider','FacebookProvider', function(GooglePlusProvider,FacebookProvider) {
          GooglePlusProvider.init({
            clientId: '395593907364-cc9p9l4njfd08koqqoouqucgd2u4hbo6.apps.googleusercontent.com',
-           apiKey: '9eXPEtNFE2zqIvXB8p5-LJ_2'
+           apiKey: 'eMDg9klaLT6SqzxwEDDjXupk'
          });
          FacebookProvider.init({
              appId:'1272767759478704'

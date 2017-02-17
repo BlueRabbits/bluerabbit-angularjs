@@ -712,7 +712,6 @@ SMACSS: PAGE - LANDING
 
 .section-header-menu {
   background-color: #515356;
-  opacity: 0.9;
   height: 36px;
   display: flex;
   justify-content: space-between;
@@ -917,7 +916,8 @@ SMACSS: PAGE - LANDING
     font-stretch: normal;
     line-height: 1.4;
     letter-spacing: 0.5px;
-    color: #b1b1b1; }
+    color: #b1b1b1;
+    height: 84px; }
 
 .buy-now-button button {
   width: 160.3px;
