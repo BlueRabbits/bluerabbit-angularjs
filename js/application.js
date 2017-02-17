@@ -309,6 +309,8 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         className: 'success',
         content: 'New Address Added'
       });
+
+      location.reload(true);
       //$scope.getAddressByUserId ();
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
