@@ -290,20 +290,21 @@
 							<form class="form-inline" style="display: flex;padding: 12px;justify-content: space-around;border-bottom: solid 1px #e40046;">
 								 <label class="address-type">{{getMyAddress.addressType}}</label>
 								<label class="">
-							     <!-- <input type="checkbox" name="keywords" value="__option__" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)"> -->
-									 <div class="material-switch">
+							     <input type="checkbox" name="keywords" ng-model="isChecked" ng-value="isChecked" value="__option__" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">
+									 <!-- <div class="material-switch">
 												 <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)"/>
 												 <label for="someSwitchOptionSuccess" class="label-success"></label>
-										 </div>
+										 </div> -->
 								</label>
 							</form>
 							<div class="address-content">
 								<p>
-									{{getMyAddress.name}} {{getMyAddress.companyName}}  {{getMyAddress.street1}}
-									 {{getMyAddress.state}}  {{getMyAddress.city}}  {{getMyAddress.country}}
-									 {{getMyAddress.pinCode}}
+									{{getMyAddress.name}}
 								</p>
-
+								<p>
+									{{getMyAddress.state}}  {{getMyAddress.city}}  {{getMyAddress.country}}
+									{{getMyAddress.pinCode}}
+								</p>
 							</div>
 						</div>
 						<!--Widget-->
