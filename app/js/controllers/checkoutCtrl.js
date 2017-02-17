@@ -192,20 +192,23 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       console.log("id",id);
       console.log("addresstype",addresstype);
       $scope.addressTypeChosen = addresstype;
-      for (var i = 0; i < $scope.getAddressByUserId.length; i++) {
-        if(id == $scope.getAddressByUserId[i]._id){
-          console.log("$scope.getAddressByUserId[i]._id",$scope.getAddressByUserId[i]._id);
-          $scope.name = $scope.getAddressByUserId[i].name;
-          $scope.landlineNumber = $scope.getAddressByUserId[i].landLineNumber;
-          $scope.mobileNumber = $scope.getAddressByUserId[i].mobileNumber;
-          $scope.companyName = $scope.getAddressByUserId[i].companyName;
-          $scope.street1 = $scope.getAddressByUserId[i].street1;
-          $scope.city = $scope.getAddressByUserId[i].city;
-          $scope.pincode = $scope.getAddressByUserId[i].pinCode;
-          $scope.state = $scope.getAddressByUserId[i].state;
-          $scope.country = $scope.getAddressByUserId[i].state;
-        }
-
+      // for (var i = 0; i < $scope.getAddressByUserId.length; i++) {
+      //   if(id == $scope.getAddressByUserId[i]._id){
+      //     console.log("$scope.getAddressByUserId[i]._id",$scope.getAddressByUserId[i]._id);
+      //     $scope.name = $scope.getAddressByUserId[i].name;
+      //     $scope.landlineNumber = $scope.getAddressByUserId[i].landLineNumber;
+      //     $scope.mobileNumber = $scope.getAddressByUserId[i].mobileNumber;
+      //     $scope.companyName = $scope.getAddressByUserId[i].companyName;
+      //     $scope.street1 = $scope.getAddressByUserId[i].street1;
+      //     $scope.city = $scope.getAddressByUserId[i].city;
+      //     $scope.pincode = $scope.getAddressByUserId[i].pinCode;
+      //     $scope.state = $scope.getAddressByUserId[i].state;
+      //     $scope.country = $scope.getAddressByUserId[i].state;
+      //   }
+      //
+      // }
+      if ($scope.isChecked != $scope.isChecked) {
+        $scope.isChecked = false;
       }
     }
 
