@@ -56,6 +56,154 @@ app.config(['GooglePlusProvider','FacebookProvider', function(GooglePlusProvider
         });
     }]);
 
+'use strict';
+app.factory('Auth', function($http, $window, $cookieStore) {
+//  var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
+  var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
+  //var BASE_URL = "http://localhost:9000";
+  //var BASE_URL = "http://192.168.0.84:9000";
+    var authToken = 'Bearer '+$cookieStore.get('token');
+    var userId = $cookieStore.get('userId');
+    console.log("serv",authToken);
+    //var authToken = localStorage.getItem("authToken");
+    //$http.defaults.headers.common['Authorization'] = 'Bearer ' + authToken;
+
+  return {
+    register : function(inputs) {
+      return $http.post(BASE_URL + '/api/users', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+
+    login : function (inputs) {
+      return $http.post(BASE_URL + '/auth/local', inputs,{
+        header: {
+          'sender': 'web',
+          'Content-Type': 'application/json'
+        }
+      });
+    },
+
+    userProfile : function () {
+      return $http.get(BASE_URL + '/api/users/me',{
+        headers: {
+          'Authorization': authToken,
+          'Content-Type': 'application/json'
+
+        }
+      });
+      // $http.defaults.headers.common['Authorization'] = 'Bearer ' + authToken;
+    },
+
+    forgotpassword : function (inputs) {
+      return $http.post(BASE_URL + '/api/users/forgotpassword', inputs,{
+        header: {
+          'sender': 'web',
+          'Content-Type': 'application/json'
+        }
+      });
+    },
+
+    changePassword : function (inputs) {
+      return $http.post(BASE_URL + '/api/users/1/password',inputs,{
+        header: {
+          'Authorization': authToken,
+          'Content-Type': 'application/json'
+        }
+      });
+    },
+
+    products : function(inputs) {
+      return $http.get(BASE_URL + '/api/products', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    addCart : function(inputs) {
+      return $http.post(BASE_URL + '/api/shoppingCart', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getCartList : function(inputs) {
+      return $http.post(BASE_URL + '/api/shoppingCart/getCartItems', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    deleteCart : function(inputs,id) {
+      return $http.post(BASE_URL + '/api/shoppingCart/updateCart/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    updateCart : function(inputs,id) {
+      return $http.post(BASE_URL + '/api/shoppingCart/updateCart/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    addWishList : function(inputs) {
+      return $http.post(BASE_URL + '/api/wishLists', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getWishList : function(inputs) {
+      return $http.post(BASE_URL + '/api/wishLists/getListItems', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    addAddress : function(inputs) {
+      return $http.post(BASE_URL + '/api/address', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getAddressByUserId : function(id,inputs) {
+      return $http.get(BASE_URL + '/api/address/getaddressByUserId/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    autocompleteSearchItem : function(id,inputs) {
+      return $http.get(BASE_URL + '/api/autocompleteSearchs/autoComplete/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    searchItem : function(id,inputs) {
+      return $http.get(BASE_URL + '/api/products/searchProducts/'+id, inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getCategories : function(inputs) {
+      return $http.get(BASE_URL + '/api/categories', inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+
+
+  };
+});
+
 "use strict";
 
 app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth,  $cookies, $cookieStore, ngToast) {
@@ -245,7 +393,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     $scope.selectedAddress = function(id,addresstype){
       $scope.showAddressType = false;
       $scope.addNewAddressRadio = false;
-      $scope.addrestTypeRadio = true;
+      $scope.addrestTypeRadio = false;
       $scope.addressIdSelected = id;
       console.log("id",id);
       console.log("addresstype",addresstype);
@@ -322,7 +470,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       $scope.addNewAddressRadio = false;
       //clearAddress to add new address
       $scope.clearAddress = function(){
-        $scope.showAddressType = true;
+        $scope.showAddressType = false;
         $scope.addrestTypeRadio = false;
         $scope.addNewAddressRadio = true;
         //clear textbox
@@ -536,11 +684,12 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
   // }
   $scope.changePassword = function() {
       var authToken = 'Bearer '+$cookieStore.get('token');
+      console.log("authToken chang pwd",authToken);
     var passwordToChange = {
       "oldPassword": $scope.oldPassword,
       "newPassword": $scope.newPassword
     }
-    Auth.changePassword(authToken,passwordToChange).success(function(data) {
+    Auth.changePassword(passwordToChange).success(function(data) {
       console.log('user profile', data.name);
       $scope.userName = data.name;
       $scope.userEmail = data.email;
@@ -634,7 +783,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   $('.header-menu__list').find('a').click(function(){
     var $href = $(this).attr('href');
     var $anchor = $($href).offset();
-    window.scrollTo($anchor.left,$anchor.top);
+    window.scrollTo($anchor.left,$anchor.top  - 100);
     return false;
   });
 
@@ -972,7 +1121,46 @@ $('#nxt-testimonial').on('click', function(){
       });
 
 
+      //google maps
+      var locations = [
+    ['Bondi Beach', -33.890542, 151.274856, 4],
+    ['Coogee Beach', -33.923036, 151.259052, 5],
+    ['Cronulla Beach', -34.028249, 151.157507, 3],
+    ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+    ['Maroubra Beach', -33.950198, 151.259302, 1]
+  ];
 
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: new google.maps.LatLng(-33.92, 151.25),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  var infowindow = new google.maps.InfoWindow();
+
+  var marker, i;
+
+  for (i = 0; i < locations.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+      map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(locations[i][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
+
+  //Note :redirect to show wish list
+$scope.showWishList = function(){
+  $location.path('/search-page').search({
+    show_wishlist: true,
+
+  });
+}
 
 
 })
@@ -1469,155 +1657,10 @@ $('#prev').on('click',function(e){
               });
             });
           }
-
+        //invoke wishList on routeParams
+        if($routeParams.show_wishlist === true){
+          $scope.wishListShow();
+        }
 
 
 })
-
-'use strict';
-app.factory('Auth', function($http, $window, $cookieStore) {
-//  var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
-  var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
-  //var BASE_URL = "http://localhost:9000";
-  //var BASE_URL = "http://192.168.0.84:9000";
-    var authToken = 'Bearer '+$cookieStore.get('token');
-    var userId = $cookieStore.get('userId');
-    console.log("serv",authToken);
-    //var authToken = localStorage.getItem("authToken");
-    //$http.defaults.headers.common['Authorization'] = 'Bearer ' + authToken;
-
-  return {
-    register : function(inputs) {
-      return $http.post(BASE_URL + '/api/users', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-
-    login : function (inputs) {
-      return $http.post(BASE_URL + '/auth/local', inputs,{
-        header: {
-          'sender': 'web',
-          'Content-Type': 'application/json'
-        }
-      });
-    },
-
-    userProfile : function () {
-      return $http.get(BASE_URL + '/api/users/me',{
-        headers: {
-          'Authorization': authToken,
-          'Content-Type': 'application/json'
-
-        }
-      });
-      // $http.defaults.headers.common['Authorization'] = 'Bearer ' + authToken;
-    },
-
-    forgotpassword : function (inputs) {
-      return $http.post(BASE_URL + '/api/users/forgotpassword', inputs,{
-        header: {
-          'sender': 'web',
-          'Content-Type': 'application/json'
-        }
-      });
-    },
-
-    changePassword : function (inputs) {
-      return $http.post(BASE_URL + '/api/users/password', inputs,{
-        header: {
-          'sender': 'web',
-          'Content-Type': 'application/json'
-        }
-      });
-    },
-
-    products : function(inputs) {
-      return $http.get(BASE_URL + '/api/products', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    addCart : function(inputs) {
-      return $http.post(BASE_URL + '/api/shoppingCart', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    getCartList : function(inputs) {
-      return $http.post(BASE_URL + '/api/shoppingCart/getCartItems', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    deleteCart : function(inputs,id) {
-      return $http.post(BASE_URL + '/api/shoppingCart/updateCart/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    updateCart : function(inputs,id) {
-      return $http.post(BASE_URL + '/api/shoppingCart/updateCart/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    addWishList : function(inputs) {
-      return $http.post(BASE_URL + '/api/wishLists', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    getWishList : function(inputs) {
-      return $http.post(BASE_URL + '/api/wishLists/getListItems', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    addAddress : function(inputs) {
-      return $http.post(BASE_URL + '/api/address', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    getAddressByUserId : function(id,inputs) {
-      return $http.get(BASE_URL + '/api/address/getaddressByUserId/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    autocompleteSearchItem : function(id,inputs) {
-      return $http.get(BASE_URL + '/api/autocompleteSearchs/autoComplete/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    searchItem : function(id,inputs) {
-      return $http.get(BASE_URL + '/api/products/searchProducts/'+id, inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-    getCategories : function(inputs) {
-      return $http.get(BASE_URL + '/api/categories', inputs, {
-      headers: {
-        'Content-Type': 'application/json'
-        }
-      });
-    },
-
-
-  };
-});

@@ -17,7 +17,7 @@
 			<p><a href="#signupmodal" data-toggle="modal">Register</a></p>
 		</div>
 
-		<div class="myaccount" ng-show="show_myaccnt">
+		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
 			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" >{{userName}}
 			 <span class="caret"></span></p> -->
@@ -31,7 +31,7 @@
 		 <!-- <p><a href="" ng-click="logout()">Logout</a></p> -->
 		</div>
 
-		<a href="#/search-page"><img src="images/basket@2x.png" height="26px" ng-click="getcartItems()"></a>
+		<a href="#/search-page" style="margin-top: 10px;"><img src="images/basket@2x.png" height="26px" ng-click="getcartItems()"></a>
 		<p>
 			{{cartLength}}
 		</p>
@@ -49,7 +49,7 @@
     		<p><a href="#about">About us</a></p>
     		<p><a href="#ourpartners">Our Partners</a></p>
     		<p><a href="#blog">Community</a></p>
-    		<p><a href="#contact">Contact us</a></p>
+    		<!-- <p><a href="#contact">Contact us</a></p> -->
       </div>
       <div class="search_favorites">
         <!-- <div class="searchbox-white">
@@ -60,7 +60,7 @@
         <img src="images/close-button@2x.png" class="close-icon" >
         <a href="#/search-page"><img src="images/search-icon@2x.png" class="search-icon"></a>
         <p><a href="#/"> |</a></p>
-        <img src="images/heart-icon@2x.png">
+        <img src="images/heart-icon@2x.png" ng-click="showWishList()">
     		<p>favorites</p>
       </div>
     </div>
@@ -93,19 +93,16 @@
     <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
   </div>
   <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" style="height: 500px;    z-index: 0;">
-  <div uib-slide ng-repeat="lists in allProducts  track by lists._id " index="$index" style="height: 500px;">
+  <div uib-slide ng-repeat="lists in allProducts | filter:{cat:'Dessert'} " index="$index" style="height: 500px;">
     <!-- <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%"> -->
     <div style="background-image:url({{lists.mainImageUrl}});margin:auto;width: 100%;  height: 600px;z-index:0;background-size: 100%;">
     </div>
-    <div class="carousel-caption">
-      <div style="padding: 197px 519px 178px 9px;">
+    <div class="carousel-caption" style="padding: 0px 517px 133px 2px;width: 75%;display: flex;flex-direction: column;align-items: center;">
         <h2> {{lists.name}}</h2>
         <p>{{lists.description}}</p>
-        <div class="buy-now-button" style="margin-left: 91px;">
+        <div class="buy-now-button">
           <button type="button" style="outline: none;" ng-click="addToCart(lists._id)" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
         </div>
-    </div>
-
     </div>
   </div>
 </div>
@@ -115,11 +112,11 @@
 
   <!-- <p style="text-align:center;padding-top:50px;">Slider section</p> -->
   <div class="slider-section">
-    <div class="clearfix" style="height: 111px;display: flex;justify-content: flex-end;margin-right: 50px;">
+    <div class="clearfix" style="height: 86px;display: flex;justify-content: flex-end;margin-right: 50px;">
       <img src="images/arrow-left.svg" id="prv-testimonial" alt="PREV"  />
       <img src="images/arrow-right-active.svg" id="nxt-testimonial" alt="NEXT" />
       </div>
-      <div id="carousel-wrap" style="width:74%;margin-left:110px;">
+      <div id="carousel-wrap" style="width:83%;margin-left:85px;">
         <ul id="testimonial-list" class="clearfix" style="height:100%">
           <!-- <li ng-repeat="lists in allProducts">
             <div class="" style="background-image:url({{lists.mainImageUrl}}); width: 62%;background-size: 100%;background-repeat: no-repeat;">
@@ -132,16 +129,16 @@
           </div>
           </li> -->
           <div class="slide-list" ng-repeat="lists in allProducts">
-            <li class=""  style="width: 372px;margin-left: 20px;margin-right: 50px;display:flex;align-items:center;justify-content:space-between;">
+            <li class=""  style="width: 375px;margin-left: 20px;margin-right: 50px;display:flex;align-items:center;justify-content:space-between;">
               <div class="" style="box-shadow: 1px 0px 15px 9px #e3e3e3 ;">
                    <div class="" style="background-image:url({{lists.mainImageUrl}});height:180px;width:232px; background-size: 138%;background-repeat: no-repeat;">
 
                    </div>
                </div>
-                <div class="">
+                <div class="bestoffertext">
                   <p class="context">{{lists.name}}</p>
                   <p class="creds">{{lists.description}}</p>
-                  <p class="creds">{{lists.salePrice}}</p>
+                  <p class="creds">{{lists.salePrice}}AED</p>
                   <button type="button" ng-click="addToCart(lists._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
                 </div>
             </li>
@@ -233,7 +230,7 @@
           </div>
         </div>
       </div>
-      <div class="location-services__map">
+      <div class="location-services__map" id="map">
         <!-- map servises -->
       </div>
     </div>
@@ -349,7 +346,7 @@
   <div class="blog-section" id="blog">
     <div class="blog-section__header">
       <p>Our Community</p>
-      <button type="button" name="button">View All</button>
+      <!-- <button type="button" name="button">View All</button> -->
     </div>
     <div class="blog__content">
       <div class="blog__content__text">
