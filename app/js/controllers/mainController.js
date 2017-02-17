@@ -360,16 +360,16 @@ $('#nxt-testimonial').on('click', function(){
 
       //google maps
       var locations = [
-    ['Bondi Beach', -33.890542, 151.274856, 4],
-    ['Coogee Beach', -33.923036, 151.259052, 5],
-    ['Cronulla Beach', -34.028249, 151.157507, 3],
-    ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-    ['Maroubra Beach', -33.950198, 151.259302, 1]
+    ['Dubai', 25.07778, 55.15806, 4],
+    ['Khor Fakkan', 25.33333, 56.35000, 5],
+    ['Ajman', 25.40278, 55.47833, 3],
+    ['Abu Dhabi', 24.46611, 54.36667, 2],
+    ['Downtown Dubai', 	25.276987, 	55.296249, 1]
   ];
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
-    center: new google.maps.LatLng(-33.92, 151.25),
+    center: new google.maps.LatLng(25.27, 55.29),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
