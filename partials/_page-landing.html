@@ -128,7 +128,7 @@
             <p class="creds">{{lists.salePrice}}</p>
           </div>
           </li> -->
-          <div class="slide-list" ng-repeat="lists in allProducts">
+          <div class="slide-list" ng-repeat="lists in allProducts | filter:{cat:'Dessert'} ">
             <li class=""  style="width: 375px;margin-left: 20px;margin-right: 50px;display:flex;align-items:center;justify-content:space-between;">
               <div class="" style="box-shadow: 1px 0px 15px 9px #e3e3e3 ;">
                    <div class="" style="background-image:url({{lists.mainImageUrl}});height:180px;width:232px; background-size: 138%;background-repeat: no-repeat;">
