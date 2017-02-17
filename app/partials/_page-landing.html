@@ -55,7 +55,7 @@
     <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
   </div>
   <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" style="height: 500px;    z-index: 0;">
-  <div uib-slide ng-repeat="lists in allProducts  track by lists._id " index="$index" style="height: 500px;">
+  <div uib-slide ng-repeat="lists in allProducts | filter:{cat:'Dessert'} " index="$index" style="height: 500px;">
     <!-- <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%"> -->
     <div style="background-image:url({{lists.mainImageUrl}});margin:auto;width: 100%;  height: 600px;z-index:0;background-size: 100%;">
     </div>
