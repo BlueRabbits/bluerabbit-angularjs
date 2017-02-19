@@ -113,6 +113,13 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
     // localStorage.removeItem("userId");
     // localStorage.removeItem("email");
     // localStorage.setItem('loggedIn', false);
+    Facebook.logout(function() {
+      $scope.$apply(function() {
+        $scope.user   = {};
+        $scope.logged = false;
+        $cookieStore.remove("token");
+      });
+    });
     //cookieStore
     $cookieStore.remove("token");
     $cookieStore.remove("userId");
@@ -210,15 +217,19 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
 
   //NOTE : GooglePlus login
   $scope.googlePlusLogin = function () {
-         GooglePlus.login().then(function (authResult) {
-             console.log("authResult",authResult);
-
-             GooglePlus.getUser().then(function (user) {
-                 console.log("user",user);
-             });
-         }, function (err) {
-             console.log(err);
-         });
+        //  GooglePlus.login().then(function (authResult) {
+        //      console.log("authResult",authResult);
+         //
+        //      GooglePlus.getUser().then(function (user) {
+        //          console.log("user",user);
+        //      });
+        //      $scope.userName = user.name;
+        //  }, function (err) {
+        //      console.log(err);
+        //  });
+        $window.location.href = 'http://localhost:9000/auth/google';
+        // $scope.userId = $cookieStore.get('userId');
+        // location.reload();
        };
 
   //NOTE : Facebook login
@@ -232,41 +243,33 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
  //  };
 
  $scope.loginFB = function() {
-   Facebook.login(function(response) {
-    if (response.status == 'connected') {
-      $scope.logged = true;
-      $scope.me();
-    }
-
-  });
+  //  Facebook.login(function(response) {
+  //   if (response.status == 'connected') {
+  //     $scope.logged = true;
+  //     $scope.me();
+  //   }
+  //
+  // });
+  $window.location.href = 'http://localhost:9000/auth/facebook';
+  $scope.userId = $cookieStore.get('userId');
  };
 
  /**
   * me
   */
-  $scope.me = function() {
-    Facebook.api('/me', function(response) {
-      /**
-       * Using $scope.$apply since this happens outside angular framework.
-       */
-      $scope.$apply(function() {
-        $scope.user = response;
-        console.log("$scope.user",$scope.user);
-      });
+  // $scope.me = function() {
+  //   Facebook.api('/me', function(response) {
+  //     /**
+  //      * Using $scope.$apply since this happens outside angular framework.
+  //      */
+  //     $scope.$apply(function() {
+  //       $scope.user = response;
+  //       $scope.userName = response.name;
+  //       console.log("$scope.user",$scope.user);
+  //     });
+  //
+  //   });
+  // };
 
-    });
-  };
-
-/**
- * Logout
- */
-$scope.FBlogout = function() {
-  Facebook.logout(function() {
-    $scope.$apply(function() {
-      $scope.user   = {};
-      $scope.logged = false;
-    });
-  });
-}
 
 })
