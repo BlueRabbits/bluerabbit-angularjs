@@ -1,8 +1,8 @@
 'use strict';
 app.factory('Auth', function($http, $window, $cookieStore) {
-//  var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
+  var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
 //  var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
-  var BASE_URL = "http://localhost:9000";
+//  var BASE_URL = "http://localhost:9000";
   //var BASE_URL = "http://192.168.0.84:9000";
     var authToken = 'Bearer '+$cookieStore.get('token');
     var userId = $cookieStore.get('userId');
@@ -52,6 +52,14 @@ app.factory('Auth', function($http, $window, $cookieStore) {
       return $http.post(BASE_URL + '/api/users/1/password',inputs,{
         header: {
           'Authorization': authToken,
+          'Content-Type': 'application/json'
+        }
+      });
+    },
+
+    socailLogin : function (inputs) {
+      return $http.post(BASE_URL + '/auth/local?from=app',inputs,{
+        header: {
           'Content-Type': 'application/json'
         }
       });
