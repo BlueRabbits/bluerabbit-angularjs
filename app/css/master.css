@@ -900,27 +900,26 @@ SMACSS: PAGE - LANDING
 .section-main-content {
   background-repeat: round; }
 
-.section-content {
-  height: 500px; }
-  .section-content h2 {
-    font-family: "Lato-Light";
-    font-size: 52px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.02;
-    color: #d92e4a; }
-  .section-content p {
-    display: inline-block;
-    font-family: "Lato-Regular";
-    font-size: 20px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.4;
-    letter-spacing: 0.5px;
-    color: #b1b1b1;
-    height: 84px; }
+.section-content h2 {
+  font-family: "Lato-Light";
+  font-size: 52px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.02;
+  color: #d92e4a; }
+
+.section-content p {
+  display: inline-block;
+  font-family: "Lato-Regular";
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  color: #b1b1b1;
+  height: 84px; }
 
 .buy-now-button button {
   width: 160.3px;

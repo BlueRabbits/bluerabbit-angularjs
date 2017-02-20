@@ -330,5 +330,11 @@ $scope.fbLoginAuth = function() {
   };
 };
 
+//home
+$scope.redirectLanding = function() {
+  location.reload();
+  $location.path('/landing');
+}
+
 
 })
