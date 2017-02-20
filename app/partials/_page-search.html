@@ -20,7 +20,7 @@
 		</div>
 		<div class="search-page__tab-menu" style="display: flex;justify-content: space-between;">
 			<ul class="search-page__tab-list" id="tabs-menu" ng-repeat="categories in getCategoryList">
-				<li id="navMenu"><a style="cursor:pointer;" data-toggle="tab" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
+				<li id="navMenu"><a style="cursor:pointer;" data-toggle="tab" ng-class="{'active' : categories.name == categoryNames}" ng-click="setActiveTab(categories._id,categories.name)" > {{categories.name}}</a></li>
 				<!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
 				<li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
 				<li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
@@ -48,7 +48,7 @@
 						<p class="product-sub-title">{{results.description}}</p>
 							<div class="product-view">
 									<img src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-									<p id="view-more" ng-click="showdiv = !showdiv">View More</p>
+									<p id="view-more" ng-click="showdiv = !showdiv">Know More</p>
 							</div>
 					</div>
 					<p class="product-price">{{results.salePrice}}<span>AED</span></p>
@@ -88,7 +88,7 @@
 						<p class="product-sub-title">{{wishLists.product.description}}</p>
 							<div class="product-view">
 									<!-- <img src="images/heart-icon-black.png" > -->
-									<p id="view-more" ng-click="showdiv = !showdiv">View More</p>
+									<p id="view-more" ng-click="showdiv = !showdiv">Know More</p>
 							</div>
 					</div>
 					<p class="product-price">{{wishLists.product.salePrice}}<span>AED</span></p>
@@ -128,7 +128,7 @@
 						<p class="product-sub-title">{{list.description}}</p>
 							<div class="product-view">
 									<img src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-									<p id="view-more" ng-click="showdiv = !showdiv">View More</p>
+									<p id="view-more" ng-click="showdiv = !showdiv">Know More</p>
 							</div>
 					</div>
 					<p class="product-price">{{list.salePrice}}<span>AED</span></p>
