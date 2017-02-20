@@ -130,6 +130,11 @@ $scope.logged = false;
         $rootScope.$apply(function() {
         $rootScope.user = _self.user = {};
       });
+      //G+ logout
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
    });
 
     //cookieStore
@@ -232,16 +237,37 @@ $scope.logged = false;
          GooglePlus.login().then(function (authResult) {
              console.log("authResult",authResult);
 
-             GooglePlus.getUser().then(function (user) {
-                 console.log("user",user);
+             GooglePlus.getUser().then(function (data) {
+                 console.log("user",data);
+                 $scope.userName = data.name;
+                 $scope.emailId = data.email
+
              });
-             $scope.userName = user.name;
+
          }, function (err) {
              console.log(err);
          });
+         var socailParams = {
+           "email": $scope.emailId,
+           "name": $scope.userName
+         }
+         Auth.socailLogin(socailParams).success(function(data) {
+           console.log('social Resp', data);
+           $cookieStore.put("token", data.token);
+           $cookieStore.put("userId", data._id);
+           $cookieStore.put("emailId", $scope.emailId);
+           $cookieStore.put('userName', $scope.userName);
+
+           $('.modal').css("display", "none");
+           $('.modal-open').removeClass();
+           $scope.closeModal();
+           location.reload();
+         }).error(function(data) {
+           console.log('data', data);
+         });
         // $window.location.href = 'http://localhost:9000/auth/google';
         // // $scope.userId = $cookieStore.get('userId');
-        // // location.reload();
+        //location.reload();
        };
 
   //NOTE:FB login
