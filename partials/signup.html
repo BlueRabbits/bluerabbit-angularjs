@@ -11,6 +11,14 @@
         {{errorMessage}}
       </div>
         <form class="loginform" ng-submit="Signupform(signupform)" name="signupform" method="POST" novalidate>
+          <div class="social-login__buttons">
+            <div class="social-login__connect facebook">
+              <p>Facebook</p>
+            </div>
+            <div class="social-login__connect google">
+              <p>Google +</p>
+            </div>
+          </div>
           <div class="loginform__manually">
             <div class="loginForm--fields">
               <div class="loginForm__inputs loginForm__username">
@@ -24,14 +32,6 @@
               </div>
             </div>
             <button class="modal__submit" type="submit">Signup</button>
-          </div>
-          <div class="social-login__buttons">
-            <div class="social-login__connect facebook">
-              <p>Facebook</p>
-            </div>
-            <div class="social-login__connect google">
-              <p>Google +</p>
-            </div>
           </div>
         </form>
       </div>

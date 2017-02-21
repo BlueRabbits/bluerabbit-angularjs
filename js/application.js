@@ -356,7 +356,8 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
   if ($cookieStore.get('userId')) {
     $scope.show_myaccnt = true;
     $scope.not__logged = false;
-    $scope.getEmailId = $cookieStore.get('email');
+    $scope.getEmailId = $cookieStore.get('emailId');
+    $scope.userName = $cookieStore.get('userName');
   } else {
     $scope.show_myaccnt = false;
     $scope.not__logged = true;
@@ -392,13 +393,13 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
         //cookieStore
          $cookieStore.put("token", data.token);
          $cookieStore.put("userId", data._id);
-         $cookieStore.put("email", data.email);
+         $cookieStore.put("emailId", data.email);
          $scope.getEmailId = $cookieStore.get('email');
          $cookieStore.put('loggedIn', true);
-         $location.path('/landing');
+         //$location.path('/landing');
         // $scope.getUserProfile();
          //location.reload(true);
-        //location.reload(true);
+        location.reload(true);
         ngToast.create({
           className: 'success',
           content: 'Account created successfully'
@@ -434,7 +435,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $cookieStore.put("token", data.token);
          localStorage.setItem("authToken", data.token);
          $cookieStore.put("userId", data._id);
-         $cookieStore.put("email", $scope.email);
+         $cookieStore.put("emailId", $scope.email);
          $cookieStore.put('loggedIn', true);
          $scope.getEmailId = $cookieStore.get('email');
          $scope.userId = $cookieStore.get('userId');
@@ -454,12 +455,35 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
       $scope.errorMessage = "";
     }, 3000);
   }
+  // Define user empty data :/
+$scope.user = {};
 
+// Defining user logged status
+$scope.logged = false;
   $scope.logout = function () {
+    $rootScope.user = {};
     // localStorage.removeItem("token");
     // localStorage.removeItem("userId");
     // localStorage.removeItem("email");
     // localStorage.setItem('loggedIn', false);
+    $cookieStore.remove("emailId");
+    $cookieStore.remove("userId");
+    $cookieStore.remove("userName");
+    //facebook logout
+     var _self = this;
+     FB.logout(function(response) {
+        // user is now logged out
+        console.log("log out");
+        $rootScope.$apply(function() {
+        $rootScope.user = _self.user = {};
+      });
+      //G+ logout
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+   });
+
     //cookieStore
     $cookieStore.remove("token");
     $cookieStore.remove("userId");
@@ -522,10 +546,10 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
       Auth.userProfile().success(function(data) {
       console.log('user profile',data.name);
       $cookieStore.put('userName', data.name);
-      $cookieStore.put('userEmailId', data.email);
+      $cookieStore.put('emailId', data.email);
       $scope.userId = $cookieStore.get('userId');
       $scope.userName = $cookieStore.get('userName');
-      $scope.userEmail = $cookieStore.get('userEmailId');
+      $scope.userEmail = $cookieStore.get('emailId');
     }).error(function(data) {
       console.log('data', data);
     });
@@ -550,6 +574,10 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
       console.log('user profile', data.name);
       $scope.userName = data.name;
       $scope.userEmail = data.email;
+      ngToast.create({
+        className: 'success',
+        content: 'Passowrd changed successfully'
+      });
     }).error(function(data) {
       console.log('data', data);
     });
@@ -560,61 +588,105 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          GooglePlus.login().then(function (authResult) {
              console.log("authResult",authResult);
 
-             GooglePlus.getUser().then(function (user) {
-                 console.log("user",user);
+             GooglePlus.getUser().then(function (data) {
+                 console.log("user",data);
+                 $scope.userName = data.name;
+                 $scope.emailId = data.email
+
              });
+
          }, function (err) {
              console.log(err);
          });
+         var socailParams = {
+           "email": $scope.emailId,
+           "name": $scope.userName
+         }
+         Auth.socailLogin(socailParams).success(function(data) {
+           console.log('social Resp', data);
+           $cookieStore.put("token", data.token);
+           $cookieStore.put("userId", data._id);
+           $cookieStore.put("emailId", $scope.emailId);
+           $cookieStore.put('userName', $scope.userName);
+
+           $('.modal').css("display", "none");
+           $('.modal-open').removeClass();
+           $scope.closeModal();
+           location.reload();
+         }).error(function(data) {
+           console.log('data', data);
+         });
+        // $window.location.href = 'http://localhost:9000/auth/google';
+        // // $scope.userId = $cookieStore.get('userId');
+        //location.reload();
        };
 
-  //NOTE : Facebook login
-    /**
- * Login
- */
- // $scope.IntentLogin = function() {
- //    if(!userIsConnected) {
- //      $scope.login();
- //    }
- //  };
+  //NOTE:FB login
 
- $scope.loginFB = function() {
-   Facebook.login(function(response) {
-    if (response.status == 'connected') {
-      $scope.logged = true;
-      $scope.me();
-    }
+$scope.fbLoginAuth = function() {
+  $scope.login = function() {
+    // From now on you can use the Facebook service just as Facebook api says
+    Facebook.login(function(response) {
+      // Do something with response.
+      console.log("Facebook", response);
+      $scope.getLoginStatus();
+    });
+  };
+  $scope.login();
+  $scope.getLoginStatus = function() {
+    Facebook.getLoginStatus(function(response) {
+      console.log(response);
 
-  });
- };
-
- /**
-  * me
-  */
+      if (response.status === 'connected') {
+        $scope.me();
+        $scope.loggedIn = true;
+      } else {
+        $scope.loggedIn = false;
+      }
+    });
+  };
+  $scope.getLoginStatus();
+  //Facbook-me
   $scope.me = function() {
-    Facebook.api('/me', function(response) {
+    Facebook.api('/me', { locale: 'en_US', fields: 'name, email' }, function(response) {
       /**
        * Using $scope.$apply since this happens outside angular framework.
        */
       $scope.$apply(function() {
         $scope.user = response;
+        $scope.userName = response.name;
+        $scope.emailId = response.email
+        $cookieStore.put("emailId", $scope.emailId);
+        $cookieStore.put('userName', $scope.userName);
         console.log("$scope.user",$scope.user);
+
+      });
+      var socailParams = {
+        "email": $scope.emailId,
+        "name": $scope.userName
+      }
+      Auth.socailLogin(socailParams).success(function(data) {
+        console.log('social Resp', data);
+        $cookieStore.put("token", data.token);
+        $cookieStore.put("userId", data._id);
+        $('.modal').css("display", "none");
+        $('.modal-open').removeClass();
+        $scope.closeModal();
+        location.reload(true);
+      }).error(function(data) {
+        console.log('data', data);
       });
 
     });
   };
+};
 
-/**
- * Logout
- */
-$scope.FBlogout = function() {
-  Facebook.logout(function() {
-    $scope.$apply(function() {
-      $scope.user   = {};
-      $scope.logged = false;
-    });
-  });
+//home
+$scope.redirectLanding = function() {
+  location.reload();
+  $location.path('/landing');
 }
+
 
 })
 
@@ -1019,6 +1091,12 @@ $scope.showWishList = function(){
   });
 }
 
+//NOTE: redirect to search on click product
+  $scope.showProductSearchPage = function(productName){
+    $location.path('/search-page').search({
+      show_productDetails: productName,
+    });
+  }
 
 })
 
@@ -1219,6 +1297,8 @@ $('#prev').on('click',function(e){
       $scope.show_wishlist  = false;
       $scope.showMenuResult  = false;
       $scope.hideAutocomplete = true;
+      //NOTE : uncomment if know more is creating a issue
+      // $location.search('show_productDetails', null)
       console.log('autcomplete data', data);
       $scope.searchAutocompleteId = data;
     }).error(function(data){
@@ -1519,16 +1599,22 @@ $('#prev').on('click',function(e){
           $scope.wishListShow();
         }
 
+        //NOTE: get product name from  url
+        if($routeParams.show_productDetails){
+          $scope.searchList($routeParams.show_productDetails);
+          $scope.showdiv = true;
+        }
+
 
 })
 
 'use strict';
 app.factory('Auth', function($http, $window, $cookieStore) {
-//  var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
-  var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
+  var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
+  //var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
   //var BASE_URL = "http://localhost:9000";
   //var BASE_URL = "http://192.168.0.84:9000";
-    var authToken = 'Bearer '+$cookieStore.get('token');
+    var authToken = $cookieStore.get('token');
     var userId = $cookieStore.get('userId');
     console.log("serv",authToken);
     //var authToken = localStorage.getItem("authToken");
@@ -1555,7 +1641,7 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     userProfile : function () {
       return $http.get(BASE_URL + '/api/users/me',{
         headers: {
-          'Authorization': authToken,
+          'Authorization': 'Bearer '+authToken,
           'Content-Type': 'application/json'
 
         }
@@ -1573,9 +1659,16 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     },
 
     changePassword : function (inputs) {
-      return $http.post(BASE_URL + '/api/users/1/password',inputs,{
+      return $http.post(BASE_URL + '/api/users/'+userId+'/password?access_token='+authToken,inputs,{
         header: {
-          'Authorization': authToken,
+          'Content-Type': 'application/json'
+        }
+      });
+    },
+
+    socailLogin : function (inputs) {
+      return $http.post(BASE_URL + '/auth/local?from=app',inputs,{
+        header: {
           'Content-Type': 'application/json'
         }
       });

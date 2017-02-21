@@ -1,7 +1,7 @@
 <!-- Header -->
 <div class="header" ng-controller="loginController">
 	<div class="logo">
-		<a href="#/landing"><img src="images/l-o-g-o@2x.png"></a>
+		<a href="" ng-click="redirectLanding()"><img src="images/l-o-g-o@2x.png"></a>
 	</div>
 	<!-- <div class="search-bar">
 		<input type="search-bar" name="" class="search-bar__input">
@@ -17,12 +17,12 @@
 
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
-			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" >{{userName}}
+			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" ng-if="userName">{{userName}}
 			 <span class="caret"></span></p> -->
 			 <p class="dropdown__myaccount" id="menu1" type="button" >{{getEmailId}}
 			 <span class="caret"></span></p>
 			 <div class="dropdown__list">
-			 	<p><a href="#/myaccount" >My Account</a></p>
+			 	<p><a href="#/myaccount" ng-click="getUserProfile()">My Account</a></p>
 				<p><a href="" ng-click="logout()">Logout</a></p>
 			 </div>
 		 </div>

@@ -3,7 +3,7 @@
   <!-- Header -->
 <div class="header" ng-controller="loginController">
 	<div class="logo">
-		<a href="#/landing"><img src="images/l-o-g-o@2x.png"></a>
+		<a href="" ng-click="redirectLanding()"><img src="images/l-o-g-o@2x.png"></a>
 	</div>
 	<!-- <div class="search-bar">
 		<input type="search-bar" name="" class="search-bar__input">
@@ -19,12 +19,12 @@
 
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
-			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" >{{userName}}
+			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" ng-if="userName">{{userName}}
 			 <span class="caret"></span></p> -->
 			 <p class="dropdown__myaccount" id="menu1" type="button" >{{getEmailId}}
 			 <span class="caret"></span></p>
 			 <div class="dropdown__list">
-			 	<p><a href="#/myaccount" >My Account</a></p>
+			 	<p><a href="#/myaccount" ng-click="getUserProfile()">My Account</a></p>
 				<p><a href="" ng-click="logout()">Logout</a></p>
 			 </div>
 		 </div>
@@ -47,9 +47,9 @@
         <p><a href="#menu" data-target="#menu">Menu </a></p>
     		<p><a href="#locations">Locations</a></p>
     		<p><a href="#about">About us</a></p>
+        <p><a href="#appstore">App</a></p>
+        <p><a href="#blog">Community</a></p>
     		<p><a href="#ourpartners">Our Partners</a></p>
-    		<p><a href="#blog">Community</a></p>
-    		<!-- <p><a href="#contact">Contact us</a></p> -->
       </div>
       <div class="search_favorites">
         <!-- <div class="searchbox-white">
@@ -92,12 +92,12 @@
     <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
     <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
   </div>
-  <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" style="height: 500px;    z-index: 0;">
-  <div uib-slide ng-repeat="lists in allProducts | filter:{cat:'Dessert'} " index="$index" style="height: 500px;">
+  <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" style="height: 290px;    z-index: 0;">
+  <div uib-slide ng-repeat="lists in allProducts | filter:{cat:'Dessert'} " index="$index" style="height: 290px;">
     <!-- <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%"> -->
-    <div style="background-image:url({{lists.mainImageUrl}});margin:auto;width: 100%;  height: 600px;z-index:0;background-size: 100%;">
+    <div style="background-image:url({{lists.mainImageUrl}});margin:auto;width: 100%;  height: 290px;z-index:0;background-size: 100%;">
     </div>
-    <div class="carousel-caption" style="padding: 0px 517px 133px 2px;width: 75%;display: flex;flex-direction: column;align-items: center;">
+    <div class="carousel-caption" style="padding: 0px 550px 28px 2px; width: 75%;display: flex;flex-direction: column;align-items: center;">
         <h2> {{lists.name}}</h2>
         <p>{{lists.description}}</p>
         <div class="buy-now-button">
@@ -167,10 +167,10 @@
       <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
         <!-- 1-->
         <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
-          <div class="breakfast-products__iamge" style="background-image:url({{list.mainImageUrl}});"></div>
+          <div class="breakfast-products__iamge" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name)"></div>
           <div class="breakfast-products__content">
 
-            <div class="products__description">
+            <div class="products__description" ng-click="showProductSearchPage(list.name)" style="cursor:pointer">
               <p>{{list.name}}</p>
               <p>{{list.description}}</p>
               <p class="products__price">{{list.salePrice}}AED</p>
@@ -302,26 +302,8 @@
     </div>
   </div>
 
-  <!-- Our Partners -->
-  <div class="our-partners-section" id="ourpartners">
-    <p class="our-partners-title">
-      Our Partners
-    </p>
-    <p class="our-partners-description">
-      The kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want
-    </p>
-    <div class="partners-logos">
-      <img src="images/b-b-c.png" alt="" />
-      <img src="images/netflix.png" alt="" />
-      <img src="images/forbes.png" alt="" />
-      <img src="images/mashable.png" alt="" />
-      <img src="images/lifehacker.png" alt="" />
-      <img src="images/buzz-feed.png" alt="" />
-    </div>
-  </div>
-
   <!-- App store -->
-  <div class="app-store">
+  <div class="app-store" id="appstore">
     <div class="app-store-mobile">
       <img src="images/mobile-app.png" alt="" />
     </div>
@@ -374,6 +356,23 @@
       <div class="blog__content__image">
         <img src="images/bitmap@3x.png" alt="" />
       </div>
+    </div>
+  </div>
+  <!-- Our Partners -->
+  <div class="our-partners-section" id="ourpartners">
+    <p class="our-partners-title">
+      Our Partners
+    </p>
+    <p class="our-partners-description">
+      The kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want
+    </p>
+    <div class="partners-logos">
+      <img src="images/b-b-c.png" alt="" />
+      <img src="images/netflix.png" alt="" />
+      <img src="images/forbes.png" alt="" />
+      <img src="images/mashable.png" alt="" />
+      <img src="images/lifehacker.png" alt="" />
+      <img src="images/buzz-feed.png" alt="" />
     </div>
   </div>
   <div class="" id="contact">
