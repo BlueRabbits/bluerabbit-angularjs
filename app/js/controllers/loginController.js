@@ -342,5 +342,15 @@ $scope.redirectLanding = function() {
   $location.path('/landing');
 }
 
+//load modal windows on click
+$scope.signupModal = function(){
+  $('#loginmodal').modal('show');
+  $('#signupmodal').modal('hide');
+}
+$scope.loginModal = function(){
+  $('#loginmodal').modal('hide');
+  $('#signupmodal').modal('show');
+}
+
 
 })
