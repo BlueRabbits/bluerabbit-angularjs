@@ -195,6 +195,8 @@ $('#prev').on('click',function(e){
       $scope.show_wishlist  = false;
       $scope.showMenuResult  = false;
       $scope.hideAutocomplete = true;
+      //NOTE : uncomment if know more is creating a issue
+      // $location.search('show_productDetails', null)
       console.log('autcomplete data', data);
       $scope.searchAutocompleteId = data;
     }).error(function(data){
@@ -493,6 +495,12 @@ $('#prev').on('click',function(e){
         //invoke wishList on routeParams
         if($routeParams.show_wishlist === true){
           $scope.wishListShow();
+        }
+
+        //NOTE: get product name from  url
+        if($routeParams.show_productDetails){
+          $scope.searchList($routeParams.show_productDetails);
+          $scope.showdiv = true;
         }
 
 

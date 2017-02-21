@@ -129,10 +129,10 @@
       <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
         <!-- 1-->
         <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
-          <div class="breakfast-products__iamge" style="background-image:url({{list.mainImageUrl}});"></div>
+          <div class="breakfast-products__iamge" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name)"></div>
           <div class="breakfast-products__content">
 
-            <div class="products__description">
+            <div class="products__description" ng-click="showProductSearchPage(list.name)" style="cursor:pointer">
               <p>{{list.name}}</p>
               <p>{{list.description}}</p>
               <p class="products__price">{{list.salePrice}}AED</p>

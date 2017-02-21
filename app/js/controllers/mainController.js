@@ -399,5 +399,11 @@ $scope.showWishList = function(){
   });
 }
 
+//NOTE: redirect to search on click product
+  $scope.showProductSearchPage = function(productName){
+    $location.path('/search-page').search({
+      show_productDetails: productName,
+    });
+  }
 
 })

@@ -49,10 +49,10 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $cookieStore.put("emailId", data.email);
          $scope.getEmailId = $cookieStore.get('email');
          $cookieStore.put('loggedIn', true);
-         $location.path('/landing');
+         //$location.path('/landing');
         // $scope.getUserProfile();
          //location.reload(true);
-        //location.reload(true);
+        location.reload(true);
         ngToast.create({
           className: 'success',
           content: 'Account created successfully'
@@ -227,6 +227,10 @@ $scope.logged = false;
       console.log('user profile', data.name);
       $scope.userName = data.name;
       $scope.userEmail = data.email;
+      ngToast.create({
+        className: 'success',
+        content: 'Passowrd changed successfully'
+      });
     }).error(function(data) {
       console.log('data', data);
     });
