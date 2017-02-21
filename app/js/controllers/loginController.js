@@ -245,6 +245,8 @@ $scope.logged = false;
                  console.log("user",data);
                  $scope.userName = data.name;
                  $scope.emailId = data.email
+                 $cookieStore.put("emailId", $scope.emailId);
+                 $cookieStore.put('userName', $scope.userName);
 
              });
 
