@@ -116,13 +116,15 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     addAddress : function(inputs) {
       return $http.post(BASE_URL + '/api/address', inputs, {
       headers: {
+        'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'
         }
       });
     },
-    getAddressByUserId : function(id,inputs) {
-      return $http.get(BASE_URL + '/api/address/getaddressByUserId/'+id, inputs, {
+    getAddressByUserId : function() {
+      return $http.get(BASE_URL + '/api/address/getaddressByUserId/'+userId, {
       headers: {
+        'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'
         }
       });
@@ -144,6 +146,14 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     getCategories : function(inputs) {
       return $http.get(BASE_URL + '/api/categories', inputs, {
       headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getOrdersByUserId : function(inputs) {
+      return $http.get(BASE_URL + '/api/orders/getOrdersByUser/'+userId, inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'
         }
       });

@@ -46,7 +46,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
         //cookieStore
          $cookieStore.put("token", data.token);
          $cookieStore.put("userId", data._id);
-         $cookieStore.put("emailId", data.email);
+         $cookieStore.put("emailId", $scope.email);
          $scope.getEmailId = $cookieStore.get('email');
          $cookieStore.put('loggedIn', true);
          //$location.path('/landing');
@@ -350,6 +350,16 @@ $scope.signupModal = function(){
 $scope.loginModal = function(){
   $('#loginmodal').modal('hide');
   $('#signupmodal').modal('show');
+}
+
+//order getOrderBuYUserId
+$scope.getOrdersByUserId = function() {
+
+  Auth.getOrdersByUserId().success(function(data) {
+    console.log('user orders', data);
+  }).error(function(data) {
+    console.log('data', data);
+  });
 }
 
 

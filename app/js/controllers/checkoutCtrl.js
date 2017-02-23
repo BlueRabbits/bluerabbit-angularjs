@@ -171,7 +171,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     //get address by userId
     $scope.getAddressByUserId = function(){
       $scope.getUserId = $cookieStore.get('userId');
-      Auth.getAddressByUserId($scope.getUserId)
+      Auth.getAddressByUserId()
       .success(function(data){
         console.log('address by UserID resp', data);
           $scope.getAddressByUserId = data;
@@ -184,6 +184,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
 
     //selectedAddress
+    $scope.isChecked = false;
     $scope.selectedAddress = function(id,addresstype){
       $scope.showAddressType = false;
       $scope.addNewAddressRadio = false;
@@ -207,17 +208,18 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       //   }
       //
       // }
-      if ($scope.isChecked != $scope.isChecked) {
+      if($scope.isChecked) {
+       $scope.isChecked = true;
+       }else{
         $scope.isChecked = false;
-      }
+       }
+
     }
 
   //post address
-  $scope.addressType = [];
+  $scope.showDiv =  "display:none;";
   $scope.addAddress = function () {
-    // $scope.myAddressType = [];
 
-  console.log("addressTypeHome array",$scope.addressType);
     $scope.getUserId = $cookieStore.get('userId');
     $scope.userToken = $cookieStore.get('token');
 
@@ -230,9 +232,9 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       name:$scope.name,
       addressType:$scope.addressType,
       authToken: $scope.userToken,
-      street1:$scope.street1,
-      street2:$scope.street2,
-      street3: $scope.street3,
+      houseNo:$scope.houseNo,
+      streetName:$scope.streetName,
+      landmark: $scope.landmark,
       street4: $scope.street3,
       companyName:$scope.companyName,
       officeNumber:$scope.officeNumber,
