@@ -360,11 +360,11 @@ $('#nxt-testimonial').on('click', function(){
 
       //google maps
       var locations = [
-    ['Dubai', 25.07778, 55.15806, 4],
-    ['Khor Fakkan', 25.33333, 56.35000, 5],
-    ['Ajman', 25.40278, 55.47833, 3],
-    ['Abu Dhabi', 24.46611, 54.36667, 2],
-    ['Downtown Dubai', 	25.276987, 	55.296249, 1]
+    ['Downtown Dubai', 25.194985, 55.278414, 4],
+    ['Jumeira 1', 25.220111, 55.256308, 5],
+    ['Al Wasl', 25.2048, 55.2708, 3],
+    ['The Palm Jumeirah', 25.1124, 55.1390, 2],
+    ['Jebel Ali Village', 	25.029235, 	55.132065, 1]
   ];
 
   var map = new google.maps.Map(document.getElementById('map'), {
