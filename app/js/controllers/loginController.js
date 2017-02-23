@@ -360,7 +360,67 @@ $scope.getOrdersByUserId = function() {
   }).error(function(data) {
     console.log('data', data);
   });
-}
+};
 
+//get Address
+$scope.getAddressMyAccount = function(){
+
+  Auth.getAddressByUserId()
+  .success(function(data){
+    console.log('address by UserID resp', data);
+    $scope.getAddressByUserId = data;
+      }).error(function(data){
+        console.log(data);
+      });
+}
+//delete Address by Address ID
+$scope.deleteAddress = function(addressId){
+  console.log(addressId);
+  Auth.deleteAddress(addressId)
+  .success(function(data){
+    $scope.getAddressMyAccount();
+    console.log('address deleted', data);
+    ngToast.create({
+      className: 'success',
+      content: data.message
+    });
+      }).error(function(data){
+        console.log(data);
+      });
+}
+//edit Address by Address ID
+$scope.editAddress = function(addressId){
+  console.log(addressId);
+//   var addressDetails = {
+//   name: "DP",
+//   "userID": "4",
+//   "addressType": "myHomews",
+//   "authToken": "",
+//   "houseNo": "1st Cross",
+//   "streetName": "2nd main",
+//   "landmark": "3rd lane",
+//   "street4": "Near to hotel",
+//   "companyName": "",
+//   "officeNumber": "1234567890",
+//   "mobileNumber": "1234567890",
+//   "landLineNumber": "1234567890",
+//   "pinCode": "1234567890",
+//   "city": "bangalore",
+//   "state": "kar",
+//   "country": "INd",
+//   "isDefault": "True"
+// };
+//   Auth.editAddress(addressId)
+//   .success(function(data){
+//     $scope.getAddressMyAccount();
+//     console.log('address deleted', data);
+//     ngToast.create({
+//       className: 'success',
+//       content: data.message
+//     });
+//       }).error(function(data){
+//         console.log(data);
+//       });
+}
 
 })

@@ -1,7 +1,7 @@
 'use strict';
 app.factory('Auth', function($http, $window, $cookieStore) {
-  //var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
-  var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
+  var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
+  //var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
   //var BASE_URL = "http://localhost:9000";
   //var BASE_URL = "http://192.168.0.84:9000";
     var authToken = $cookieStore.get('token');
@@ -152,6 +152,22 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     },
     getOrdersByUserId : function(inputs) {
       return $http.get(BASE_URL + '/api/orders/getOrdersByUser/'+userId, inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    deleteAddress : function(addressId) {
+      return $http.delete(BASE_URL + '/api/address/'+addressId , {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    editAddress : function(addressId) {
+      return $http.put(BASE_URL + '/api/address/'+addressId , {
       headers: {
         'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'

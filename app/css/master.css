@@ -1916,6 +1916,25 @@ SMACSS: PAGE - LANDING
   letter-spacing: normal;
   color: #ffffff; }
 
+.close-button-address {
+  display: flex;
+  justify-content: center;
+  /* width: 28px; */
+  height: 20px;
+  /* margin: 10px 40px; */
+  position: relative;
+  float: right;
+  cursor: pointer;
+  right: 14px;
+  bottom: 0px; }
+
+.edit-button-address {
+  width: 23px;
+  float: right;
+  position: relative;
+  right: 34px;
+  cursor: pointer; }
+
 /*!
  * ngToast v2.0.0 (http://tameraydin.github.io/ngToast)
  * Copyright 2016 Tamer Aydin (http://tamerayd.in)
