@@ -1920,7 +1920,7 @@ SMACSS: PAGE - LANDING
   display: flex;
   justify-content: center;
   /* width: 28px; */
-  height: 20px;
+  height: 15px;
   /* margin: 10px 40px; */
   position: relative;
   float: right;
@@ -1929,7 +1929,7 @@ SMACSS: PAGE - LANDING
   bottom: 0px; }
 
 .edit-button-address {
-  width: 23px;
+  width: 15px;
   float: right;
   position: relative;
   right: 34px;

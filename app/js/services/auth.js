@@ -166,8 +166,8 @@ app.factory('Auth', function($http, $window, $cookieStore) {
         }
       });
     },
-    editAddress : function(addressId) {
-      return $http.put(BASE_URL + '/api/address/'+addressId , {
+    editAddress : function(addressId, addressDetails) {
+      return $http.put(BASE_URL + '/api/address/'+addressId ,addressDetails, {
       headers: {
         'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'

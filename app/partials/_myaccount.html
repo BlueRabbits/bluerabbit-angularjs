@@ -40,9 +40,10 @@
             Pages
         </div>
         <div class="col-md-9 well admin-content" id="Address">
-          <div class="address-box" ng-repeat="getMyAddress in getAddressByUserId ">
+          <!-- get address -->
+          <div class="address-box" style="width: 17%;" ng-repeat="getMyAddress in getAddressByUserId ">
             <div class="close-button-address" ng-click="deleteAddress(getMyAddress._id)"><img src="../images/close.svg"  type="image/svg+xml" /></div>
-            <img class="edit-button-address" ng-click="editAddress(getMyAddress._id)" src="../images/pencil.svg"  type="image/svg+xml" />
+            <img class="edit-button-address" ng-click="getAddressIdToEdit(getMyAddress._id)" src="../images/pencil.svg"  type="image/svg+xml" />
             <form class="form-inline" style="display: flex;padding: 12px;justify-content: flex-start;border-bottom: solid 1px #e40046;">
               <label class="radio-inline">
                 {{getMyAddress.addressType}}
@@ -61,6 +62,62 @@
               </p>
             </div>
           </div>
+          <!-- get address -->
+          <!-- edit address -->
+          <form ng-submit="editAddress()" class="col-lg-10" ng-show="showEditAddressFields">
+                <div class="form-group col-lg-6">
+                  <label for="usr">name:</label>
+                  <input type="text" class="form-control" ng-model="name" id="usr">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="pwd">houseNo:</label>
+                  <input type="text" class="form-control" ng-model="houseNo" id="pwd">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="pwd">streetName:</label>
+                  <input type="text" class="form-control" ng-model="streetName" id="pwd">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="pwd">landmark:</label>
+                  <input type="text" class="form-control" ng-model="landmark" id="pwd">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="pwd">companyName:</label>
+                  <input type="text" class="form-control" ng-model="companyName" id="pwd">
+                </div>
+                <!-- <div class="form-group col-lg-6">
+                  <label for="pwd">officeNumber:</label>
+                  <input type="text" class="form-control" ng-model="officeNumber" id="pwd">
+                </div> -->
+                <div class="form-group col-lg-6">
+                  <label for="pwd">mobileNumber:</label>
+                  <input type="text" class="form-control" ng-model="mobileNumber" id="pwd">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="pwd">landLineNumber:</label>
+                  <input type="text" class="form-control" ng-model="landLineNumber" id="pwd">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="pwd">pinCode:</label>
+                  <input type="text" class="form-control" ng-model="pinCode" id="pwd">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="pwd">city:</label>
+                  <input type="text" class="form-control" ng-model="city" id="pwd">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="pwd">state:</label>
+                  <input type="text" class="form-control" ng-model="state" id="pwd">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="pwd">country:</label>
+                  <input type="text" class="form-control" ng-model="country" id="pwd">
+                  <br/>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+
+            </form>
+          <!-- edit address -->
         </div>
         <!-- <div class="col-md-9 well admin-content" id="Messaging">
             Table

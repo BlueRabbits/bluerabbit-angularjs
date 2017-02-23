@@ -389,38 +389,62 @@ $scope.deleteAddress = function(addressId){
       });
 }
 //edit Address by Address ID
-$scope.editAddress = function(addressId){
+$scope.showEditAddressFields = false;
+$scope.getAddressIdToEdit = function(addressId){
+  $scope.showEditAddressFields = true;
   console.log(addressId);
-//   var addressDetails = {
-//   name: "DP",
-//   "userID": "4",
-//   "addressType": "myHomews",
-//   "authToken": "",
-//   "houseNo": "1st Cross",
-//   "streetName": "2nd main",
-//   "landmark": "3rd lane",
-//   "street4": "Near to hotel",
-//   "companyName": "",
-//   "officeNumber": "1234567890",
-//   "mobileNumber": "1234567890",
-//   "landLineNumber": "1234567890",
-//   "pinCode": "1234567890",
-//   "city": "bangalore",
-//   "state": "kar",
-//   "country": "INd",
-//   "isDefault": "True"
-// };
-//   Auth.editAddress(addressId)
-//   .success(function(data){
-//     $scope.getAddressMyAccount();
-//     console.log('address deleted', data);
-//     ngToast.create({
-//       className: 'success',
-//       content: data.message
-//     });
-//       }).error(function(data){
-//         console.log(data);
-//       });
+  $scope.getAddressId = addressId;
+  for (var i = 0; i < $scope.getAddressByUserId.length; i++) {
+    if ($scope.getAddressByUserId[i]._id === addressId) {
+        $scope.name = $scope.getAddressByUserId[i].name;
+        $scope.addressType = $scope.getAddressByUserId[i].addressType;
+        $scope.houseNo = $scope.getAddressByUserId[i].houseNo;
+        $scope.streetName = $scope.getAddressByUserId[i].streetName;
+        $scope.landmark = $scope.getAddressByUserId[i].landmark;
+        $scope.companyName = $scope.getAddressByUserId[i].companyName;
+        $scope.officeNumber = $scope.getAddressByUserId[i].officeNumber;
+        $scope.mobileNumber = $scope.getAddressByUserId[i].mobileNumber;
+        $scope.landLineNumber = $scope.getAddressByUserId[i].landLineNumber;
+        $scope.pinCode = $scope.getAddressByUserId[i].pinCode;
+        $scope.city = $scope.getAddressByUserId[i].city;
+        $scope.state = $scope.getAddressByUserId[i].state;
+        $scope.country = $scope.getAddressByUserId[i].country;
+    }
+  }
+}
+$scope.editAddress = function(){
+
+  var addressDetails = {
+  name: $scope.name,
+  userID: $scope.userId ,
+  addressType: $scope.addressType,
+  // "authToken": "",
+  houseNo: $scope.houseNo,
+  streetName: $scope.streetName,
+  landmark: $scope.landmark,
+  // street4: Near to hotel,
+  companyName: $scope.companyName,
+  // officeNumber: 1234567890,
+  mobileNumber: $scope.mobileNumber,
+  landLineNumber: $scope.landLineNumber,
+  pinCode: $scope.pinCode,
+  city: $scope.city,
+  state: $scope.state,
+  country: $scope.country
+  // isDefault: True
+};
+  Auth.editAddress($scope.getAddressId,addressDetails)
+  .success(function(data){
+    $scope.getAddressMyAccount();
+    $scope.showEditAddressFields = false;
+    console.log('address deleted', data);
+    ngToast.create({
+      className: 'success',
+      content: "Successfully Updated the address"
+    });
+      }).error(function(data){
+        console.log(data);
+      });
 }
 
 })
