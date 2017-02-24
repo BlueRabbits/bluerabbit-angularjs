@@ -74,41 +74,24 @@
 
   <!-- <p style="text-align:center;padding-top:50px;">Slider section</p> -->
   <div class="slider-section">
-    <div class="clearfix" style="height: 86px;display: flex;justify-content: flex-end;margin-right: 50px;">
-      <img src="images/arrow-left.svg" id="prv-testimonial" alt="PREV"  />
+    <div class="clearfix slider-control">
+      <img src="images/arrow-left.svg" id="prv-testimonial" alt="PREV" style="margin-right:10px;"  />
       <img src="images/arrow-right-active.svg" id="nxt-testimonial" alt="NEXT" />
-      </div>
-      <div id="carousel-wrap" style="width:83%;margin-left:85px;">
-        <ul id="testimonial-list" class="clearfix" style="height:100%">
-          <!-- <li ng-repeat="lists in allProducts">
-            <div class="" style="background-image:url({{lists.mainImageUrl}}); width: 62%;background-size: 100%;background-repeat: no-repeat;">
-
-            </div>
-            <div>
+    </div>
+    <div id="carousel-wrap">
+      <ul id="testimonial-list" class="clearfix" style="height:100%">
+        <li class="slide-list" ng-repeat="lists in allProducts | filter:{cat:'Dessert'}">
+          <div class="article_image" style="background-image:url({{lists.mainImageUrl}});"></div>
+          <div class="bestoffertext">
             <p class="context">{{lists.name}}</p>
             <p class="creds">{{lists.description}}</p>
-            <p class="creds">{{lists.salePrice}}</p>
+            <p class="creds">{{lists.salePrice}}AED</p>
+            <button type="button" ng-click="addToCart(lists._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
           </div>
-          </li> -->
-          <div class="slide-list" ng-repeat="lists in allProducts | filter:{cat:'Dessert'} ">
-            <li class=""  style="width: 375px;margin-left: 20px;margin-right: 50px;display:flex;align-items:center;justify-content:space-between;">
-              <div class="" style="box-shadow: 1px 0px 15px 9px #e3e3e3 ;">
-                   <div class="" style="background-image:url({{lists.mainImageUrl}});height:180px;width:232px; background-size: 138%;background-repeat: no-repeat;">
-
-                   </div>
-               </div>
-                <div class="bestoffertext">
-                  <p class="context">{{lists.name}}</p>
-                  <p class="creds">{{lists.description}}</p>
-                  <p class="creds">{{lists.salePrice}}AED</p>
-                  <button type="button" ng-click="addToCart(lists._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
-                </div>
-            </li>
-          </div>
-
-        </ul>
-      </div>
+        </li>
+      </ul>
     </div>
+  </div>
 
   <!-- Tab section -->
   <div class="tab_section" id="menu" >

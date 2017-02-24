@@ -1,7 +1,7 @@
 .section-header-menu {
   background-color: #515356;
   // opacity: 0.9;
-  height: 36px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   padding: 0 65px;
@@ -14,16 +14,21 @@
   align-items: center;
 
   p {
-    margin: 10px;
-    font-size: 14px;
+    margin: 10px 15px;
+    font-size: 12px;
+    letter-spacing: 2.4px;
     color: white;
     text-transform: uppercase;
     font-family: $font-Lato-regular;
     cursor: pointer;
+
     a{
       color: white;
       text-decoration: none;
-      cursor: pointer;
+
+      &:hover, &.active {
+        color: #d8d8d8;
+      }
     }
   }
 }
@@ -291,6 +296,19 @@
   height:360px;
   background-repeat:round;
   padding: 10px 100px;
+}
+
+.slider-control {
+  height: 65px;
+  display: block;
+  text-align: right;
+  padding: 18px 0;
+
+  > img {
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover { background-color: #c5c5c5; }
+  }
 }
 
 //Tab-section
@@ -828,8 +846,7 @@
 // }
 
 #carousel-wrap {
-    /* border: 1px solid #000; */
-  width: 485px;
+  width: 100%;
   overflow: hidden;
   text-align: center;
   left: 223px;
@@ -837,21 +854,38 @@
 }
 
 #testimonial-list {
-      overflow: hidden;
-      /* padding: 10px; */
-      width: 1600px;
-      // position: relative;
-      // top: 39px;
-          height: 94px;
-          display: flex;
+  overflow: hidden;
+  width: 1600px;
+  height: 94px;
+  display: flex;
+
+  .slide-list {
+    width: 200px;
+    height: 300px;
+
+    .article_image {
+      height: 200px;
+      width: 100%;
+      display: block;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .bestoffertext {
+      font-family: Lato;
+      font-size: 14px;
+      font-weight: 900;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left;
+      color: #515356;
+      padding: 12px;
+    }
+  }
 }
-#testimonial-list>li {
-    overflow: hidden;
-    padding: 0;
-    width: 400px;
-    // display: inline-block;
-    display: flex;
-}
+
 //caurocel new
 .carouselbox {
   font-family: helvetica,sans-serif;
@@ -905,19 +939,6 @@
 .offscreen {
   position: absolute;
   left: -2000px;
-}
-
-.bestoffertext {
-    font-family: Lato;
-    font-size: 14px;
-    font-weight: 900;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #515356;
-        padding: 12px;
 }
 
 .blog-date{

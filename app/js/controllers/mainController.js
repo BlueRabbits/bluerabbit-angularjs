@@ -20,7 +20,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   $('.header-menu__list').find('a').click(function(){
     var $href = $(this).attr('href');
     var $anchor = $($href).offset();
-    window.scrollTo($anchor.left,$anchor.top  - 100);
+    window.scrollTo($anchor.left,$anchor.top  - 147);
     return false;
   });
 
@@ -92,16 +92,16 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
 
   //slider
 
-  $('#prv-testimonial').on('click', function(){
+$('#prv-testimonial').on('click', function(){
     var $last = $('#testimonial-list .slide-list:last');
-    $last.remove().css({ 'margin-left': '-400px' });
+    $last.remove().css({ 'margin-left': '-200px' });
     $('#testimonial-list .slide-list:first').before($last);
     $last.animate({ 'margin-left': '0px' }, 1000);
 });
 
 $('#nxt-testimonial').on('click', function(){
     var $first = $('#testimonial-list .slide-list:first');
-    $first.animate({ 'margin-left': '-400px' }, 1000, function() {
+    $first.animate({ 'margin-left': '-200px' }, 1000, function() {
         $first.remove().css({ 'margin-left': '0px' });
         $('#testimonial-list .slide-list:last').after($first);
     });
