@@ -1,8 +1,8 @@
 'use strict';
 app.factory('Auth', function($http, $window, $cookieStore) {
   //var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
-  var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
-  //var BASE_URL = "http://localhost:9000";
+  //var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
+  var BASE_URL = "http://localhost:9000";
   //var BASE_URL = "http://192.168.0.84:9000";
     var authToken = $cookieStore.get('token');
     var userId = $cookieStore.get('userId');
@@ -168,6 +168,14 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     },
     editAddress : function(addressId, addressDetails) {
       return $http.put(BASE_URL + '/api/address/'+addressId ,addressDetails, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    makeCOD : function(inputs) {
+      return $http.post(BASE_URL + '/api/checkout/makePayment' ,inputs, {
       headers: {
         'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'

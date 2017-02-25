@@ -286,5 +286,21 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         // $scope.country = "";
       }
 
+      //make COD
+      $scope.makeCodPayment = function(){
+        var codDetails = {
+          "UserID":$scope.getUserId,
+        	"paymentMethod":1,
+        	"address":$scope.addressIdSelected,
+        	"billingAddress":$scope.addressIdSelected
+        }
+        Auth.makeCOD(codDetails)
+        .success(function(data){
+          console.log('codDetails', data);
+            }).error(function(data){
+              console.log(data);
+            });
+      }
+
       $scope.init();
 });
