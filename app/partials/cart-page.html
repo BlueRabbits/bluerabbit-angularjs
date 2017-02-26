@@ -378,7 +378,7 @@
 								</form> -->
           <div class="process-button-section process-button-section__center">
             <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-            <button type="submit" id="activate-step-4" class=" checkout-page__buttons active">Confirm</button>
+            <button type="submit" id="activate-step-4" class=" checkout-page__buttons active" ng-click="makeCodPayment()">Confirm</button>
           </div>
 
       </div>
@@ -390,9 +390,16 @@
           <h1 class="text-center"> Thank You For Your Order</h1>
           <form>
             <p class="thanks-message">
-              Your Invoice will be sent once delivered and Please contact us for more information
+              Congratulation!! Your order has been confirmed
             </p>
           </form>
+					<!-- <div class="thanks-message">
+						 <label>Order Status</label>
+						 <label>Order ID</label>{{codOrderDetails._id}}
+						 <label>Order Status</label>{{codOrderDetails.paymentStatus}}
+						 <label>Order orderAmount</label>{{codOrderDetails.orderAmount}}
+						 <label>Order orderDate</label>{{codOrderDetails.orderDate}}
+					</div> -->
 					<br/>
 					<br/>
 					<br/>
@@ -403,7 +410,7 @@
 					<br/>
           <div class="process-button-section process-button-section__center">
             <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-            <button  class=" checkout-page__buttons print-recipt__button active" ng-click="makeCodPayment()">Thank you</button>
+            <button  class=" checkout-page__buttons print-recipt__button active" ng-click="thankYou()">Thank you</button>
           </div>
       </div>
     </div>

@@ -297,9 +297,20 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         Auth.makeCOD(codDetails)
         .success(function(data){
           console.log('codDetails', data);
+          $scope.getcartItems();
+          ngToast.create({
+            className: 'success',
+            content: "Order is Placed"
+          });
+          $scope.codOrderDetails =  data;
             }).error(function(data){
               console.log(data);
             });
+      }
+
+      //thankyou btn
+      $scope.thankYou = function(){
+        window.location = "#/landing";
       }
 
       $scope.init();
