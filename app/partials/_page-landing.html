@@ -1,10 +1,8 @@
 
-<div class="" id="scroll-menu-fixed" style="z-index: 5;">
+<div class="" id="scroll-menu-fixed">
   @@include('_header.html')
-</div>
-<div class="">
   <div class="section-main-content">
-    <div class="section-header-menu" id="scroll-menu-fixed1" style="z-index: 5;">
+    <div class="section-header-menu" style="z-index: 5;">
       <div class="header-menu__list">
         <p><a href="#menu" data-target="#menu">Menu </a></p>
     		<p><a href="#locations">Locations</a></p>
@@ -26,28 +24,10 @@
     		<p>favorites</p>
       </div>
     </div>
-
-    <!-- <div ng-init="showSlides()" ng-repeat="lists in allProducts  | filter:{cat:'Add-ons'}:true | limitTo : 3">
-      <div class="section-content mySlides" style="background-image:url({{lists.mainImageUrl}});">
-          <div class="social-images">
-            <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
-            <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
-            <div class="google-btn"><p>Google+</p><img src="images/google-icon-copy-2@3x.png" alt="G+" /></div>
-            <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
-          </div>
-          <div style="padding-top: 100px;padding-left: 108px;">
-              <h2>{{lists.name}}</h2>
-              <p>{{lists.description}}</p>
-              <div class="buy-now-button">
-                <button type="button" ng-click="addToCart(lists._id)" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
-              </div>
-        </div>
-      </div>
-    </div> -->
-
   </div>
-  <!-- newslide -->
-<div class="section-content">
+</div>
+<!-- newslide -->
+<div class="section-content" style="padding-top:147px;">
   <div class="social-images" style="z-index: 5;">
     <div class="fb-btn"><p>Facebook</p><img src="images/Facebook Icon@3x.png" alt="Facebook" /></div>
     <div class="tw-btn"><p>Twitter</p><img src="images/twitter-icon-copy-2@3x.png" alt="Twitter" /></div>
@@ -55,291 +35,272 @@
     <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
   </div>
   <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" style="height: 290px;    z-index: 0;">
-  <div uib-slide ng-repeat="lists in allProducts | filter:{cat:'Dessert'} " index="$index" style="height: 290px;">
-    <!-- <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%"> -->
-    <div style="background-image:url({{lists.mainImageUrl}});margin:auto;width: 100%;  height: 290px;z-index:0;background-size: 100%;">
-    </div>
-    <div class="carousel-caption" style="padding: 0px 550px 28px 2px; width: 75%;display: flex;flex-direction: column;align-items: center;">
-        <h2> {{lists.name}}</h2>
-        <p>{{lists.description}}</p>
-        <div class="buy-now-button">
-          <button type="button" style="outline: none;" ng-click="addToCart(lists._id)" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
-        </div>
+    <div uib-slide ng-repeat="lists in allProducts | filter:{cat:'Dessert'} " index="$index" style="height: 290px;">
+      <!-- <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%"> -->
+      <div style="background-image:url({{lists.mainImageUrl}});margin:auto;width: 100%;  height: 290px;z-index:0;background-size: 100%;">
+      </div>
+      <div class="carousel-caption" style="padding: 0px 550px 28px 2px; width: 75%;display: flex;flex-direction: column;align-items: center;">
+          <h2> {{lists.name}}</h2>
+          <p>{{lists.description}}</p>
+          <div class="buy-now-button">
+            <button type="button" style="outline: none;" ng-click="addToCart(lists._id)" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
+          </div>
+      </div>
     </div>
   </div>
 </div>
-</div>
-  <!-- newslide -->
+<!-- newslide -->
 <!-- slider section -->
 
-  <!-- <p style="text-align:center;padding-top:50px;">Slider section</p> -->
-  <div class="slider-section">
-    <div class="clearfix" style="height: 86px;display: flex;justify-content: flex-end;margin-right: 50px;">
-      <img src="images/arrow-left.svg" id="prv-testimonial" alt="PREV"  />
-      <img src="images/arrow-right-active.svg" id="nxt-testimonial" alt="NEXT" />
+<!-- <p style="text-align:center;padding-top:50px;">Slider section</p> -->
+<div class="slider-section">
+  <div class="clearfix slider-control">
+    <img src="images/arrow-left.svg" id="prv-testimonial" alt="PREV" style="margin-right:10px;"  />
+    <img src="images/arrow-right-active.svg" id="nxt-testimonial" alt="NEXT" />
+  </div>
+  <div id="carousel-wrap">
+    <ul id="testimonial-list" class="clearfix">
+      <li class="slide-list" ng-repeat="lists in allProducts | filter:{cat:'Dessert'}">
+        <div class="article_image" style="background-image:url({{lists.mainImageUrl}});"></div>
+        <div class="bestoffertext">
+          <p class="context l2">{{lists.name}}</p>
+          <p class="creds l1">{{lists.description}}</p>
+          <label class="creds l1">{{lists.salePrice}}AED</label>
+          <button type="button" ng-click="addToCart(lists._id)" name="button">Add To Cart</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Tab section -->
+<div class="tab_section" id="menu">
+  <h1>Our Menu</h1>
+  <div class="menu-tabs">
+    <ul class="menu-tabs__list" id="tabs-menu">
+      <li ng-repeat="categories in getCategoryList">
+        <a style="cursor:pointer;" data-toggle="tab"
+            ng-class="{'active' : categories.name == categoryNames}"
+            ng-click="setActiveTab(categories._id,categories.name)">
+              {{categories.name}}
+        </a>
+      </li>
+      <!-- <button type="button" name="button">view all</button> -->
+    </ul>
+  </div>
+  <div class="menu-tabs__products-list ">
+    <a href="" ng-click="initSetTab('previous')"><img src="images/icon_arrow_left.png" class="arrow arrow_left" alt="left"></a>
+    <a href="" ng-click="initSetTab('next')"><img src="images/icon_arrow_right.png" class="arrow arrow_right" alt="right"></a>
+    <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
+      <!-- 1-->
+      <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
+        <div class="breakfast-products__iamge" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name)"></div>
+        <div class="breakfast-products__content">
+          <div class="products__description" ng-click="showProductSearchPage(list.name)" style="cursor:pointer">
+            <p>{{list.name}}</p>
+            <p>{{list.description}}</p>
+            <p class="products__price">{{list.salePrice}}AED</p>
+          </div>
+          <button type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
+        </div>
       </div>
-      <div id="carousel-wrap" style="width:83%;margin-left:85px;">
-        <ul id="testimonial-list" class="clearfix" style="height:100%">
-          <!-- <li ng-repeat="lists in allProducts">
-            <div class="" style="background-image:url({{lists.mainImageUrl}}); width: 62%;background-size: 100%;background-repeat: no-repeat;">
+    </div>
+  </div>
+</div>
 
-            </div>
-            <div>
-            <p class="context">{{lists.name}}</p>
-            <p class="creds">{{lists.description}}</p>
-            <p class="creds">{{lists.salePrice}}</p>
+<!-- location section -->
+<div class="location-section" id="locations">
+  <p class="location-section-heading">
+    Locations We Deliver
+  </p>
+  <div class="location-services">
+    <div class="location-services__search">
+      <p class="location-services-heading">
+        Where We Deliver
+      </p>
+      <input type="serach" name="search-box" class="location-search" placeholder="Ex:Bangalore">
+      <div class="location-search-places">
+        <img src="images/pin-icon.png" alt="" />
+        <div class="search-place__address">
+          <p>
+            1600 Amphitheatre Parkway Mountain View, CA 94043
+          </p>
+        </div>
+        <div class="search-place__contact">
+          <p>hello@basis.com</p>
+          <p>+1 650-253-0000</p>
+        </div>
+      </div>
+      <div class="location-search-places">
+        <img src="images/pin-icon.png" alt="" />
+        <div class="search-place__address">
+          <p>
+            1600 Amphitheatre Parkway Mountain View, CA 94043
+          </p>
+        </div>
+        <div class="search-place__contact">
+          <p>hello@basis.com</p>
+          <p>+1 650-253-0000</p>
+        </div>
+      </div>
+      <div class="location-search-places">
+        <img src="images/pin-icon.png" alt="" />
+        <div class="search-place__address">
+          <p>
+            1600 Amphitheatre Parkway Mountain View, CA 94043
+          </p>
+        </div>
+        <div class="search-place__contact">
+          <p>hello@basis.com</p>
+          <p>+1 650-253-0000</p>
+        </div>
+      </div>
+    </div>
+    <div class="location-services__map" id="map">
+      <!-- map servises -->
+    </div>
+  </div>
+</div>
+<!-- About us section -->
+<div class="aboutus-section" id="about">
+  <div class="aboutus-section__content">
+    <div class="aboutus-description">
+      <h1>About us</h1>
+      <p id="descrption-1">
+        The kit consists of
+        more than a hundred ready-to-use elements that you can combine to get the exact prototype you want
+      </p>
+      <p id="descrption-2">
+        Although, today we’re even more excited to release our Wireframe Kit.
+        The name speaks for itself and how you could’ve already guessed,
+        Wireframe Kit is a perfect instrument for creating serious prototypes and complex web projects.
+        Basically, the kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want.
+        We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time
+      </p>
+    </div>
+    <div class="vertical-line" style="width:70px;border-right: 1px solid white;margin: 0 11px;">
+
+    </div>
+    <div class="aboutus-team">
+      <div class="team-member__profile">
+        <div class="team-member-image">
+          <div class="team-member-image__thumbnail" style="background-image:url(images/fish.png)">
+
           </div>
-          </li> -->
-          <div class="slide-list" ng-repeat="lists in allProducts | filter:{cat:'Dessert'} ">
-            <li class=""  style="width: 375px;margin-left: 20px;margin-right: 50px;display:flex;align-items:center;justify-content:space-between;">
-              <div class="" style="box-shadow: 1px 0px 15px 9px #e3e3e3 ;">
-                   <div class="" style="background-image:url({{lists.mainImageUrl}});height:180px;width:232px; background-size: 138%;background-repeat: no-repeat;">
+        </div>
+        <div class="team-member-details">
+          <p class="member-name">Lula alexander</p>
+          <p class="member-designation">Head Of operation</p>
+          <p class="member-strength">
+            An excellent way of preparing a project’s wireframe and presenting
+          </p>
+        </div>
+      </div>
+      <div class="team-member__profile">
+        <div class="team-member-image">
+          <div class="team-member-image__thumbnail" style="background-image:url(images/fish.png)">
 
-                   </div>
-               </div>
-                <div class="bestoffertext">
-                  <p class="context">{{lists.name}}</p>
-                  <p class="creds">{{lists.description}}</p>
-                  <p class="creds">{{lists.salePrice}}AED</p>
-                  <button type="button" ng-click="addToCart(lists._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
-                </div>
-            </li>
           </div>
+        </div>
+        <div class="team-member-details">
+          <p class="member-name">Lula alexander</p>
+          <p class="member-designation">Head Of operation</p>
+          <p class="member-strength">
+            An excellent way of preparing a project’s wireframe and presenting
+          </p>
+        </div>
+      </div>
+      <div class="team-member__profile">
+        <div class="team-member-image">
+          <div class="team-member-image__thumbnail" style="background-image:url(images/fish.png)">
 
+          </div>
+        </div>
+        <div class="team-member-details">
+          <p class="member-name">Lula alexander</p>
+          <p class="member-designation">Head Of operation</p>
+          <p class="member-strength">
+            An excellent way of preparing a project’s wireframe and presenting
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- App store -->
+<div class="app-store" id="appstore">
+  <div class="app-store-mobile">
+    <img src="images/mobile-app.png" alt="" />
+  </div>
+  <div class="app-store-content">
+    <p class=app-store-heading>
+      Download the App & Get 50% off
+    </p>
+    <p class="app-store-description">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+       Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+       when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+      It has survived not only five centuries, but also the leap into electronic typesetting.
+    </p>
+    <div class="app-store-buttons">
+      <img src="images/google-play@3x.png" alt="" />
+      <img src="images/apple@3x.png" alt="" />
+    </div>
+  </div>
+</div>
+
+<!-- blog Section -->
+<div class="blog-section" id="blog">
+  <div class="blog-section__header">
+    <p>Our Community</p>
+    <!-- <button type="button" name="button">View All</button> -->
+  </div>
+  <div class="blog__content">
+    <div class="blog__content__text">
+      <div class="blog-date"> 14      </div>
+      <div class="blog-year">Feb  2017</div>
+
+      <div class="content__text">
+        <p class="content__text--heading">
+          ROASTED SALMON & SUMMER VEG TRAY BAKE
+        </p>
+        <ul class="comments-location">
+          <li>By Gamba Studio /</li>
+          <li><img src="images/comments@3x.png" alt="" /> No Comment /</li>
+          <li><img src="images/tags@3x.png" alt="" /> Restaurant</li>
         </ul>
-      </div>
-    </div>
-
-  <!-- Tab section -->
-  <div class="tab_section" id="menu" >
-    <h1>Our Menu</h1>
-    <div class="menu-tabs" style="display: flex;justify-content: space-between;">
-      <ul class="menu-tabs__list" id="tabs-menu" ng-repeat="categories in getCategoryList">
-        <li><a style="cursor:pointer;" data-toggle="tab" ng-class="{'active' : categories.name == categoryNames}" ng-click="setActiveTab(categories._id,categories.name)"> {{categories.name}}</a></li>
-        <!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
-        <li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
-        <li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
-        <li><a href="#rolls-tab" data-toggle="tab">Soups & Broth</a></li>
-        <li><a href="#rolls-tab" data-toggle="tab">Krazy Toss</a></li>
-        <li><a href="#rolls-tab" data-toggle="tab"> Dessert/Yogurt/Beverages</a></li>
-        <button type="button" name="button">view all</button> -->
-      </ul>
-    </div>
-    <div class="menu-tabs__products-list ">
-      <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
-        <!-- 1-->
-        <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
-          <div class="breakfast-products__iamge" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name)"></div>
-          <div class="breakfast-products__content">
-
-            <div class="products__description" ng-click="showProductSearchPage(list.name)" style="cursor:pointer">
-              <p>{{list.name}}</p>
-              <p>{{list.description}}</p>
-              <p class="products__price">{{list.salePrice}}AED</p>
-            </div>
-            <button type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- location section -->
-  <div class="location-section" id="locations">
-    <p class="location-section-heading">
-      Locations We Deliver
-    </p>
-    <div class="location-services">
-      <div class="location-services__search">
-        <p class="location-services-heading">
-          Where We Deliver
-        </p>
-        <input type="serach" name="search-box" class="location-search" placeholder="Ex:Bangalore">
-        <div class="location-search-places">
-          <img src="images/pin-icon.png" alt="" />
-          <div class="search-place__address">
-            <p>
-              1600 Amphitheatre Parkway Mountain View, CA 94043
-            </p>
-          </div>
-          <div class="search-place__contact">
-            <p>hello@basis.com</p>
-            <p>+1 650-253-0000</p>
-          </div>
-        </div>
-        <div class="location-search-places">
-          <img src="images/pin-icon.png" alt="" />
-          <div class="search-place__address">
-            <p>
-              1600 Amphitheatre Parkway Mountain View, CA 94043
-            </p>
-          </div>
-          <div class="search-place__contact">
-            <p>hello@basis.com</p>
-            <p>+1 650-253-0000</p>
-          </div>
-        </div>
-        <div class="location-search-places">
-          <img src="images/pin-icon.png" alt="" />
-          <div class="search-place__address">
-            <p>
-              1600 Amphitheatre Parkway Mountain View, CA 94043
-            </p>
-          </div>
-          <div class="search-place__contact">
-            <p>hello@basis.com</p>
-            <p>+1 650-253-0000</p>
-          </div>
-        </div>
-      </div>
-      <div class="location-services__map" id="map">
-        <!-- map servises -->
-      </div>
-    </div>
-  </div>
-  <!-- About us section -->
-  <div class="aboutus-section" id="about">
-    <div class="aboutus-section__content">
-      <div class="aboutus-description">
-        <h1>About us</h1>
-        <p id="descrption-1">
-          The kit consists of
-          more than a hundred ready-to-use elements that you can combine to get the exact prototype you want
-        </p>
-        <p id="descrption-2">
-          Although, today we’re even more excited to release our Wireframe Kit.
-          The name speaks for itself and how you could’ve already guessed,
-          Wireframe Kit is a perfect instrument for creating serious prototypes and complex web projects.
-          Basically, the kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want.
-          We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time
+        <p class="blog-description">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+           Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+           when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+           It has survived not only five centuries, but also the leap into electronic typesetting.r
+          took a galley of type and scrambled it to make a type specimen book. It has survived not.
         </p>
       </div>
-      <div class="vertical-line" style="width:70px;border-right: 1px solid white;margin: 0 11px;">
-
-      </div>
-      <div class="aboutus-team">
-        <div class="team-member__profile">
-          <div class="team-member-image">
-            <div class="team-member-image__thumbnail" style="background-image:url(images/fish.png)">
-
-            </div>
-          </div>
-          <div class="team-member-details">
-            <p class="member-name">Lula alexander</p>
-            <p class="member-designation">Head Of operation</p>
-            <p class="member-strength">
-              An excellent way of preparing a project’s wireframe and presenting
-            </p>
-          </div>
-        </div>
-        <div class="team-member__profile">
-          <div class="team-member-image">
-            <div class="team-member-image__thumbnail" style="background-image:url(images/fish.png)">
-
-            </div>
-          </div>
-          <div class="team-member-details">
-            <p class="member-name">Lula alexander</p>
-            <p class="member-designation">Head Of operation</p>
-            <p class="member-strength">
-              An excellent way of preparing a project’s wireframe and presenting
-            </p>
-          </div>
-        </div>
-        <div class="team-member__profile">
-          <div class="team-member-image">
-            <div class="team-member-image__thumbnail" style="background-image:url(images/fish.png)">
-
-            </div>
-          </div>
-          <div class="team-member-details">
-            <p class="member-name">Lula alexander</p>
-            <p class="member-designation">Head Of operation</p>
-            <p class="member-strength">
-              An excellent way of preparing a project’s wireframe and presenting
-            </p>
-          </div>
-        </div>
-      </div>
+    </div>
+    <div class="blog__content__image">
+      <img src="images/bitmap@3x.png" alt="" />
     </div>
   </div>
-
-  <!-- App store -->
-  <div class="app-store" id="appstore">
-    <div class="app-store-mobile">
-      <img src="images/mobile-app.png" alt="" />
-    </div>
-    <div class="app-store-content">
-      <p class=app-store-heading>
-        Download the App & Get 50% off
-      </p>
-      <p class="app-store-description">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-         Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
-         when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        It has survived not only five centuries, but also the leap into electronic typesetting.
-      </p>
-      <div class="app-store-buttons">
-        <img src="images/google-play@3x.png" alt="" />
-        <img src="images/apple@3x.png" alt="" />
-      </div>
-    </div>
+</div>
+<!-- Our Partners -->
+<div class="our-partners-section" id="ourpartners">
+  <p class="our-partners-title">
+    Our Partners
+  </p>
+  <p class="our-partners-description">
+    The kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want
+  </p>
+  <div class="partners-logos">
+    <img src="images/b-b-c.png" alt="" />
+    <img src="images/netflix.png" alt="" />
+    <img src="images/forbes.png" alt="" />
+    <img src="images/mashable.png" alt="" />
+    <img src="images/lifehacker.png" alt="" />
+    <img src="images/buzz-feed.png" alt="" />
   </div>
-
-  <!-- blog Section -->
-  <div class="blog-section" id="blog">
-    <div class="blog-section__header">
-      <p>Our Community</p>
-      <!-- <button type="button" name="button">View All</button> -->
-    </div>
-    <div class="blog__content">
-      <div class="blog__content__text">
-        <div class="blog-date"> 14      </div>
-        <div class="blog-year">Feb  2017</div>
-
-        <div class="content__text">
-          <p class="content__text--heading">
-            ROASTED SALMON & SUMMER VEG TRAY BAKE
-          </p>
-          <ul class="comments-location">
-            <li>By Gamba Studio /</li>
-            <li><img src="images/comments@3x.png" alt="" /> No Comment /</li>
-            <li><img src="images/tags@3x.png" alt="" /> Restaurant</li>
-          </ul>
-          <p class="blog-description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-             Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
-             when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-             It has survived not only five centuries, but also the leap into electronic typesetting.r
-            took a galley of type and scrambled it to make a type specimen book. It has survived not.
-          </p>
-        </div>
-      </div>
-      <div class="blog__content__image">
-        <img src="images/bitmap@3x.png" alt="" />
-      </div>
-    </div>
-  </div>
-  <!-- Our Partners -->
-  <div class="our-partners-section" id="ourpartners">
-    <p class="our-partners-title">
-      Our Partners
-    </p>
-    <p class="our-partners-description">
-      The kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want
-    </p>
-    <div class="partners-logos">
-      <img src="images/b-b-c.png" alt="" />
-      <img src="images/netflix.png" alt="" />
-      <img src="images/forbes.png" alt="" />
-      <img src="images/mashable.png" alt="" />
-      <img src="images/lifehacker.png" alt="" />
-      <img src="images/buzz-feed.png" alt="" />
-    </div>
-  </div>
-  <div class="" id="contact">
-    @@include('_footer.html')
-  </div>
-
-
+</div>
+<div class="" id="contact">
+  @@include('_footer.html')
 </div>

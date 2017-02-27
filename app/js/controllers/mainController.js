@@ -20,7 +20,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   $('.header-menu__list').find('a').click(function(){
     var $href = $(this).attr('href');
     var $anchor = $($href).offset();
-    window.scrollTo($anchor.left,$anchor.top  - 100);
+    window.scrollTo($anchor.left,$anchor.top  - 147);
     return false;
   });
 
@@ -92,16 +92,16 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
 
   //slider
 
-  $('#prv-testimonial').on('click', function(){
+$('#prv-testimonial').on('click', function(){
     var $last = $('#testimonial-list .slide-list:last');
-    $last.remove().css({ 'margin-left': '-400px' });
+    $last.remove().css({ 'margin-left': '-248px' });
     $('#testimonial-list .slide-list:first').before($last);
     $last.animate({ 'margin-left': '0px' }, 1000);
 });
 
 $('#nxt-testimonial').on('click', function(){
     var $first = $('#testimonial-list .slide-list:first');
-    $first.animate({ 'margin-left': '-400px' }, 1000, function() {
+    $first.animate({ 'margin-left': '-248px' }, 1000, function() {
         $first.remove().css({ 'margin-left': '0px' });
         $('#testimonial-list .slide-list:last').after($first);
     });
@@ -124,24 +124,14 @@ $('#nxt-testimonial').on('click', function(){
 
   //scrooling page,showing header fixed
 
-  var elementPosition = $('#scroll-menu-fixed').offset().top;
-
-  $(window).scroll(function(){
-    if($(window).scrollTop() > elementPosition){
-          $('#scroll-menu-fixed').css('position','fixed').css({"top":"0","right":"0","left":"0"});
-    } else {
-        $('#scroll-menu-fixed').css('position','static');
-    }
-  });
-  var elementPosition = $('#scroll-menu-fixed1').offset().top;
-
-  $(window).scroll(function(){
-    if($(window).scrollTop() > elementPosition){
-          $('#scroll-menu-fixed1').css('position','fixed').css({"top":"97px","right":"0","left":"0"});
-    } else {
-        $('#scroll-menu-fixed1').css('position','static');
-    }
-  });
+// $(window).scroll(function(){
+//   var elementPosition = $('#scroll-menu-fixed').offset().top;
+//   if($(window).scrollTop() > elementPosition){
+//     $('#scroll-menu-fixed').css('position','fixed').css({"top":"0","right":"0","left":"0"});
+//   } else {
+//     $('#scroll-menu-fixed').css('position','static');
+//   }
+// });
 
   //get all products in landing page
   $scope.product = function() {
@@ -184,7 +174,26 @@ $('#nxt-testimonial').on('click', function(){
   $scope.setActiveTab = function(tabToSet, categoryName){
       $scope.activeTab = tabToSet;
       $scope.categoryNames = categoryName;
-      console.log("clicked",tabToSet);
+      console.log('id', tabToSet);
+      console.log('name', categoryName);
+  }
+
+  $scope.initSetTab = function(dir) {
+    var parent = angular.element('.menu-tabs__list');
+    var $activeateElm = null;
+    for(var i=0; i<parent.children().length; i++) {
+      if($(parent.children()[i]).children().hasClass('active')) {
+        if(dir === 'next') {
+          $activeateElm = $(parent.children()[i]).next();
+        } else {
+          $activeateElm = $(parent.children()[i]).prev();
+        }
+      }
+    }
+    console.log($activeateElm);
+    $timeout(function() {
+      angular.element($activeateElm).trigger('click');
+    }, 0);
   }
 
   //POST create add to cart

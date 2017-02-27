@@ -13,7 +13,8 @@
     "ngToast": "ngtoast#^2.0.0",
     "angular-bootstrap": "angular-ui-bootstrap-bower#0.13.4",
     "angular-google-plus": "^0.1.3",
-    "angular-facebook": "^0.2.3"
+    "angular-facebook": "^0.2.3",
+    "owl.carousel": "^2.2.0"
   },
   "devDependencies": {},
   "overrides": {}
