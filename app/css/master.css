@@ -143,6 +143,23 @@ input {
     .profile_details p a {
       color: white;
       text-decoration: none; }
+  .profile_details .cart-with-num {
+    margin-left: -10px;
+    color: #fff;
+    width: 23px;
+    text-align: center;
+    position: relative; }
+    .profile_details .cart-with-num:before {
+      content: " ";
+      background-color: #515356;
+      width: 23px;
+      height: 23px;
+      position: absolute;
+      border-radius: 50%;
+      left: 0px; }
+    .profile_details .cart-with-num span {
+      position: relative;
+      top: 1px; }
   .profile_details img {
     margin-left: 10px;
     margin-top: -5px; }
@@ -949,9 +966,9 @@ SMACSS: PAGE - LANDING
 
 .tab_section {
   background-image: url(../images/tab-section-bg.png);
-  height: 675px;
-  background-repeat: round;
-  padding: 41px 100px; }
+  background-repeat: no-repeat;
+  padding: 41px 100px;
+  background-size: cover; }
   .tab_section h1 {
     font-size: 52px;
     color: #fff;
@@ -960,10 +977,9 @@ SMACSS: PAGE - LANDING
     font-family: "Lato-Light"; }
 
 .menu-tabs__list {
+  padding: 25px 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 0; }
+  justify-content: space-between; }
   .menu-tabs__list li a {
     color: #fff;
     font-size: 12px;
@@ -989,7 +1005,19 @@ SMACSS: PAGE - LANDING
 .menu-tabs__breakfast {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  position: relative; }
+
+.menu-tabs__products-list {
+  position: relative; }
+  .menu-tabs__products-list .arrow {
+    position: absolute;
+    top: 50%;
+    margin-top: -24px; }
+    .menu-tabs__products-list .arrow.arrow_left {
+      left: -50px; }
+    .menu-tabs__products-list .arrow.arrow_right {
+      right: -50px; }
 
 .breakfast-products {
   background-color: white;
@@ -1376,6 +1404,13 @@ SMACSS: PAGE - LANDING
 
 .blog__content__image img {
   height: 406px; }
+
+#scroll-menu-fixed {
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0; }
 
 #carousel-wrap {
   width: 100%;

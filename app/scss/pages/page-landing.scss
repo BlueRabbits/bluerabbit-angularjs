@@ -311,10 +311,10 @@
 
 //Tab-section
 .tab_section {
-  background-image:url(../images/tab-section-bg.png);
-  height:675px;
-  background-repeat:round;
+  background-image: url(../images/tab-section-bg.png);
+  background-repeat: no-repeat;
   padding: 41px 100px;
+  background-size: cover;
 
   h1 {
     font-size: 52px;
@@ -326,10 +326,12 @@
 }
 
 .menu-tabs__list {
+  padding: 25px 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 25px 0;
+
+  
+
    li a{
      color: $color-white;
      font-size: 12px;
@@ -362,6 +364,24 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: relative;
+}
+
+.menu-tabs__products-list {
+  position: relative;
+
+  .arrow {
+    position: absolute;
+    top:50%;
+    margin-top: -24px;
+
+    &.arrow_left {
+      left: -50px;
+    }
+    &.arrow_right {
+      right: -50px;
+    }
+  }
 }
 
 .breakfast-products {
@@ -842,6 +862,14 @@
 //   margin-left:15px;
 //   background-image:none;
 // }
+
+#scroll-menu-fixed{
+ z-index: 5;
+ position:fixed;
+ top:0;
+ right:0;
+ left:0;
+}
 
 #carousel-wrap {
   width: 100%;
