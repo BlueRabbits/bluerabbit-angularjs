@@ -415,4 +415,16 @@ $scope.showWishList = function(){
     });
   }
 
+  //NOTE : todays deal api
+  $scope.getTodaysDeal = function(){
+        Auth.todaysDeal().success (function (data) {
+          console.log('get todaysDeal', data);
+          $scope.getTodaysDealProduct = data;
+        }).error(function(data){
+          console.log('data', data);
+             console.log("no categories");
+        });
+  };
+  $scope.getTodaysDeal();
+
 })

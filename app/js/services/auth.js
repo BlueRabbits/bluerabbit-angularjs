@@ -183,6 +183,14 @@ app.factory('Auth', function($http, $window, $cookieStore) {
         }
       });
     },
+    todaysDeal : function(inputs) {
+      return $http.get(BASE_URL + '/api/todaysDeal' ,inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
 
 
   };
