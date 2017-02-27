@@ -217,8 +217,8 @@ $scope.logged = false;
   //   "token" : authToken
   // }
   $scope.changePassword = function() {
-      var authToken = 'Bearer '+$cookieStore.get('token');
-      console.log("authToken chang pwd",authToken);
+      // var authToken = 'Bearer '+$cookieStore.get('token');
+      // console.log("authToken chang pwd",authToken);
     var passwordToChange = {
       "oldPassword": $scope.oldPassword,
       "newPassword": $scope.newPassword
