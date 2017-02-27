@@ -42,8 +42,8 @@
         <div class="col-md-9 well admin-content" id="Address">
           <!-- get address -->
           <div class="address-box" style="width: 17%;" ng-repeat="getMyAddress in getAddressByUserId ">
-            <div class="close-button-address" ng-click="deleteAddress(getMyAddress._id)"><img src="../images/close.svg"  type="image/svg+xml" /></div>
-            <img class="edit-button-address" ng-click="getAddressIdToEdit(getMyAddress._id)" src="../images/pencil.svg"  type="image/svg+xml" />
+            <div class="close-button-address" ng-click="deleteAddress(getMyAddress._id)"><img src="images/close.svg"  type="image/svg+xml" /></div>
+            <img class="edit-button-address" ng-click="getAddressIdToEdit(getMyAddress._id)" src="images/pencil.svg"  type="image/svg+xml" />
             <form class="form-inline" style="display: flex;padding: 12px;justify-content: flex-start;border-bottom: solid 1px #e40046;">
               <label class="radio-inline">
                 {{getMyAddress.addressType}}
