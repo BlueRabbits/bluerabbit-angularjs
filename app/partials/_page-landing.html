@@ -79,14 +79,14 @@
       <img src="images/arrow-right-active.svg" id="nxt-testimonial" alt="NEXT" />
     </div>
     <div id="carousel-wrap">
-      <ul id="testimonial-list" class="clearfix" style="height:100%">
+      <ul id="testimonial-list" class="clearfix">
         <li class="slide-list" ng-repeat="lists in allProducts | filter:{cat:'Dessert'}">
           <div class="article_image" style="background-image:url({{lists.mainImageUrl}});"></div>
           <div class="bestoffertext">
-            <p class="context">{{lists.name}}</p>
-            <p class="creds">{{lists.description}}</p>
-            <p class="creds">{{lists.salePrice}}AED</p>
-            <button type="button" ng-click="addToCart(lists._id)" name="button" style="width: 130px;color:#fff;height: 36px;border:none;border-radius: 40px;background-color: #d92e4a;">Add To Cart</button>
+            <p class="context l2">{{lists.name}}</p>
+            <p class="creds l1">{{lists.description}}</p>
+            <label class="creds l1">{{lists.salePrice}}AED</label>
+            <button type="button" ng-click="addToCart(lists._id)" name="button">Add To Cart</button>
           </div>
         </li>
       </ul>
