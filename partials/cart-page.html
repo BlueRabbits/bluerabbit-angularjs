@@ -183,9 +183,9 @@
 		 <!-- <p><a href="" ng-click="logout()">Logout</a></p> -->
 		</div>
 
-		<a href="#/search-page" style="margin-top: 10px;"><img src="images/basket@2x.png" height="26px" ng-click="getcartItems()"></a>
-		<p>
-			{{cartLength}}
+		<a href="#/search-page" style="margin-top: 5px;"><img src="images/basket@2x.png" height="30px" ng-click="getcartItems()"></a>
+		<p class="cart-with-num">
+			<span>{{cartLength}}</span>
 		</p>
 
 	</div>
@@ -287,23 +287,20 @@
 						<!-- select availabe address -->
 						<!--Widget-->
 						<div class="address-box" ng-repeat="getMyAddress in getAddressByUserId ">
-							<form class="form-inline" style="display: flex;padding: 12px;justify-content: space-around;border-bottom: solid 1px #e40046;">
-								 <label class="address-type">{{getMyAddress.addressType}}</label>
-								<label class="">
-							     <input type="checkbox" name="keywords" ng-model="isChecked" ng-value="isChecked" value="__option__" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">
-									 <!-- <div class="material-switch">
-												 <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)"/>
-												 <label for="someSwitchOptionSuccess" class="label-success"></label>
-										 </div> -->
-								</label>
+							<form class="form-inline" style="display: flex;padding: 12px;justify-content: flex-start;border-bottom: solid 1px #e40046;">
+								<label class="radio-inline">
+									<input type="radio" name="optradio" ng-model="isChecked" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">{{getMyAddress.addressType}}
+							</label>
 							</form>
 							<div class="address-content">
 								<p>
-									{{getMyAddress.name}}
+									{{getMyAddress.houseNo}},{{getMyAddress.name}}
 								</p>
 								<p>
-									{{getMyAddress.state}}  {{getMyAddress.city}}  {{getMyAddress.country}}
-									{{getMyAddress.pinCode}}
+								{{getMyAddress.streetName}},{{getMyAddress.landmark}},
+								</p>
+								<p>
+									{{getMyAddress.city}},{{getMyAddress.country}}
 								</p>
 							</div>
 						</div>
@@ -346,7 +343,9 @@
             <input type="text" name="name" value="" class=" form-inputs company-phone" ng-model="companyName" placeholder="Company">
           </div>
           <div class="shipping-form__street">
-            <input type="text" name="name" value="" class=" form-inputs Street-address" ng-model="street1" placeholder="Street Address">
+            <input type="text" name="name" value="" class=" form-inputs Street-address" ng-model="houseNo" placeholder="Enter House No">
+            <input type="text" name="name" value="" class=" form-inputs Street-address" ng-model="streetName" placeholder="Enter Street Name">
+            <input type="text" name="name" value="" class=" form-inputs Street-address" ng-model="landmark" placeholder="Enter landmark">
           </div>
           <div class="shipping-form__postal">
             <input type="text" name="name" value="" class=" form-inputs city-address" ng-model="city" placeholder="City">
@@ -359,33 +358,6 @@
 					<div style="margin: 20px 20px 20px 20px;">
 						<button class=" checkout-page__buttons" type="submit" ng-click="getAddressByUserId()">Add Address</button>
 					</div>
-        </form>
-
-				<form name="shipping-form" class="shipping__form" ng-show="addrestTypeRadio">
-						<br/>
-          <div class="shipping-form__names">
-            <!-- <input type="text" name="name" value="" class=" form-inputs first-name" placeholder="First Name"> -->
-            <input type="text" name="name" value="" class=" form-inputs last-name" ng-model="name" placeholder="Name">
-					  <input type="text" name="name" value="" class=" form-inputs telephone" ng-model="landlineNumber" placeholder="Telephone">
-          </div>
-          <div class="shipping-form__contacts">
-
-            <input type="text" name="name" value="" class=" form-inputs telephone" ng-model="mobileNumber" placeholder="Mobile">
-            <input type="text" name="name" value="" class=" form-inputs company-phone" ng-model="companyName" placeholder="Company">
-          </div>
-          <div class="shipping-form__street">
-            <input type="text" name="name" value="" class=" form-inputs Street-address" ng-model="street1" placeholder="Street Address">
-          </div>
-          <div class="shipping-form__postal">
-            <input type="text" name="name" value="" class=" form-inputs city-address" ng-model="city" placeholder="City">
-            <input type="text" name="name" value="" class=" form-inputs Zipcode" ng-model="pincode" placeholder="Zipcode">
-          </div>
-          <div class="shipping-form__location">
-            <input type="text" name="name" value="" class=" form-inputs state-name" ng-model="state" placeholder="State">
-            <input type="text" name="name" value="" class=" form-inputs country-name" ng-model="country" placeholder="Country">
-          </div>
-					<!-- <button class=" checkout-page__buttons" type="submit">Submit</button> -->
-
         </form>
 
         <div class="process-button-section">
@@ -430,7 +402,7 @@
 							</p>
 						</form> -->
           </p>
-					<form  action="http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000/api/checkout/makePayment" method="POST">
+					<!-- <form  action="http://localhost:9000/api/checkout/makePayment" method="POST">
 						<div >
 						  <input type="hidden" name="UserID" ng-value="getUserId"><br>
 						   <input type="hidden" name="coupon"><br>
@@ -438,14 +410,15 @@
 						  	<input type="hidden" name="paymentMethod" value="1"><br>
 							   <input type="hidden" name="address" ng-value="addressIdSelected"><br>
 							   <input type="hidden" name="billingAddress" ng-value="addressIdSelected"><br>
-							   <input type="hidden" name="returnURL" value="http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/landing"><br>
-							  <!-- <input type="submit" value="Submit"> -->
+							   <input type="hidden" name="returnURL" value="http://localhost:3000"><br>
+							  <input type="submit" value="Submit">
 							</div>
+								</form> -->
           <div class="process-button-section process-button-section__center">
             <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-            <button type="submit" id="activate-step-4" class=" checkout-page__buttons active">Confirm</button>
+            <button type="submit" id="activate-step-4" class=" checkout-page__buttons active" ng-click="makeCodPayment()">Confirm</button>
           </div>
-						</form>
+
       </div>
     </div>
   </div>
@@ -455,9 +428,16 @@
           <h1 class="text-center"> Thank You For Your Order</h1>
           <form>
             <p class="thanks-message">
-              Your Invoice will be sent once delivered and Please contact us for more information
+              Congratulation!! Your order has been confirmed
             </p>
           </form>
+					<!-- <div class="thanks-message">
+						 <label>Order Status</label>
+						 <label>Order ID</label>{{codOrderDetails._id}}
+						 <label>Order Status</label>{{codOrderDetails.paymentStatus}}
+						 <label>Order orderAmount</label>{{codOrderDetails.orderAmount}}
+						 <label>Order orderDate</label>{{codOrderDetails.orderDate}}
+					</div> -->
 					<br/>
 					<br/>
 					<br/>
@@ -468,7 +448,7 @@
 					<br/>
           <div class="process-button-section process-button-section__center">
             <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-            <button  class=" checkout-page__buttons print-recipt__button active">Thank you</button>
+            <button  class=" checkout-page__buttons print-recipt__button active" ng-click="thankYou()">Thank you</button>
           </div>
       </div>
     </div>

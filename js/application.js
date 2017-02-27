@@ -229,7 +229,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     //get address by userId
     $scope.getAddressByUserId = function(){
       $scope.getUserId = $cookieStore.get('userId');
-      Auth.getAddressByUserId($scope.getUserId)
+      Auth.getAddressByUserId()
       .success(function(data){
         console.log('address by UserID resp', data);
           $scope.getAddressByUserId = data;
@@ -242,6 +242,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
 
     //selectedAddress
+    $scope.isChecked = false;
     $scope.selectedAddress = function(id,addresstype){
       $scope.showAddressType = false;
       $scope.addNewAddressRadio = false;
@@ -265,17 +266,18 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       //   }
       //
       // }
-      if ($scope.isChecked != $scope.isChecked) {
+      if($scope.isChecked) {
+       $scope.isChecked = true;
+       }else{
         $scope.isChecked = false;
-      }
+       }
+
     }
 
   //post address
-  $scope.addressType = [];
+  $scope.showDiv =  "display:none;";
   $scope.addAddress = function () {
-    // $scope.myAddressType = [];
 
-  console.log("addressTypeHome array",$scope.addressType);
     $scope.getUserId = $cookieStore.get('userId');
     $scope.userToken = $cookieStore.get('token');
 
@@ -288,9 +290,9 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       name:$scope.name,
       addressType:$scope.addressType,
       authToken: $scope.userToken,
-      street1:$scope.street1,
-      street2:$scope.street2,
-      street3: $scope.street3,
+      houseNo:$scope.houseNo,
+      streetName:$scope.streetName,
+      landmark: $scope.landmark,
       street4: $scope.street3,
       companyName:$scope.companyName,
       officeNumber:$scope.officeNumber,
@@ -340,6 +342,33 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         // $scope.pincode = "";
         // $scope.state = "";
         // $scope.country = "";
+      }
+
+      //make COD
+      $scope.makeCodPayment = function(){
+        var codDetails = {
+          "UserID":$scope.getUserId,
+        	"paymentMethod":1,
+        	"address":$scope.addressIdSelected,
+        	"billingAddress":$scope.addressIdSelected
+        }
+        Auth.makeCOD(codDetails)
+        .success(function(data){
+          console.log('codDetails', data);
+          $scope.getcartItems();
+          ngToast.create({
+            className: 'success',
+            content: "Order is Placed"
+          });
+          $scope.codOrderDetails =  data;
+            }).error(function(data){
+              console.log(data);
+            });
+      }
+
+      //thankyou btn
+      $scope.thankYou = function(){
+        window.location = "#/landing";
       }
 
       $scope.init();
@@ -393,7 +422,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
         //cookieStore
          $cookieStore.put("token", data.token);
          $cookieStore.put("userId", data._id);
-         $cookieStore.put("emailId", data.email);
+         $cookieStore.put("emailId", $scope.email);
          $scope.getEmailId = $cookieStore.get('email');
          $cookieStore.put('loggedIn', true);
          //$location.path('/landing');
@@ -564,8 +593,8 @@ $scope.logged = false;
   //   "token" : authToken
   // }
   $scope.changePassword = function() {
-      var authToken = 'Bearer '+$cookieStore.get('token');
-      console.log("authToken chang pwd",authToken);
+      // var authToken = 'Bearer '+$cookieStore.get('token');
+      // console.log("authToken chang pwd",authToken);
     var passwordToChange = {
       "oldPassword": $scope.oldPassword,
       "newPassword": $scope.newPassword
@@ -592,6 +621,8 @@ $scope.logged = false;
                  console.log("user",data);
                  $scope.userName = data.name;
                  $scope.emailId = data.email
+                 $cookieStore.put("emailId", $scope.emailId);
+                 $cookieStore.put('userName', $scope.userName);
 
              });
 
@@ -687,6 +718,110 @@ $scope.redirectLanding = function() {
   $location.path('/landing');
 }
 
+//load modal windows on click
+$scope.signupModal = function(){
+  $('#loginmodal').modal('show');
+  $('#signupmodal').modal('hide');
+}
+$scope.loginModal = function(){
+  $('#loginmodal').modal('hide');
+  $('#signupmodal').modal('show');
+}
+
+//order getOrderBuYUserId
+$scope.getOrdersByUserId = function() {
+
+  Auth.getOrdersByUserId().success(function(data) {
+    console.log('user orders', data);
+  }).error(function(data) {
+    console.log('data', data);
+  });
+};
+
+//get Address
+$scope.getAddressMyAccount = function(){
+
+  Auth.getAddressByUserId()
+  .success(function(data){
+    console.log('address by UserID resp', data);
+    $scope.getAddressByUserId = data;
+      }).error(function(data){
+        console.log(data);
+      });
+}
+//delete Address by Address ID
+$scope.deleteAddress = function(addressId){
+  console.log(addressId);
+  Auth.deleteAddress(addressId)
+  .success(function(data){
+    $scope.getAddressMyAccount();
+    console.log('address deleted', data);
+    ngToast.create({
+      className: 'success',
+      content: data.message
+    });
+      }).error(function(data){
+        console.log(data);
+      });
+}
+//edit Address by Address ID
+$scope.showEditAddressFields = false;
+$scope.getAddressIdToEdit = function(addressId){
+  $scope.showEditAddressFields = true;
+  console.log(addressId);
+  $scope.getAddressId = addressId;
+  for (var i = 0; i < $scope.getAddressByUserId.length; i++) {
+    if ($scope.getAddressByUserId[i]._id === addressId) {
+        $scope.name = $scope.getAddressByUserId[i].name;
+        $scope.addressType = $scope.getAddressByUserId[i].addressType;
+        $scope.houseNo = $scope.getAddressByUserId[i].houseNo;
+        $scope.streetName = $scope.getAddressByUserId[i].streetName;
+        $scope.landmark = $scope.getAddressByUserId[i].landmark;
+        $scope.companyName = $scope.getAddressByUserId[i].companyName;
+        $scope.officeNumber = $scope.getAddressByUserId[i].officeNumber;
+        $scope.mobileNumber = $scope.getAddressByUserId[i].mobileNumber;
+        $scope.landLineNumber = $scope.getAddressByUserId[i].landLineNumber;
+        $scope.pinCode = $scope.getAddressByUserId[i].pinCode;
+        $scope.city = $scope.getAddressByUserId[i].city;
+        $scope.state = $scope.getAddressByUserId[i].state;
+        $scope.country = $scope.getAddressByUserId[i].country;
+    }
+  }
+}
+$scope.editAddress = function(){
+
+  var addressDetails = {
+  name: $scope.name,
+  userID: $scope.userId ,
+  addressType: $scope.addressType,
+  // "authToken": "",
+  houseNo: $scope.houseNo,
+  streetName: $scope.streetName,
+  landmark: $scope.landmark,
+  // street4: Near to hotel,
+  companyName: $scope.companyName,
+  // officeNumber: 1234567890,
+  mobileNumber: $scope.mobileNumber,
+  landLineNumber: $scope.landLineNumber,
+  pinCode: $scope.pinCode,
+  city: $scope.city,
+  state: $scope.state,
+  country: $scope.country
+  // isDefault: True
+};
+  Auth.editAddress($scope.getAddressId,addressDetails)
+  .success(function(data){
+    $scope.getAddressMyAccount();
+    $scope.showEditAddressFields = false;
+    console.log('address deleted', data);
+    ngToast.create({
+      className: 'success',
+      content: "Successfully Updated the address"
+    });
+      }).error(function(data){
+        console.log(data);
+      });
+}
 
 })
 
@@ -712,7 +847,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   $('.header-menu__list').find('a').click(function(){
     var $href = $(this).attr('href');
     var $anchor = $($href).offset();
-    window.scrollTo($anchor.left,$anchor.top  - 100);
+    window.scrollTo($anchor.left,$anchor.top  - 147);
     return false;
   });
 
@@ -784,16 +919,16 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
 
   //slider
 
-  $('#prv-testimonial').on('click', function(){
+$('#prv-testimonial').on('click', function(){
     var $last = $('#testimonial-list .slide-list:last');
-    $last.remove().css({ 'margin-left': '-400px' });
+    $last.remove().css({ 'margin-left': '-248px' });
     $('#testimonial-list .slide-list:first').before($last);
     $last.animate({ 'margin-left': '0px' }, 1000);
 });
 
 $('#nxt-testimonial').on('click', function(){
     var $first = $('#testimonial-list .slide-list:first');
-    $first.animate({ 'margin-left': '-400px' }, 1000, function() {
+    $first.animate({ 'margin-left': '-248px' }, 1000, function() {
         $first.remove().css({ 'margin-left': '0px' });
         $('#testimonial-list .slide-list:last').after($first);
     });
@@ -816,24 +951,14 @@ $('#nxt-testimonial').on('click', function(){
 
   //scrooling page,showing header fixed
 
-  var elementPosition = $('#scroll-menu-fixed').offset().top;
-
-  $(window).scroll(function(){
-    if($(window).scrollTop() > elementPosition){
-          $('#scroll-menu-fixed').css('position','fixed').css({"top":"0","right":"0","left":"0"});
-    } else {
-        $('#scroll-menu-fixed').css('position','static');
-    }
-  });
-  var elementPosition = $('#scroll-menu-fixed1').offset().top;
-
-  $(window).scroll(function(){
-    if($(window).scrollTop() > elementPosition){
-          $('#scroll-menu-fixed1').css('position','fixed').css({"top":"97px","right":"0","left":"0"});
-    } else {
-        $('#scroll-menu-fixed1').css('position','static');
-    }
-  });
+// $(window).scroll(function(){
+//   var elementPosition = $('#scroll-menu-fixed').offset().top;
+//   if($(window).scrollTop() > elementPosition){
+//     $('#scroll-menu-fixed').css('position','fixed').css({"top":"0","right":"0","left":"0"});
+//   } else {
+//     $('#scroll-menu-fixed').css('position','static');
+//   }
+// });
 
   //get all products in landing page
   $scope.product = function() {
@@ -876,7 +1001,26 @@ $('#nxt-testimonial').on('click', function(){
   $scope.setActiveTab = function(tabToSet, categoryName){
       $scope.activeTab = tabToSet;
       $scope.categoryNames = categoryName;
-      console.log("clicked",tabToSet);
+      console.log('id', tabToSet);
+      console.log('name', categoryName);
+  }
+
+  $scope.initSetTab = function(dir) {
+    var parent = angular.element('.menu-tabs__list');
+    var $activeateElm = null;
+    for(var i=0; i<parent.children().length; i++) {
+      if($(parent.children()[i]).children().hasClass('active')) {
+        if(dir === 'next') {
+          $activeateElm = $(parent.children()[i]).next();
+        } else {
+          $activeateElm = $(parent.children()[i]).prev();
+        }
+      }
+    }
+    console.log($activeateElm);
+    $timeout(function() {
+      angular.element($activeateElm).trigger('click');
+    }, 0);
   }
 
   //POST create add to cart
@@ -1052,11 +1196,11 @@ $('#nxt-testimonial').on('click', function(){
 
       //google maps
       var locations = [
-    ['Dubai', 25.07778, 55.15806, 4],
-    ['Khor Fakkan', 25.33333, 56.35000, 5],
-    ['Ajman', 25.40278, 55.47833, 3],
-    ['Abu Dhabi', 24.46611, 54.36667, 2],
-    ['Downtown Dubai', 	25.276987, 	55.296249, 1]
+    ['Downtown Dubai', 25.194985, 55.278414, 4],
+    ['Jumeira 1', 25.220111, 55.256308, 5],
+    ['Al Wasl', 25.2048, 55.2708, 3],
+    ['The Palm Jumeirah', 25.1124, 55.1390, 2],
+    ['Jebel Ali Village', 	25.029235, 	55.132065, 1]
   ];
 
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -1097,6 +1241,18 @@ $scope.showWishList = function(){
       show_productDetails: productName,
     });
   }
+
+  //NOTE : todays deal api
+  $scope.getTodaysDeal = function(){
+        Auth.todaysDeal().success (function (data) {
+          console.log('get todaysDeal', data);
+          $scope.getTodaysDealProduct = data;
+        }).error(function(data){
+          console.log('data', data);
+             console.log("no categories");
+        });
+  };
+  $scope.getTodaysDeal();
 
 })
 
@@ -1659,8 +1815,9 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     },
 
     changePassword : function (inputs) {
-      return $http.post(BASE_URL + '/api/users/'+userId+'/password?access_token='+authToken,inputs,{
+      return $http.post(BASE_URL + '/api/users/'+userId+'/password',inputs,{
         header: {
+          'Authorization': 'Bearer '+authToken,
           'Content-Type': 'application/json'
         }
       });
@@ -1726,13 +1883,15 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     addAddress : function(inputs) {
       return $http.post(BASE_URL + '/api/address', inputs, {
       headers: {
+        'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'
         }
       });
     },
-    getAddressByUserId : function(id,inputs) {
-      return $http.get(BASE_URL + '/api/address/getaddressByUserId/'+id, inputs, {
+    getAddressByUserId : function() {
+      return $http.get(BASE_URL + '/api/address/getaddressByUserId/'+userId, {
       headers: {
+        'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'
         }
       });
@@ -1754,6 +1913,46 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     getCategories : function(inputs) {
       return $http.get(BASE_URL + '/api/categories', inputs, {
       headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getOrdersByUserId : function(inputs) {
+      return $http.get(BASE_URL + '/api/orders/getOrdersByUser/'+userId, inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    deleteAddress : function(addressId) {
+      return $http.delete(BASE_URL + '/api/address/'+addressId , {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    editAddress : function(addressId, addressDetails) {
+      return $http.put(BASE_URL + '/api/address/'+addressId ,addressDetails, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    makeCOD : function(inputs) {
+      return $http.post(BASE_URL + '/api/checkout/makePayment' ,inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    todaysDeal : function(inputs) {
+      return $http.get(BASE_URL + '/api/todaysDeal' ,inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'
         }
       });
