@@ -166,13 +166,7 @@ input {
 
 .user__login {
   display: flex;
-  font-family: Lato;
   font-size: 15px;
-  font-weight: 900;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
   color: #ffffff;
   margin-top: 10px; }
 
@@ -723,12 +717,11 @@ SMACSS: PAGE - LANDING
   color: #fff; }
 
 .section-header-menu {
-  background-color: #515356;
+  background-color: rgba(81, 83, 86, 0.85);
   height: 50px;
   display: flex;
   justify-content: space-between;
-  padding: 0 65px;
-  opacity: 0.6; }
+  padding: 0 65px; }
 
 .header-menu__list,
 .search_favorites {
@@ -1024,12 +1017,12 @@ SMACSS: PAGE - LANDING
   display: flex;
   min-width: 490px;
   width: 49%;
-  height: 189px;
+  height: 260px;
   margin-bottom: 20px; }
 
-.breakfast-products__iamge {
-  width: 78%;
-  background-size: 100%;
+.breakfast-products__image {
+  width: 55%;
+  background-size: cover;
   background-repeat: no-repeat; }
 
 .breakfast-products__content {

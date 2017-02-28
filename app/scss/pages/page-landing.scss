@@ -1,11 +1,9 @@
 .section-header-menu {
-  background-color: #515356;
-  // opacity: 0.9;
+  background-color: rgba(81, 83, 86, 0.85);
   height: 50px;
   display: flex;
   justify-content: space-between;
   padding: 0 65px;
-  opacity: 0.6;
 }
 
 .header-menu__list,
@@ -330,7 +328,7 @@
   display: flex;
   justify-content: space-between;
 
-  
+
 
    li a{
      color: $color-white;
@@ -389,13 +387,13 @@
   display: flex;
   min-width: 490px;
   width: 49%;
-  height: 189px;
+  height: 260px;
   margin-bottom: 20px;
 }
-.breakfast-products__iamge {
+.breakfast-products__image {
   // background-image: url(../images/fish.png);
-  width: 78%;
-  background-size: 100%;
+  width: 55%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
