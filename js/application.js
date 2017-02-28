@@ -732,7 +732,16 @@ $scope.loginModal = function(){
 $scope.getOrdersByUserId = function() {
 
   Auth.getOrdersByUserId().success(function(data) {
-    console.log('user orders', data);
+    $scope.orderHistory = data;
+    for (var i = 0; i < $scope.orderHistory.length; i++) {
+      console.log($scope.orderHistory[i].itmes);
+      $scope.orderDetailsProduct = $scope.orderHistory[i].itmes;
+      $scope.ordersProductName = $scope.orderHistory[i].itmes[i];
+      console.log("name",$scope.ordersProductName);
+    }
+  
+
+    console.log('user orders', $scope.orderHistory);
   }).error(function(data) {
     console.log('data', data);
   });
@@ -1017,9 +1026,8 @@ $('#nxt-testimonial').on('click', function(){
         }
       }
     }
-    console.log($activeateElm);
     $timeout(function() {
-      angular.element($activeateElm).trigger('click');
+      angular.element($activeateElm.find('a')).trigger('click');
     }, 0);
   }
 
@@ -1287,10 +1295,56 @@ $('#prev').on('click',function(e){
       counter-- ;
       $('#TextBox').val(counter);
     });
+    moveScroller();
   });
 
 
   //scrooling page,showing header fixed
+
+  // var $fixedElm = $('#sub-menu'),
+  //     fixedElmTop = $fixedElm.offset().top
+  //
+  // $(window).scroll(function(){
+  //   // console.log('working');
+  //   if($(window).scrollTop() > fixedElmTop){
+  //     $fixedElm.css('position','absolute');
+  //   } else {
+  //     $fixedElm.css('position','static');
+  //   }
+  // });
+
+  function moveScroller() {
+    var $anchor = $("#scroller-anchor");
+    var $scroller = $('#scroller');
+
+    var move = function() {
+      var st = $(window).scrollTop();
+      var ot = $anchor.offset().top;
+      if(st > ot) {
+        $scroller.css({
+          position: "fixed",
+          top: "0px",
+          width: "70%"
+        });
+        $anchor.css({
+          height: "104px"
+        });
+      } else {
+        if(st <= ot) {
+          $scroller.css({
+            position: "relative",
+            top: "",
+            width: "100%"
+          });
+          $anchor.css({
+            height: "0px"
+          });
+        }
+      }
+    };
+    $(window).scroll(move);
+    move();
+}
 
   // var elementPosition = $('#sub-menu').offset().top;
   //

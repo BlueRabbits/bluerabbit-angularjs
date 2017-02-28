@@ -75,8 +75,62 @@
               </form>
         </div>
         <div class="col-md-9 well admin-content" id="Activity">
-            Pages
-        </div>
+          <div class="row">
+     <div class="col-md-12">
+         <div class="panel panel-default">
+             <div class="panel-heading">
+                 <h3 class="text-center"><strong>Order summary</strong></h3>
+             </div>
+             <div class="panel-body">
+                 <div class="table-responsive">
+                     <table class="table table-condensed" >
+                         <thead>
+                             <tr>
+                                 <td><strong>Order Id</strong></td>
+                                 <td><strong>Order Date</strong></td>
+                                 <td><strong>Item Name</strong></td>
+                                 <!-- <td class="text-center"><strong>Item Price</strong></td> -->
+                                 <td class="text-center"><strong>Item Quantity</strong></td>
+                                 <td class="text-right"><strong>Total</strong></td>
+                             </tr>
+                         </thead>
+                         <tbody ng-repeat="orderAmount in orderHistory">
+                             <tr ng-repeat="orders in orderAmount.itmes">
+                               <td>{{orderAmount._id}}</td>
+                               <td>{{orderAmount.orderDate}}</td>
+                                 <td>{{orders.product.name}}</td>
+                                 <!-- <td class="text-center">$900</td> -->
+                                 <td class="text-center">{{orders.quantity}}</td>
+                                 <td class="text-right">{{orders.totalProductAmount}}</td>
+                             </tr>
+
+                             <!-- <tr>
+                                 <td class="highrow"></td>
+                                 <td class="highrow"></td>
+                                 <td class="highrow text-center"><strong>Subtotal</strong></td>
+                                 <td class="highrow text-right">$958.00</td>
+                             </tr> -->
+                             <!-- <tr>
+                                 <td class="emptyrow"></td>
+                                 <td class="emptyrow"></td>
+                                 <td class="emptyrow text-center"><strong>Shipping</strong></td>
+                                 <td class="emptyrow text-right">$20</td>
+                             </tr> -->
+                             <!-- <tr >
+                                 <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+                                 <td class="emptyrow"></td>
+                                 <td class="emptyrow text-center"><strong>Total</strong></td>
+                                 <td class="emptyrow text-right"></td>
+                             </tr> -->
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+</div>
+
         <div class="col-md-9 well admin-content" id="Address">
           <!-- get address -->
           <div class="address-box" style="width: 17%;" ng-repeat="getMyAddress in getAddressByUserId ">
