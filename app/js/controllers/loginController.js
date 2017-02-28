@@ -356,7 +356,16 @@ $scope.loginModal = function(){
 $scope.getOrdersByUserId = function() {
 
   Auth.getOrdersByUserId().success(function(data) {
-    console.log('user orders', data);
+    $scope.orderHistory = data;
+    for (var i = 0; i < $scope.orderHistory.length; i++) {
+      console.log($scope.orderHistory[i].itmes);
+      $scope.orderDetailsProduct = $scope.orderHistory[i].itmes;
+      $scope.ordersProductName = $scope.orderHistory[i].itmes[i];
+      console.log("name",$scope.ordersProductName);
+    }
+  
+
+    console.log('user orders', $scope.orderHistory);
   }).error(function(data) {
     console.log('data', data);
   });
