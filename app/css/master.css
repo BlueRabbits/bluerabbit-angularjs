@@ -1031,6 +1031,9 @@ SMACSS: PAGE - LANDING
   flex-direction: column;
   align-items: center;
   justify-content: center; }
+  .breakfast-products__content > img {
+    height: 20px;
+    margin-bottom: 20px; }
   .breakfast-products__content button {
     width: 130px;
     height: 36px;
@@ -1055,10 +1058,11 @@ SMACSS: PAGE - LANDING
   align-items: center; }
   .products__description p {
     font-family: "Lato-Black";
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 900;
     line-height: 1.17;
-    color: #515356; }
+    color: #515356;
+    margin-bottom: 6px; }
 
 .products__price {
   color: #d92e4a !important; }
@@ -1119,13 +1123,11 @@ SMACSS: PAGE - LANDING
   .location-search-places img {
     height: 52px; }
   .location-search-places p {
-    width: 157px;
+    width: 200px;
     font-family: "Lato-Regular";
-    font-size: 12px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
+    font-size: 13px;
     line-height: 1.33;
+    margin: 0px;
     letter-spacing: 0.2px;
     color: #474442; }
   .location-search-places:last-child {
@@ -1427,7 +1429,7 @@ SMACSS: PAGE - LANDING
     #testimonial-list .slide-list .bestoffertext {
       font-size: 14px;
       color: #515356;
-      padding: 12px;
+      padding: 12px 0;
       text-align: left;
       padding-bottom: 46px;
       position: relative; }
@@ -1439,7 +1441,7 @@ SMACSS: PAGE - LANDING
       #testimonial-list .slide-list .bestoffertext button {
         width: 130px;
         position: absolute;
-        left: 12px;
+        left: 0px;
         bottom: 0px;
         color: #fff;
         height: 36px;

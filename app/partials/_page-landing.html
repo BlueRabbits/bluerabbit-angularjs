@@ -96,6 +96,7 @@
       <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
         <div class="breakfast-products__image" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name)"></div>
         <div class="breakfast-products__content">
+          <img src="images/heart-icon-black.png" ng-click="">
           <div class="products__description" ng-click="showProductSearchPage(list.name)" style="cursor:pointer">
             <p>{{list.name}}</p>
             <p>{{list.description}}</p>
@@ -110,9 +111,7 @@
 
 <!-- location section -->
 <div class="location-section" id="locations">
-  <p class="location-section-heading">
-    Locations We Deliver
-  </p>
+  <p class="location-section-heading">Locations we deliver</p>
   <div class="location-services">
     <div class="location-services__search">
       <p class="location-services-heading">
