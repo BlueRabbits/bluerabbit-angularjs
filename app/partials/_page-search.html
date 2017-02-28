@@ -3,37 +3,40 @@
 		<div class="search-page__header" id="sub-menu1">
 		  @@include('_header.html')
 		</div>
-		<div class="search-page-menu sub-menu" id="sub-menu">
-			<div class="sub-menu__search">
-				<img src="images/search-icon@2x.png" class="search-icon" ng-click="autocompleteSearch(searchitem)">
-				<input type="search" class="cart__search" ng-model="searchitem" ng-change="autocompleteSearch(searchitem)" placeholder="Find The Things What You Want Here" >
+		<div id="scroller-anchor"></div>
+		<div id="scroller">
+			<div class="search-page-menu sub-menu" id="sub-menu">
+				<div class="sub-menu__search">
+					<img src="images/search-icon@2x.png" class="search-icon" ng-click="autocompleteSearch(searchitem)">
+					<input type="search" class="cart__search" ng-model="searchitem" ng-change="autocompleteSearch(searchitem)" placeholder="Find The Things What You Want Here" >
+				</div>
+				<div class="sub-menu__favorites">
+					<img src="images/heart-icon@2x.png" style="cursor:pointer;" ng-click="wishListShow()">
+					<p>favorites</p>
+				</div>
+				<p>
+					<ul class="search-list-dropdown">
+						<li ng-show="hideAutocomplete" ng-repeat="items in searchAutocompleteId" ng-click="searchList(items._id)">{{items._id}}</li>
+					</ul>
+				</p>
 			</div>
-			<div class="sub-menu__favorites">
-				<img src="images/heart-icon@2x.png" style="cursor:pointer;" ng-click="wishListShow()">
-				<p>favorites</p>
-			</div>
-			<p>
-				<ul class="search-list-dropdown">
-					<li ng-show="hideAutocomplete" ng-repeat="items in searchAutocompleteId" ng-click="searchList(items._id)">{{items._id}}</li>
+			<div class="search-page__tab-menu" style="display: flex;justify-content: space-between;">
+				<ul class="search-page__tab-list" id="tabs-menu" ng-repeat="categories in getCategoryList">
+					<li id="navMenu"><a style="cursor:pointer;" data-toggle="tab" ng-class="{'active' : categories.name == categoryNames}" ng-click="setActiveTab(categories._id,categories.name)" > {{categories.name}}</a></li>
+					<!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
+					<li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
+					<li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
+					<li><a href="#rolls-tab" data-toggle="tab">Soups & Broth</a></li>
+					<li><a href="#rolls-tab" data-toggle="tab">Krazy Toss</a></li>
+					<li><a href="#rolls-tab" data-toggle="tab"> Dessert/Yogurt/Beverages</a></li>
+					<button type="button" name="button">view all</button> -->
 				</ul>
-			</p>
-		</div>
-		<div class="search-page__tab-menu" style="display: flex;justify-content: space-between;">
-			<ul class="search-page__tab-list" id="tabs-menu" ng-repeat="categories in getCategoryList">
-				<li id="navMenu"><a style="cursor:pointer;" data-toggle="tab" ng-class="{'active' : categories.name == categoryNames}" ng-click="setActiveTab(categories._id,categories.name)" > {{categories.name}}</a></li>
-				<!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
-				<li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
-				<li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
-				<li><a href="#rolls-tab" data-toggle="tab">Soups & Broth</a></li>
-				<li><a href="#rolls-tab" data-toggle="tab">Krazy Toss</a></li>
-				<li><a href="#rolls-tab" data-toggle="tab"> Dessert/Yogurt/Beverages</a></li>
-				<button type="button" name="button">view all</button> -->
-			</ul>
-			<div class="nav-arrow left-arrow" id="next">
-				<p id="next">></p>
-			</div>
-			<div class="nav-arrow right-arrow"id="prev">
-				<p id="prev" ng-click="scrollLeft()"><</p>
+				<div class="nav-arrow left-arrow" id="next">
+					<p id="next">></p>
+				</div>
+				<div class="nav-arrow right-arrow"id="prev">
+					<p id="prev" ng-click="scrollLeft()"><</p>
+				</div>
 			</div>
 		</div>
 		<div class="search-secction">
@@ -60,10 +63,10 @@
 					<div class="description__section--header">
 						<div class="description-list">
 							<p>Product Description</p>
-							<!-- <span>|</span>
+							<span>|</span>
 							<p>Prep time:30 min</p>
 							<span>|</span>
-							<p>Calories: 100 Kcal</p> -->
+							<p>Calories: 100 Kcal</p>
 
 						</div>
 					</div>
@@ -72,6 +75,10 @@
 						<p class="product-sub-title">
 							{{results.description}}
 						</p>
+						<p class="product-sub-title"></p>
+						<img src="{{results.s1}}" width="120px" />
+						<img src="{{results.s2}}" width="120px" />
+						<img src="{{results.s3}}" width="120px" />
 					</div>
 				</div>
 			</div>
@@ -112,6 +119,10 @@
 						<p class="product-sub-title">
 							{{wishLists.product.name}}
 						</p>
+						<p class="product-sub-title"></p>
+						<img src="{{wishLists.product.s1}}" width="120px" />
+						<img src="{{wishLists.product.s2}}" width="120px" />
+						<img src="{{wishLists.product.s3}}" width="120px" />
 					</div>
 				</div>
 			</div>
@@ -152,6 +163,10 @@
 						<p class="product-sub-title">
 							{{list.description}}
 						</p>
+						<p class="product-sub-title"></p>
+						<img src="{{list.s1}}" width="120px" />
+						<img src="{{list.s2}}" width="120px" />
+						<img src="{{list.s3}}" width="120px" />
 					</div>
 				</div>
 			</div>
