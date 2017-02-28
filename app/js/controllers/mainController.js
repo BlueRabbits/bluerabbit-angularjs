@@ -426,4 +426,56 @@ $scope.showWishList = function(){
   };
   $scope.getTodaysDeal();
 
+  //POST create wish list
+  var count = 0;
+  $scope.addWishList = function (productId) {
+    count++;
+    console.log("quantity count",count);
+    // $scope.getUserId = localStorage.getItem('userId');
+    // $scope.userToken = localStorage.getItem('token');
+    // $scope.sessionId = "aa565asdasdy87sadasd987";
+    //cookieStore
+    $scope.getUserId = $cookieStore.get('userId');
+    $scope.userToken = $cookieStore.get('token');
+    $scope.sessionId = $cookieStore.get('sessionId');
+
+
+    $scope.cartlist =[];
+    var wishListInfo = {
+      product:productId,
+      quantity: count,
+      UserID:$scope.getUserId,
+      sessionID:$scope.sessionId,
+      authToken: $scope.userToken,
+      isDeleted: false
+    }
+    Auth.addWishList(wishListInfo)
+    .success(function(data){
+      console.log('data', data);
+      $scope.getcartItems();
+      ngToast.create({
+        className: 'success',
+        content: 'Item Added to WishList'
+      });
+      // $scope.quantity = data.quantity;
+      // $scope.user_id = data.UserID;
+      // console.log('id',$scope.user_id);
+
+      angular.forEach(data, function (value, key) {
+            var obj = {
+              "user_id" : value.UserID,
+              "productId" : value.product,
+              "quantity" : value.quantity,
+            };
+            $scope.cartlist.push(obj);
+            console.log("cart",$scope.cartlist);
+          });
+        }).error(function(data){
+          ngToast.create({
+            className: 'warning',
+            content: 'Problem in deleting from wishList'
+          });
+        });
+      };
+
 })
