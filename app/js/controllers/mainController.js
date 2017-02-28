@@ -190,9 +190,8 @@ $('#nxt-testimonial').on('click', function(){
         }
       }
     }
-    console.log($activeateElm);
     $timeout(function() {
-      angular.element($activeateElm).trigger('click');
+      angular.element($activeateElm.find('a')).trigger('click');
     }, 0);
   }
 
