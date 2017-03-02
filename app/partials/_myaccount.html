@@ -50,6 +50,7 @@
                              <tr>
                                  <td><strong>Order Id</strong></td>
                                  <td><strong>Order Date</strong></td>
+                                 <td><strong>Order status</strong></td>
                                  <td><strong>Item Name</strong></td>
                                  <!-- <td class="text-center"><strong>Item Price</strong></td> -->
                                  <td class="text-center"><strong>Item Quantity</strong></td>
@@ -60,7 +61,8 @@
                              <tr ng-repeat="orders in orderAmount.itmes">
                                <td>{{orderAmount._id}}</td>
                                <td>{{orderAmount.orderDate}}</td>
-                                 <td>{{orders.product.name}}</td>
+                               <td>{{orderAmount.paymentStatus}}</td>
+                               <td>{{orders.product.name}}</td>
                                  <!-- <td class="text-center">$900</td> -->
                                  <td class="text-center">{{orders.quantity}}</td>
                                  <td class="text-right">{{orders.totalProductAmount}}</td>
