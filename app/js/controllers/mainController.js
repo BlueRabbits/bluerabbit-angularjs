@@ -172,10 +172,8 @@ $('#nxt-testimonial').on('click', function(){
   $scope.activeTab = 0;
   $scope.categoryNames = "Add-ons";
   $scope.setActiveTab = function(tabToSet, categoryName){
-      $scope.activeTab = tabToSet;
-      $scope.categoryNames = categoryName;
-      console.log('id', tabToSet);
-      console.log('name', categoryName);
+    $scope.activeTab = tabToSet;
+    $scope.categoryNames = categoryName;
   }
 
   $scope.initSetTab = function(dir) {

@@ -70,10 +70,22 @@
 	margin-top: 10px;
 }
 .dropdown {
+	margin: 5px 12px!important;
 	position: relative;
   display: inline-block;
 	p{
 		color: #fff;
+	}
+}
+
+.dropdown__myaccount {
+	.user_image {
+		height: 30px;
+		width: 30px;
+		display: inline-block;
+		vertical-align: middle;
+		background-size: cover;
+		background-repeat: no-repeat;
 	}
 }
 

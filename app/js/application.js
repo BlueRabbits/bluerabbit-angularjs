@@ -3,7 +3,7 @@ App bluerabbit
 ==================================================================*/
 'use strict';
 
-var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngToast','ngAnimate','ui.bootstrap','googleplus','facebook']);
+var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngToast','ngAnimate','ui.bootstrap','googleplus','facebook', 'angular.filter']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -47,11 +47,11 @@ app.config(['$routeProvider', function($routeProvider) {
 
 //google plus config
 app.config(['GooglePlusProvider','FacebookProvider', function(GooglePlusProvider,FacebookProvider) {
-         GooglePlusProvider.init({
-           clientId: '395593907364-cc9p9l4njfd08koqqoouqucgd2u4hbo6.apps.googleusercontent.com',
-           apiKey: 'eMDg9klaLT6SqzxwEDDjXupk'
-         });
-         FacebookProvider.init({
-             appId:'1272767759478704'
-        });
-    }]);
+     GooglePlusProvider.init({
+       clientId: '395593907364-cc9p9l4njfd08koqqoouqucgd2u4hbo6.apps.googleusercontent.com',
+       apiKey: 'eMDg9klaLT6SqzxwEDDjXupk'
+     });
+     FacebookProvider.init({
+         appId:'1272767759478704'
+    });
+}]);

@@ -6,6 +6,28 @@
   padding: 0 65px;
 }
 
+.banner-wrap {
+  height: 420px;
+
+  .banner-img {
+    margin:auto;
+    width: 100%;
+    height: 420px;
+    z-index:0;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.carousel-indicators li,
+.carousel-indicators .active {
+    margin: 1px 6px!important;
+}
+
+a.no-underline:hover {
+  text-decoration: none;
+}
+
 .header-menu__list,
 .search_favorites {
   display: flex;
@@ -292,13 +314,13 @@
 .slider-section {
   background-image:url(../images/slider-bg.png);
   background-repeat:round;
-  padding: 10px 100px;
+  padding: 15px 100px;
 }
 
 .slider-control {
   display: block;
   text-align: right;
-  padding: 18px 0;
+  padding: 18px 10px;
 
   > img {
     border-radius: 50%;
@@ -387,7 +409,7 @@
   display: flex;
   min-width: 490px;
   width: 49%;
-  height: 260px;
+  height: 180px;
   margin-bottom: 20px;
 }
 .breakfast-products__image {
@@ -406,7 +428,6 @@
 
   > img {
     height: 20px;
-    margin-bottom: 20px;
   }
 
   button {
@@ -431,7 +452,7 @@
 }
 
 .products__description {
-  margin: 20px;
+  margin: 10px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -892,7 +913,7 @@
     padding: 0 10px;
 
     .article_image {
-      min-height: 200px;
+      min-height: 100px;
       width: 100%;
       display: block;
       background-size: cover;
@@ -912,16 +933,19 @@
         font-weight: 900;
       }
 
-      .creds {margin-bottom: 5px;}
+      .creds {
+        line-height: 30px;
+        margin-bottom: 0px;
+        font-weight: normal;
+      }
 
       button {
-        width: 130px;
-        position: absolute;
-        left: 0px;
+        width: 100%;
         bottom: 0px;
-        color:#fff;
-        height: 36px;
-        border:none;
+        color: #fff;
+        height: 31px;
+        font-size: 12px;
+        border: none;
         border-radius: 40px;
         background-color: #d92e4a;
       }
