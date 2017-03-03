@@ -191,6 +191,22 @@ app.factory('Auth', function($http, $window, $cookieStore) {
         }
       });
     },
+    imageUpload : function(formdata) {
+      return $http.post(BASE_URL + '/api/users/image/upload', formdata, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': undefined
+        }
+      });
+    },
+    profileImageUpload : function(inputs) {
+      return $http.put(BASE_URL + '/api/users/'+userId,inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
 
 
   };

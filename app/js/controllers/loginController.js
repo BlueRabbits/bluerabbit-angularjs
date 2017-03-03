@@ -124,7 +124,7 @@ $scope.logged = false;
     $cookieStore.remove("userName");
     //facebook logout
      var _self = this;
-     FB.logout(function(response) {
+     Facebook.logout(function(response) {
         // user is now logged out
         console.log("log out");
         $rootScope.$apply(function() {
@@ -244,9 +244,16 @@ $scope.logged = false;
              GooglePlus.getUser().then(function (data) {
                  console.log("user",data);
                  $scope.userName = data.name;
-                 $scope.emailId = data.email
+                 $scope.emailId = data.email;
+                 $scope.imageUrls = data.picture;
+                 console.log("$scope.imageUrls",$scope.imageUrls);
                  $cookieStore.put("emailId", $scope.emailId);
                  $cookieStore.put('userName', $scope.userName);
+                 $cookieStore.put('imageUrls', data.picture);
+                 localStorage.setItem('imageUrls', data.picture);
+                 $scope.imageUrls = localStorage.getItem('imageUrls');
+                 console.log("$scope.imageUrls",$scope.imageUrls);
+
 
              });
 
@@ -267,7 +274,7 @@ $scope.logged = false;
            $('.modal').css("display", "none");
            $('.modal-open').removeClass();
            $scope.closeModal();
-           location.reload();
+           //location.reload();
          }).error(function(data) {
            console.log('data', data);
          });
@@ -363,7 +370,7 @@ $scope.getOrdersByUserId = function() {
       $scope.ordersProductName = $scope.orderHistory[i].itmes[i];
       console.log("name",$scope.ordersProductName);
     }
-  
+
 
     console.log('user orders', $scope.orderHistory);
   }).error(function(data) {
@@ -456,4 +463,58 @@ $scope.editAddress = function(){
       });
 }
 
-})
+//upload formdata imageUrls
+      var formdata = new FormData();
+      $scope.getTheFiles = function($files) {
+        angular.forEach($files, function(value, key) {
+          formdata.append(key, value);
+          console.log(formdata);
+        });
+        console.log($('#file1').val());
+        console.log(formdata);
+        formdata.append('file', formdata);
+        Auth.imageUpload(formdata)
+          .success(function(data) {
+            console.log('profile formdata', data);
+            $scope.profileImage = data.url;
+          }).error(function(data) {
+            console.log(data);
+          });
+
+      };
+
+
+      $scope.ProfileUpdate = function() {
+        var profileDetails = {
+          "name": $scope.userName,
+          "image_url": $scope.profileImage
+        }
+        Auth.profileImageUpload(profileDetails)
+          .success(function(data) {
+
+            console.log('profile updated data', data);
+            $scope.emailId = data.email;
+            $scope.userName = data.name;
+            ngToast.create({
+              className: 'success',
+              content: "Successfully Updated the address"
+            });
+          }).error(function(data) {
+            console.log(data);
+          });
+
+      };
+
+}).directive('ngFiles', ['$parse', function ($parse) {
+
+            function fn_link(scope, element, attrs) {
+                var onChange = $parse(attrs.ngFiles);
+                element.on('change', function (event) {
+                    onChange(scope, { $files: event.target.files });
+                });
+            };
+
+            return {
+                link: fn_link
+            }
+        } ]);

@@ -21,7 +21,11 @@
             </p>
               <p>  Email id : {{userEmail}}</p>
 
-
+            <div>
+              <input type="file" id="file1" name="file" multiple
+            ng-files="getTheFiles($files)" />
+            <button ng-click="ProfileUpdate()">Submit</button>
+          </div>
         </div>
         <div class="col-md-9 well admin-content" id="Profile">
             <form ng-submit="changePassword()" class="col-lg-6">
