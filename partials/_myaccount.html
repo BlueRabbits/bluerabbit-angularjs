@@ -18,19 +18,21 @@
 
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
-			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" ng-if="userName">{{userName}}
-			 <span class="caret"></span></p> -->
-			 <p class="dropdown__myaccount" id="menu1" type="button" >{{getEmailId}}
-			 <span class="caret"></span></p>
-			 <div class="dropdown__list">
-			 	<p><a href="#/myaccount" ng-click="getUserProfile()">My Account</a></p>
-				<p><a href="" ng-click="logout()">Logout</a></p>
-			 </div>
-		 </div>
-		 <!-- <p><a href="" ng-click="logout()">Logout</a></p> -->
+				<div class="dropdown__myaccount" id="menu1" type="button" >
+					<div class="user_image" style="background-image: url('images/user_avatar.png')"></div>
+					{{getEmailId}}
+				 	<span class="caret"></span>
+				</div>
+				<div class="dropdown__list">
+				 	<p><a href="#/myaccount" ng-click="getUserProfile()">My Account</a></p>
+					<p><a href="" ng-click="logout()">Logout</a></p>
+				</div>
+		 	</div>
 		</div>
 
-		<a href="#/search-page" style="margin-top: 5px;"><img src="images/basket@2x.png" height="30px" ng-click="getcartItems()"></a>
+		<a href="#/search-page" style="margin-top: 5px;">
+			<img src="images/basket@2x.png" height="30px" ng-click="getcartItems()">
+		</a>
 		<p class="cart-with-num">
 			<span>{{cartLength}}</span>
 		</p>
@@ -88,6 +90,7 @@
                              <tr>
                                  <td><strong>Order Id</strong></td>
                                  <td><strong>Order Date</strong></td>
+                                 <td><strong>Order status</strong></td>
                                  <td><strong>Item Name</strong></td>
                                  <!-- <td class="text-center"><strong>Item Price</strong></td> -->
                                  <td class="text-center"><strong>Item Quantity</strong></td>
@@ -98,7 +101,8 @@
                              <tr ng-repeat="orders in orderAmount.itmes">
                                <td>{{orderAmount._id}}</td>
                                <td>{{orderAmount.orderDate}}</td>
-                                 <td>{{orders.product.name}}</td>
+                               <td>{{orderAmount.paymentStatus}}</td>
+                               <td>{{orders.product.name}}</td>
                                  <!-- <td class="text-center">$900</td> -->
                                  <td class="text-center">{{orders.quantity}}</td>
                                  <td class="text-right">{{orders.totalProductAmount}}</td>

@@ -3,7 +3,7 @@ App bluerabbit
 ==================================================================*/
 'use strict';
 
-var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngToast','ngAnimate','ui.bootstrap','googleplus','facebook']);
+var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngToast','ngAnimate','ui.bootstrap','googleplus','facebook', 'angular.filter']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -47,14 +47,14 @@ app.config(['$routeProvider', function($routeProvider) {
 
 //google plus config
 app.config(['GooglePlusProvider','FacebookProvider', function(GooglePlusProvider,FacebookProvider) {
-         GooglePlusProvider.init({
-           clientId: '395593907364-cc9p9l4njfd08koqqoouqucgd2u4hbo6.apps.googleusercontent.com',
-           apiKey: 'eMDg9klaLT6SqzxwEDDjXupk'
-         });
-         FacebookProvider.init({
-             appId:'1272767759478704'
-        });
-    }]);
+     GooglePlusProvider.init({
+       clientId: '395593907364-cc9p9l4njfd08koqqoouqucgd2u4hbo6.apps.googleusercontent.com',
+       apiKey: 'eMDg9klaLT6SqzxwEDDjXupk'
+     });
+     FacebookProvider.init({
+         appId:'1272767759478704'
+    });
+}]);
 
 "use strict";
 
@@ -1008,10 +1008,8 @@ $('#nxt-testimonial').on('click', function(){
   $scope.activeTab = 0;
   $scope.categoryNames = "Add-ons";
   $scope.setActiveTab = function(tabToSet, categoryName){
-      $scope.activeTab = tabToSet;
-      $scope.categoryNames = categoryName;
-      console.log('id', tabToSet);
-      console.log('name', categoryName);
+    $scope.activeTab = tabToSet;
+    $scope.categoryNames = categoryName;
   }
 
   $scope.initSetTab = function(dir) {
@@ -1319,128 +1317,89 @@ $scope.showWishList = function(){
 app.controller('productController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, ngToast){
   'use strict';
 
-  $('#next').on('click',function(e){
-    e.preventDefault();
-    $('.search-page__tab-list').animate({'margin-left':'-190px'},2000,function(){
-        $('#next').addClass('hidden');
-        $('#prev').removeClass('hidden');
-    });
+$('#next').on('click',function(e){
+  e.preventDefault();
+  $('.search-page__tab-list').animate({'margin-left':'-190px'}, 1000, function(){
+    // $('#next').addClass('hidden');
+    // $('#prev').removeClass('hidden');
+  });
 });
 $('#prev').on('click',function(e){
-    e.preventDefault();
-    $('.search-page__tab-list').animate({'margin-left':'0px'},1500,function(){
-        $('#prev').addClass('hidden');
-        $('#next').removeClass('hidden');
-    });
+  e.preventDefault();
+  $('.search-page__tab-list').animate({'margin-left':'0px'}, 1000, function(){
+    // $('#prev').addClass('hidden');
+    // $('#next').removeClass('hidden');
+  });
 });
 
-  $(document).ready(function(){
-          //var counter = $('#TextBox').val();
-    $('#AddButton').click( function() {
-        var counter = $('#TextBox').val();
-        counter++ ;
-        $('#TextBox').val(counter);
-        console.log('click');
-    });
-    $('#minusButton').click( function() {
-      var counter = $('#TextBox').val();
-      counter-- ;
-      $('#TextBox').val(counter);
-    });
-    moveScroller();
+$(document).ready(function(){
+  $('#AddButton').click( function() {
+    var counter = $('#TextBox').val();
+    counter++ ;
+    $('#TextBox').val(counter);
+    console.log('click');
   });
+  $('#minusButton').click( function() {
+    var counter = $('#TextBox').val();
+    counter-- ;
+    $('#TextBox').val(counter);
+  });
+  moveScroller();
+});
 
+$(window).on('scroll', function() {
+  $('.target').each(function() {
+    if($(window).scrollTop() >= ($(this).offset().top - 104)) {
+      var id = $scope.clearSpaces($(this).attr('id'));
+      var $elm = '#'+id+'-a';
+      $('#tabs-menu a').removeClass('active');
+      $($elm).addClass('active');
+    }
+  });
+});
 
-  //scrooling page,showing header fixed
+function moveScroller() {
+  var $anchor = $("#scroller-anchor");
+  var $scroller = $('#scroller');
 
-  // var $fixedElm = $('#sub-menu'),
-  //     fixedElmTop = $fixedElm.offset().top
-  //
-  // $(window).scroll(function(){
-  //   // console.log('working');
-  //   if($(window).scrollTop() > fixedElmTop){
-  //     $fixedElm.css('position','absolute');
-  //   } else {
-  //     $fixedElm.css('position','static');
-  //   }
-  // });
-
-  function moveScroller() {
-    var $anchor = $("#scroller-anchor");
-    var $scroller = $('#scroller');
-
-    var move = function() {
-      var st = $(window).scrollTop();
-      var ot = $anchor.offset().top;
-      if(st > ot) {
+  var move = function() {
+    var st = $(window).scrollTop();
+    var ot = $anchor.offset().top;
+    if(st > ot) {
+      $scroller.css({
+        position: "fixed",
+        top: "0px",
+        width: "70%"
+      });
+      $anchor.css({
+        height: "104px"
+      });
+    } else {
+      if(st <= ot) {
         $scroller.css({
-          position: "fixed",
-          top: "0px",
-          width: "70%"
+          position: "relative",
+          top: "",
+          width: "100%"
         });
         $anchor.css({
-          height: "104px"
+          height: "0px"
         });
-      } else {
-        if(st <= ot) {
-          $scroller.css({
-            position: "relative",
-            top: "",
-            width: "100%"
-          });
-          $anchor.css({
-            height: "0px"
-          });
-        }
       }
-    };
-    $(window).scroll(move);
-    move();
+    }
+  };
+  $(window).scroll(move);
+  move();
 }
 
-  // var elementPosition = $('#sub-menu').offset().top;
-  //
-  // $(window).scroll(function(){
-  //   if($(window).scrollTop() > elementPosition){
-  //         $('#sub-menu').css('position','fixed').css({"top":"0","right":"30%","left":"0"});
-  //   } else {
-  //       $('#sub-menu').css('position','static');
-  //   }
-  // });
-  // var elementPosition1 = $('#scroll-menu-fixed1').offset();
-  //
-  // $(window).scroll(function(){
-  //   if($(window).scrollTop() > elementPosition1){
-  //         $('#scroll-menu-fixed1').css('position','fixed').css({"top":"97px","right":"0","left":"0"});
-  //   } else {
-  //       $('#scroll-menu-fixed1').css('position','static');
-  //   }
-  // });
-  //
-  // $scope.product = function() {
-  //   $scope.productslist = [];
-  //   Auth.products().success(function(data) {
-  //   console.log('data',data);
-  //   $scope.allProducts = data;
-  //
-  //    angular.forEach($scope.allProducts, function (value, key) {
-  //      var obj = {
-  //        "id" : value._id,
-  //        "name" : value.name,
-  //        "description" : value.description,
-  //        "price" : value.salePrice,
-  //        "imag_url" : value.mainImageUrl
-  //      };
-  //      $scope.productslist.push(obj);
-  //      console.log("product id", $scope.productslist);
-  //    });
-  //   }).error(function(data) {
-  //     console.log('data', data);
-  //       alert ("no Products")
-  //   });
-  // }
-  //
-  // $scope.product();
+$scope.init = function() {
+  $scope.product();
+}
+
+$scope.initSetFirtsTab = function() {
+  if($location.path() === '/search-page') {
+
+  }
+}
 
   $scope.createUUID = function() {
     var s = [];
@@ -1815,41 +1774,54 @@ $('#prev').on('click',function(e){
             }
           }
 
+          $scope.clearSpaces = function(string) {
+            if(!angular.isString(string)) {
+              return string;
+            }
+            return string.replace(/[\s]/g, '');
+          }
+
+          $scope.setActiveTab = function(categoryName){
+              $scope.categoryNames = categoryName;
+              var elm = '#'+$scope.clearSpaces(categoryName);
+              var top = $(elm).offset().top - 104;
+              console.log('top', top);
+              $("html, body").animate({
+                  scrollTop: top
+              }, 600);
+              // $scope.activeTab = tabToSet;
+              // $scope.categoryNames = categoryName;
+              // console.log("clicked",tabToSet);
+              // $scope.searchPagelist = false;
+              // $scope.show_wishlist  = false;
+              // $scope.showMenuResult  = true;
+          }
+
           //get list of categories
           $scope.getCategoriesList = function(){
-
-            Auth.getCategories().success (function (data) {
-              console.log('get cat data', data);
+            // angular.forEach($scope.allProducts, function(key, value) {
+            //
+            // });
+            /*Auth.getCategories().success (function (data) {
               $scope.getCategoryList = data;
+              // $scope.categoryNames = "Recommended";
+              $scope.showMenuResult  = true;
             }).error(function(data){
-              console.log('data', data);
               ngToast.create({
                 className: 'warning',
                 content: 'check category api'
               });
-            });
-          }
-
-          $scope.setActiveTab = function(tabToSet, categoryName){
-              $scope.activeTab = tabToSet;
-              $scope.categoryNames = categoryName;
-              console.log("clicked",tabToSet);
-              $scope.searchPagelist = false;
-              $scope.show_wishlist  = false;
-              $scope.showMenuResult  = true;
-              $scope.product();
+            });*/
           }
 
           //get all products in landing page
           $scope.product = function() {
             $scope.productslist = [];
             Auth.products().success(function(data) {
-            console.log('data',data);
-            $scope.allProducts = data;
-
-               $scope.getCategoriesList ();
+              $scope.allProducts = data;
+              // $scope.getCategoriesList();
+              $scope.showMenuResult  = true;
             }).error(function(data) {
-              console.log('data', data);
               ngToast.create({
                 className: 'warning',
                 content: 'Check Product list API '
@@ -1867,8 +1839,17 @@ $('#prev').on('click',function(e){
           $scope.showdiv = true;
         }
 
+    $scope.init();
+});
 
-})
+app.filter('trimSpaces', [function() {
+  return function(string) {
+    if(!angular.isString(string)) {
+      return string;
+    }
+    return string.replace(/[\s]/g, '');
+  };
+}]);
 
 'use strict';
 app.factory('Auth', function($http, $window, $cookieStore) {

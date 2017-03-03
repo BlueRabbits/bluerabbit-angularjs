@@ -20,19 +20,21 @@
 
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
-			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" ng-if="userName">{{userName}}
-			 <span class="caret"></span></p> -->
-			 <p class="dropdown__myaccount" id="menu1" type="button" >{{getEmailId}}
-			 <span class="caret"></span></p>
-			 <div class="dropdown__list">
-			 	<p><a href="#/myaccount" ng-click="getUserProfile()">My Account</a></p>
-				<p><a href="" ng-click="logout()">Logout</a></p>
-			 </div>
-		 </div>
-		 <!-- <p><a href="" ng-click="logout()">Logout</a></p> -->
+				<div class="dropdown__myaccount" id="menu1" type="button" >
+					<div class="user_image" style="background-image: url('images/user_avatar.png')"></div>
+					{{getEmailId}}
+				 	<span class="caret"></span>
+				</div>
+				<div class="dropdown__list">
+				 	<p><a href="#/myaccount" ng-click="getUserProfile()">My Account</a></p>
+					<p><a href="" ng-click="logout()">Logout</a></p>
+				</div>
+		 	</div>
 		</div>
 
-		<a href="#/search-page" style="margin-top: 5px;"><img src="images/basket@2x.png" height="30px" ng-click="getcartItems()"></a>
+		<a href="#/search-page" style="margin-top: 5px;">
+			<img src="images/basket@2x.png" height="30px" ng-click="getcartItems()">
+		</a>
 		<p class="cart-with-num">
 			<span>{{cartLength}}</span>
 		</p>
@@ -53,14 +55,18 @@
 					<p>favorites</p>
 				</div>
 				<p>
-					<ul class="search-list-dropdown">
+					<ul class="search-list-dropdown" ng-hide="searchitem === ''">
+						<li ng-show="searchAutocompleteId.length === 0">No search result</li>
 						<li ng-show="hideAutocomplete" ng-repeat="items in searchAutocompleteId" ng-click="searchList(items._id)">{{items._id}}</li>
 					</ul>
 				</p>
 			</div>
-			<div class="search-page__tab-menu" style="display: flex;justify-content: space-between;">
-				<ul class="search-page__tab-list" id="tabs-menu" ng-repeat="categories in getCategoryList">
-					<li id="navMenu"><a style="cursor:pointer;" data-toggle="tab" ng-class="{'active' : categories.name == categoryNames}" ng-click="setActiveTab(categories._id,categories.name)" > {{categories.name}}</a></li>
+			<div class="search-page__tab-menu">
+				<ul class="search-page__tab-list" id="tabs-menu">
+					<li ng-repeat="(key, val) in allProducts | groupBy:'cat'">
+						<a  ng-attr-id="{{key | trimSpaces}}-a"
+								ng-class="{'active' : key == categoryNames}"
+								ng-click="setActiveTab(key)"> {{key}}</a></li>
 					<!-- <li><a href="#lunch-tab" data-toggle="tab">All Day Meals</a></li>
 					<li><a href="#dinner-tab" data-toggle="tab"> Banquet For 2</a></li>
 					<li><a href="#salads-tab" data-toggle="tab"> Add-ons</a></li>
@@ -69,33 +75,34 @@
 					<li><a href="#rolls-tab" data-toggle="tab"> Dessert/Yogurt/Beverages</a></li>
 					<button type="button" name="button">view all</button> -->
 				</ul>
-				<div class="nav-arrow left-arrow" id="next">
-					<p id="next">></p>
-				</div>
-				<div class="nav-arrow right-arrow"id="prev">
-					<p id="prev" ng-click="scrollLeft()"><</p>
-				</div>
+				<div id="next" class="nav-arrow left-arrow" id="next"> < </div>
+				<div id="prev" class="nav-arrow right-arrow"id="prev"> > </div>
 			</div>
 		</div>
 		<div class="search-secction">
+			<!-- search result -->
 			<div class="search-secction__content" ng-repeat="results in search_result" ng-show="searchPagelist">
-				<div class="search-secction__data">
-					<div class="search-section__image">
-						<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
-						</div>
-					</div>
-					<div class="search-section__description">
-						<p class="product-name">{{results.name}}</p>
-						<p class="product-sub-title">{{results.description}}</p>
-							<div class="product-view">
-									<img src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-									<p id="view-more" ng-click="showdiv = !showdiv">Know More</p>
+				<div class="search-secction__data row">
+					<div class="col-des col-sm-7">
+						<div class="search-section__image">
+							<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
 							</div>
-					</div>
-					<p class="product-price">{{results.salePrice}}<span>AED</span></p>
-					<div class="search-secction__buttons">
-						<button type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
-					</div>
+						</div>
+						<div class="search-section__description">
+							<p class="product-name">{{results.name}}</p>
+							<p class="product-sub-title l2">{{results.description}}</p>
+								<div class="product-view">
+										<img src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">Know More</p>
+								</div>
+						</div>
+					</div> <!-- sm7 -->
+					<div class="col-act col-sm-5">
+						<p class="product-price">{{results.salePrice}}<span>AED</span></p>
+						<div class="search-secction__buttons">
+							<button type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
+						</div>
+					</div> <!-- sm5 -->
 				</div>
 				<div class="description__section" ng-show="showdiv">
 					<div class="description__section--header">
@@ -123,22 +130,26 @@
 
 			<!-- Wish list -->
 			<div class="search-secction__content wish-list" ng-show="show_wishlist" ng-repeat="wishLists in getWishlistData">
-				<div class="search-secction__data" >
-					<div class="search-section__image">
-						<div class="image__thumbnail" style="background-image:url({{wishLists.product.mainImageUrl}})">
+				<div class="search-secction__data row">
+					<div class="col-des col-sm-7">
+						<div class="search-section__image">
+							<div class="image__thumbnail" style="background-image:url({{wishLists.product.mainImageUrl}})">
+							</div>
+						</div>
+						<div class="search-section__description">
+							<p class="product-name">{{wishLists.product.name}}</p>
+							<p class="product-sub-title l2">{{wishLists.product.description}}</p>
+							<div class="product-view">
+								<!-- <img src="images/heart-icon-black.png" > -->
+								<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">Know More</p>
+							</div>
 						</div>
 					</div>
-					<div class="search-section__description">
-						<p class="product-name">{{wishLists.product.name}}</p>
-						<p class="product-sub-title">{{wishLists.product.description}}</p>
-							<div class="product-view">
-									<!-- <img src="images/heart-icon-black.png" > -->
-									<p id="view-more" ng-click="showdiv = !showdiv">Know More</p>
-							</div>
-					</div>
-					<p class="product-price">{{wishLists.product.salePrice}}<span>AED</span></p>
-					<div class="search-secction__buttons">
-						<button type="button" name="button" ng-click="addToCart(wishLists._id)">Add to Cart</button>
+					<div class="col-act col-sm-5">
+						<p class="product-price">{{wishLists.product.salePrice}}<span>AED</span></p>
+						<div class="search-secction__buttons">
+							<button type="button" name="button" ng-click="addToCart(wishLists._id)">Add to Cart</button>
+						</div>
 					</div>
 				</div>
 				<div class="description__section" ng-show="showdiv">
@@ -164,47 +175,60 @@
 					</div>
 				</div>
 			</div>
-			<!-- wish list end-->
-			<!-- menu result -->
-			<div class="search-secction__content wish-list" ng-show="showMenuResult" ng-repeat="list in allProducts | filter:{cat:categoryNames}:true">
-				<div class="search-secction__data" >
-					<div class="search-section__image">
-						<div class="image__thumbnail" style="background-image:url({{list.mainImageUrl}})">
-						</div>
-					</div>
-					<div class="search-section__description">
-						<p class="product-name">{{list.name}}</p>
-						<p class="product-sub-title">{{list.description}}</p>
-							<div class="product-view">
-									<img src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-									<p id="view-more" ng-click="showdiv = !showdiv">Know More</p>
-							</div>
-					</div>
-					<p class="product-price">{{list.salePrice}}<span>AED</span></p>
-					<div class="search-secction__buttons">
-						<button type="button" name="button" ng-click="addToCart(list._id)">Add to Cart</button>
-					</div>
-				</div>
-				<div class="description__section" ng-show="showdiv">
-					<div class="description__section--header">
-						<div class="description-list">
-							<p>Product Description </p>
-							<!-- <span>|</span>
-							<p>Prep time:30 min</p>
-							<span>|</span>
-							<p>Calories: 100 Kcal</p> -->
 
-						</div>
+			<!-- menu result -->
+			<!-- <div class="search-secction__content wish-list" ng-show="showMenuResult" ng-repeat="list in allProducts | filter:{cat:categoryNames}:true"> -->
+			<div ng-show="showMenuResult" ng-repeat="(key, val) in allProducts | groupBy:'cat'">
+				<p class="target" ng-attr-id="{{key | trimSpaces}}">{{ key }}</p>
+				<div class="search-secction__content wish-list" ng-repeat="list in val">
+					<div class="search-secction__data row">
+						<div class="col-des col-sm-7">
+							<div class="search-section__image">
+								<div class="share_section">
+									<a><i class="fa fa-facebook" style="color: #3b5998" aria-hidden="true"></i></a>
+									<a><i class="fa fa-twitter" style="color: #1da1f2" aria-hidden="true"></i></a>
+								</div>
+								<div class="image__thumbnail" style="background-image:url({{list.mainImageUrl}})">
+								</div>
+							</div>
+							<div class="search-section__description">
+								<p class="product-name">
+									<img src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
+									{{list.name}}</p>
+								<p class="product-sub-title l2">{{list.description}}</p>
+									<div class="product-view">
+										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">Know More</p>
+									</div>
+							</div>
+						</div> <!-- sm7 -->
+						<div class="col-act col-sm-5">
+							<p class="product-price">{{list.salePrice}}<span>AED</span></p>
+							<div class="search-secction__buttons">
+								<button type="button" name="button" ng-click="addToCart(list._id)">Add to Cart</button>
+							</div>
+						</div> <!-- sm5 -->
 					</div>
-					<div class="description__section--content">
-						<!-- <p class="product-name">Product Description </p> -->
-						<p class="product-sub-title">
-							{{list.description}}
-						</p>
-						<p class="product-sub-title"></p>
-						<img src="{{list.s1}}" width="120px" />
-						<img src="{{list.s2}}" width="120px" />
-						<img src="{{list.s3}}" width="120px" />
+					<div class="description__section" ng-show="showdiv">
+						<div class="description__section--header">
+							<div class="description-list">
+								<p>Product Description </p>
+								<!-- <span>|</span>
+								<p>Prep time:30 min</p>
+								<span>|</span>
+								<p>Calories: 100 Kcal</p> -->
+
+							</div>
+						</div>
+						<div class="description__section--content">
+							<!-- <p class="product-name">Product Description </p> -->
+							<p class="product-sub-title">
+								{{list.description}}
+							</p>
+							<p class="product-sub-title"></p>
+							<img src="{{list.s1}}" width="120px" />
+							<img src="{{list.s2}}" width="120px" />
+							<img src="{{list.s3}}" width="120px" />
+						</div>
 					</div>
 				</div>
 			</div>

@@ -171,19 +171,21 @@
 
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
-			 <!-- <p class="dropdown__myaccount" id="menu1" type="button" ng-if="userName">{{userName}}
-			 <span class="caret"></span></p> -->
-			 <p class="dropdown__myaccount" id="menu1" type="button" >{{getEmailId}}
-			 <span class="caret"></span></p>
-			 <div class="dropdown__list">
-			 	<p><a href="#/myaccount" ng-click="getUserProfile()">My Account</a></p>
-				<p><a href="" ng-click="logout()">Logout</a></p>
-			 </div>
-		 </div>
-		 <!-- <p><a href="" ng-click="logout()">Logout</a></p> -->
+				<div class="dropdown__myaccount" id="menu1" type="button" >
+					<div class="user_image" style="background-image: url('images/user_avatar.png')"></div>
+					{{getEmailId}}
+				 	<span class="caret"></span>
+				</div>
+				<div class="dropdown__list">
+				 	<p><a href="#/myaccount" ng-click="getUserProfile()">My Account</a></p>
+					<p><a href="" ng-click="logout()">Logout</a></p>
+				</div>
+		 	</div>
 		</div>
 
-		<a href="#/search-page" style="margin-top: 5px;"><img src="images/basket@2x.png" height="30px" ng-click="getcartItems()"></a>
+		<a href="#/search-page" style="margin-top: 5px;">
+			<img src="images/basket@2x.png" height="30px" ng-click="getcartItems()">
+		</a>
 		<p class="cart-with-num">
 			<span>{{cartLength}}</span>
 		</p>
@@ -431,13 +433,14 @@
               Congratulation!! Your order has been confirmed
             </p>
           </form>
-					<!-- <div class="thanks-message">
-						 <label>Order Status</label>
-						 <label>Order ID</label>{{codOrderDetails._id}}
-						 <label>Order Status</label>{{codOrderDetails.paymentStatus}}
-						 <label>Order orderAmount</label>{{codOrderDetails.orderAmount}}
-						 <label>Order orderDate</label>{{codOrderDetails.orderDate}}
-					</div> -->
+					<div class="thanks-message">
+						 <div><label>Order No</label>{{codOrderDetails._id}}</div>
+						 <div><label>Order Status</label>{{codOrderDetails.paymentStatus}}</div>
+						 <div>	<label>Order Amount</label>{{codOrderDetails.orderAmount}}</div>
+						<div> <label>Order orderDate</label>{{codOrderDetails.orderDate}}</div>
+
+						
+					</div>
 					<br/>
 					<br/>
 					<br/>
