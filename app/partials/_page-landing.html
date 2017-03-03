@@ -41,9 +41,6 @@
       <div class="carousel-caption" style="padding: 0px 660px 100px 2px; width: 75%;display: flex;flex-direction: column;align-items: center;">
         <h2>{{lists.product.name}}</h2>
         <p>{{lists.product.description}}</p>
-        <div class="buy-now-button">
-          <button type="button" style="outline: none;" ng-click="addToCart(lists.product._id)" name="button"><img src="images/add-cart-icon.png"> Add to cart</button>
-        </div>
       </div>
     </div>
   </div>
@@ -107,7 +104,8 @@
             <!-- <p>{{list.description}}</p> -->
             <p class="products__price">{{list.salePrice}}AED</p>
           </div>
-          <button type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
+          <button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
+          <button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
         </div>
       </div>
     </div>
