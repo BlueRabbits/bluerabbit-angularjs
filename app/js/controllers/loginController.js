@@ -505,6 +505,32 @@ $scope.editAddress = function(){
 
       };
 
+      //post feedBack
+      $scope.feedBack = function(){
+        $scope.userId = $cookieStore.get('userId');
+        var feedBackDetails = {
+          "userID": $scope.userId,
+          "feedBackComments" : $scope.feedBackComments
+        }
+        Auth.feedBack(feedBackDetails)
+          .success(function(data) {
+
+            console.log('profile updated data', data);
+
+            ngToast.create({
+              className: 'success',
+              content: "Feedback sent Successfully"
+            });
+          }).error(function(data) {
+            console.log(data);
+            ngToast.create({
+              className: 'warning',
+              content: data.message
+            });
+          });
+
+      }
+
 }).directive('ngFiles', ['$parse', function ($parse) {
 
             function fn_link(scope, element, attrs) {
