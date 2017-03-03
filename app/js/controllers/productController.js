@@ -3,14 +3,14 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
 $('#next').on('click',function(e){
   e.preventDefault();
-  $('.search-page__tab-list').animate({'margin-left':'-190px'}, 1000, function(){
+  $('.search-page__tab-list').animate({'margin-left':'0px'}, 1000, function(){
     // $('#next').addClass('hidden');
     // $('#prev').removeClass('hidden');
   });
 });
 $('#prev').on('click',function(e){
   e.preventDefault();
-  $('.search-page__tab-list').animate({'margin-left':'0px'}, 1000, function(){
+  $('.search-page__tab-list').animate({'margin-left':'-190px'}, 1000, function(){
     // $('#prev').addClass('hidden');
     // $('#next').removeClass('hidden');
   });
@@ -473,12 +473,12 @@ $scope.initSetFirtsTab = function() {
               $("html, body").animate({
                   scrollTop: top
               }, 600);
+              $scope.searchPagelist = false;
+              $scope.show_wishlist  = false;
+              $scope.showMenuResult  = true;
               // $scope.activeTab = tabToSet;
               // $scope.categoryNames = categoryName;
               // console.log("clicked",tabToSet);
-              // $scope.searchPagelist = false;
-              // $scope.show_wishlist  = false;
-              // $scope.showMenuResult  = true;
           }
 
           //get list of categories

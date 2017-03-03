@@ -1,10 +1,7 @@
 "use strict";
 
 app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth,  $cookies, $cookieStore, ngToast) {
-
-
   // Activate Next Step
-
   $(document).ready(function() {
 
       var navListItems = $('ul.setup-panel li a'),
@@ -171,15 +168,16 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     //get address by userId
     $scope.getAddressByUserId = function(){
       $scope.getUserId = $cookieStore.get('userId');
-      Auth.getAddressByUserId()
-      .success(function(data){
-        console.log('address by UserID resp', data);
-          $scope.getAddressByUserId = data;
-          //$scope.addressId = data[0]._id;
-          console.log("$scope.addressId",$scope.addressId);
-          }).error(function(data){
-            console.log(data);
-          });
+      Auth.getAddressByUserId().success(function(data){
+        $scope.getAddressByUserId = data;
+        if($scope.getAddressByUserId.length) {
+          $scope.showDiv = 'savedAddress';
+        } else {
+          $scope.showDiv = 'newAddress';
+        }
+      }).error(function(data){
+        console.log(data);
+      });
     }
 
 
