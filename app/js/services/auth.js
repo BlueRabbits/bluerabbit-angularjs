@@ -215,6 +215,13 @@ app.factory('Auth', function($http, $window, $cookieStore) {
         }
       });
     },
+    getLocationDeliver : function(inputs) {
+      return $http.get(BASE_URL + '/api/deliver/Location',inputs, {
+      headers: {
+        'Content-Type': 'application/json'
+        }
+      });
+    },
 
 
   };

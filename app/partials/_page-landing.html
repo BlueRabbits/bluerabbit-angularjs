@@ -120,8 +120,20 @@
       <p class="location-services-heading">
         Where We Deliver
       </p>
-      <input type="serach" name="search-box" class="location-search" placeholder="Ex:Bangalore">
-      <div class="location-search-places">
+      <input type="text" name="search-box" ng-model="search" class="location-search" placeholder="Search">
+      <div class="location-search-places" ng-repeat="locname in locationDeliver  | filter:search">
+        <img src="images/pin-icon.png" alt="" />
+        <div class="search-place__address">
+          <p>
+            {{locname.name}}
+          </p>
+        </div>
+        <!-- <div class="search-place__contact">
+          <p>hello@basis.com</p>
+          <p>+1 650-253-0000</p>
+        </div> -->
+      </div>
+      <!-- <div class="location-search-places">
         <img src="images/pin-icon.png" alt="" />
         <div class="search-place__address">
           <p>
@@ -144,21 +156,9 @@
           <p>hello@basis.com</p>
           <p>+1 650-253-0000</p>
         </div>
-      </div>
-      <div class="location-search-places">
-        <img src="images/pin-icon.png" alt="" />
-        <div class="search-place__address">
-          <p>
-            1600 Amphitheatre Parkway Mountain View, CA 94043
-          </p>
-        </div>
-        <div class="search-place__contact">
-          <p>hello@basis.com</p>
-          <p>+1 650-253-0000</p>
-        </div>
-      </div>
+      </div> -->
     </div>
-    <div class="location-services__map" id="map">
+    <div ng-init="getLocationDeliver()" class="location-services__map" id="map">
       <!-- map servises -->
     </div>
   </div>
