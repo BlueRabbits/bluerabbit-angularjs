@@ -178,21 +178,28 @@ $scope.initSetFirtsTab = function() {
   }
 
   //updateCart on decrement
-  //$scope.countQuantity = 0;
+  $scope.countQuantity = 0;
   $scope.updateCartByDecrementing = function(quantity,productId) {
     $scope.countQuantity =quantity - 1;
     console.log("countQuantity",$scope.countQuantity);
     $scope.getUserId = $cookieStore.get('userId');
-    Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
-    .success(function(data){
-      console.log('updated decrement', data);
-      $scope.getcartItems();
-        }).error(function(data){
+    if ($scope.countQuantity > 0) {
+      Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
+      .success(function(data){
+        console.log('updated decrement', data);
+        $scope.getcartItems();
+          }).error(function(data){
+            ngToast.create({
+              className: 'warning',
+              content: 'Problem in decrement cart'
+            });
+          });
+        } else {
           ngToast.create({
             className: 'warning',
-            content: 'Problem in decrement cart'
+            content: 'Minimum quantity is 1'
           });
-        });
+        }
   }
 
   //search -autoComplete
@@ -306,7 +313,7 @@ $scope.initSetFirtsTab = function() {
         }
       }  else {
         $('#loginmodal').modal('toggle');
-      }  
+      }
   };
 
   //delte cart
