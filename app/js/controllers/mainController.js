@@ -170,7 +170,7 @@ $('#nxt-testimonial').on('click', function(){
     });
   }
   $scope.activeTab = 0;
-  $scope.categoryNames = "Add-ons";
+  $scope.categoryNames = "Recommended";
   $scope.setActiveTab = function(tabToSet, categoryName){
     $scope.activeTab = tabToSet;
     $scope.categoryNames = categoryName;
@@ -413,42 +413,6 @@ $('#nxt-testimonial').on('click', function(){
               console.log('data', data);
 
             });
-
-        //     var locations = [
-        //       $scope.locations
-        //       // [$scope.locName, $scope.lat ,$scope.lng]
-        //   // ['Downtown Dubai', 25.194985, 55.278414]
-        //   // ['Jumeira 1', 25.220111, 55.256308, 5],
-        //   // ['Al Wasl', 25.2048, 55.2708, 3],
-        //   // ['The Palm Jumeirah', 25.1124, 55.1390, 2],
-        //   // ['Jebel Ali Village', 	25.029235, 	55.132065, 1]
-        // ];
-        // console.log("console.log($scope.locationDeliver);",locations);
-        //
-        // var map = new google.maps.Map(document.getElementById('map'), {
-        //   zoom: 10,
-        //   center: new google.maps.LatLng(25.27, 55.29),
-        //   mapTypeId: google.maps.MapTypeId.ROADMAP
-        // });
-        //
-        // var infowindow = new google.maps.InfoWindow();
-        //
-        // var marker, i;
-        //
-        //
-        // for (i = 0; i < locations.length; i++) {
-        //   marker = new google.maps.Marker({
-        //     position: new google.maps.LatLng(locations[i][1],locations[i][2]),
-        //     map: map
-        //   });
-        //
-        //   google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        //     return function() {
-        //       infowindow.setContent(locations[i][0]);
-        //       infowindow.open(map, marker);
-        //     }
-        //   })(marker, i));
-        // }
 
       };
       $scope.getLocationDeliver();
