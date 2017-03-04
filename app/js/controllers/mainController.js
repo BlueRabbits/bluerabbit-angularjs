@@ -397,13 +397,13 @@ $('#nxt-testimonial').on('click', function(){
 
                 console.log("$scope.locations[i][1]",$scope.locations[i][1]);
                         marker = new google.maps.Marker({
-                          position: new google.maps.LatLng($scope.lat,$scope.lng),
+                          position: new google.maps.LatLng(data[i].lat,data[i].lng),
                           map: map
                         });
 
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                           return function() {
-                            infowindow.setContent($scope.locName);
+                            infowindow.setContent(data[i].name);
                             infowindow.open(map, marker);
                           }
                         })(marker, i));
