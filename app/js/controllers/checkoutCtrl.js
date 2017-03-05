@@ -184,6 +184,8 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     //selectedAddress
     $scope.addressIdSelected = null;
     $scope.selectedAddress = function(id, addresstype){
+      $scope.addressIdSelected = id;
+      console.log("$scope.addressIdSelected",$scope.addressIdSelected);
       $scope.showAddressType = false;
       $scope.addNewAddressRadio = false;
       $scope.addrestTypeRadio = false;
