@@ -222,6 +222,14 @@ app.factory('Auth', function($http, $window, $cookieStore) {
         }
       });
     },
+    getMinimumOrder : function() {
+      return $http.get(BASE_URL + '/api/admin/config', {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
 
 
   };
