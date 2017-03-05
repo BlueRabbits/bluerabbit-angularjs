@@ -400,6 +400,9 @@ $scope.initSetFirtsTab = function() {
         .success(function (data) {
           console.log(data.length);
           $scope.getWishlistData = data;
+          for (var i = 0; i < data.length; i++) {
+            $scope.fillheartFavId = data[i].product._id;
+          }
           console.log("$scope.getWishlistData",$scope.getWishlistData);
         }).error(function(data){
           ngToast.create({
