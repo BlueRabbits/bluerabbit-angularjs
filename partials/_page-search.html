@@ -93,8 +93,8 @@
 					<div class="col-act col-sm-5">
 						<p class="product-price">{{results.salePrice}}<span>&nbsp;AED</span></p>
 						<div class="search-secction__buttons">
-							<button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
-							<button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
+							<button ng-if="results.instock === 'yes'" type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
+							<button ng-if="results.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
 						</div>
 					</div> <!-- sm5 -->
 				</div>
@@ -140,8 +140,8 @@
 					<div class="col-act col-sm-5">
 						<p class="product-price">{{wishLists.product.salePrice}}<span>&nbsp;AED</span></p>
 						<div class="search-secction__buttons">
-							<button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(wishLists._id)">Add to Cart</button>
-							<button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
+							<button ng-if="wishLists.product.instock === 'yes'" type="button" name="button" ng-click="addToCart(wishLists._id)">Add to Cart</button>
+							<button ng-if="wishLists.product.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
 						</div>
 					</div>
 				</div>
@@ -324,6 +324,10 @@
 			</div>
 		</div>
 		<div class="cart-section__footer">
+			<div class="total-section" ng-if="showDeliveryCost">
+				<p>Delivery Cost</p>
+				<p class="total-section__cost"><span>AED</span>{{deliveryOrderAmount}}</p>
+			</div>
 			<div class="total-section">
 				<p>Total</p>
 				<p class="total-section__cost"><span>AED</span>{{totalCost}}</p>
