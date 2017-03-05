@@ -182,14 +182,12 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
 
     //selectedAddress
-    $scope.isChecked = false;
-    $scope.selectedAddress = function(id,addresstype){
+    $scope.addressIdSelected = null;
+    $scope.selectedAddress = function(id, addresstype){
       $scope.showAddressType = false;
       $scope.addNewAddressRadio = false;
       $scope.addrestTypeRadio = false;
       $scope.addressIdSelected = id;
-      console.log("id",id);
-      console.log("addresstype",addresstype);
       $scope.addressTypeChosen = addresstype;
       // for (var i = 0; i < $scope.getAddressByUserId.length; i++) {
       //   if(id == $scope.getAddressByUserId[i]._id){
@@ -212,6 +210,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         $scope.isChecked = false;
        }
 
+    }
+
+    $scope.editAddress = function() {
+      $scope.showDiv =  'newAddress';
     }
 
   //post address
@@ -301,9 +303,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
             content: "Order is Placed"
           });
           $scope.codOrderDetails =  data;
-            }).error(function(data){
-              console.log(data);
-            });
+          $scope.receipt_details = data;
+        }).error(function(data){
+          console.log(data);
+        });
       }
 
       //thankyou btn

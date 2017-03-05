@@ -252,23 +252,20 @@
 			<div class="row">
 	      <div class="col-md-12" ng-show="showDiv == 'savedAddress'">
 					<div class="row">
-						<div class="col-sm-6" ng-repeat="getMyAddress in getAddressByUserId ">
-							<div class="address-box">
-								<!-- <form class="form-inline" style="display: flex;padding: 12px;justify-content: flex-start;border-bottom: solid 1px #e40046;">
-									<label class="radio-inline">
-										<input type="radio" name="optradio" ng-model="isChecked" ng-click="selectedAddress(getMyAddress._id,getMyAddress.addressType)">{{getMyAddress.addressType}}
-								</label>
-								</form> -->
+						<div class="col-sm-6" ng-repeat="address in getAddressByUserId ">
+							<div class="address-box" ng-class="{'active' : addressIdSelected == address._id}">
 								<div class="address-content">
-									<p>
-										{{getMyAddress.houseNo}},{{getMyAddress.name}}
-									</p>
-									<p>
-									{{getMyAddress.streetName}},{{getMyAddress.landmark}},
-									</p>
-									<p>
-										{{getMyAddress.city}},{{getMyAddress.country}}
-									</p>
+									<div class="row">
+										<input type="radio" name="optradio" ng-click="selectedAddress(address._id,address.addressType)">
+										<div class="col-xs-8"><h2>{{address.addressType}}</h2></div>
+										<div class="col-xs-4"><span class="pull-right edit" ng-click="editAddress()">Edit</span></div>
+										<div class="col-xs-12" style="margin-top:15px">
+											<p>{{address.houseNo}},{{address.name}}</p>
+											<p>{{address.streetName}},{{address.landmark}},</p>
+											<p>{{address.city}},{{address.country}}</p>
+											<p>{{address.mobileNumber}}</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -309,98 +306,84 @@
 	        </form>
 				</div>
 
-        <div class="process-button-section">
+        <div class="process-button-section col-sm-12" ng-hide="showDiv == 'newAddress'">
           <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-					  <button id="continue-shopping-button" ng-click="continueShipping()" class=" checkout-page__buttons">Continue Shopping</button>
-          <button id="activate-step-3" class=" checkout-page__buttons active">Proceed To Checkout</button>
+					<button id="continue-shopping-button" ng-click="continueShipping()" class=" checkout-page__buttons">Continue Shopping</button>
+          <button id="activate-step-3"  ng-disabled="addressIdSelected == null" class="checkout-page__buttons active">Proceed To Checkout</button>
         </div>
       </div>
-			<!-- <div class="col-md-6 text-center checkout-page__address">
-				<p><b>My Address</b></p>
-				<div ng-repeat="getAddress in getAddressByUserId">
-						<p> {{getAddress.addressType}}</p>
-					<p>Address: {{getAddress.street}} {{getAddress.street1}}</p>
-					<p>Company Name: {{getAddress.companyName}}</p>
-				<p>	Landline No :{{getAddress.landLineNumber}}</p>
-					<p>Mobile No: {{getAddress.mobileNumber}}</p>
-				<p>	State: {{getAddress.state}}</p>
-					<p>City: {{getAddress.city}}</p>
-				</div>
-			</div> -->
-    </div>
+		</div>
   </div>
-  <div class="row setup-content" id="step-3">
-    <div class="col-xs-12">
-      <div class="col-md-12 text-center">
-          <h1 class="text-center"> Payment Type : COD</h1>
-          <p class="thanks-message">
-						<h1 class="text-center"> Thank You For Your Order</h1>
-						<!-- <form>
-							<p class="thanks-message">
-								Payment Type : COD
-								<div ng-repeat="getAddress in getAddressByUserId">
-								We will be delivering to your <p> {{getAddress.addressType}} Address.</p>
 
-									<p>Address Details: {{getAddress.street}} {{getAddress.street1}}</p>
-									<p>Company Name: {{getAddress.companyName}}</p>
-								<p>	Landline No :{{getAddress.landLineNumber}}</p>
-									<p>Mobile No: {{getAddress.mobileNumber}}</p>
-								<p>	State: {{getAddress.state}}</p>
-									<p>City: {{getAddress.city}}</p>
-								</div>
-							</p>
-						</form> -->
-          </p>
-					<!-- <form  action="http://localhost:9000/api/checkout/makePayment" method="POST">
-						<div >
-						  <input type="hidden" name="UserID" ng-value="getUserId"><br>
-						   <input type="hidden" name="coupon"><br>
-							  <input type="hidden" name="ip" value="192.168.1.1"><br>
-						  	<input type="hidden" name="paymentMethod" value="1"><br>
-							   <input type="hidden" name="address" ng-value="addressIdSelected"><br>
-							   <input type="hidden" name="billingAddress" ng-value="addressIdSelected"><br>
-							   <input type="hidden" name="returnURL" value="http://localhost:3000"><br>
-							  <input type="submit" value="Submit">
-							</div>
-								</form> -->
+	<div class="row setup-content" id="step-3">
+    <div class="col-xs-12">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2 class="text-center" style="margin:0px">Payment option</h2>
+				</div>
+			</div> <!-- heading -->
+			<div class="row">
+      	<div class="col-md-12 text-center">
+          <p class="thanks-message text-center">Thank You For Your Order</p>
+					<div class="payment_option_card card_layout">
+						<div class="option_list">
+							<input type="radio" name="payment_option_radio">
+							Cash on delivery
+						</div>
+					</div>
           <div class="process-button-section process-button-section__center">
-            <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
             <button type="submit" id="activate-step-4" class=" checkout-page__buttons active" ng-click="makeCodPayment()">Confirm</button>
           </div>
-
+				</div>
       </div>
     </div>
   </div>
   <div class="row setup-content" id="step-4">
     <div class="col-xs-12">
-      <div class="col-md-12 text-center">
-          <h1 class="text-center"> Thank You For Your Order</h1>
-          <form>
-            <p class="thanks-message">
-              Congratulation!! Your order has been confirmed
-            </p>
-          </form>
-					<div class="thanks-message">
-						 <div><label>Order No</label>{{codOrderDetails._id}}</div>
-						 <div><label>Order Status</label>{{codOrderDetails.paymentStatus}}</div>
-						 <div>	<label>Order Amount</label>{{codOrderDetails.orderAmount}}</div>
-						<div> <label>Order orderDate</label>{{codOrderDetails.orderDate}}</div>
+			<div class="row order_receipt">
+				<div class="col-md-6 text-center">
+					<div class="card_layout card_receipt">
+						<div class="row">
+							<div class="col-xs-6">
+								<p class="heading">ORDER DATE</p>
+								<p>{{receipt_details.orderDate}</p>
+							</div>
+							<div class="col-xs-6 text-right">
+								<p class="heading">ORDER NO</p>
+								<p>{{receipt_details._id}</p>
+							</div>
+						</div>
 
+						<div class="row">
+							<div class="col-xs-6"><p class="heading">ORDER STATUS</p></div>
+							<div class="col-xs-6 text-right"><p>{{receipt_details.paymentStatus}}</p></div>
+						</div>
 
+						<div class="row">
+							<div class="col-xs-6"><p class="heading" style="color:#000">ORDER STATUS</p></div>
+							<div class="col-xs-6 text-right" style="color:#cf1033; font-weight:normal"><p>AED&nbsp;{{receipt_details.orderAmount}}</p></div>
+						</div>
+
+						<div class="row" style="font-size: 13px;">
+							<div class="col-xs-6"><p class="heading">DELIVERY ADDRESS</p></div>
+							<div class="row address col-lg-12">
+								<div class="col-xs-12"><p>{{receipt_details.address.addressType}}</p></div>
+								<div class="col-xs-12"><p>{{receipt_details.address.name}}</p></div>
+								<div class="col-xs-12">
+									<p>{{receipt_details.address.houseNo}}, {{address.name}}, {{address.streetName}}, {{address.landmark}}, {{address.city}}, {{address.country}}</p>
+								</div>
+							</div>
+						</div>
 					</div>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-          <div class="process-button-section process-button-section__center">
-            <!-- <button id="step-back-1" class=" checkout-page__buttons">Back To Cart</button> -->
-            <button  class=" checkout-page__buttons print-recipt__button active" ng-click="thankYou()">Thank you</button>
+      	</div>
+
+				<div class="col-sm-6">
+					<h2 class="text-center" style="margin:0px">Thank you for your order!</h2>
+					<div class="process-button-section process-button-section__center">
+            <button type="submit" class="checkout-page__buttons active" ng-click="thankYou()">PRINT RECEIPT</button>
           </div>
-      </div>
+				</div>
+			</div> <!-- heading -->
     </div>
   </div>
 </div>
