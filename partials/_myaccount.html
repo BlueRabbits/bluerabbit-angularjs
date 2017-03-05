@@ -19,7 +19,7 @@
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
 				<div class="dropdown__myaccount" id="menu1" type="button" >
-					<div class="user_image" style="background-image: url('images/user_avatar.png')"></div>
+					<div class="user_image" style="background-image: url({'images/user_avatar.png'})"></div>
 					{{getEmailId}}
 				 	<span class="caret"></span>
 				</div>
@@ -50,6 +50,7 @@
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="Profile"><i class="fa fa-list-alt fa-fw"></i>Change Password</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="Activity" ng-click="getOrdersByUserId()"><i class="fa fa-file-o fa-fw"></i>Order Details</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="Address" ng-click="getAddressMyAccount()"><i class="fa fa-bar-chart-o fa-fw"></i>Address Details</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="Feedback"><i class="fa fa-table fa-fw"></i>Feedback</a></li>
                 <!-- <li><a href="http://www.jquery2dotnet.com" data-target-id="Messaging"><i class="fa fa-table fa-fw"></i>Messaging</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="InstallationJobs"><i class="fa fa-tasks fa-fw"></i>Installation Jobs</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="Settings"><i class="fa fa-cogs fa-fw"></i>Settings</a></li> -->
@@ -61,7 +62,11 @@
             </p>
               <p>  Email id : {{userEmail}}</p>
 
-
+            <div>
+              <input type="file" id="file1" name="file" multiple
+            ng-files="getTheFiles($files)" />
+            <button ng-click="ProfileUpdate()">Submit</button>
+          </div>
         </div>
         <div class="col-md-9 well admin-content" id="Profile">
             <form ng-submit="changePassword()" class="col-lg-6">
@@ -214,6 +219,10 @@
 
             </form>
           <!-- edit address -->
+        </div>
+        <div class="col-md-9 well admin-content" id="Feedback">
+            <input type="text" ng-model="feedBackComments"/>
+            <button type="button" ng-click="feedBack()">submit</button>
         </div>
         <!-- <div class="col-md-9 well admin-content" id="Messaging">
             Table

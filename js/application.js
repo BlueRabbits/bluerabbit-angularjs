@@ -59,10 +59,7 @@ app.config(['GooglePlusProvider','FacebookProvider', function(GooglePlusProvider
 "use strict";
 
 app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth,  $cookies, $cookieStore, ngToast) {
-
-
   // Activate Next Step
-
   $(document).ready(function() {
 
       var navListItems = $('ul.setup-panel li a'),
@@ -229,27 +226,28 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     //get address by userId
     $scope.getAddressByUserId = function(){
       $scope.getUserId = $cookieStore.get('userId');
-      Auth.getAddressByUserId()
-      .success(function(data){
-        console.log('address by UserID resp', data);
-          $scope.getAddressByUserId = data;
-          //$scope.addressId = data[0]._id;
-          console.log("$scope.addressId",$scope.addressId);
-          }).error(function(data){
-            console.log(data);
-          });
+      Auth.getAddressByUserId().success(function(data){
+        $scope.getAddressByUserId = data;
+        if($scope.getAddressByUserId.length) {
+          $scope.showDiv = 'savedAddress';
+        } else {
+          $scope.showDiv = 'newAddress';
+        }
+      }).error(function(data){
+        console.log(data);
+      });
     }
 
 
     //selectedAddress
-    $scope.isChecked = false;
-    $scope.selectedAddress = function(id,addresstype){
+    $scope.addressIdSelected = null;
+    $scope.selectedAddress = function(id, addresstype){
+      $scope.addressIdSelected = id;
+      console.log("$scope.addressIdSelected",$scope.addressIdSelected);
       $scope.showAddressType = false;
       $scope.addNewAddressRadio = false;
       $scope.addrestTypeRadio = false;
       $scope.addressIdSelected = id;
-      console.log("id",id);
-      console.log("addresstype",addresstype);
       $scope.addressTypeChosen = addresstype;
       // for (var i = 0; i < $scope.getAddressByUserId.length; i++) {
       //   if(id == $scope.getAddressByUserId[i]._id){
@@ -272,6 +270,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         $scope.isChecked = false;
        }
 
+    }
+
+    $scope.editAddress = function() {
+      $scope.showDiv =  'newAddress';
     }
 
   //post address
@@ -361,9 +363,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
             content: "Order is Placed"
           });
           $scope.codOrderDetails =  data;
-            }).error(function(data){
-              console.log(data);
-            });
+          $scope.receipt_details = data;
+        }).error(function(data){
+          console.log(data);
+        });
       }
 
       //thankyou btn
@@ -500,7 +503,7 @@ $scope.logged = false;
     $cookieStore.remove("userName");
     //facebook logout
      var _self = this;
-     FB.logout(function(response) {
+     Facebook.logout(function(response) {
         // user is now logged out
         console.log("log out");
         $rootScope.$apply(function() {
@@ -620,9 +623,16 @@ $scope.logged = false;
              GooglePlus.getUser().then(function (data) {
                  console.log("user",data);
                  $scope.userName = data.name;
-                 $scope.emailId = data.email
+                 $scope.emailId = data.email;
+                 $scope.imageUrls = data.picture;
+                 console.log("$scope.imageUrls",$scope.imageUrls);
                  $cookieStore.put("emailId", $scope.emailId);
                  $cookieStore.put('userName', $scope.userName);
+                 $cookieStore.put('imageUrls', data.picture);
+                 localStorage.setItem('imageUrls', data.picture);
+                 $scope.imageUrls = localStorage.getItem('imageUrls');
+                 console.log("$scope.imageUrls",$scope.imageUrls);
+
 
              });
 
@@ -643,7 +653,7 @@ $scope.logged = false;
            $('.modal').css("display", "none");
            $('.modal-open').removeClass();
            $scope.closeModal();
-           location.reload();
+           //location.reload();
          }).error(function(data) {
            console.log('data', data);
          });
@@ -739,7 +749,7 @@ $scope.getOrdersByUserId = function() {
       $scope.ordersProductName = $scope.orderHistory[i].itmes[i];
       console.log("name",$scope.ordersProductName);
     }
-  
+
 
     console.log('user orders', $scope.orderHistory);
   }).error(function(data) {
@@ -832,7 +842,87 @@ $scope.editAddress = function(){
       });
 }
 
-})
+//upload formdata imageUrls
+      var formdata = new FormData();
+      $scope.getTheFiles = function($files) {
+        angular.forEach($files, function(value, key) {
+          formdata.append(key, value);
+          console.log(formdata);
+        });
+        console.log($('#file1').val());
+        console.log(formdata);
+        formdata.append('file', formdata);
+        Auth.imageUpload(formdata)
+          .success(function(data) {
+            console.log('profile formdata', data);
+            $scope.profileImage = data.url;
+          }).error(function(data) {
+            console.log(data);
+          });
+
+      };
+
+
+      $scope.ProfileUpdate = function() {
+        var profileDetails = {
+          "name": $scope.userName,
+          "image_url": $scope.profileImage
+        }
+        Auth.profileImageUpload(profileDetails)
+          .success(function(data) {
+
+            console.log('profile updated data', data);
+            $scope.emailId = data.email;
+            $scope.userName = data.name;
+            ngToast.create({
+              className: 'success',
+              content: "Successfully Updated the address"
+            });
+          }).error(function(data) {
+            console.log(data);
+          });
+
+      };
+
+      //post feedBack
+      $scope.feedBack = function(){
+        $scope.userId = $cookieStore.get('userId');
+        var feedBackDetails = {
+          "userID": $scope.userId,
+          "feedBackComments" : $scope.feedBackComments
+        }
+        Auth.feedBack(feedBackDetails)
+          .success(function(data) {
+
+            console.log('profile updated data', data);
+
+            ngToast.create({
+              className: 'success',
+              content: "Feedback sent Successfully"
+            });
+          }).error(function(data) {
+            console.log(data);
+            ngToast.create({
+              className: 'warning',
+              content: data.message
+            });
+          });
+
+      }
+
+}).directive('ngFiles', ['$parse', function ($parse) {
+
+            function fn_link(scope, element, attrs) {
+                var onChange = $parse(attrs.ngFiles);
+                element.on('change', function (event) {
+                    onChange(scope, { $files: event.target.files });
+                });
+            };
+
+            return {
+                link: fn_link
+            }
+        } ]);
 
 app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, ngToast ){
   'use strict';
@@ -1006,7 +1096,7 @@ $('#nxt-testimonial').on('click', function(){
     });
   }
   $scope.activeTab = 0;
-  $scope.categoryNames = "Add-ons";
+  $scope.categoryNames = "Recommended";
   $scope.setActiveTab = function(tabToSet, categoryName){
     $scope.activeTab = tabToSet;
     $scope.categoryNames = categoryName;
@@ -1030,83 +1120,88 @@ $('#nxt-testimonial').on('click', function(){
   }
 
   //POST create add to cart
+  $scope.userToken = $cookieStore.get('token');
   var count = 0;
   $scope.addToCart = function(productId) {
-    count++;
+    if ($cookieStore.get('token')) {
 
-    //cookieStore
-    $scope.getUserId = $cookieStore.get('userId');
-    $scope.userToken = $cookieStore.get('token');
-    $scope.sessionId = $cookieStore.get('sessionId');
-    //check for no dupes on cart
-    $scope.gettingCartIds = [];
-    angular.forEach($scope.allCartItems, function(value, key) {
-      var obj = {
-        "cartIds": value._id,
-        "cartQty": value.quantity,
-        "productIds": value.product._id
-      };
-      $scope.gettingCartIds.push(obj);
-    });
-
-    //loop to check if prodct id exist in cart then increment qty
-    $scope.incrementQty = false;
-    $scope.addCart = false;
-    for (var i = 0; i < $scope.gettingCartIds.length; i++) {
-      console.log($scope.gettingCartIds[i].productIds);
-      if ($scope.gettingCartIds[i].productIds === productId) {
-        console.log("that cart id of prod", $scope.gettingCartIds[i].cartQty);
-        console.log("call increment function");
-        $scope.cartQuantity = $scope.gettingCartIds[i].cartQty;
-        $scope.cartIds = $scope.gettingCartIds[i].cartIds;
-        $scope.incrementQty = true;
-      } else {
-        console.log("i am here");
-        $scope.addCart = true;
-      }
-    }
-
-    if ($scope.incrementQty === true) {
-      console.log('add to quantity');
-      $scope.updateCartByIncrement($scope.cartQuantity, $scope.cartIds);
-    } else if($scope.incrementQty === false && $scope.addCart === true || $scope.allCartItems.length === 0) {
-      // do add to cart if not matching
-      console.log('add new item');
-      var addQuantity = 1;
-      $scope.cartlist = [];
-      var productInfo = {
-        product: productId,
-        quantity: addQuantity,
-        UserID: $scope.getUserId,
-        sessionID: $scope.sessionId,
-        authToken: $scope.userToken,
-        isDeleted: false
-      }
-      Auth.addCart(productInfo)
-        .success(function(data) {
-          //console.log('data', data);
-          $scope.getcartItems();
-          ngToast.create({
-            className: 'success',
-            content: 'Item Added to Cart'
-          });
-
-          angular.forEach(data, function(value, key) {
-            var obj = {
-              "user_id": value.UserID,
-              "productId": value.product,
-              "quantity": value.quantity,
-            };
-            $scope.cartlist.push(obj);
-            console.log("cart", $scope.cartlist);
-          });
-        }).error(function(data) {
-          ngToast.create({
-            className: 'warning',
-            content: 'Problem in Adding to Cart'
-          });
+        count++;
+        //cookieStore
+        $scope.getUserId = $cookieStore.get('userId');
+        $scope.userToken = $cookieStore.get('token');
+        $scope.sessionId = $cookieStore.get('sessionId');
+        //check for no dupes on cart
+        $scope.gettingCartIds = [];
+        angular.forEach($scope.allCartItems, function(value, key) {
+          var obj = {
+            "cartIds": value._id,
+            "cartQty": value.quantity,
+            "productIds": value.product._id
+          };
+          $scope.gettingCartIds.push(obj);
         });
-    }
+
+        //loop to check if prodct id exist in cart then increment qty
+        $scope.incrementQty = false;
+        $scope.addCart = false;
+        for (var i = 0; i < $scope.gettingCartIds.length; i++) {
+          console.log($scope.gettingCartIds[i].productIds);
+          if ($scope.gettingCartIds[i].productIds === productId) {
+            console.log("that cart id of prod", $scope.gettingCartIds[i].cartQty);
+            console.log("call increment function");
+            $scope.cartQuantity = $scope.gettingCartIds[i].cartQty;
+            $scope.cartIds = $scope.gettingCartIds[i].cartIds;
+            $scope.incrementQty = true;
+          } else {
+            console.log("i am here");
+            $scope.addCart = true;
+          }
+        }
+
+        if ($scope.incrementQty === true) {
+          console.log('add to quantity');
+          $scope.updateCartByIncrement($scope.cartQuantity, $scope.cartIds);
+        } else if($scope.incrementQty === false && $scope.addCart === true || $scope.allCartItems.length === 0) {
+          // do add to cart if not matching
+          console.log('add new item');
+          var addQuantity = 1;
+          $scope.cartlist = [];
+          var productInfo = {
+            product: productId,
+            quantity: addQuantity,
+            UserID: $scope.getUserId,
+            sessionID: $scope.sessionId,
+            authToken: $scope.userToken,
+            isDeleted: false
+          }
+          Auth.addCart(productInfo)
+            .success(function(data) {
+              //console.log('data', data);
+              $scope.getcartItems();
+              ngToast.create({
+                className: 'success',
+                content: 'Item Added to Cart'
+              });
+
+              angular.forEach(data, function(value, key) {
+                var obj = {
+                  "user_id": value.UserID,
+                  "productId": value.product,
+                  "quantity": value.quantity,
+                };
+                $scope.cartlist.push(obj);
+                console.log("cart", $scope.cartlist);
+              });
+            }).error(function(data) {
+              ngToast.create({
+                className: 'warning',
+                content: 'Problem in Adding to Cart'
+              });
+            });
+        }
+      }  else {
+        $('#loginmodal').modal('toggle');
+      }
   };
 
   //getCart items
@@ -1201,37 +1296,52 @@ $('#nxt-testimonial').on('click', function(){
 
 
       //google maps
-      var locations = [
-    ['Downtown Dubai', 25.194985, 55.278414, 4],
-    ['Jumeira 1', 25.220111, 55.256308, 5],
-    ['Al Wasl', 25.2048, 55.2708, 3],
-    ['The Palm Jumeirah', 25.1124, 55.1390, 2],
-    ['Jebel Ali Village', 	25.029235, 	55.132065, 1]
-  ];
+      //get deliver location
+      $scope.getLocationDeliver = function(){
+      //  var locations = [];
+            Auth.getLocationDeliver().success (function (data) {
+              console.log('getLocationDeliver', data);
+              $scope.locationDeliver = data;
+              //google maps
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: new google.maps.LatLng(25.27, 55.29),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              });
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
-    center: new google.maps.LatLng(25.27, 55.29),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
+              var infowindow = new google.maps.InfoWindow();
 
-  var infowindow = new google.maps.InfoWindow();
+              var marker, i;
+              //loops data from api
+              for (var i = 0; i < data.length; i++) {
+                $scope.lat = data[i].lat;
+                $scope.lng = data[i].lng;
+                $scope.locName = data[i].name;
+                $scope.locations = [data[i].name,data[i].lat,data[i].lng];
+                console.log("locations",$scope.locations);
+                //google maps
 
-  var marker, i;
+                console.log("$scope.locations[i][1]",$scope.locations[i][1]);
+                        marker = new google.maps.Marker({
+                          position: new google.maps.LatLng(data[i].lat,data[i].lng),
+                          map: map
+                        });
 
-  for (i = 0; i < locations.length; i++) {
-    marker = new google.maps.Marker({
-      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-      map: map
-    });
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                          return function() {
+                            infowindow.setContent(data[i].name);
+                            infowindow.open(map, marker);
+                          }
+                        })(marker, i));
+              }
 
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-      return function() {
-        infowindow.setContent(locations[i][0]);
-        infowindow.open(map, marker);
-      }
-    })(marker, i));
-  }
+            }).error(function(data){
+              console.log('data', data);
+
+            });
+
+      };
+      $scope.getLocationDeliver();
 
   //Note :redirect to show wish list
 $scope.showWishList = function(){
@@ -1319,14 +1429,14 @@ app.controller('productController', function($scope, $location, $rootScope, $win
 
 $('#next').on('click',function(e){
   e.preventDefault();
-  $('.search-page__tab-list').animate({'margin-left':'-190px'}, 1000, function(){
+  $('.search-page__tab-list').animate({'margin-left':'0px'}, 1000, function(){
     // $('#next').addClass('hidden');
     // $('#prev').removeClass('hidden');
   });
 });
 $('#prev').on('click',function(e){
   e.preventDefault();
-  $('.search-page__tab-list').animate({'margin-left':'0px'}, 1000, function(){
+  $('.search-page__tab-list').animate({'margin-left':'-190px'}, 1000, function(){
     // $('#prev').addClass('hidden');
     // $('#next').removeClass('hidden');
   });
@@ -1494,21 +1604,28 @@ $scope.initSetFirtsTab = function() {
   }
 
   //updateCart on decrement
-  //$scope.countQuantity = 0;
+  $scope.countQuantity = 0;
   $scope.updateCartByDecrementing = function(quantity,productId) {
     $scope.countQuantity =quantity - 1;
     console.log("countQuantity",$scope.countQuantity);
     $scope.getUserId = $cookieStore.get('userId');
-    Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
-    .success(function(data){
-      console.log('updated decrement', data);
-      $scope.getcartItems();
-        }).error(function(data){
+    if ($scope.countQuantity > 0) {
+      Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
+      .success(function(data){
+        console.log('updated decrement', data);
+        $scope.getcartItems();
+          }).error(function(data){
+            ngToast.create({
+              className: 'warning',
+              content: 'Problem in decrement cart'
+            });
+          });
+        } else {
           ngToast.create({
             className: 'warning',
-            content: 'Problem in decrement cart'
+            content: 'Minimum quantity is 1'
           });
-        });
+        }
   }
 
   //search -autoComplete
@@ -1545,81 +1662,84 @@ $scope.initSetFirtsTab = function() {
   //POST create add to cart
   var count = 0;
   $scope.addToCart = function(productId) {
-    count++;
-
-    //cookieStore
-    $scope.getUserId = $cookieStore.get('userId');
-    $scope.userToken = $cookieStore.get('token');
-    $scope.sessionId = $cookieStore.get('sessionId');
-    //check for no dupes on cart
-    $scope.gettingCartIds = [];
-    angular.forEach($scope.allCartItems, function(value, key) {
-      var obj = {
-        "cartIds": value._id,
-        "cartQty": value.quantity,
-        "productIds": value.product._id
-      };
-      $scope.gettingCartIds.push(obj);
-    });
-
-    //loop to check if prodct id exist in cart then increment qty
-    $scope.incrementQty = false;
-    $scope.addCart = false;
-    for (var i = 0; i < $scope.gettingCartIds.length; i++) {
-      console.log($scope.gettingCartIds[i].productIds);
-      if ($scope.gettingCartIds[i].productIds === productId) {
-        console.log("that cart id of prod", $scope.gettingCartIds[i].cartQty);
-        console.log("call increment function");
-        $scope.cartQuantity = $scope.gettingCartIds[i].cartQty;
-        $scope.cartIds = $scope.gettingCartIds[i].cartIds;
-        $scope.incrementQty = true;
-      } else {
-        console.log("i am here");
-        $scope.addCart = true;
-      }
-    }
-
-    if ($scope.incrementQty === true) {
-      console.log('add to quantity');
-      $scope.updateCartByIncrement($scope.cartQuantity, $scope.cartIds);
-    } else if($scope.incrementQty === false && $scope.addCart === true || $scope.allCartItems.length === 0) {
-      // do add to cart if not matching
-      console.log('add new item');
-      var addQuantity = 1;
-      $scope.cartlist = [];
-      var productInfo = {
-        product: productId,
-        quantity: addQuantity,
-        UserID: $scope.getUserId,
-        sessionID: $scope.sessionId,
-        authToken: $scope.userToken,
-        isDeleted: false
-      }
-      Auth.addCart(productInfo)
-        .success(function(data) {
-          //console.log('data', data);
-          $scope.getcartItems();
-          ngToast.create({
-            className: 'success',
-            content: 'Item Added to Cart'
-          });
-
-          angular.forEach(data, function(value, key) {
-            var obj = {
-              "user_id": value.UserID,
-              "productId": value.product,
-              "quantity": value.quantity,
-            };
-            $scope.cartlist.push(obj);
-            console.log("cart", $scope.cartlist);
-          });
-        }).error(function(data) {
-          ngToast.create({
-            className: 'warning',
-            content: 'Problem in Adding to Cart'
-          });
+    if ($cookieStore.get('token')) {
+        count++;
+        //cookieStore
+        $scope.getUserId = $cookieStore.get('userId');
+        $scope.userToken = $cookieStore.get('token');
+        $scope.sessionId = $cookieStore.get('sessionId');
+        //check for no dupes on cart
+        $scope.gettingCartIds = [];
+        angular.forEach($scope.allCartItems, function(value, key) {
+          var obj = {
+            "cartIds": value._id,
+            "cartQty": value.quantity,
+            "productIds": value.product._id
+          };
+          $scope.gettingCartIds.push(obj);
         });
-    }
+
+        //loop to check if prodct id exist in cart then increment qty
+        $scope.incrementQty = false;
+        $scope.addCart = false;
+        for (var i = 0; i < $scope.gettingCartIds.length; i++) {
+          console.log($scope.gettingCartIds[i].productIds);
+          if ($scope.gettingCartIds[i].productIds === productId) {
+            console.log("that cart id of prod", $scope.gettingCartIds[i].cartQty);
+            console.log("call increment function");
+            $scope.cartQuantity = $scope.gettingCartIds[i].cartQty;
+            $scope.cartIds = $scope.gettingCartIds[i].cartIds;
+            $scope.incrementQty = true;
+          } else {
+            console.log("i am here");
+            $scope.addCart = true;
+          }
+        }
+
+        if ($scope.incrementQty === true) {
+          console.log('add to quantity');
+          $scope.updateCartByIncrement($scope.cartQuantity, $scope.cartIds);
+        } else if($scope.incrementQty === false && $scope.addCart === true || $scope.allCartItems.length === 0) {
+          // do add to cart if not matching
+          console.log('add new item');
+          var addQuantity = 1;
+          $scope.cartlist = [];
+          var productInfo = {
+            product: productId,
+            quantity: addQuantity,
+            UserID: $scope.getUserId,
+            sessionID: $scope.sessionId,
+            authToken: $scope.userToken,
+            isDeleted: false
+          }
+          Auth.addCart(productInfo)
+            .success(function(data) {
+              //console.log('data', data);
+              $scope.getcartItems();
+              ngToast.create({
+                className: 'success',
+                content: 'Item Added to Cart'
+              });
+
+              angular.forEach(data, function(value, key) {
+                var obj = {
+                  "user_id": value.UserID,
+                  "productId": value.product,
+                  "quantity": value.quantity,
+                };
+                $scope.cartlist.push(obj);
+                console.log("cart", $scope.cartlist);
+              });
+            }).error(function(data) {
+              ngToast.create({
+                className: 'warning',
+                content: 'Problem in Adding to Cart'
+              });
+            });
+        }
+      }  else {
+        $('#loginmodal').modal('toggle');
+      }
   };
 
   //delte cart
@@ -1789,12 +1909,12 @@ $scope.initSetFirtsTab = function() {
               $("html, body").animate({
                   scrollTop: top
               }, 600);
+              $scope.searchPagelist = false;
+              $scope.show_wishlist  = false;
+              $scope.showMenuResult  = true;
               // $scope.activeTab = tabToSet;
               // $scope.categoryNames = categoryName;
               // console.log("clicked",tabToSet);
-              // $scope.searchPagelist = false;
-              // $scope.show_wishlist  = false;
-              // $scope.showMenuResult  = true;
           }
 
           //get list of categories
@@ -2040,6 +2160,37 @@ app.factory('Auth', function($http, $window, $cookieStore) {
       return $http.get(BASE_URL + '/api/todaysDeal' ,inputs, {
       headers: {
         'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    imageUpload : function(formdata) {
+      return $http.post(BASE_URL + '/api/users/image/upload', formdata, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': undefined
+        }
+      });
+    },
+    profileImageUpload : function(inputs) {
+      return $http.put(BASE_URL + '/api/users/'+userId,inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    feedBack : function(inputs) {
+      return $http.post(BASE_URL + '/api/order/feedback',inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    getLocationDeliver : function(inputs) {
+      return $http.get(BASE_URL + '/api/deliver/Location',inputs, {
+      headers: {
         'Content-Type': 'application/json'
         }
       });
