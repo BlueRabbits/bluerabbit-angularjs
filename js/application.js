@@ -1991,6 +1991,29 @@ $scope.initSetFirtsTab = function() {
           $scope.showdiv = true;
         }
 
+        //delete wish list
+        $scope.deleteWishList =  function(productId){
+          for (var i = 0; i < $scope.getWishlistData.length; i++) {
+            if ($scope.getWishlistData[i].product._id === productId) {
+              $scope.wishListId = $scope.getWishlistData[i]._id;
+            }
+          }
+          console.log("$scope.wishListId",$scope.wishListId);
+          $scope.getUserId = $cookieStore.get('userId');
+          console.log($scope.getUserId );
+          Auth.deleteWishList($scope.wishListId,{UserID:$scope.getUserId, isDeleted: "true"}).success(function(data) {
+            $scope.deltedWishList = data;
+            $scope.getWishList();
+            // $scope.getCategoriesList();
+            $scope.showMenuResult  = true;
+          }).error(function(data) {
+            // ngToast.create({
+            //   className: 'warning',
+            //   content: 'Check Product list API '
+            // });
+          });
+        }
+
     $scope.init();
 });
 
@@ -2229,6 +2252,14 @@ app.factory('Auth', function($http, $window, $cookieStore) {
     },
     getMinimumOrder : function() {
       return $http.get(BASE_URL + '/api/admin/config', {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
+    deleteWishList : function(wishListId,inputs) {
+      return $http.post(BASE_URL + '/api/wishLists/updateList/'+wishListId, inputs, {
       headers: {
         'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'

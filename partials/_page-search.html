@@ -86,7 +86,7 @@
 							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
 								<div class="product-view">
 										<img class="product_heart" ng-if="results._id != fillheartFavId" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-										<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px;" aria-hidden="true" ng-if="results._id == fillheartFavId"></i>
+										<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px;" aria-hidden="true" ng-if="results._id == fillheartFavId" ng-click="deleteWishList(results._id)"></i>
 										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
 								</div>
 						</div>
@@ -180,7 +180,7 @@
 							<div class="search-section__description">
 								<p class="product-name">
 									<img class="product_heart" ng-if="list._id != fillheartFavId" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-									<i class="fa fa-heart fa-lg" style="color: #d92e4a;" aria-hidden="true" ng-if="list._id == fillheartFavId"></i>
+									<i class="fa fa-heart fa-lg" style="color: #d92e4a;" aria-hidden="true" ng-if="list._id == fillheartFavId" ng-click="deleteWishList(list._id)"></i>
 									{{list.name}}</p>
 								<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
 									<div class="product-view">
