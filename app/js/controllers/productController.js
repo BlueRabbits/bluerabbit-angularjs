@@ -251,6 +251,7 @@ $scope.initSetFirtsTab = function() {
       $scope.show_wishlist  = false;
       $scope.showMenuResult  = false;
       $scope.hideAutocomplete = false;
+      $scope.categoryNames = $routeParams.category;
       console.log('search data', data);
       $scope.search_result = data;
 
@@ -525,6 +526,7 @@ $scope.initSetFirtsTab = function() {
               $scope.searchPagelist = false;
               $scope.show_wishlist  = false;
               $scope.showMenuResult  = true;
+              $scope.showdiv = false;
               // $scope.activeTab = tabToSet;
               // $scope.categoryNames = categoryName;
               // console.log("clicked",tabToSet);
@@ -569,7 +571,7 @@ $scope.initSetFirtsTab = function() {
                           console.log("$scope.productId",$scope.productId);
                           if ($scope.productId === data[i].product._id) {
                               $scope.heartFilled = true;
-                          } 
+                          }
 
                         }
 

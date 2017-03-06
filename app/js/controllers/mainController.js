@@ -426,9 +426,10 @@ $scope.showWishList = function(){
 }
 
 //NOTE: redirect to search on click product
-  $scope.showProductSearchPage = function(productName){
+  $scope.showProductSearchPage = function(productName, catname){
     $location.path('/search-page').search({
       show_productDetails: productName,
+      category: catname
     });
   }
 
