@@ -68,6 +68,14 @@
 
 						</div>
 					</div>
+					<div class="share_options">
+						<span>Share</span>
+						<span>
+							<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
+							<a class="fa fa-twitter" aria-hidden="true"></a>
+							<a class="fa fa-google-plus" aria-hidden="true"></a>
+						</span>
+					</div>
 					<div class="description__section--content">
 						<p class="product-name">Product Description </p>
 						<p class="product-sub-title">
@@ -168,9 +176,9 @@
 							<div class="share_options">
 								<span>Share</span>
 								<span>
-									<a class="fa fa-facebook" aria-hidden="true"></a>
-									<a class="fa fa-twitter" aria-hidden="true"></a>
-									<a class="fa fa-google-plus" aria-hidden="true"></a>
+									<a class="fa fa-facebook"  ng-click="FbShare()"  aria-hidden="true"></a>
+									<a class="fa fa-twitter" ng-click="twitterShare()" aria-hidden="true"></a>
+									<a class="fa fa-google-plus" href="https://plus.google.com/share?url=YOUR_URL" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
 								</span>
 							</div>
 							<p class="product-name">Product Description </p>

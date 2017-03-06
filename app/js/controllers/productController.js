@@ -627,6 +627,21 @@ $scope.initSetFirtsTab = function() {
             // });
           });
         }
+        //Fb sharer
+        $scope.FbShare = function(){
+          FB.ui({
+            method: 'share_open_graph',
+            action_type: 'og.likes',
+            action_properties: JSON.stringify({
+              object:'https://developers.facebook.com/docs/',
+            })
+            }, function(response){});
+          }
+        $scope.twitterShare = function(){
+          var twitterHandle = 'Krazy Meals';
+            //window.open("https://twitter.com/share?url="+encodeURIComponent(url));
+            window.open('https://twitter.com/share?url='+escape(window.location.href)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+          }
 
     $scope.init();
 });
