@@ -123,10 +123,7 @@ $scope.initSetFirtsTab = function() {
         $scope.deliveryOrderAmount = data[i].deliveryOrderAmount;
       }
     }).error(function(data) {
-      ngToast.create({
-        className: 'warning',
-        content: 'Server Issue in calling API'
-      });
+      console.log("getMinimumOrder api fails");
     });
   }
 
