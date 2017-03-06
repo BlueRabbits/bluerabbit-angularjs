@@ -52,7 +52,13 @@
 						</div>
 					</div> <!-- sm7 -->
 					<div class="col-act col-sm-5">
-						<p class="product-price">{{results.salePrice}}<span>&nbsp;AED</span></p>
+						<div class="product-price">
+							{{results.salePrice}}<span>&nbsp;AED</span>
+							<p class="products__offer">
+	              <span class="text-black strike">{{results.listPrice}}&nbsp;AED</span>
+	              <span class="text-success">{{results.discountedPrice}}%</span>
+	            </p>
+						</div>
 						<div class="search-secction__buttons">
 							<button ng-if="results.instock === 'yes'" type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
 							<button ng-if="results.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
@@ -107,7 +113,13 @@
 						</div>
 					</div>
 					<div class="col-act col-sm-5">
-						<p class="product-price">{{wishLists.product.salePrice}}<span>&nbsp;AED</span></p>
+						<div class="product-price">
+							{{wishLists.product.salePrice}}<span>&nbsp;AED</span>
+							<p class="products__offer">
+	              <span class="text-black strike">{{wishLists.product.listPrice}}&nbsp;AED</span>
+	              <span class="text-success">{{wishLists.product.discountedPrice}}%</span>
+	            </p>
+						</div>
 						<div class="search-secction__buttons">
 							<button ng-if="wishLists.product.instock === 'yes'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
 							<button ng-if="wishLists.product.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
@@ -157,7 +169,14 @@
 							</div>
 						</div> <!-- sm7 -->
 						<div class="col-act col-sm-5">
-							<p class="product-price">{{list.salePrice}}<span>&nbsp;AED</span></p>
+							<div class="product-price">
+								{{list.salePrice}}<span>&nbsp;AED</span>
+								<p class="products__offer">
+		              <span class="text-black strike">{{list.listPrice}}&nbsp;AED</span>
+		              <span class="text-success">{{list.discountedPrice}}%</span>
+		            </p>
+							</div>
+
 							<div class="search-secction__buttons">
 								<button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(list._id)">Add to Cart</button>
 								<button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out of stock</button>

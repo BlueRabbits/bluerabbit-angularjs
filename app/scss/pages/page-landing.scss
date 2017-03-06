@@ -468,7 +468,16 @@ a.no-underline:hover {
 }
 
 .products__price {
+  font-family: $font-Lato-regular!important;
   color: #d92e4a !important;
+}
+.text-black {color: #000!important}
+.strike {text-decoration: line-through;}
+.products__offer {
+  font-family: $font-Lato-regular!important;
+  > span {
+    margin: 0 5px!important;
+  }
 }
 
 //location-section

@@ -102,7 +102,11 @@
           <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat)" style="cursor:pointer">
             <p>{{list.name}}</p>
             <!-- <p>{{list.description}}</p> -->
-            <p class="products__price">{{list.salePrice}}AED</p>
+            <p class="products__price">{{list.salePrice}}&nbsp;AED</p>
+            <p class="products__offer">
+              <span class="text-black strike">{{list.listPrice}}&nbsp;AED</span>
+              <span class="text-success">{{list.discountedPrice}}%</span>
+            </p>
           </div>
           <button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
           <button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out of stock</button>

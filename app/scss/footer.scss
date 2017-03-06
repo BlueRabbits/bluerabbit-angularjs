@@ -6,8 +6,10 @@ footer {
 }
 
 .footer-menu {
-  display: flex;
-  justify-content: space-between;
+  > div {
+    display: inline-block;
+    vertical-align: top;
+  }
 
   li {
     font-family: "Lato-Regular";
@@ -51,6 +53,20 @@ footer {
 .footer-logos__social-icons {
   img {
     margin-right: 20px;
+    height: 15px;
+  }
+}
+.footer-logos__downloads {
+  .ring {
+    border: 1px solid #b2b2b2;
+    border-radius: 50%;
+    margin-right: 20px;
+    font-size: 18px;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
   }
 }
 

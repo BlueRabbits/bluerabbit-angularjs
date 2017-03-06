@@ -304,10 +304,13 @@ img.product_heart {margin-right: 8px;}
   font-size: 23px;
   font-weight: bold;
   color: #515356;
+  text-align: center;
 
   span {
     font-size: 13px;
   }
+
+  .products__offer {line-height: 0.7em;}
 }
 
 .search-secction__buttons {
