@@ -160,7 +160,9 @@ $scope.initSetFirtsTab = function() {
 
       console.log("gettingCartData",$scope.gettingCartData);
       $scope.totalCost = 0;
+      $scope.subTotalCost = 0;
       for (var i = 0; i < $scope.gettingCartData.length; i++) {
+          $scope.subTotalCost += $scope.gettingCartData[i].qty * $scope.gettingCartData[i].cartPrice ;
           $scope.totalCost += $scope.gettingCartData[i].qty * $scope.gettingCartData[i].cartPrice ;
             console.log("prce", $scope.totalCost);
       }
