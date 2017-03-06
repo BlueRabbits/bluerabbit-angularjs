@@ -88,7 +88,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
 
         //cookieStore
          $cookieStore.put("token", data.token);
-         localStorage.setItem("authToken", data.token);
+         
          $cookieStore.put("userId", data._id);
          $cookieStore.put("emailId", $scope.email);
          $cookieStore.put("userName", data.name);
