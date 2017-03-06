@@ -99,7 +99,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $('.modal').css("display", "none");
          $('.modal-open').removeClass();
           //$location.path('/landing');
-          // location.reload(true);
+          location.reload(true);
           // $('#loginmodal').modal('hide');
       }).error(function(data) {
         console.log('data', data);

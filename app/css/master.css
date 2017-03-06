@@ -116,6 +116,10 @@ input {
 .clear-margin {
   margin: 0px; }
 
+.ng-toast--top {
+  top: 50px !important;
+  bottom: auto !important; }
+
 .header {
   background-color: #e40046;
   height: 97px;
