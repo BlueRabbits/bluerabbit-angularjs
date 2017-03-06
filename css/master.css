@@ -4431,6 +4431,128 @@ button[disabled] {
  * Copyright (c) 2014 Ä°smail Demirbilek
  * License: MIT
  */
+.tab_list {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .tab_list .tab_item {
+    min-height: 59px;
+    line-height: 61px;
+    font-size: 18px;
+    text-align: center;
+    color: #dddddd;
+    border-bottom: 5px solid transparent;
+    cursor: pointer; }
+    .tab_list .tab_item:hover, .tab_list .tab_item.active {
+      color: #000;
+      border-bottom: 5px solid #e40046; }
+
+.admin-content {
+  margin-top: 15px;
+  margin-bottom: 60px; }
+
+.text-feedback {
+  width: 100%;
+  min-height: 250px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 15px 20px; }
+
+.terms_heading {
+  margin: 20px 0;
+  color: #717171;
+  text-transform: uppercase; }
+
+.card_terms {
+  padding: 30px 45px;
+  color: #bbb;
+  font-size: 17px;
+  letter-spacing: 0.3px;
+  line-height: 1.7;
+  font-family: 'lato-regular'; }
+
+.contactNsupport {
+  font-size: 24px;
+  color: #bbb;
+  text-align: center;
+  font-weight: 300; }
+  .contactNsupport p i {
+    margin-right: 25px; }
+
+.basic_info {
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd; }
+  .basic_info .info_block {
+    padding: 25px 30px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    min-height: 110px;
+    font-size: 14px;
+    letter-spacing: 1.2px; }
+    .basic_info .info_block .user_image {
+      height: 50px;
+      width: 50px;
+      margin-right: 15px; }
+    .basic_info .info_block lable {
+      display: block;
+      color: #bbb;
+      margin-bottom: 7px;
+      font-weight: 300;
+      text-transform: uppercase; }
+    .basic_info .info_block .icon_img {
+      height: 15px;
+      float: right;
+      margin-top: 15px;
+      cursor: pointer; }
+    .basic_info .info_block .edit_img {
+      display: inline-block; }
+
+.order_item {
+  padding: 10px 20px; }
+  .order_item.card_layout {
+    margin-bottom: 25px;
+    border: 1px solid #eee; }
+  .order_item .order_meta {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    line-height: 30px;
+    font-size: 16px;
+    padding: 8px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd; }
+    .order_item .order_meta p {
+      margin-bottom: 0px; }
+  .order_item .order_detail {
+    font-size: 14px;
+    letter-spacing: 1.3px; }
+    .order_item .order_detail .order_footer {
+      border-top: 1px solid #ddd;
+      padding: 15px 0; }
+
+.table-orderList {
+  margin-bottom: 0px !important; }
+  .table-orderList thead > tr > td,
+  .table-orderList tbody > tr > td {
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+    width: 33%;
+    vertical-align: middle !important; }
+  .table-orderList thead > tr > td {
+    text-transform: uppercase; }
+  .table-orderList .item_detail {
+    font-weight: 500; }
+    .table-orderList .item_detail > div {
+      display: inline-block;
+      vertical-align: middle; }
+    .table-orderList .item_detail .item_thumbnail {
+      height: 60px;
+      width: 60px;
+      background-size: cover;
+      margin-right: 25px; }
+
 .tabs-left, .tabs-right {
   border-bottom: none;
   padding-top: 2px; }
@@ -4511,7 +4633,20 @@ button[disabled] {
   width: 2em; }
 
 .myaccount-main {
-  margin: 165px; }
+  margin-top: 100px; }
+
+.address_action_btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  display: -ms-flexbox;
+  display: flex;
+  height: 20px; }
+  .address_action_btn img {
+    display: block;
+    vertical-align: middle;
+    margin: 0 10px;
+    width: 14px; }
 
 .myaccount-font {
   font-family: Lato-regular;

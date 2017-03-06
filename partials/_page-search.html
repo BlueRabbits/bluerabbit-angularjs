@@ -3,7 +3,7 @@
 		<div class="search-page__header" id="sub-menu1">
 		  <!-- Header -->
 <div class="header" ng-controller="loginController">
-	<div class="logo">
+	<div class="logo" ng-init="getUserProfile()">
 		<a href="" ng-click="redirectLanding()"><img src="images/l-o-g-o@2x.png"></a>
 	</div>
 	<!-- <div class="search-bar">
@@ -21,8 +21,8 @@
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
 				<div class="dropdown__myaccount" id="menu1" type="button" >
-					<div class="user_image" style="background-image: url({'images/user_avatar.png'})"></div>
-					{{getEmailId}}
+					<div class="user_image" style="background-image: url({{BASE_URL}}/gitlabEcom{{userDetails.image_url}})"></div>
+					{{userName}}
 				 	<span class="caret"></span>
 				</div>
 				<div class="dropdown__list">
@@ -52,7 +52,7 @@
 				</div>
 				<div class="sub-menu__favorites">
 					<img src="images/heart-icon@2x.png" style="cursor:pointer;" ng-click="wishListShow()">
-					<p>favorites</p>
+					<p style="cursor:pointer;" ng-click="wishListShow()">Favorites</p>
 				</div>
 				<p>
 					<ul class="search-list-dropdown" ng-hide="searchitem === ''">
@@ -84,9 +84,9 @@
 						<div class="search-section__description">
 							<p class="product-name">{{results.name}}</p>
 							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
-								<div class="product-view">
-										<img class="product_heart" ng-if="results._id != fillheartFavId" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-										<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px;" aria-hidden="true" ng-if="results._id == fillheartFavId" ng-click="deleteWishList(results._id)"></i>
+								<div class="product-view" ng-init="showHearts(results._id)">
+										<img class="product_heart" ng-if="heartFilled == false" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+										<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px;" aria-hidden="true" ng-if="heartFilled == true" ng-click="deleteWishList(results._id)"></i>
 										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
 								</div>
 						</div>
@@ -107,6 +107,14 @@
 							<p>Calories: 100 Kcal</p>
 
 						</div>
+					</div>
+					<div class="share_options">
+						<span>Share</span>
+						<span>
+							<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
+							<a class="fa fa-twitter" aria-hidden="true"></a>
+							<a class="fa fa-google-plus" aria-hidden="true"></a>
+						</span>
 					</div>
 					<div class="description__section--content">
 						<p class="product-name">Product Description </p>
@@ -141,7 +149,7 @@
 					<div class="col-act col-sm-5">
 						<p class="product-price">{{wishLists.product.salePrice}}<span>&nbsp;AED</span></p>
 						<div class="search-secction__buttons">
-							<button ng-if="wishLists.product.instock === 'yes'" type="button" name="button" ng-click="addToCart(wishLists._id)">Add to Cart</button>
+							<button ng-if="wishLists.product.instock === 'yes'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
 							<button ng-if="wishLists.product.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
 						</div>
 					</div>
@@ -179,8 +187,8 @@
 							</div>
 							<div class="search-section__description">
 								<p class="product-name">
-									<img class="product_heart" ng-if="list._id != fillheartFavId" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-									<i class="fa fa-heart fa-lg" style="color: #d92e4a;" aria-hidden="true" ng-if="list._id == fillheartFavId" ng-click="deleteWishList(list._id)"></i>
+									<img class="product_heart" ng-if="list._id != heartFilled" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
+									<i class="fa fa-heart fa-lg" style="color: #d92e4a;" aria-hidden="true" ng-if="list._id == heartFilled" ng-click="deleteWishList(list._id)"></i>
 									{{list.name}}</p>
 								<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
 									<div class="product-view">
@@ -208,9 +216,9 @@
 							<div class="share_options">
 								<span>Share</span>
 								<span>
-									<a class="fa fa-facebook" aria-hidden="true"></a>
-									<a class="fa fa-twitter" aria-hidden="true"></a>
-									<a class="fa fa-google-plus" aria-hidden="true"></a>
+									<a class="fa fa-facebook"  ng-click="FbShare()"  aria-hidden="true"></a>
+									<a class="fa fa-twitter" ng-click="twitterShare()" aria-hidden="true"></a>
+									<a class="fa fa-google-plus" href="https://plus.google.com/share?url=YOUR_URL" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
 								</span>
 							</div>
 							<p class="product-name">Product Description </p>
@@ -300,7 +308,7 @@
 	<div class="order-section">
 		<div class="">
 			<div class="cart-section__header">
-				<p>Mycart</p>
+				<p>My Cart</p>
 			</div>
 			<div class="cart-section__sub-header">
 				<ul class="cart-header__list">
@@ -310,22 +318,28 @@
 					<li></li>
 				</ul>
 			</div>
-			<div class="cart-section__data" ng-repeat="cartList in allCartItems">
-				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
-				<p class="product-item__name">{{cartList.product.name}}</p>
-				<div class="cart__quantity">
-					<input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
-					<input type="text" name="TextBox" id="TextBox" class="textbox" ng-value="cartList.quantity" ng-model="cartList.quantity" />
-					<input type="Button" id='AddButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+			<div style="overflow: scroll;position: absolute;width: 100%;top: 130px;height: 360px;">
+				<div class="cart-section__data" ng-repeat="cartList in allCartItems">
+					<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+					<p class="product-item__name">{{cartList.product.name}}</p>
+					<div class="cart__quantity">
+						<input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
+						<input type="text" name="TextBox" id="TextBox" class="textbox" ng-value="cartList.quantity" ng-model="cartList.quantity" />
+						<input type="Button" id='AddButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+					</div>
+					<p class="product-cart__price"><span>AED</span>{{cartList.product.salePrice * cartList.quantity}}</p>
+					<!-- <p>{{cartList.product.salePrice}}</p> -->
+					<div class="cancel-button" style="cursor:pointer">
+						<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+					</div>
 				</div>
-				<p class="product-cart__price"><span>AED</span>{{cartList.product.salePrice * cartList.quantity}}</p>
-				<!-- <p>{{cartList.product.salePrice}}</p> -->
-				<div class="cancel-button" style="cursor:pointer">
-					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
-				</div>
-			</div>
 		</div>
+	</div>
 		<div class="cart-section__footer">
+			<div class="total-section">
+				<p>Sub Total</p>
+				<p class="total-section__cost"><span>AED</span>{{subTotalCost}}</p>
+			</div>
 			<div class="total-section" ng-if="showDeliveryCost">
 				<p>Delivery Cost</p>
 				<p class="total-section__cost"><span>AED</span>{{deliveryOrderAmount}}</p>

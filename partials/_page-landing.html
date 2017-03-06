@@ -2,7 +2,7 @@
 <div class="" id="scroll-menu-fixed">
   <!-- Header -->
 <div class="header" ng-controller="loginController">
-	<div class="logo">
+	<div class="logo" ng-init="getUserProfile()">
 		<a href="" ng-click="redirectLanding()"><img src="images/l-o-g-o@2x.png"></a>
 	</div>
 	<!-- <div class="search-bar">
@@ -20,8 +20,8 @@
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
 				<div class="dropdown__myaccount" id="menu1" type="button" >
-					<div class="user_image" style="background-image: url({'images/user_avatar.png'})"></div>
-					{{getEmailId}}
+					<div class="user_image" style="background-image: url({{BASE_URL}}/gitlabEcom{{userDetails.image_url}})"></div>
+					{{userName}}
 				 	<span class="caret"></span>
 				</div>
 				<div class="dropdown__list">
@@ -61,7 +61,7 @@
         <a href="#/search-page"><img src="images/search-icon@2x.png" class="search-icon"></a>
         <p><a href="#/"> |</a></p>
         <img src="images/heart-icon@2x.png" ng-click="showWishList()">
-    		<p>favorites</p>
+    		<p ng-click="showWishList()" style="cursor:pointer">Favorites</p>
       </div>
     </div>
   </div>
@@ -91,7 +91,7 @@
 <!-- <p style="text-align:center;padding-top:50px;">Slider section</p> -->
 <div class="slider-section">
   <div class="clearfix slider-control">
-    <span class="pull-left h2 clear-margin" style="margin: 0px; font-weight:normal">Best offer</span>
+    <span class="pull-left h2 clear-margin" style="margin: 0px; font-weight:normal">Best Seller</span>
     <img src="images/arrow-left.svg" id="prv-testimonial" alt="PREV" style="margin-right:10px;"  />
     <img src="images/arrow-right-active.svg" id="nxt-testimonial" alt="NEXT" />
   </div>
@@ -136,10 +136,10 @@
     <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
       <!-- 1-->
       <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
-        <div class="breakfast-products__image" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name)"></div>
+        <div class="breakfast-products__image" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name,list.cat)"></div>
         <div class="breakfast-products__content">
           <img src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-          <div class="products__description" ng-click="showProductSearchPage(list.name)" style="cursor:pointer">
+          <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat)" style="cursor:pointer">
             <p>{{list.name}}</p>
             <!-- <p>{{list.description}}</p> -->
             <p class="products__price">{{list.salePrice}}AED</p>

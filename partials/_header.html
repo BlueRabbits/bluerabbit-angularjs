@@ -1,6 +1,6 @@
 <!-- Header -->
 <div class="header" ng-controller="loginController">
-	<div class="logo">
+	<div class="logo" ng-init="getUserProfile()">
 		<a href="" ng-click="redirectLanding()"><img src="images/l-o-g-o@2x.png"></a>
 	</div>
 	<!-- <div class="search-bar">
@@ -18,8 +18,8 @@
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
 				<div class="dropdown__myaccount" id="menu1" type="button" >
-					<div class="user_image" style="background-image: url({'images/user_avatar.png'})"></div>
-					{{getEmailId}}
+					<div class="user_image" style="background-image: url({{BASE_URL}}/gitlabEcom{{userDetails.image_url}})"></div>
+					{{userName}}
 				 	<span class="caret"></span>
 				</div>
 				<div class="dropdown__list">
