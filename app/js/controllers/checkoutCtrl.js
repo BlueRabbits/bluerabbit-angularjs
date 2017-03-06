@@ -218,6 +218,17 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       $scope.showDiv =  'newAddress';
     }
 
+    //getLoactions
+    $scope.getLocationDeliver = function(){
+      Auth.getLocationDeliver()
+      .success(function(data){
+        console.log("locationdeliver",data);
+        $scope.locationDeliverName = data;
+          }).error(function(data){
+
+          });
+    }
+    $scope.getLocationDeliver();
   //post address
   $scope.showDiv =  "display:none;";
   $scope.addAddress = function () {

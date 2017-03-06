@@ -496,4 +496,10 @@ $scope.showWishList = function(){
         });
       };
 
+      //show searchPage
+      $scope.showSearchPage = function(){
+        $location.path('/search-page');
+        window.location.reload = true;
+      }
+
 })

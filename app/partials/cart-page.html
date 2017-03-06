@@ -247,7 +247,7 @@
 			</div> <!-- heading -->
 			<ul class="nav nav-tabs" role="tablist">
 				<li ng-class="{'active' : showDiv == 'savedAddress'}"><a role="tab" data-toggle="tab" ng-click="showDiv = 'savedAddress'">Saved address</a></li>
-				<li ng-class="{'active' : showDiv == 'newAddress'}"><a role="tab" data-toggle="tab" ng-click="showDiv = 'newAddress'">Add Address</a></li>
+				<li ng-class="{'active' : showDiv == 'newAddress'}"><a role="tab" data-toggle="tab" ng-click="showDiv = 'newAddress'" ng-click="getLocationDeliver()">Add Address</a></li>
   		</ul>
 			<div class="row">
 	      <div class="col-md-12" ng-show="showDiv == 'savedAddress'">
@@ -293,7 +293,10 @@
 	            <input type="text" name="name" value="" class=" form-inputs Street-address" ng-model="landmark" placeholder="Enter landmark" required>
 	          </div>
 	          <div class="shipping-form__postal">
-	            <input type="text" name="name" value="" class=" form-inputs city-address" ng-model="city" placeholder="City" required>
+	            <!-- <input type="text" name="name" value="" class=" form-inputs city-address" ng-model="city" placeholder="City" required> -->
+							<select class="form-inputs city-address" id="sel1" ng-model="city">
+						    <option ng-repeat="locname in locationDeliverName" ng-model="city">{{locname.name}}</option>
+						  </select>
 	            <input type="text" name="name" value="" class=" form-inputs Zipcode" ng-model="pincode" placeholder="Zipcode" required>
 	          </div>
 	          <div class="shipping-form__location">

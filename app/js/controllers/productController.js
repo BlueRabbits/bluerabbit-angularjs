@@ -398,7 +398,7 @@ $scope.initSetFirtsTab = function() {
           console.log(data.length);
           $scope.getWishlistData = data;
           for (var i = 0; i < data.length; i++) {
-            $scope.fillheartFavId = data[i].product._id;
+            $scope.heartFilled = data[i].product._id;
           }
           console.log("$scope.getWishlistData",$scope.getWishlistData);
         }).error(function(data){
@@ -408,7 +408,7 @@ $scope.initSetFirtsTab = function() {
           });
         });
       };
-      //$scope.getWishList();
+      $scope.getWishList();
 
       //POST create wish list
       // var count = 0;
@@ -424,61 +424,68 @@ $scope.initSetFirtsTab = function() {
         $scope.userToken = $cookieStore.get('token');
         $scope.sessionId = $cookieStore.get('sessionId');
         //check if already added to wish list
-            for (var i = 0; i < $scope.getWishlistData.length; i++) {
-              if ($scope.getWishlistData[i].product._id ==  productId) {
-                $scope.addWishList = false;
-              } else {
-                $scope.addWishList = true;
+            Auth.getWishList({
+              UserId : $scope.getUserId,
+              sessionID: $scope.sessionId
+            })
+            .success(function (data) {
+              console.log(data.length);
+              $scope.getWishlistData = data;
+              for (var i = 0; i < data.length; i++) {
+                if (productId === data[i].product._id) {
+                  $scope.addFavList = false;
+                  //$scope.heartFilled = data[i].product._id;
+                } else {
+                  $scope.addFavList = true;
+                }
               }
-            }
-            if ($scope.getWishlistData.length === 0) {
-              $scope.addWishList = true;
-            }
-            if ($scope.addWishList === false) {
-              ngToast.create({
-                className: 'warning',
-                content: 'already product added in FavouriteList'
-              });
-            }
-            if ($scope.addWishList === true) {
-              $scope.cartlist =[];
-              var wishListInfo = {
-                product:productId,
-                quantity: count,
-                UserID:$scope.getUserId,
-                sessionID:$scope.sessionId,
-                authToken: $scope.userToken,
-                isDeleted: false
-              }
-              Auth.addWishList(wishListInfo)
-              .success(function(data){
-                //console.log('data', data);
-                $scope.getcartItems();
-                $scope.getWishList();
-                ngToast.create({
-                  className: 'success',
-                  content: 'Item Added to WishList'
-                });
-                // $scope.quantity = data.quantity;
-                // $scope.user_id = data.UserID;
-                // console.log('id',$scope.user_id);
+              //add wish list
+              if ($scope.addFavList = true) {
 
-                angular.forEach(data, function (value, key) {
-                      var obj = {
-                        "user_id" : value.UserID,
-                        "productId" : value.product,
-                        "quantity" : value.quantity,
-                      };
-                      $scope.cartlist.push(obj);
-                      console.log("cart",$scope.cartlist);
-                    });
-                  }).error(function(data){
-                    ngToast.create({
-                      className: 'warning',
-                      content: 'Problem in server'
-                    });
+                $scope.cartlist =[];
+                var wishListInfo = {
+                  product:productId,
+                  quantity: count,
+                  UserID:$scope.getUserId,
+                  sessionID:$scope.sessionId,
+                  authToken: $scope.userToken,
+                  isDeleted: false
+                }
+                Auth.addWishList(wishListInfo)
+                .success(function(data){
+                  //console.log('data', data);
+                  $scope.getcartItems();
+                  $scope.getWishList();
+                  ngToast.create({
+                    className: 'success',
+                    content: 'Item Added to WishList'
                   });
-            }
+                  // $scope.quantity = data.quantity;
+                  // $scope.user_id = data.UserID;
+                  // console.log('id',$scope.user_id);
+
+                  angular.forEach(data, function (value, key) {
+                        var obj = {
+                          "user_id" : value.UserID,
+                          "productId" : value.product,
+                          "quantity" : value.quantity,
+                        };
+                        $scope.cartlist.push(obj);
+                        console.log("cart",$scope.cartlist);
+                      });
+                    }).error(function(data){
+                      ngToast.create({
+                        className: 'warning',
+                        content: 'Problem in server'
+                      });
+                    });
+
+                  }
+
+
+            }).error(function(data){
+            });
+
       };
 
 
@@ -545,7 +552,35 @@ $scope.initSetFirtsTab = function() {
             $scope.productslist = [];
             Auth.products().success(function(data) {
               $scope.allProducts = data;
-              // $scope.getCategoriesList();
+              console.log("data",data);
+              //loop to get product id
+              for (var i = 0; i < data.length; i++) {
+                $scope.productId = data[i]._id;
+                  console.log("$scope.productId ",$scope.productId );
+                  //check if already added to wish list
+                      Auth.getWishList({
+                        UserId : $scope.getUserId,
+                        sessionID: $scope.sessionId
+                      })
+                      .success(function (data) {
+                        console.log(data.length);
+                        $scope.getWishlistData = data;
+                        for (var i = 0; i < data.length; i++) {
+                          console.log("$scope.productId",$scope.productId);
+                          if ($scope.productId === data[i].product._id) {
+                              $scope.heartFilled = true;
+                          } 
+
+                        }
+
+
+
+                      }).error(function(data){
+                      });
+              }
+
+
+
               $scope.showMenuResult  = true;
             }).error(function(data) {
               ngToast.create({
@@ -578,6 +613,7 @@ $scope.initSetFirtsTab = function() {
           Auth.deleteWishList($scope.wishListId,{UserID:$scope.getUserId, isDeleted: "true"}).success(function(data) {
             $scope.deltedWishList = data;
             $scope.getWishList();
+            console.log("done delted");
             // $scope.getCategoriesList();
             $scope.showMenuResult  = true;
           }).error(function(data) {
