@@ -132,7 +132,7 @@
 
     &.active {
       font-weight: bold;
-      color: #000;
+      color: #d92e4a;
       text-decoration: underline;
     }
   }
@@ -184,7 +184,7 @@ img.product_heart {margin-right: 8px;}
       margin-left: 35px;
 
       .product-name {
-        font-size: 10px;
+        font-size: 13px;
         text-transform: uppercase;
         color: #b1b1b1;
         font-family: $font-Lato-black;
@@ -216,6 +216,7 @@ img.product_heart {margin-right: 8px;}
           opacity: none;
           font-size: 12px;
           border-bottom: 1px solid #d92e4a;
+          font-weight: bolder;
         }
       }
     }
@@ -266,9 +267,10 @@ img.product_heart {margin-right: 8px;}
     position: relative;
 
     .product-name {
-      font-size: 20px;
+      font-size: 24px;
       color: #636567;
       font-family: $font-Lato-regular;
+      font-weight: bolder;
     }
   }
 }
