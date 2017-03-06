@@ -230,6 +230,14 @@ app.factory('Auth', function($http, $window, $cookieStore) {
         }
       });
     },
+    deleteWishList : function(wishListId,inputs) {
+      return $http.post(BASE_URL + '/api/wishLists/updateList/'+wishListId, inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
 
 
   };
