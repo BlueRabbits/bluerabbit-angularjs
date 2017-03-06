@@ -109,7 +109,7 @@
 					<div class="col-act col-sm-5">
 						<p class="product-price">{{wishLists.product.salePrice}}<span>&nbsp;AED</span></p>
 						<div class="search-secction__buttons">
-							<button ng-if="wishLists.product.instock === 'yes'" type="button" name="button" ng-click="addToCart(wishLists._id)">Add to Cart</button>
+							<button ng-if="wishLists.product.instock === 'yes'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
 							<button ng-if="wishLists.product.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
 						</div>
 					</div>
