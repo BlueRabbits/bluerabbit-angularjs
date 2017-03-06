@@ -142,7 +142,11 @@
           <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat)" style="cursor:pointer">
             <p>{{list.name}}</p>
             <!-- <p>{{list.description}}</p> -->
-            <p class="products__price">{{list.salePrice}}AED</p>
+            <p class="products__price">{{list.salePrice}}&nbsp;AED</p>
+            <p class="products__offer">
+              <span class="text-black strike">{{list.listPrice}}&nbsp;AED</span>
+              <span class="text-success">{{list.discountedPrice}}%</span>
+            </p>
           </div>
           <button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
           <button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
@@ -346,56 +350,57 @@
 <div class="" id="contact">
   <!-- Footer -->
 <footer>
-  <div class="footer-menu">
-    <div class="footer-menu__breakfast">
-      <ul class="footer-menu__breakfast--list ">
-        <li>Breakfast</li>
-        <li>Choco's</li>
-        <li>Dosa</li>
-        <li>Toast</li>
-        <li>Pizza</li>
-      </ul>
-    </div>
-    <div class="footer-menu__lunch">
-      <ul class="footer-menu__lunch--list ">
-        <li>Lunch</li>
-        <li>North Indian</li>
-        <li>South Indian</li>
-        <li>Chinese</li>
-        <li>Briyani</li>
-      </ul>
-    </div>
-    <div class="footer-menu__dinner">
-      <ul class="footer-menu__dinner--list ">
-        <li>Dinner</li>
-        <li>Choco's</li>
-        <li>Dosa</li>
-        <li>Toast</li>
-        <li>Pizza</li>
-      </ul>
-    </div>
-    <div class="footer-menu__salad">
-      <ul class="footer-menu__salad--list ">
-        <li>Salad</li>
-        <li>Choco's</li>
-        <li>Dosa</li>
-        <li>Toast</li>
-        <li>Pizza</li>
-      </ul>
-    </div>
-    <div class="footer-menu__rolls">
-      <ul class="footer-menu__rolls--list ">
-        <li>Rolls</li>
-        <li>Choco's</li>
-        <li>Dosa</li>
-        <li>Toast</li>
-        <li>Pizza</li>
-      </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row footer-menu">
+          <div class="col-sm-3">
+            <img src="images/footer-logo-icon.png" alt="" />
+          </div>
+          <div class="col-sm-4">
+            <ul>
+              <li>FAQ</li>
+              <li>About</li>
+              <li>Careers</li>
+              <li>Blog</li>
+            </ul>
+          </div>
+          <div class="col-sm-4">
+            <ul>
+              <li>Help Center</li>
+              <li>Email Support</li>
+              <li>Contact us</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>FOLLOW US</p>
+            <div class="footer-logos__social-icons">
+              <img src="images/facebook-icon@3x.png" alt="" />
+              <img src="images/google-icon@3x.png" alt="" />
+              <img src="images/twitter-icon@3x.png" alt="" />
+              <img src="images/r-s-s-icon@3x.png" alt="" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <p>Download</p>
+            <div class="footer-logos__downloads">
+              <div class="ring"><i class="fa fa-mobile" aria-hidden="true"></i></div>
+              <div class="ring"><i class="fa fa-play" aria-hidden="true"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="footer-logos">
+
+  <!-- <div class="footer-logos">
     <div class="footer-logos__company">
-      <img src="images/footer-logo-icon.png" alt="" />
+
       <img src="images/footer-logo.png" alt="" />
     </div>
     <div class="footer-logos__payment">
@@ -403,13 +408,8 @@
       <img src="images/visa-logo@3x.png" alt="" />
       <img src="images/master-card-logo@3x.png" alt="" />
     </div>
-    <div class="footer-logos__social-icons">
-      <img src="images/facebook-icon@3x.png" alt="" />
-      <img src="images/google-icon@3x.png" alt="" />
-      <img src="images/twitter-icon@3x.png" alt="" />
-      <img src="images/r-s-s-icon@3x.png" alt="" />
-    </div>
-  </div>
+
+  </div> -->
 </footer>
 
 </div>

@@ -92,7 +92,13 @@
 						</div>
 					</div> <!-- sm7 -->
 					<div class="col-act col-sm-5">
-						<p class="product-price">{{results.salePrice}}<span>&nbsp;AED</span></p>
+						<div class="product-price">
+							{{results.salePrice}}<span>&nbsp;AED</span>
+							<p class="products__offer">
+	              <span class="text-black strike">{{results.listPrice}}&nbsp;AED</span>
+	              <span class="text-success">{{results.discountedPrice}}%</span>
+	            </p>
+						</div>
 						<div class="search-secction__buttons">
 							<button ng-if="results.instock === 'yes'" type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
 							<button ng-if="results.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
@@ -147,7 +153,13 @@
 						</div>
 					</div>
 					<div class="col-act col-sm-5">
-						<p class="product-price">{{wishLists.product.salePrice}}<span>&nbsp;AED</span></p>
+						<div class="product-price">
+							{{wishLists.product.salePrice}}<span>&nbsp;AED</span>
+							<p class="products__offer">
+	              <span class="text-black strike">{{wishLists.product.listPrice}}&nbsp;AED</span>
+	              <span class="text-success">{{wishLists.product.discountedPrice}}%</span>
+	            </p>
+						</div>
 						<div class="search-secction__buttons">
 							<button ng-if="wishLists.product.instock === 'yes'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
 							<button ng-if="wishLists.product.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
@@ -197,7 +209,14 @@
 							</div>
 						</div> <!-- sm7 -->
 						<div class="col-act col-sm-5">
-							<p class="product-price">{{list.salePrice}}<span>&nbsp;AED</span></p>
+							<div class="product-price">
+								{{list.salePrice}}<span>&nbsp;AED</span>
+								<p class="products__offer">
+		              <span class="text-black strike">{{list.listPrice}}&nbsp;AED</span>
+		              <span class="text-success">{{list.discountedPrice}}%</span>
+		            </p>
+							</div>
+
 							<div class="search-secction__buttons">
 								<button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(list._id)">Add to Cart</button>
 								<button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
@@ -237,56 +256,57 @@
 		</div>
 		<!-- Footer -->
 <footer>
-  <div class="footer-menu">
-    <div class="footer-menu__breakfast">
-      <ul class="footer-menu__breakfast--list ">
-        <li>Breakfast</li>
-        <li>Choco's</li>
-        <li>Dosa</li>
-        <li>Toast</li>
-        <li>Pizza</li>
-      </ul>
-    </div>
-    <div class="footer-menu__lunch">
-      <ul class="footer-menu__lunch--list ">
-        <li>Lunch</li>
-        <li>North Indian</li>
-        <li>South Indian</li>
-        <li>Chinese</li>
-        <li>Briyani</li>
-      </ul>
-    </div>
-    <div class="footer-menu__dinner">
-      <ul class="footer-menu__dinner--list ">
-        <li>Dinner</li>
-        <li>Choco's</li>
-        <li>Dosa</li>
-        <li>Toast</li>
-        <li>Pizza</li>
-      </ul>
-    </div>
-    <div class="footer-menu__salad">
-      <ul class="footer-menu__salad--list ">
-        <li>Salad</li>
-        <li>Choco's</li>
-        <li>Dosa</li>
-        <li>Toast</li>
-        <li>Pizza</li>
-      </ul>
-    </div>
-    <div class="footer-menu__rolls">
-      <ul class="footer-menu__rolls--list ">
-        <li>Rolls</li>
-        <li>Choco's</li>
-        <li>Dosa</li>
-        <li>Toast</li>
-        <li>Pizza</li>
-      </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row footer-menu">
+          <div class="col-sm-3">
+            <img src="images/footer-logo-icon.png" alt="" />
+          </div>
+          <div class="col-sm-4">
+            <ul>
+              <li>FAQ</li>
+              <li>About</li>
+              <li>Careers</li>
+              <li>Blog</li>
+            </ul>
+          </div>
+          <div class="col-sm-4">
+            <ul>
+              <li>Help Center</li>
+              <li>Email Support</li>
+              <li>Contact us</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>FOLLOW US</p>
+            <div class="footer-logos__social-icons">
+              <img src="images/facebook-icon@3x.png" alt="" />
+              <img src="images/google-icon@3x.png" alt="" />
+              <img src="images/twitter-icon@3x.png" alt="" />
+              <img src="images/r-s-s-icon@3x.png" alt="" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <p>Download</p>
+            <div class="footer-logos__downloads">
+              <div class="ring"><i class="fa fa-mobile" aria-hidden="true"></i></div>
+              <div class="ring"><i class="fa fa-play" aria-hidden="true"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="footer-logos">
+
+  <!-- <div class="footer-logos">
     <div class="footer-logos__company">
-      <img src="images/footer-logo-icon.png" alt="" />
+
       <img src="images/footer-logo.png" alt="" />
     </div>
     <div class="footer-logos__payment">
@@ -294,13 +314,8 @@
       <img src="images/visa-logo@3x.png" alt="" />
       <img src="images/master-card-logo@3x.png" alt="" />
     </div>
-    <div class="footer-logos__social-icons">
-      <img src="images/facebook-icon@3x.png" alt="" />
-      <img src="images/google-icon@3x.png" alt="" />
-      <img src="images/twitter-icon@3x.png" alt="" />
-      <img src="images/r-s-s-icon@3x.png" alt="" />
-    </div>
-  </div>
+
+  </div> -->
 </footer>
 
 	</div>
@@ -308,13 +323,13 @@
 	<div class="order-section">
 		<div class="">
 			<div class="cart-section__header">
-				<p>My Cart</p>
+				<p>MY CART</p>
 			</div>
 			<div class="cart-section__sub-header">
 				<ul class="cart-header__list">
-					<li>Item</li>
-					<li>Quantity</li>
-					<li>Rate</li>
+					<li>ITEM</li>
+					<li>QUANTITY</li>
+					<li>RATE</li>
 					<li></li>
 				</ul>
 			</div>

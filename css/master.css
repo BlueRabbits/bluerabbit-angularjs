@@ -116,6 +116,13 @@ input {
 .clear-margin {
   margin: 0px; }
 
+.ng-toast--top {
+  top: 50px !important;
+  bottom: auto !important; }
+
+button {
+  outline: none; }
+
 .header {
   background-color: #e40046;
   height: 97px;
@@ -182,7 +189,8 @@ input {
 .dropdown {
   margin: 5px 12px !important;
   position: relative;
-  display: inline-block; }
+  display: inline-block;
+  z-index: 999; }
   .dropdown p {
     color: #fff; }
 
@@ -212,23 +220,23 @@ footer {
   color: grey;
   padding: 44px 80px 30px 80px; }
 
-.footer-menu {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: justify;
-  justify-content: space-between; }
-  .footer-menu li {
-    font-family: "Lato-Regular";
-    font-size: 14px;
-    letter-spacing: 2px;
-    margin: 5px 0;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    color: #999999; }
-  .footer-menu li:first-child {
-    color: #fff;
-    font-family: "Lato-Black"; }
+.footer-menu > div {
+  display: inline-block;
+  vertical-align: top; }
+
+.footer-menu li {
+  font-family: "Lato-Regular";
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin: 5px 0;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #999999; }
+
+.footer-menu li:first-child {
+  color: #fff;
+  font-family: "Lato-Black"; }
 
 .footer-menu__lunch,
 .footer-menu__dinner,
@@ -252,7 +260,19 @@ footer {
     height: 15px; }
 
 .footer-logos__social-icons img {
-  margin-right: 20px; }
+  margin-right: 20px;
+  height: 15px; }
+
+.footer-logos__downloads .ring {
+  border: 1px solid #b2b2b2;
+  border-radius: 50%;
+  margin-right: 20px;
+  font-size: 18px;
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px; }
 
 html {
   position: relative;
@@ -3534,7 +3554,19 @@ a.no-underline:hover {
     margin-bottom: 6px; }
 
 .products__price {
+  font-family: "Lato-Regular" !important;
   color: #d92e4a !important; }
+
+.text-black {
+  color: #000 !important; }
+
+.strike {
+  text-decoration: line-through; }
+
+.products__offer {
+  font-family: "Lato-Regular" !important; }
+  .products__offer > span {
+    margin: 0 5px !important; }
 
 .location-section {
   background-image: url(../images/location-services-bg.png);
@@ -4138,7 +4170,7 @@ a.no-underline:hover {
     text-transform: uppercase; }
     .search-page__tab-list li a.active {
       font-weight: bold;
-      color: #000;
+      color: #d92e4a;
       text-decoration: underline; }
 
 .product-view {
@@ -4183,7 +4215,7 @@ img.product_heart {
     .search-secction__data > div.col-des .search-section__description {
       margin-left: 35px; }
       .search-secction__data > div.col-des .search-section__description .product-name {
-        font-size: 10px;
+        font-size: 13px;
         text-transform: uppercase;
         color: #b1b1b1;
         font-family: "Lato-Black";
@@ -4208,7 +4240,8 @@ img.product_heart {
           color: #d92e4a;
           opacity: none;
           font-size: 12px;
-          border-bottom: 1px solid #d92e4a; }
+          border-bottom: 1px solid #d92e4a;
+          font-weight: bolder; }
   .search-secction__data > div.col-act {
     display: -ms-flexbox;
     display: flex;
@@ -4247,9 +4280,10 @@ img.product_heart {
     color: #636567;
     position: relative; }
     .description__section .description__section--content .product-name {
-      font-size: 20px;
+      font-size: 24px;
       color: #636567;
-      font-family: "Lato-Regular"; }
+      font-family: "Lato-Regular";
+      font-weight: bolder; }
 
 .share_options {
   position: absolute;
@@ -4277,9 +4311,12 @@ img.product_heart {
   font-family: "Lato-Bold";
   font-size: 23px;
   font-weight: bold;
-  color: #515356; }
+  color: #515356;
+  text-align: center; }
   .product-price span {
     font-size: 13px; }
+  .product-price .products__offer {
+    line-height: 0.7em; }
 
 .search-secction__buttons button {
   width: 130px;
