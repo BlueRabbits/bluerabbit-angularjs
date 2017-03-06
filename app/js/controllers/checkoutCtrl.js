@@ -54,6 +54,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
   $scope.init = function(){
     $scope.getcartItems();
     $scope.getAddressByUserId ();
+    $scope.getMinimumOrderCost();
   }
 
 
@@ -305,7 +306,8 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
           "UserID":$scope.getUserId,
         	"paymentMethod":1,
         	"address":$scope.addressIdSelected,
-        	"billingAddress":$scope.addressIdSelected
+        	"billingAddress":$scope.addressIdSelected,
+          "deliveryOrderAmount":$scope.deliveryOrderAmount 
         }
         Auth.makeCOD(codDetails)
         .success(function(data){
@@ -325,6 +327,19 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       //thankyou btn
       $scope.thankYou = function(){
         window.location = "#/landing";
+      }
+
+      //minimum order value to be calculated to add delivery
+      $scope.getMinimumOrderCost = function() {
+
+        Auth.getMinimumOrder().success(function(data) {
+          for (var i = 0; i < data.length; i++) {
+            $scope.minimumOrderAmount = data[i].minimumOrderAmount;
+            $scope.deliveryOrderAmount = data[i].deliveryOrderAmount;
+          }
+        }).error(function(data) {
+          console.log("getMinimumOrder api fails");
+        });
       }
 
       $scope.init();
