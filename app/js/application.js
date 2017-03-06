@@ -5,6 +5,13 @@ App bluerabbit
 
 var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngToast','ngAnimate','ui.bootstrap','googleplus','facebook', 'angular.filter']);
 
+app.constant('URL', {
+  //BASE_URL: "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000"
+  BASE_URL: "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com"
+  //BASE_URL: "http://localhost:9000"
+  //BASE_URL: "http://192.168.0.84:9000"
+});
+
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/landing', {
