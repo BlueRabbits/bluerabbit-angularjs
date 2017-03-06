@@ -48,6 +48,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $cookieStore.put("token", data.token);
          $cookieStore.put("userId", data._id);
          $cookieStore.put("emailId", $scope.email);
+         $cookieStore.put("userName", data.name);
          $scope.getEmailId = $cookieStore.get('email');
          $cookieStore.put('loggedIn', true);
          //$location.path('/landing');
@@ -90,6 +91,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          localStorage.setItem("authToken", data.token);
          $cookieStore.put("userId", data._id);
          $cookieStore.put("emailId", $scope.email);
+         $cookieStore.put("userName", data.name);
          $cookieStore.put('loggedIn', true);
          $scope.getEmailId = $cookieStore.get('email');
          $scope.userId = $cookieStore.get('userId');
@@ -97,7 +99,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
          $('.modal').css("display", "none");
          $('.modal-open').removeClass();
           //$location.path('/landing');
-          location.reload(true);
+          // location.reload(true);
           // $('#loginmodal').modal('hide');
       }).error(function(data) {
         console.log('data', data);
