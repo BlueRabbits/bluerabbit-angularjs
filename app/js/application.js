@@ -55,3 +55,10 @@ app.config(['GooglePlusProvider','FacebookProvider', function(GooglePlusProvider
          appId:'1272767759478704'
     });
 }]);
+
+app.run(function($rootScope, $location) {
+
+ $rootScope.$on('$routeChangeSuccess', function (event, currentRoute, previousRoute) {
+   window.scrollTo(0, 0);
+ });
+});
