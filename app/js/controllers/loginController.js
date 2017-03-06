@@ -1,6 +1,7 @@
-app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, GooglePlus, Facebook, ngToast){
+app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, GooglePlus, Facebook, ngToast, URL){
   'use strict';
 
+  $scope.BASE_URL = URL.BASE_URL;
   $('.modal').on('hidden.bs.modal', function (e) {
     $(this).find("input").val('').end();
     $scope.errorMessage =  "";
@@ -196,7 +197,8 @@ $scope.logged = false;
   //get Profile of users
   $scope.getUserProfile = function() {
     $scope.userProfileShow =  true;
-      Auth.userProfile().success(function(data) {
+    Auth.userProfile().success(function(data) {
+      $scope.userDetails = data;
       console.log('user profile',data.name);
       $cookieStore.put('userName', data.name);
       $cookieStore.put('emailId', data.email);
@@ -231,6 +233,7 @@ $scope.logged = false;
         className: 'success',
         content: 'Passowrd changed successfully'
       });
+      $scope.editPassword = false;
     }).error(function(data) {
       console.log('data', data);
     });
@@ -380,15 +383,13 @@ $scope.getOrdersByUserId = function() {
 
 //get Address
 $scope.getAddressMyAccount = function(){
-
-  Auth.getAddressByUserId()
-  .success(function(data){
-    console.log('address by UserID resp', data);
+  Auth.getAddressByUserId().success(function(data){
     $scope.getAddressByUserId = data;
-      }).error(function(data){
-        console.log(data);
-      });
+  }).error(function(data){
+    console.log(data);
+  });
 }
+
 //delete Address by Address ID
 $scope.deleteAddress = function(addressId){
   console.log(addressId);
@@ -465,6 +466,7 @@ $scope.editAddress = function(){
 
 //upload formdata imageUrls
       var formdata = new FormData();
+      $scope.isDataAvailable = false;
       $scope.getTheFiles = function($files) {
         angular.forEach($files, function(value, key) {
           formdata.append(key, value);
@@ -477,10 +479,11 @@ $scope.editAddress = function(){
           .success(function(data) {
             console.log('profile formdata', data);
             $scope.profileImage = data.url;
+            $scope.isDataAvailable = true;
+
           }).error(function(data) {
             console.log(data);
           });
-
       };
 
 
