@@ -211,21 +211,23 @@
 					<li></li>
 				</ul>
 			</div>
-			<div class="cart-section__data" ng-repeat="cartList in allCartItems">
-				<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
-				<p class="product-item__name">{{cartList.product.name}}</p>
-				<div class="cart__quantity">
-					<input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
-					<input type="text" name="TextBox" id="TextBox" class="textbox" ng-value="cartList.quantity" ng-model="cartList.quantity" />
-					<input type="Button" id='AddButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+			<div style="    overflow: scroll;position: absolute;width: 100%;top: 130px;height: 360px;">
+				<div class="cart-section__data" ng-repeat="cartList in allCartItems">
+					<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+					<p class="product-item__name">{{cartList.product.name}}</p>
+					<div class="cart__quantity">
+						<input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
+						<input type="text" name="TextBox" id="TextBox" class="textbox" ng-value="cartList.quantity" ng-model="cartList.quantity" />
+						<input type="Button" id='AddButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+					</div>
+					<p class="product-cart__price"><span>AED</span>{{cartList.product.salePrice * cartList.quantity}}</p>
+					<!-- <p>{{cartList.product.salePrice}}</p> -->
+					<div class="cancel-button" style="cursor:pointer">
+						<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+					</div>
 				</div>
-				<p class="product-cart__price"><span>AED</span>{{cartList.product.salePrice * cartList.quantity}}</p>
-				<!-- <p>{{cartList.product.salePrice}}</p> -->
-				<div class="cancel-button" style="cursor:pointer">
-					<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
-				</div>
-			</div>
 		</div>
+	</div>
 		<div class="cart-section__footer">
 			<div class="total-section">
 				<p>Sub Total</p>
