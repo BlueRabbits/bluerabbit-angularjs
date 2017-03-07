@@ -301,7 +301,18 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       }
 
       //make COD
+      $scope.isSelectedCOD = false;
+      $scope.makePaymentBtn = true;
+      $scope.isThankyou = true;
+      $scope.isCod = function(value){
+        console.log("isSelectedCOD",value);
+        if ($scope.isSelectedCOD == value) {
+          $scope.makePaymentBtn = false;
+        }
+      }
+      $scope.isPaymentPanel = false;
       $scope.makeCodPayment = function(){
+        $scope.isPaymentPanel = true;
         var codDetails = {
           "UserID":$scope.getUserId,
         	"paymentMethod":1,
@@ -312,6 +323,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         Auth.makeCOD(codDetails)
         .success(function(data){
           console.log('codDetails', data);
+          $scope.isThankyou = false;
           $scope.getcartItems();
           // ngToast.create({
           //   className: 'success',

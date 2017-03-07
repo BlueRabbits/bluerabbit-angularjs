@@ -167,8 +167,8 @@
             <h4 class="list-group-item-heading">Delivery</h4>
           </a>
         </li>
-        <li class="disabled">
-          <a href="#step-3">
+        <li class="disabled" ng-class="{disabled: isPaymentPanel}">
+          <a href="#step-3"  ng-class="{disabled: isPaymentPanel}">
             <h4 class="list-group-item-heading">Payment</h4>
           </a>
         </li>
@@ -330,12 +330,12 @@
           <p class="thanks-message text-center">Thank You For Your Order</p>
 					<div class="payment_option_card card_layout">
 						<div class="option_list">
-							<input type="radio" name="payment_option_radio">
+							<input type="radio" ng-model="isSelectedCOD" ng-change="isCod(isSelectedCOD)" ng-value="true" name="payment_option_radio">
 							Cash on delivery
 						</div>
 					</div>
           <div class="process-button-section process-button-section__center">
-            <button type="submit" id="activate-step-4" class=" checkout-page__buttons active" ng-click="makeCodPayment()">Confirm</button>
+            <button type="submit" id="activate-step-4" class=" checkout-page__buttons active" ng-disabled="makePaymentBtn" ng-click="makeCodPayment()">Confirm</button>
           </div>
 				</div>
       </div>
@@ -373,7 +373,7 @@
 								<div class="col-xs-12"><p>{{receipt_details.address.addressType}}</p></div>
 								<div class="col-xs-12"><p>{{receipt_details.address.name}}</p></div>
 								<div class="col-xs-12">
-									<p>{{receipt_details.address.houseNo}}, {{address.name}}, {{address.streetName}}, {{address.landmark}}, {{address.city}}, {{address.country}}</p>
+									<p>{{receipt_details.address.houseNo}}, {{receipt_details.address.name}}, {{receipt_details.address.streetName}}, {{receipt_details.address.landmark}}, {{receipt_details.address.city}}, {{receipt_details.address.country}}</p>
 								</div>
 							</div>
 						</div>
@@ -383,7 +383,7 @@
 				<div class="col-sm-6">
 					<h2 class="text-center" style="margin:0px">Thank you for your order!</h2>
 					<div class="process-button-section process-button-section__center">
-            <button type="submit" class="checkout-page__buttons active" ng-click="thankYou()">Thank you</button>
+            <button type="submit" class="checkout-page__buttons active" ng-disabled="isThankyou" ng-click="thankYou()">Thank you</button>
           </div>
 				</div>
 			</div> <!-- heading -->
