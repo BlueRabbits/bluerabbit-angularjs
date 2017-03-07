@@ -399,8 +399,6 @@ $('#nxt-testimonial').on('click', function(){
                 $scope.locations = [data[i].name,data[i].lat,data[i].lng];
                 console.log("locations",$scope.locations);
                 //google maps
-
-                console.log("$scope.locations[i][1]",$scope.locations[i][1]);
                         marker = new google.maps.Marker({
                           position: new google.maps.LatLng(data[i].lat,data[i].lng),
                           map: map
