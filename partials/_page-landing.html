@@ -58,8 +58,8 @@
           <input type="search" class="search-box" placeholder="search here">
           <img src="images/close-button@2x.png" class="close-icon" >
         </div> -->
-        <input type="search" class="search-box" placeholder="Find The Things What You Want Here">
-        <img src="images/close-button@2x.png" class="close-icon" >
+        <!-- <input type="search" class="search-box" placeholder="Find The Things What You Want Here">
+        <img src="images/close-button@2x.png" class="close-icon" > -->
         <a href="#/search-page"><img src="images/search-icon@2x.png" class="search-icon"></a>
         <p><a href="#/"> |</a></p>
         <img src="images/heart-icon@2x.png" ng-click="showWishList()">
@@ -81,8 +81,8 @@
       <!-- <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%"> -->
       <div class="banner-img" style="background-image:url({{lists.product.mainImageUrl}});"></div>
       <div class="carousel-caption" style="padding: 0px 660px 100px 2px; width: 75%;display: flex;flex-direction: column;align-items: center;">
-        <h2>{{lists.product.name}}</h2>
-        <p>{{lists.product.description}}</p>
+        <!-- <h2>{{lists.product.name}}</h2>
+        <p>{{lists.product.description}}</p> -->
       </div>
     </div>
   </div>
@@ -362,7 +362,7 @@
             <img src="images/footer-logo-icon.png" alt="" />
           </div>
           <div class="col-sm-4">
-            <ul>
+            <ul style="cursor:pointer;">
               <li>FAQ</li>
               <li>About</li>
               <li>Careers</li>
@@ -370,9 +370,9 @@
             </ul>
           </div>
           <div class="col-sm-4">
-            <ul>
+            <ul style="cursor:pointer;">
               <li>Help Center</li>
-              <li>Email Support</li>
+              <li ng-click="contactUs()">Email Support</li>
               <li>Contact us</li>
             </ul>
           </div>

@@ -44,7 +44,7 @@
 
 </div>
 
-<div class="container-fluid myaccount-main">
+<div class="container-fluid myaccount-main" style="margin-bottom: 200px;">
   <div class="row" style="border-bottom: 1px solid #ddd;">
     <div class="container tab_list" ng-init="showTab = 'profile'; getUserProfile(); getAddressMyAccount();">
       <div class="tab_item" ng-class="{'active' : showTab == 'profile'}" ng-click="showTab = 'profile'; getUserProfile(); getAddressMyAccount()">Profile</div>
@@ -129,8 +129,8 @@
   							<div class="address-box" ng-class="{'active' : addressIdSelected == address._id}">
   								<div class="address-content">
                     <div class="address_action_btn">
-                      <img ng-click="deleteAddress(address._id)" src="images/close.svg"  type="image/svg+xml" />
-                      <img ng-click="getAddressIdToEdit(address._id)" src="images/pencil.svg"  type="image/svg+xml" />
+                      <img ng-click="deleteAddress(address._id)" src="images/close.svg"  type="image/svg+xml" style="cursor:pointer" />
+                      <img ng-click="getAddressIdToEdit(address._id)" src="images/pencil.svg"  type="image/svg+xml" style="cursor:pointer"/>
                     </div>
   									<div class="row">
   										<div class="col-xs-8"><h2>{{address.addressType}}</h2></div>
@@ -313,7 +313,7 @@
             <img src="images/footer-logo-icon.png" alt="" />
           </div>
           <div class="col-sm-4">
-            <ul>
+            <ul style="cursor:pointer;">
               <li>FAQ</li>
               <li>About</li>
               <li>Careers</li>
@@ -321,9 +321,9 @@
             </ul>
           </div>
           <div class="col-sm-4">
-            <ul>
+            <ul style="cursor:pointer;">
               <li>Help Center</li>
-              <li>Email Support</li>
+              <li ng-click="contactUs()">Email Support</li>
               <li>Contact us</li>
             </ul>
           </div>
