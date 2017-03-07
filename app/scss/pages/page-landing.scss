@@ -336,7 +336,8 @@ a.no-underline:hover {
   background-image: url(../images/tab-section-bg.png);
   background-repeat: no-repeat;
   padding: 41px 100px;
-  background-size: cover;
+  /* background-size: cover; */
+  background-position: center;
 
   h1 {
     font-size: 52px;

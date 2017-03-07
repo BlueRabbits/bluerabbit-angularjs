@@ -87,8 +87,8 @@
   							<div class="address-box" ng-class="{'active' : addressIdSelected == address._id}">
   								<div class="address-content">
                     <div class="address_action_btn">
-                      <img ng-click="deleteAddress(address._id)" src="images/close.svg"  type="image/svg+xml" />
-                      <img ng-click="getAddressIdToEdit(address._id)" src="images/pencil.svg"  type="image/svg+xml" />
+                      <img ng-click="deleteAddress(address._id)" src="images/close.svg"  type="image/svg+xml" style="cursor:pointer" />
+                      <img ng-click="getAddressIdToEdit(address._id)" src="images/pencil.svg"  type="image/svg+xml" style="cursor:pointer"/>
                     </div>
   									<div class="row">
   										<div class="col-xs-8"><h2>{{address.addressType}}</h2></div>
