@@ -3167,7 +3167,8 @@ SMACSS: PAGE - LANDING
   display: flex;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 0 65px; }
+  padding: 0 65px;
+  opacity: 0.5; }
 
 .banner-wrap {
   height: 420px; }
@@ -3417,9 +3418,9 @@ a.no-underline:hover {
     margin-right: 18px; }
 
 .slider-section {
-  background-image: url(../images/slider-bg.png);
   background-repeat: round;
-  padding: 15px 100px; }
+  padding: 15px 100px;
+  background-color: #eff4f6; }
 
 .slider-control {
   display: block;
@@ -3503,7 +3504,8 @@ a.no-underline:hover {
 .breakfast-products__image {
   width: 55%;
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-position: center; }
 
 .breakfast-products__content {
   width: 50%;
@@ -3621,8 +3623,9 @@ a.no-underline:hover {
 .location-search-places {
   display: -ms-flexbox;
   display: flex;
-  padding: 24px 0;
-  border-bottom: 1px solid white; }
+  padding: 13px 0px 10px;
+  border-bottom: 1px solid white;
+  margin-bottom: 23px; }
   .location-search-places img {
     height: 52px; }
   .location-search-places p {
@@ -4121,7 +4124,7 @@ a.no-underline:hover {
   background-color: #636467;
   -ms-flex-align: center;
   align-items: center;
-  padding: 0 32px; }
+  padding: 0 48px; }
   .sub-menu__favorites p {
     margin: 0; }
 
@@ -4363,18 +4366,17 @@ button[disabled] {
   font-weight: 900;
   letter-spacing: 2.4px;
   text-align: center;
-  color: #ffffff; }
+  color: #ffffff;
+  padding-top: 15px; }
 
 .cart-section__sub-header {
-  height: 36px;
+  height: 45px;
   background-color: white;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); }
   .cart-section__sub-header .cart-header__list {
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-    padding: 10px;
+    padding: 14px;
     opacity: 0.5;
     font-family: "Lato-Black";
     font-size: 12px;
@@ -4395,9 +4397,9 @@ button[disabled] {
   .cart-section__data .product-item__name {
     width: 35%;
     font-family: "Lato-Regular";
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    color: #636467;
+    color: #373738;
     line-height: 2em; }
   .cart-section__data .cart__quantity #minusButton,
   .cart-section__data .cart__quantity #AddButton {
@@ -4406,7 +4408,8 @@ button[disabled] {
     width: 23px;
     height: 25px;
     background-color: #ffffff;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15); }
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+    color: #929396; }
   .cart-section__data .cart__quantity .textbox {
     background: none;
     border: none;
