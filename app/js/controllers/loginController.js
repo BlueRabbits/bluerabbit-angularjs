@@ -547,7 +547,7 @@ $scope.editAddress = function(){
         }
         Auth.feedBack(feedBackDetails)
           .success(function(data) {
-
+            $scope.feedBackComments = "";
             console.log('profile updated data', data);
 
             // ngToast.create({

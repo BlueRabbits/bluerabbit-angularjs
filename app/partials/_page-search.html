@@ -44,9 +44,10 @@
 						<div class="search-section__description">
 							<p class="product-name">{{results.name}}</p>
 							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
+							<img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i>
 								<div class="product-view" ng-init="showHearts(results._id)">
-										<img class="product_heart" ng-if="productIdWishList != results._id" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-										<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i>
+
 										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
 								</div>
 						</div>
@@ -68,9 +69,9 @@
 				<div class="description__section" ng-show="showdiv">
 					<div class="description__section--header">
 						<div class="description-list">
-							<p>Prep time:30 min</p>
+							<!-- <p>Prep time:30 min</p>
 							<span>|</span>
-							<p>Calories: 100 Kcal</p>
+							<p>Calories: 100 Kcal</p> -->
 
 						</div>
 					</div>
@@ -129,9 +130,9 @@
 				<div class="description__section" ng-show="showdiv">
 					<div class="description__section--header">
 						<div class="description-list">
-							<p>Prep time:30 min</p>
+							<!-- <p>Prep time:30 min</p>
 							<span>|</span>
-							<p>Calories: 100 Kcal</p>
+							<p>Calories: 100 Kcal</p> -->
 
 						</div>
 					</div>
@@ -159,9 +160,9 @@
 							</div>
 							<div class="search-section__description">
 								<p class="product-name">
-									<img class="product_heart" ng-if="productIdWishList != list._id" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-									<i class="fa fa-heart fa-lg" style="color: #d92e4a;" aria-hidden="true" ng-if="productIdWishList == list._id" ng-click="deleteWishList(list._id)"></i>
 									{{list.name}}</p>
+									<img class="product_heart" style="margin-bottom: 11px;" ng-if="productIdWishList != list._id" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
+									<i class="fa fa-heart fa-lg" style="color: #d92e4a;margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == list._id" ng-click="deleteWishList(list._id)"></i>
 								<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
 									<div class="product-view">
 										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
@@ -186,9 +187,9 @@
 					<div class="description__section" ng-show="showdiv">
 						<div class="description__section--header">
 							<div class="description-list">
-								<p>Prep time:30 min</p>
+								<!-- <p>Prep time:30 min</p>
 								<span>|</span>
-								<p>Calories: 100 Kcal</p>
+								<p>Calories: 100 Kcal</p> -->
 							</div>
 						</div>
 						<div class="description__section--content">
@@ -205,9 +206,9 @@
 								{{list.description}}
 							</p>
 							<p class="product-sub-title"></p>
-							<img src="{{list.s1}}" width="120px" />
-							<img src="{{list.s2}}" width="120px" />
-							<img src="{{list.s3}}" width="120px" />
+							<img src="{{list.s1}}" width="120px" ng-click="showImage(list.s1)" />
+							<img src="{{list.s2}}" width="120px" ng-click="showImage(list.s2)"/>
+							<img src="{{list.s3}}" width="120px" ng-click="showImage(list.s3)"/>
 						</div>
 					</div>
 				</div>
@@ -264,3 +265,17 @@
 		</div>
 	</div>
 </div>
+
+<!-- load image modal windo  -->
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="margin-left: 250px;margin-top: 200px;">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- load image modal windo  -->

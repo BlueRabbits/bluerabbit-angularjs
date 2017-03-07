@@ -173,8 +173,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         $scope.getAddressByUserId = data;
         if($scope.getAddressByUserId.length) {
           $scope.showDiv = 'savedAddress';
+          $scope.saveAddressColor = '#d92e4a';
         } else {
           $scope.showDiv = 'newAddress';
+          $scope.saveAddressColor = '#d92e4a';
         }
       }).error(function(data){
         console.log(data);

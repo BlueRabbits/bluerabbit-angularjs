@@ -561,7 +561,7 @@ console.log("$(window).height(); ",$(window).height());
                   console.log("$scope.productId ",$scope.productId );
 
               }
-  
+
               $scope.showMenuResult  = true;
             }).error(function(data) {
               // ngToast.create({
@@ -619,6 +619,15 @@ console.log("$(window).height(); ",$(window).height());
           var twitterHandle = 'Krazy Meals';
             //window.open("https://twitter.com/share?url="+encodeURIComponent(url));
             window.open('https://twitter.com/share?url='+escape(window.location.href)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+          }
+
+          //show mimage modal
+          $scope.showImage = function(image1){
+            console.log("image1",image1);
+            $scope.imageGallery1 = image1;
+            // $scope.imageGallery2 = image2;
+            // $scope.imageGallery3 = image3;
+			       $('#imagemodal').modal('show');
           }
 
     $scope.init();

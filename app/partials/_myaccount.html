@@ -2,7 +2,7 @@
   @@include('_header.html')
 </div>
 
-<div class="container-fluid myaccount-main">
+<div class="container-fluid myaccount-main" style="margin-bottom: 200px;">
   <div class="row" style="border-bottom: 1px solid #ddd;">
     <div class="container tab_list" ng-init="showTab = 'profile'; getUserProfile(); getAddressMyAccount();">
       <div class="tab_item" ng-class="{'active' : showTab == 'profile'}" ng-click="showTab = 'profile'; getUserProfile(); getAddressMyAccount()">Profile</div>
