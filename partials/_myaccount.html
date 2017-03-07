@@ -19,7 +19,7 @@
 		<div class="myaccount myaccount-font" ng-show="show_myaccnt">
 			<div class="dropdown">
 				<div class="dropdown__myaccount" id="menu1" type="button" >
-					<div class="user_image" style="background-image: url({{BASE_URL}}/gitlabEcom{{userDetails.image_url}})"></div>
+					<div class="user_image" style="background-image: url({{BASE_URL}}/ecom{{userDetails.image_url}})"></div>
 					{{userName}}
 				 	<span class="caret"></span>
 				</div>
@@ -68,7 +68,7 @@
         <div class="row basic_info">
           <div class="info_block col-sm-6">
             <div class="dropdown__myaccount">
-              <div class="user_image" style="background-image: url({{BASE_URL}}/gitlabEcom{{userDetails.image_url}})"></div>
+              <div class="user_image" style="background-image: url({{BASE_URL}}/ecom{{userDetails.image_url}})"></div>
               {{userDetails.name}}
               <img class="icon_img" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true">
               <img class="icon_img" ng-show="editImage==true" ng-click="editImage=false" src="images/close.svg" type="image/svg+xml" data-pin-nopin="true">
