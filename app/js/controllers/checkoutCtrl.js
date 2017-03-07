@@ -94,10 +94,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
 
     }).error(function(data){
-      ngToast.create({
-        className: 'warning',
-        content: 'Problem in get cart api'
-      });
+      // ngToast.create({
+      //   className: 'warning',
+      //   content: 'Problem in get cart api'
+      // });
     });
   };
 
@@ -145,19 +145,19 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     .success(function(data){
       console.log('deleted resp', data);
       $scope.getcartItems();
-      ngToast.create({
-        className: 'success',
-        content: 'Item Deleted from Cart'
-      });
+      // ngToast.create({
+      //   className: 'success',
+      //   content: 'Item Deleted from Cart'
+      // });
       // $scope.quantity = data.quantity;
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
 
         }).error(function(data){
-          ngToast.create({
-            className: 'warning',
-            content: 'Problem in deleting from Cart'
-          });
+          // ngToast.create({
+          //   className: 'warning',
+          //   content: 'Problem in deleting from Cart'
+          // });
         });
       };
 
@@ -263,10 +263,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     .success(function(data){
       console.log('addressDetails', data);
       //$scope.getAddressByUserId ();
-      ngToast.create({
-        className: 'success',
-        content: 'New Address Added'
-      });
+      // ngToast.create({
+      //   className: 'success',
+      //   content: 'New Address Added'
+      // });
 
       location.reload(true);
       //$scope.getAddressByUserId ();
@@ -274,10 +274,10 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       // $scope.user_id = data.UserID;
       // console.log('id',$scope.user_id);
         }).error(function(data){
-          ngToast.create({
-            className: 'warning',
-            content: 'Problem in adding address'
-          });
+          // ngToast.create({
+          //   className: 'warning',
+          //   content: 'Problem in adding address'
+          // });
         });
       };
 
@@ -307,16 +307,16 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
         	"paymentMethod":1,
         	"address":$scope.addressIdSelected,
         	"billingAddress":$scope.addressIdSelected,
-          "deliveryOrderAmount":$scope.deliveryOrderAmount 
+          "deliveryOrderAmount":$scope.deliveryOrderAmount
         }
         Auth.makeCOD(codDetails)
         .success(function(data){
           console.log('codDetails', data);
           $scope.getcartItems();
-          ngToast.create({
-            className: 'success',
-            content: "Order is Placed"
-          });
+          // ngToast.create({
+          //   className: 'success',
+          //   content: "Order is Placed"
+          // });
           $scope.codOrderDetails =  data;
           $scope.receipt_details = data;
         }).error(function(data){

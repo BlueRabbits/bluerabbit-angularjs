@@ -55,10 +55,10 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
         // $scope.getUserProfile();
          //location.reload(true);
         location.reload(true);
-        ngToast.create({
-          className: 'success',
-          content: 'Account created successfully'
-        });
+        // ngToast.create({
+        //   className: 'success',
+        //   content: 'Account created successfully'
+        // });
       }).error(function(data) {
         console.log('data', data);
         $scope.erroralert = true;
@@ -88,7 +88,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
 
         //cookieStore
          $cookieStore.put("token", data.token);
-         
+
          $cookieStore.put("userId", data._id);
          $cookieStore.put("emailId", $scope.email);
          $cookieStore.put("userName", data.name);
@@ -117,6 +117,22 @@ $scope.user = {};
 // Defining user logged status
 $scope.logged = false;
   $scope.logout = function () {
+
+    //remove from cart
+    $scope.cookieUserId = $cookieStore.get('userId');
+    $scope.userToken = $cookieStore.get('token');
+    $scope.sessionId = $cookieStore.get('sessionId');
+
+    Auth.emptyCart({UserID:$scope.cookieUserId,sessionID : $scope.sessionId,isDeleted: true})
+    .success(function(data){
+      console.log('empty cart', data);
+        }).error(function(data){
+          // ngToast.create({
+          //   className: 'warning',
+          //   content: 'Problem in deleting from Cart'
+          // });
+        });
+
     $rootScope.user = {};
     // localStorage.removeItem("token");
     // localStorage.removeItem("userId");
@@ -139,15 +155,21 @@ $scope.logged = false;
         console.log('User signed out.');
       });
    });
-
     //cookieStore
     $cookieStore.remove("token");
     $cookieStore.remove("userId");
     $cookieStore.remove("email");
     $cookieStore.put('loggedIn', false);
-
-    location.reload();
+    // $scope.emptyCart();
     $location.path('/landing');
+    //10 seconds delay
+    $timeout(function () {
+      location.reload();
+    }, 3000);
+  }
+  $scope.hideCartValue = false;
+  if ($cookieStore.get('loggedIn') == false) {
+    $scope.hideCartValue = true;
   }
 
   $scope.forgotPassword = function () {
@@ -201,6 +223,11 @@ $scope.logged = false;
     $scope.userProfileShow =  true;
     Auth.userProfile().success(function(data) {
       $scope.userDetails = data;
+      if (data.image_url) {
+        $scope.hideAvatar = false;
+      } else {
+        $scope.hideAvatar = true;
+      }
       console.log('user profile',data.name);
       $cookieStore.put('userName', data.name);
       $cookieStore.put('emailId', data.email);
@@ -231,10 +258,10 @@ $scope.logged = false;
       console.log('user profile', data.name);
       $scope.userName = data.name;
       $scope.userEmail = data.email;
-      ngToast.create({
-        className: 'success',
-        content: 'Passowrd changed successfully'
-      });
+      // ngToast.create({
+      //   className: 'success',
+      //   content: 'Passowrd changed successfully'
+      // });
       $scope.editPassword = false;
     }).error(function(data) {
       console.log('data', data);
@@ -399,10 +426,10 @@ $scope.deleteAddress = function(addressId){
   .success(function(data){
     $scope.getAddressMyAccount();
     console.log('address deleted', data);
-    ngToast.create({
-      className: 'success',
-      content: data.message
-    });
+    // ngToast.create({
+    //   className: 'success',
+    //   content: data.message
+    // });
       }).error(function(data){
         console.log(data);
       });
@@ -457,10 +484,10 @@ $scope.editAddress = function(){
     $scope.getAddressMyAccount();
     $scope.showEditAddressFields = false;
     console.log('address deleted', data);
-    ngToast.create({
-      className: 'success',
-      content: "Successfully Updated the address"
-    });
+    // ngToast.create({
+    //   className: 'success',
+    //   content: "Successfully Updated the address"
+    // });
       }).error(function(data){
         console.log(data);
       });
@@ -488,8 +515,9 @@ $scope.editAddress = function(){
           });
       };
 
-
+      $scope.hideAvatar = true;
       $scope.ProfileUpdate = function() {
+        $scope.hideAvatar = false;
         var profileDetails = {
           "name": $scope.userName,
           "image_url": $scope.profileImage
@@ -500,10 +528,10 @@ $scope.editAddress = function(){
             console.log('profile updated data', data);
             $scope.emailId = data.email;
             $scope.userName = data.name;
-            ngToast.create({
-              className: 'success',
-              content: "Successfully Updated the address"
-            });
+            // ngToast.create({
+            //   className: 'success',
+            //   content: "Successfully Updated the address"
+            // });
           }).error(function(data) {
             console.log(data);
           });
@@ -522,19 +550,36 @@ $scope.editAddress = function(){
 
             console.log('profile updated data', data);
 
-            ngToast.create({
-              className: 'success',
-              content: "Feedback sent Successfully"
-            });
+            // ngToast.create({
+            //   className: 'success',
+            //   content: "Feedback sent Successfully"
+            // });
           }).error(function(data) {
             console.log(data);
-            ngToast.create({
-              className: 'warning',
-              content: data.message
-            });
+            // ngToast.create({
+            //   className: 'warning',
+            //   content: data.message
+            // });
           });
 
       }
+
+      //empty cart
+      $scope.emptyCart = function () {
+        $scope.cookieUserId = $cookieStore.get('userId');
+        $scope.userToken = $cookieStore.get('token');
+        $scope.sessionId = $cookieStore.get('sessionId');
+
+        Auth.emptyCart({UserID:$scope.cookieUserId,sessionID : $scope.sessionId,isDeleted: true})
+        .success(function(data){
+          console.log('empty cart', data);
+            }).error(function(data){
+              // ngToast.create({
+              //   className: 'warning',
+              //   content: 'Problem in deleting from Cart'
+              // });
+            });
+          };
 
 }).directive('ngFiles', ['$parse', function ($parse) {
 

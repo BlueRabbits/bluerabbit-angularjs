@@ -319,11 +319,11 @@ $('#nxt-testimonial').on('click', function(){
 
 
     }).error(function(data){
-      ngToast.create({
-        className: 'warning',
-        content: 'Problem in Get Cart API',
-        timeout:1000
-      });
+      // ngToast.create({
+      //   className: 'warning',
+      //   content: 'Problem in Get Cart API',
+      //   timeout:1000
+      // });
     });
   };
   $scope.getcartItems();
@@ -337,18 +337,18 @@ $('#nxt-testimonial').on('click', function(){
     Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
     .success(function(data){
       console.log('updated resp', data);
-      ngToast.create({
-        className: 'success',
-        content: 'Quantity Increased in cart',
-        timeout:1000
-      });
+      // ngToast.create({
+      //   className: 'success',
+      //   content: 'Quantity Increased in cart',
+      //   timeout:1000
+      // });
       $scope.getcartItems();
         }).error(function(data){
-          ngToast.create({
-            className: 'warning',
-            content: 'Problem in incrementing cart',
-            timeout:1000
-          });
+          // ngToast.create({
+          //   className: 'warning',
+          //   content: 'Problem in incrementing cart',
+          //   timeout:1000
+          // });
         });
   }
 
@@ -478,11 +478,11 @@ $scope.showWishList = function(){
         .success(function(data){
           console.log('data', data);
           $scope.getcartItems();
-          ngToast.create({
-            className: 'success',
-            content: 'Item Added to WishList',
-            timeout:1000
-          });
+          // ngToast.create({
+          //   className: 'success',
+          //   content: 'Item Added to WishList',
+          //   timeout:1000
+          // });
           // $scope.quantity = data.quantity;
           // $scope.user_id = data.UserID;
           // console.log('id',$scope.user_id);
@@ -497,11 +497,11 @@ $scope.showWishList = function(){
                 console.log("cart",$scope.cartlist);
               });
             }).error(function(data){
-              ngToast.create({
-                className: 'warning',
-                content: 'Problem in deleting from wishList',
-                timeout:1000
-              });
+              // ngToast.create({
+              //   className: 'warning',
+              //   content: 'Problem in deleting from wishList',
+              //   timeout:1000
+              // });
             });
           } else {
               $('#loginmodal').modal('toggle');

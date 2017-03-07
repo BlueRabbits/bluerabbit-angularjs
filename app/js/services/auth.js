@@ -239,6 +239,14 @@ app.factory('Auth', function($http, $window, $cookieStore) {
         }
       });
     },
+    emptyCart : function(inputs) {
+      return $http.post(BASE_URL + '/api/shoppingCart/emptyCart', inputs, {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
 
 
   };
