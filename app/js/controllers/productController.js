@@ -417,7 +417,7 @@ console.log("$(window).height(); ",$(window).height());
           // });
         });
       };
-      $scope.getWishList();
+
 
       //POST create wish list
       // var count = 0;
@@ -437,12 +437,12 @@ console.log("$(window).height(); ",$(window).height());
             $scope.sessionId = $cookieStore.get('sessionId');
             //check if already added to wish list
 
-                  for (var i = 0; i < $scope.getWishlistData.length; i++) {
-                    if (productId ===  $scope.getWishlistData[i].product._id) {
-                      $scope.addFavList = false;
-                      $scope.productIdWishList= $scope.getWishlistData[i].product._id;
-                    }
-                  }
+                  // for (var i = 0; i < $scope.getWishlistData.length; i++) {
+                  //   if (productId ===  $scope.getWishlistData[i].product._id) {
+                  //     $scope.addFavList = false;
+                  //     $scope.productIdWishList= $scope.getWishlistData[i].product._id;
+                  //   }
+                  // }
 
                                       $scope.cartlist =[];
                                       var wishListInfo = {
@@ -559,31 +559,9 @@ console.log("$(window).height(); ",$(window).height());
               for (var i = 0; i < data.length; i++) {
                 $scope.productId = data[i]._id;
                   console.log("$scope.productId ",$scope.productId );
-                  //check if already added to wish list
-                      Auth.getWishList({
-                        UserId : $scope.getUserId,
-                        sessionID: $scope.sessionId
-                      })
-                      .success(function (data) {
-                        console.log(data.length);
-                        // $scope.getWishlistData = data;
-                        for (var i = 0; i < data.length; i++) {
-                          console.log("$scope.productId",$scope.productId);
-                          if (data[i].product._id == $scope.productId) {
-                              $scope.productIdWishList = data[i].product._id;
-                              console.log("productIdWishList",$scope.productIdWishList );
-                          }
 
-                        }
-
-
-
-                      }).error(function(data){
-                      });
               }
-
-
-
+  
               $scope.showMenuResult  = true;
             }).error(function(data) {
               // ngToast.create({
