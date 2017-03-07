@@ -51,7 +51,7 @@
 <!-- <p style="text-align:center;padding-top:50px;">Slider section</p> -->
 <div class="slider-section">
   <div class="clearfix slider-control">
-    <span class="pull-left h2 clear-margin" style="margin: 0px; font-weight:normal">Best Seller</span>
+    <span class="pull-left h2 clear-margin" style="margin: 0px; font-weight:normal">Best Sellers</span>
     <img src="images/arrow-left.svg" id="prv-testimonial" alt="PREV" style="margin-right:10px;"  />
     <img src="images/arrow-right-active.svg" id="nxt-testimonial" alt="NEXT" />
   </div>
@@ -122,9 +122,11 @@
   <div class="location-services">
     <div class="location-services__search">
       <p class="location-services-heading">
-        Where We Deliver
+        WHERE WE DELIVER
       </p>
       <input type="text" name="search-box" ng-model="search" class="location-search" placeholder="Search">
+      <br/>
+      <br/>
       <div class="location-search-places" ng-repeat="locname in locationDeliver  | filter:search">
         <img src="images/pin-icon.png" alt="" />
         <div class="search-place__address">

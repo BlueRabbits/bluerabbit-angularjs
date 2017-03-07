@@ -12,7 +12,7 @@
 				</div>
 				<div class="sub-menu__favorites">
 					<img src="images/heart-icon@2x.png" style="cursor:pointer;" ng-click="wishListShow()">
-					<p style="cursor:pointer;" ng-click="wishListShow()">Favorites</p>
+					<p style="cursor:pointer;" ng-click="wishListShow()">FAVOURITES</p>
 				</div>
 				<p>
 					<ul class="search-list-dropdown" ng-hide="searchitem === ''">
@@ -224,13 +224,13 @@
 			</div>
 			<div class="cart-section__sub-header">
 				<ul class="cart-header__list">
-					<li>ITEM</li>
-					<li>QUANTITY</li>
-					<li>RATE</li>
+					<li style="position: relative;left: 7px">ITEM</li>
+					<li style="position: relative;left: 98px;">QUANTITY</li>
+					<li style="position: relative;left: 158px;">RATE</li>
 					<li></li>
 				</ul>
 			</div>
-			<div style="overflow: scroll;position: absolute;width: 100%;top: 130px;height: 360px;">
+			<div style="overflow: scroll;position: absolute;width: 100%;top: 142px;" ng-style="{height: '{{cartHeight}}px'}">
 				<div class="cart-section__data" ng-repeat="cartList in allCartItems">
 					<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
 					<p class="product-item__name">{{cartList.product.name}}</p>

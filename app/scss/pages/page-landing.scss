@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 65px;
+  opacity: 0.5;
 }
 
 .banner-wrap {
@@ -312,9 +313,10 @@ a.no-underline:hover {
 
 //slider-section
 .slider-section {
-  background-image:url(../images/slider-bg.png);
+  // background-image:url(../images/slider-bg.png);
   background-repeat:round;
   padding: 15px 100px;
+  background-color: #eff4f6;
 }
 
 .slider-control {
@@ -417,6 +419,7 @@ a.no-underline:hover {
   width: 55%;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .breakfast-products__content {
@@ -538,8 +541,9 @@ a.no-underline:hover {
 
 .location-search-places {
   display: flex;
-  padding: 24px 0;
+  padding: 13px 0px 10px;
   border-bottom: 1px solid white;
+  margin-bottom: 23px;
 
   img {
     height: 52px;

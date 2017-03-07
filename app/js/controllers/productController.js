@@ -85,6 +85,10 @@ $scope.initSetFirtsTab = function() {
 
   }
 }
+//window height for cart__search
+console.log("$(window).height(); ",$(window).height());
+  $scope.cartHeight = $(window).innerHeight()/2;
+
 
   $scope.createUUID = function() {
     var s = [];
