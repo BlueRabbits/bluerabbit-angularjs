@@ -180,6 +180,8 @@ console.log("$(window).height(); ",$(window).height());
             $scope.totalCost += $scope.deliveryOrderAmount;
           }, 500);
 
+      } else {
+        $scope.showDeliveryCost = false;
       }
 
       //cart length zero total is zero
