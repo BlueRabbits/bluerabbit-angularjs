@@ -165,17 +165,21 @@ console.log("$(window).height(); ",$(window).height());
       console.log("gettingCartData",$scope.gettingCartData);
       $scope.totalCost = 0;
       $scope.subTotalCost = 0;
+    //  $scope.deliveryOrderAmount = 0;
       for (var i = 0; i < $scope.gettingCartData.length; i++) {
           $scope.subTotalCost += $scope.gettingCartData[i].qty * $scope.gettingCartData[i].cartPrice ;
           $scope.totalCost += $scope.gettingCartData[i].qty * $scope.gettingCartData[i].cartPrice ;
             console.log("prce", $scope.totalCost);
       }
       $scope.showDeliveryCost = true;
-       $scope.deliveryOrderAmount = 0;
+
       //calculate delivery cost
       if ($scope.totalCost <= $scope.minimumOrderAmount) {
-          $scope.showDeliveryCost = true;
-          $scope.totalCost += $scope.deliveryOrderAmount;
+          //$scope.showDeliveryCost = true;
+          $timeout(function() {
+            $scope.totalCost += $scope.deliveryOrderAmount;
+          }, 500);
+
       }
 
       //cart length zero total is zero
@@ -184,10 +188,10 @@ console.log("$(window).height(); ",$(window).height());
       }
 
     }).error(function(data){
-      ngToast.create({
-        className: 'warning',
-        content: 'Problem in Get Cart API'
-      });
+      // ngToast.create({
+      //   className: 'warning',
+      //   content: 'Problem in Get Cart API'
+      // });
     });
   };
   $scope.getcartItems();
@@ -203,10 +207,10 @@ console.log("$(window).height(); ",$(window).height());
       console.log('updated resp', data);
       $scope.getcartItems();
         }).error(function(data){
-          ngToast.create({
-            className: 'warning',
-            content: 'Problem in incrementing cart'
-          });
+          // ngToast.create({
+          //   className: 'warning',
+          //   content: 'Problem in incrementing cart'
+          // });
         });
   }
 

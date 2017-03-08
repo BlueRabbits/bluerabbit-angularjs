@@ -252,11 +252,11 @@ $('#nxt-testimonial').on('click', function(){
             .success(function(data) {
               //console.log('data', data);
               $scope.getcartItems();
-              ngToast.create({
-                className: 'success',
-                content: 'Item Added to Cart',
-                timeout:1000
-              });
+              // ngToast.create({
+              //   className: 'success',
+              //   content: 'Item Added to Cart',
+              //   timeout:1000
+              // });
 
               angular.forEach(data, function(value, key) {
                 var obj = {
@@ -268,11 +268,11 @@ $('#nxt-testimonial').on('click', function(){
                 console.log("cart", $scope.cartlist);
               });
             }).error(function(data) {
-              ngToast.create({
-                className: 'warning',
-                content: 'Problem in Adding to Cart',
-                timeout:1000
-              });
+              // ngToast.create({
+              //   className: 'warning',
+              //   content: 'Problem in Adding to Cart',
+              //   timeout:1000
+              // });
             });
         }
       }  else {
