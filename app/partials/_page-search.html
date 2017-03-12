@@ -161,8 +161,8 @@
 							<div class="search-section__description">
 								<p class="product-name">
 									{{list.name}}</p>
-									<img class="product_heart" style="margin-bottom: 11px;" ng-if="productIdWishList != list._id" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-									<i class="fa fa-heart fa-lg" style="color: #d92e4a;margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == list._id" ng-click="deleteWishList(list._id)"></i>
+									<img class="product_heart" style="margin-bottom: 11px;" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
+									<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
 								<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
 									<div class="product-view">
 										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
