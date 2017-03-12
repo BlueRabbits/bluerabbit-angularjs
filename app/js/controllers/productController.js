@@ -398,6 +398,7 @@ console.log("$(window).height(); ",$(window).height());
         Auth.products().success(function(data) {
           $scope.allProducts = data;
           console.log("data",data);
+          $scope.getWishList();
           //loop to get product id
           $scope.getProductIdList = [];
           angular.forEach($scope.allProducts, function (value, key) {
@@ -493,16 +494,18 @@ console.log("$(window).height(); ",$(window).height());
       };
 
       //check the heart
+      $scope.hideWishlist= true;
       $scope.isInWishlist = function(productId){
         for (var i = 0; i < $scope.getListOfFav.length; i++) {
 
             if ($scope.getListOfFav[i].product._id == productId) {
-              $scope.hideWishlist= false;
+              $scope.hideWishlist= true;
               $scope.showFilledHeart = true;
               return true;
             } else {
-                $scope.showFilledHeart = false;
               $scope.hideWishlist= true;
+                $scope.showFilledHeart = false;
+
               // return false;
             }
 
@@ -664,6 +667,8 @@ console.log("$(window).height(); ",$(window).height());
             $scope.deltedWishList = data;
             $scope.getWishList();
             console.log("done delted");
+            $scope.hideWishlist= true;
+            $scope.showFilledHeart = false
             // $scope.getCategoriesList();
             $scope.showMenuResult  = true;
           }).error(function(data) {
