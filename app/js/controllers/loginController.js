@@ -285,31 +285,31 @@ $scope.logged = false;
                  localStorage.setItem('imageUrls', data.picture);
                  $scope.imageUrls = localStorage.getItem('imageUrls');
                  console.log("$scope.imageUrls",$scope.imageUrls);
+                 var socailParams = {
+                   "email": $scope.emailId,
+                   "name": $scope.userName
+                 }
+                 Auth.socailLogin(socailParams).success(function(data) {
+                   console.log('social Resp', data);
+                   $cookieStore.put("token", data.token);
+                   $cookieStore.put("userId", data._id);
+                   $cookieStore.put("emailId", $scope.emailId);
+                   $cookieStore.put('userName', data.name);
 
+                   $('.modal').css("display", "none");
+                   $('.modal-open').removeClass();
+                   $scope.closeModal();
+                   //location.reload();
+                 }).error(function(data) {
+                   console.log('data', data);
+                 });
 
              });
 
          }, function (err) {
              console.log(err);
          });
-         var socailParams = {
-           "email": $scope.emailId,
-           "name": $scope.userName
-         }
-         Auth.socailLogin(socailParams).success(function(data) {
-           console.log('social Resp', data);
-           $cookieStore.put("token", data.token);
-           $cookieStore.put("userId", data._id);
-           $cookieStore.put("emailId", $scope.emailId);
-           $cookieStore.put('userName', $scope.userName);
 
-           $('.modal').css("display", "none");
-           $('.modal-open').removeClass();
-           $scope.closeModal();
-           //location.reload();
-         }).error(function(data) {
-           console.log('data', data);
-         });
         // $window.location.href = 'http://localhost:9000/auth/google';
         // // $scope.userId = $cookieStore.get('userId');
         //location.reload();
@@ -363,6 +363,7 @@ $scope.fbLoginAuth = function() {
         console.log('social Resp', data);
         $cookieStore.put("token", data.token);
         $cookieStore.put("userId", data._id);
+        $cookieStore.put('userName', data.name);
         $('.modal').css("display", "none");
         $('.modal-open').removeClass();
         $scope.closeModal();

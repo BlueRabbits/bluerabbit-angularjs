@@ -44,8 +44,10 @@
 						<div class="search-section__description">
 							<p class="product-name">{{results.name}}</p>
 							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
-							<img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i>
+							<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
+							<img class="product_heart" style="margin-bottom: 11px;" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i>
 								<div class="product-view" ng-init="showHearts(results._id)">
 
 										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
@@ -89,9 +91,9 @@
 							{{results.description}}
 						</p>
 						<p class="product-sub-title"></p>
-						<img src="{{results.s1}}" width="120px" />
-						<img src="{{results.s2}}" width="120px" />
-						<img src="{{results.s3}}" width="120px" />
+						<img src="{{results.s1}}" width="120px" ng-click="showImage(results.s1)"/>
+						<img src="{{results.s2}}" width="120px" ng-click="showImage(results.s2)"/>
+						<img src="{{results.s3}}" width="120px" ng-click="showImage(results.s3)" />
 					</div>
 				</div>
 			</div>
