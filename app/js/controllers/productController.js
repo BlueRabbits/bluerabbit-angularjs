@@ -695,14 +695,25 @@ console.log("$(window).height(); ",$(window).height());
           }
 
           //show mimage modal
-          $scope.showImage = function(image1){
-            console.log("image1",image1);
-            $scope.imageGallery1 = image1;
+          $scope.showImage = function(prodId){
+            console.log("prodId",prodId);
+
+            for (var i = 0; i < $scope.allProducts.length; i++) {
+              if ($scope.allProducts[i]._id === prodId) {
+                $scope.ImageGallery = $scope.allProducts[i];
+              }
+            }
             // $scope.imageGallery2 = image2;
             // $scope.imageGallery3 = image3;
 			       $('#imagemodal').modal('show');
           }
-
+          //image caroscel
+          $("#nextImage").click(function(event){
+              event.preventDefault();
+          });
+          $("#prevImage").click(function(event){
+              event.preventDefault();
+          });
     $scope.init();
 });
 

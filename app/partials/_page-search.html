@@ -91,9 +91,9 @@
 							{{results.description}}
 						</p>
 						<p class="product-sub-title"></p>
-						<img src="{{results.s1}}" width="120px" ng-click="showImage(results.s1)"/>
-						<img src="{{results.s2}}" width="120px" ng-click="showImage(results.s2)"/>
-						<img src="{{results.s3}}" width="120px" ng-click="showImage(results.s3)" />
+						<img src="{{results.s1}}" width="120px" ng-click="showImage(results._id)"/>
+						<img src="{{results.s2}}" width="120px" ng-click="showImage(results._id)"/>
+						<img src="{{results.s3}}" width="120px" ng-click="showImage(results._id)" />
 					</div>
 				</div>
 			</div>
@@ -208,9 +208,9 @@
 								{{list.description}}
 							</p>
 							<p class="product-sub-title"></p>
-							<img src="{{list.s1}}" width="120px" ng-click="showImage(list.s1)" />
-							<img src="{{list.s2}}" width="120px" ng-click="showImage(list.s2)"/>
-							<img src="{{list.s3}}" width="120px" ng-click="showImage(list.s3)"/>
+							<img src="{{list.s1}}" width="120px" ng-click="showImage(list._id)" />
+							<img src="{{list.s2}}" width="120px" ng-click="showImage(list._id)"/>
+							<img src="{{list.s3}}" width="120px" ng-click="showImage(list._id)"/>
 						</div>
 					</div>
 				</div>
@@ -270,11 +270,50 @@
 
 <!-- load image modal windo  -->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="margin-left: 250px;margin-top: 200px;">
+  <div class="modal-dialog" style="margin-left: 250px;width: 78%;">
     <div class="modal-content">
       <div class="modal-body">
       	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div>
+      <!-- <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div> -->
+				<!-- image  -->
+				<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="{{ImageGallery.s1}}"  width= "100%" alt="First slide">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ImageGallery.s2}}" width= "100%" alt="Second slide">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ImageGallery.s3}}" width= "100%"  alt="Third slide">
+
+                    </div>
+                </div>
+                <a class="left carousel-control" id="prevImage" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+								<a class="right carousel-control" id="nextImage" href="#carousel-example-generic" data-slide="next">
+												<span class="glyphicon glyphicon-chevron-right">
+                        </span>
+									</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+				<!-- image  -->
+
 
       </div>
     </div>
