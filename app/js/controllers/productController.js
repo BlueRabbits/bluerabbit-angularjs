@@ -528,7 +528,7 @@ console.log("$(window).height(); ",$(window).height());
             }
 
 
-            if ($scope.isProdSishList == false || $scope.getWishlistData.lenght === 0) {
+            if ($scope.isProdSishList == false || $scope.getWishlistData.length === 0) {
               console.log("added to cart");
 
               var count = 1;
