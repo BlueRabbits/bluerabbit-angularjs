@@ -50,7 +50,8 @@
 							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(search_result_product._id)" ng-show="showFilledHeart" ng-click="deleteWishList(search_result_product._id)"></i>
 								<div class="product-view" ng-init="showHearts(search_result_product._id)">
 
-										<p class="view-more" ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View more</p>
+										<p class="view-more" ng-hide="showParticularProductsDiv === true"  ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View more</p>
+										<p class="view-more" ng-show="showParticularProductsDiv === true"  ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View less</p>
 								</div>
 						</div>
 					</div> <!-- sm7 -->
