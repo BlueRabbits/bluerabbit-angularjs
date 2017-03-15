@@ -86,8 +86,10 @@
 						<div class="search-section__description">
 							<p class="product-name">{{results.name}}</p>
 							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
-							<img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i>
+							<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
+							<img class="product_heart" style="margin-bottom: 11px;" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i>
 								<div class="product-view" ng-init="showHearts(results._id)">
 
 										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
@@ -131,9 +133,9 @@
 							{{results.description}}
 						</p>
 						<p class="product-sub-title"></p>
-						<img src="{{results.s1}}" width="120px" />
-						<img src="{{results.s2}}" width="120px" />
-						<img src="{{results.s3}}" width="120px" />
+						<img src="{{results.s1}}" width="120px" ng-click="showImage(results._id)"/>
+						<img src="{{results.s2}}" width="120px" ng-click="showImage(results._id)"/>
+						<img src="{{results.s3}}" width="120px" ng-click="showImage(results._id)" />
 					</div>
 				</div>
 			</div>
@@ -203,8 +205,8 @@
 							<div class="search-section__description">
 								<p class="product-name">
 									{{list.name}}</p>
-									<img class="product_heart" style="margin-bottom: 11px;" ng-if="productIdWishList != list._id" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-									<i class="fa fa-heart fa-lg" style="color: #d92e4a;margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == list._id" ng-click="deleteWishList(list._id)"></i>
+									<img class="product_heart" style="margin-bottom: 11px;" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
+									<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
 								<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
 									<div class="product-view">
 										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
@@ -248,9 +250,9 @@
 								{{list.description}}
 							</p>
 							<p class="product-sub-title"></p>
-							<img src="{{list.s1}}" width="120px" ng-click="showImage(list.s1)" />
-							<img src="{{list.s2}}" width="120px" ng-click="showImage(list.s2)"/>
-							<img src="{{list.s3}}" width="120px" ng-click="showImage(list.s3)"/>
+							<img src="{{list.s1}}" width="120px" ng-click="showImage(list._id)" />
+							<img src="{{list.s2}}" width="120px" ng-click="showImage(list._id)"/>
+							<img src="{{list.s3}}" width="120px" ng-click="showImage(list._id)"/>
 						</div>
 					</div>
 				</div>
@@ -373,11 +375,50 @@
 
 <!-- load image modal windo  -->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="margin-left: 250px;margin-top: 200px;">
+  <div class="modal-dialog" style="margin-left: 250px;width: 78%;">
     <div class="modal-content">
       <div class="modal-body">
       	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div>
+      <!-- <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div> -->
+				<!-- image  -->
+				<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="{{ImageGallery.s1}}"  width= "100%" alt="First slide">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ImageGallery.s2}}" width= "100%" alt="Second slide">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ImageGallery.s3}}" width= "100%"  alt="Third slide">
+
+                    </div>
+                </div>
+                <a class="left carousel-control" id="prevImage" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+								<a class="right carousel-control" id="nextImage" href="#carousel-example-generic" data-slide="next">
+												<span class="glyphicon glyphicon-chevron-right">
+                        </span>
+									</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+				<!-- image  -->
+
 
       </div>
     </div>
