@@ -227,6 +227,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       .success(function(data){
         console.log("locationdeliver",data);
         $scope.locationDeliverName = data;
+        $scope.city = data[0].name;
           }).error(function(data){
 
           });
@@ -234,6 +235,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
     $scope.getLocationDeliver();
   //post address
   $scope.showDiv =  "display:none;";
+  $scope.country = "UAE";
   $scope.addAddress = function () {
 
     $scope.getUserId = $cookieStore.get('userId');
@@ -303,8 +305,8 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       }
 
       //make COD
-      $scope.isSelectedCOD = false;
-      $scope.makePaymentBtn = true;
+      $scope.isSelectedCOD = true;
+      $scope.makePaymentBtn = false;
       $scope.isThankyou = true;
       $scope.isCod = function(value){
         console.log("isSelectedCOD",value);

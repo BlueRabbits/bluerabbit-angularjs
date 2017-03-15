@@ -647,9 +647,30 @@ console.log("$(window).height(); ",$(window).height());
         }
 
         //NOTE: get product name from  url
+        $scope.showParticularProducts = function(id){
+          console.log("idParctic",id);
+          Auth.products().success(function(data) {
+            $scope.searchPagelist = true;
+            $scope.show_wishlist  = false;
+            $scope.showMenuResult  = false;
+            $scope.hideAutocomplete = false;
+
+            for (var i = 0; i < data.length; i++) {
+              console.log("data[i]._id",data[i].name);
+              if ( data[i].name = id) {
+                $scope.search_result = data[i];
+
+              }
+            }
+            console.log("$scope.search_result1 ",$scope.search_result1 );
+            console.log("data[i]",$scope.search_result1);
+          }).error(function(data) {
+          });
+        }
         if($routeParams.show_productDetails){
           $scope.searchList($routeParams.show_productDetails);
           $scope.showdiv = true;
+
         }
 
         //delete wish list

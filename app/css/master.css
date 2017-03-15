@@ -2990,7 +2990,14 @@ SMACSS: PAGE - LANDING
     .address-box .address-content h2 {
       margin: 0;
       text-transform: uppercase;
-      font-size: 24px; }
+      font-size: 24px;
+      font-family: Lato;
+      font-weight: 900;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: 2px;
+      color: #1d2028; }
     .address-box .address-content input {
       position: absolute;
       left: 10px; }
@@ -3117,6 +3124,26 @@ SMACSS: PAGE - LANDING
   height: 395.4px;
   background-repeat: no-repeat; }
 
+.address-content-details {
+  font-family: Lato;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: #514d4b; }
+
+.address-type-details {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 2px;
+  color: #1d2028; }
+
 .modal-container {
   margin: 150px auto !important; }
 
@@ -3172,11 +3199,13 @@ SMACSS: PAGE - LANDING
 
 .facebook {
   background: #3b5998;
-  color: #fff; }
+  color: #fff;
+  padding-top: 10px; }
 
 .google {
   background: #f64925;
-  color: #fff; }
+  color: #fff;
+  padding-top: 10px; }
 
 .section-header-menu {
   background-color: rgba(81, 83, 86, 0.85);

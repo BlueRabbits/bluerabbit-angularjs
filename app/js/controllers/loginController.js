@@ -220,6 +220,7 @@ $scope.logged = false;
 
   //get Profile of users
   $scope.getUserProfile = function() {
+       $scope.showTab == 'profile';
     $scope.userProfileShow =  true;
     Auth.userProfile().success(function(data) {
       $scope.userDetails = data;
@@ -378,7 +379,7 @@ $scope.fbLoginAuth = function() {
 
 //home
 $scope.redirectLanding = function() {
-  location.reload();
+  // location.reload();
   $location.path('/landing');
 }
 
@@ -581,6 +582,20 @@ $scope.editAddress = function(){
               // });
             });
           };
+
+          $scope.showContactUs = function(){
+            $location.path('/myaccount').search({
+              show_contactUs: "contactNsupport"
+            });
+          }
+
+
+          if($routeParams.show_contactUs){
+            $scope.showTab = 'contactNsupport';
+            $scope.ContactSupport = true;
+            $scope.OldContactSupport = false;
+          }
+
 
 }).directive('ngFiles', ['$parse', function ($parse) {
 

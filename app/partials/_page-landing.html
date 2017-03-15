@@ -63,7 +63,7 @@
           <p class="context l2">{{lists.name}}</p>
           <div class="row">
             <div class="col-sm-6">
-              <label class="creds l1">{{lists.salePrice}}AED</label>
+              <label class="creds l1">{{lists.salePrice}}&nbsp;AED</label>
             </div>
             <div class="col-sm-6">
               <button type="button" ng-click="addToCart(lists._id)" name="button">Add To Cart</button>
@@ -96,10 +96,10 @@
     <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
       <!-- 1-->
       <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
-        <div class="breakfast-products__image" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name,list.cat)"></div>
-        <div class="breakfast-products__content">
+        <div class="breakfast-products__image" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name,list.cat,list._id)"></div>
+        <div class="breakfast-products__content" ng-click="showProductSearchPage(list.name,list.cat,list._id)">
           <img src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-          <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat)" style="cursor:pointer">
+          <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat,list._id)" style="cursor:pointer">
             <p>{{list.name}}</p>
             <!-- <p>{{list.description}}</p> -->
             <p class="products__price">{{list.salePrice}}&nbsp;AED</p>

@@ -257,9 +257,10 @@
 								<div class="address-content">
 									<div class="row">
 										<input type="radio" name="optradio" ng-click="selectedAddress(address._id,address.addressType)" style="width: 20px;height: 19px;">
-										<div class="col-xs-8"><h2>{{address.addressType}}</h2></div>
+										<img src="images/radio-button@3x.png"ng-show="addressIdSelected == address._id" style="position: relative;right: 361px;"  alt=""  width="20px" height="20px"/>
+										<div class="col-xs-8" style="margin-bottom: 9px;"><h2>{{address.addressType}}</h2></div>
 										<!-- <div class="col-xs-4"><span class="pull-right edit" ng-click="editAddress()">Edit</span></div> -->
-										<div class="col-xs-12" style="margin-top:15px">
+										<div class="col-xs-6 address-content-details" >
 											<p>{{address.houseNo}},{{address.name}}</p>
 											<p>{{address.streetName}},{{address.landmark}},</p>
 											<p>{{address.city}},{{address.country}}</p>
@@ -276,7 +277,7 @@
 						<br/>
 						<div class="shipping-form__names" >
 							<!-- <input type="text" name="name" value="" class=" form-inputs first-name" placeholder="First Name"> -->
-							<input type="text" name="name" id="addressType" class=" form-inputs last-name" ng-model="addressType" placeholder="Address Type" required>
+							<input type="text" name="name" id="addressType" class=" form-inputs last-name" ng-model="addressType" placeholder="Home,Office etc" required>
 							<input type="text" name="name" value="" class=" form-inputs last-name" ng-model="name" placeholder="Name" required>
 						</div>
 	          <div class="shipping-form__names">
@@ -286,7 +287,7 @@
 	          </div>
 	          <div class="shipping-form__contacts">
 	            <input type="text" name="name" value="" class=" form-inputs telephone" ng-model="mobileNumber" placeholder="Mobile" required>
-	            <input type="text" name="name" value="" class=" form-inputs company-phone" ng-model="companyName" placeholder="Company" required>
+	            <input type="text" name="name" value="" class=" form-inputs company-phone" ng-model="companyName" placeholder="Company" >
 	          </div>
 	          <div class="shipping-form__street">
 	            <input type="text" name="name" value="" class=" form-inputs Street-address" ng-model="houseNo" placeholder="Enter House No" required>
@@ -298,7 +299,7 @@
 							<select class="form-inputs city-address" id="sel1" ng-model="city" required>
 						    <option ng-repeat="locname in locationDeliverName" ng-model="city">{{locname.name}}</option>
 						  </select>
-	            <input type="text" name="name" value="" class=" form-inputs Zipcode" ng-model="pincode" placeholder="Zipcode" required>
+	            <input type="text" name="name" value="" class=" form-inputs Zipcode" ng-model="pincode" placeholder="Zipcode" >
 	          </div>
 	          <div class="shipping-form__location">
 	            <input type="text" name="name" value="" class=" form-inputs state-name" ng-model="state" placeholder="State" required>
