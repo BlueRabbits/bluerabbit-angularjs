@@ -311,7 +311,7 @@
     cursor: pointer;
 }
 
-.nav-tabs>li {
+.order-nav>li {
   text-align: center!important;
   float: left !important;
   margin-bottom: -1px !important;
@@ -323,7 +323,7 @@
   border: 1px #dddddd solid !important;
 }
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover {
+.order-nav>li.active>a, .order-nav>li.active>a:hover {
   text-align: center!important;
   color: #555 !important;
   cursor: default !important;
