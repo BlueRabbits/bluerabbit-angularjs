@@ -167,7 +167,8 @@
 									<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
 								<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
 									<div class="product-view">
-										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+										<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+										<p class="view-more" ng-show="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
 									</div>
 							</div>
 						</div> <!-- sm7 -->
