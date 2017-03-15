@@ -3696,9 +3696,8 @@ a.no-underline:hover {
 .location-search-places {
   display: -ms-flexbox;
   display: flex;
-  padding: 13px 0px 10px;
   border-bottom: 1px solid white;
-  margin-bottom: 23px; }
+  margin-bottom: 14px; }
   .location-search-places img {
     height: 52px; }
   .location-search-places p {

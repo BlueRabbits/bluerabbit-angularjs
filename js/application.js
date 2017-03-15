@@ -1583,20 +1583,20 @@ $scope.showWishList = function(){
   //check the heart
   $scope.hideWishlist= true;
   $scope.isInWishlist = function(productId){
-    for (var i = 0; i < $scope.getListOfFav.length; i++) {
-
-        if ($scope.getListOfFav[i].product._id == productId) {
-          $scope.hideWishlist= true;
-          $scope.showFilledHeart = true;
-          return true;
-        } else {
-          $scope.hideWishlist= true;
-            $scope.showFilledHeart = false;
-
-          // return false;
-        }
-
-    }
+    // for (var i = 0; i < $scope.getListOfFav.length; i++) {
+    //
+    //     if ($scope.getListOfFav[i].product._id == productId) {
+    //       $scope.hideWishlist= true;
+    //       $scope.showFilledHeart = true;
+    //       return true;
+    //     } else {
+    //       $scope.hideWishlist= true;
+    //         $scope.showFilledHeart = false;
+    //
+    //       // return false;
+    //     }
+    //
+    // }
   }
 
   //POST create wish list
