@@ -33,8 +33,8 @@
 			</div>
 		</div>
 		<div class="search-secction">
-			<!-- search result -->
-			<div class="search-secction__content" ng-show="searchPagelist">
+			<!-- particular Prod result -->
+			<div class="search-secction__content" ng-show="particularProduct">
 				<div class="search-secction__data row">
 					<div class="col-des col-sm-7">
 						<div class="search-section__image">
@@ -97,6 +97,74 @@
 					</div>
 				</div>
 			</div>
+			<!-- End particular Prod result -->
+
+			<!-- Search Prod result -->
+			<div class="search-secction__content" ng-repeat="results in search_result" ng-show="searchPagelist">
+				<div class="search-secction__data row">
+					<div class="col-des col-sm-7">
+						<div class="search-section__image">
+							<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
+							</div>
+						</div>
+						<div class="search-section__description">
+							<p class="product-name">{{results.name}}</p>
+							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
+							<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
+							<img class="product_heart" style="margin-bottom: 11px;" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i>
+								<div class="product-view" ng-init="showHearts(results._id)">
+
+									<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+									<p class="view-more" ng-show="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
+								</div>
+						</div>
+					</div> <!-- sm7 -->
+					<div class="col-act col-sm-5">
+						<div class="product-price">
+							{{results.salePrice}}<span>&nbsp;AED</span>
+							<p class="products__offer">
+	              <span class="text-black strike">{{results.listPrice}}&nbsp;AED</span>
+	              <span class="text-success">{{results.discountedPrice}}%</span>
+	            </p>
+						</div>
+						<div class="search-secction__buttons">
+							<button ng-if="results.instock === 'yes'" type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
+							<button ng-if="results.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
+						</div>
+					</div> <!-- sm5 -->
+				</div>
+				<div class="description__section" ng-show="showdiv">
+					<div class="description__section--header">
+						<div class="description-list">
+							<!-- <p>Prep time:30 min</p>
+							<span>|</span>
+							<p>Calories: 100 Kcal</p> -->
+
+						</div>
+					</div>
+					<div class="share_options">
+						<span>Share</span>
+						<span>
+							<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
+							<a class="fa fa-twitter" aria-hidden="true"></a>
+							<a class="fa fa-google-plus" aria-hidden="true"></a>
+						</span>
+					</div>
+					<div class="description__section--content">
+						<p class="product-name">Product Description </p>
+						<p class="product-sub-title">
+							{{results.description}}
+						</p>
+						<p class="product-sub-title"></p>
+						<img src="{{results.s1}}" width="120px" ng-click="showImage(results._id)"/>
+						<img src="{{results.s2}}" width="120px" ng-click="showImage(results._id)"/>
+						<img src="{{results.s3}}" width="120px" ng-click="showImage(results._id)" />
+					</div>
+				</div>
+			</div>
+			<!-- search list -->
 
 			<!-- Wish list -->
 			<div class="search-secction__content wish-list" ng-show="show_wishlist" ng-repeat="wishLists in getWishlistData">

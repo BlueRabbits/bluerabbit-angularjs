@@ -123,7 +123,8 @@ console.log("$(window).height(); ",$(window).height());
       if($routeParams.show_productDetails){
 
         Auth.products().success(function(data) {
-          $scope.searchPagelist = true;
+          $scope.searchPagelist = false;
+          $scope.particularProduct = true;
           $scope.show_wishlist  = false;
           $scope.showMenuResult  = false;
           $scope.hideAutocomplete = false;
@@ -281,6 +282,7 @@ console.log("$(window).height(); ",$(window).height());
     $scope.loading = true;
     Auth.autocompleteSearchItem (searchNames).success ( function (data) {
       $scope.searchPagelist = true;
+      $scope.particularProduct = false;
       $scope.show_wishlist  = false;
       $scope.showMenuResult  = false;
       $scope.hideAutocomplete = true;
@@ -298,6 +300,7 @@ console.log("$(window).height(); ",$(window).height());
     $scope.loading = true;
     Auth.searchItem (searchName).success ( function (data) {
       $scope.searchPagelist = true;
+      $scope.particularProduct = false;
       $scope.show_wishlist  = false;
       $scope.showMenuResult  = false;
       $scope.hideAutocomplete = false;
@@ -426,6 +429,7 @@ console.log("$(window).height(); ",$(window).height());
 
       $scope.wishListShow = function () {
         $scope.searchPagelist = false;
+        $scope.particularProduct = false;
         $scope.show_wishlist  = true;
         $scope.showMenuResult  = false;
         $scope.getWishList();
@@ -657,6 +661,7 @@ console.log("$(window).height(); ",$(window).height());
                   scrollTop: top
               }, 600);
               $scope.searchPagelist = false;
+              $scope.particularProduct = false;
               $scope.show_wishlist  = false;
               $scope.showMenuResult  = true;
               $scope.showdiv = false;
