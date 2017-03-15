@@ -310,3 +310,29 @@
     right: 34px;
     cursor: pointer;
 }
+
+.nav-tabs>li {
+  text-align: center!important;
+  float: left !important;
+  margin-bottom: -1px !important;
+  width: 500px !important;
+  height: 36px !important;
+  object-fit: contain !important;
+  border-radius: 40px !important;
+  background-color: white !important;
+  border: 1px #dddddd solid !important;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover {
+  text-align: center!important;
+  color: #555 !important;
+  cursor: default !important;
+  background-color: #fff !important;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent !important;
+  width: 500px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 40px;
+  background-color: #6f9d2f!important;
+}

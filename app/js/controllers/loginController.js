@@ -397,6 +397,7 @@ $scope.loginModal = function(){
 $scope.getOrdersByUserId = function() {
 
   Auth.getOrdersByUserId().success(function(data) {
+    $scope.orderHistoryLive = data;
     $scope.orderHistory = data;
     for (var i = 0; i < $scope.orderHistory.length; i++) {
       console.log($scope.orderHistory[i].itmes);
@@ -405,12 +406,21 @@ $scope.getOrdersByUserId = function() {
       console.log("name",$scope.ordersProductName);
     }
 
-
     console.log('user orders', $scope.orderHistory);
+    console.log('user orders', $scope.orderHistoryLive);
   }).error(function(data) {
     console.log('data', data);
   });
 };
+
+$scope.liveOrders = function(){
+  $scope.showLiveOrders = true;
+  $scope.showPastOrders = false;
+}
+$scope.pastOrders = function(){
+  $scope.showPastOrders = true;
+  $scope.showLiveOrders = false;
+}
 
 //get Address
 $scope.getAddressMyAccount = function(){
