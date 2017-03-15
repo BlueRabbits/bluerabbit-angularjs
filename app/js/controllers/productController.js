@@ -118,6 +118,40 @@ console.log("$(window).height(); ",$(window).height());
 
   console.log("cookie",$cookieStore.get('sessionId'));
 
+  //NOTE: get product name from  url
+  $scope.showParticularProducts = function(id){
+      if($routeParams.show_productDetails){
+
+        Auth.products().success(function(data) {
+          $scope.searchPagelist = true;
+          $scope.show_wishlist  = false;
+          $scope.showMenuResult  = false;
+          $scope.hideAutocomplete = false;
+
+          for (var i = 0; i < data.length; i++) {
+            if (id === data[i]._id) {
+              $scope.search_result_product = data[i];
+
+            }
+          }
+              $scope.showParticularProductsDiv = true;
+          console.log("$scope.search_result ",$scope.search_result_product );
+          console.log("data[i]",$scope.search_result_product);
+        }).error(function(data) {
+        });
+      }
+  }
+
+  $scope.$on('$routeChangeSuccess', function() {
+   console.log("$routeParams",$routeParams);
+   $scope.showParticularProducts ($routeParams.product_id);
+});
+  if($routeParams.show_productDetails){
+    $scope.showParticularProducts($routeParams.product_id);
+    $scope.showParticularProductsDiv = true;
+
+  }
+
   //minimum order value to be calculated to add delivery
   $scope.getMinimumOrder = function() {
 
@@ -652,33 +686,6 @@ console.log("$(window).height(); ",$(window).height());
         //invoke wishList on routeParams
         if($routeParams.show_wishlist === true){
           $scope.wishListShow();
-        }
-
-        //NOTE: get product name from  url
-        $scope.showParticularProducts = function(id){
-          console.log("idParctic",id);
-          Auth.products().success(function(data) {
-            $scope.searchPagelist = true;
-            $scope.show_wishlist  = false;
-            $scope.showMenuResult  = false;
-            $scope.hideAutocomplete = false;
-
-            for (var i = 0; i < data.length; i++) {
-              console.log("data[i]._id",data[i].name);
-              if ( data[i].name = id) {
-                $scope.search_result = data[i];
-
-              }
-            }
-            console.log("$scope.search_result1 ",$scope.search_result1 );
-            console.log("data[i]",$scope.search_result1);
-          }).error(function(data) {
-          });
-        }
-        if($routeParams.show_productDetails){
-          $scope.searchList($routeParams.show_productDetails);
-          $scope.showdiv = true;
-
         }
 
         //delete wish list
