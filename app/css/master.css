@@ -3949,6 +3949,10 @@ a.no-underline:hover {
       display: block;
       background-size: cover;
       background-repeat: no-repeat; }
+    #testimonial-list .slide-list .article_image:hover {
+      box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+      -webkit-transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67);
+      transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
     #testimonial-list .slide-list .bestoffertext {
       font-size: 14px;
       color: #515356;
@@ -3962,7 +3966,8 @@ a.no-underline:hover {
       #testimonial-list .slide-list .bestoffertext .creds {
         line-height: 30px;
         margin-bottom: 0px;
-        font-weight: normal; }
+        font-weight: normal;
+        margin-left: 7px; }
       #testimonial-list .slide-list .bestoffertext button {
         width: 100%;
         bottom: 0px;

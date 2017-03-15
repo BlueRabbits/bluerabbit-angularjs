@@ -64,6 +64,10 @@
           <div class="row">
             <div class="col-sm-6">
               <label class="creds l1">{{lists.salePrice}}&nbsp;AED</label>
+              <p class="products__offer">
+                <span class="strike">{{lists.listPrice}}&nbsp;AED</span>
+                <span class="text-success">{{lists.discountedPrice}}%</span>
+              </p>
             </div>
             <div class="col-sm-6">
               <button type="button" ng-click="addToCart(lists._id)" name="button">Add To Cart</button>

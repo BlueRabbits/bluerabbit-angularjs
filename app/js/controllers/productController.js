@@ -132,6 +132,7 @@ console.log("$(window).height(); ",$(window).height());
   }
 
   $scope.getcartItems = function () {
+    $scope.loading = true;
     // $scope.getUserId = localStorage.getItem('userId');
     // $scope.sessionId = "aa565asdasdy87sadasd987";
     //cookieStore
@@ -243,6 +244,7 @@ console.log("$(window).height(); ",$(window).height());
 
   //search -autoComplete
   $scope.autocompleteSearch = function (searchNames) {
+    $scope.loading = true;
     Auth.autocompleteSearchItem (searchNames).success ( function (data) {
       $scope.searchPagelist = true;
       $scope.show_wishlist  = false;
@@ -259,6 +261,7 @@ console.log("$(window).height(); ",$(window).height());
 
   //search
   $scope.searchList = function (searchName) {
+    $scope.loading = true;
     Auth.searchItem (searchName).success ( function (data) {
       $scope.searchPagelist = true;
       $scope.show_wishlist  = false;
@@ -276,6 +279,7 @@ console.log("$(window).height(); ",$(window).height());
   //POST create add to cart
   var count = 0;
   $scope.addToCart = function(productId) {
+    $scope.loading = true;
     if ($cookieStore.get('token')) {
         count++;
         //cookieStore
@@ -358,6 +362,7 @@ console.log("$(window).height(); ",$(window).height());
 
   //delte cart
   $scope.deleteCart = function (productId,quantity) {
+    $scope.loading = true;
     // $scope.getUserId = localStorage.getItem('userId');
     // $scope.userToken = localStorage.getItem('token');
     // $scope.sessionId = "aa565asdasdy87sadasd987";
@@ -394,6 +399,7 @@ console.log("$(window).height(); ",$(window).height());
 
       //get all products in landing page
       $scope.product = function() {
+        $scope.loading = true;
         $scope.productslist = [];
         Auth.products().success(function(data) {
           $scope.allProducts = data;
@@ -426,6 +432,7 @@ console.log("$(window).height(); ",$(window).height());
       //get wish list
 
       $scope.getWishList = function () {
+        $scope.loading = true;
         // $scope.getUserId = localStorage.getItem('userId');
         // $scope.sessionId = "aa565asdasdy87sadasd987";
         //cookieStore
@@ -515,6 +522,7 @@ console.log("$(window).height(); ",$(window).height());
       //POST create wish list
       // var count = 0;
       $scope.addWishList = function (productId) {
+        $scope.loading = true;
         //$scope.productIdWishList = productId;
         if ($cookieStore.get('userId')) {
             for (var i = 0; i < $scope.getWishListProductId.length; i++) {

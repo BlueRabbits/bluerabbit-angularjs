@@ -136,6 +136,7 @@ $('#nxt-testimonial').on('click', function(){
   //get all products in landing page
   $scope.product = function() {
     $scope.productslist = [];
+    $scope.loading = true;
     Auth.products().success(function(data) {
     console.log('data',data);
     $scope.allProducts = data;
@@ -160,7 +161,7 @@ $('#nxt-testimonial').on('click', function(){
 
   //get list of categories
   $scope.getCategoriesList = function(){
-
+    $scope.loading = true;
     Auth.getCategories().success (function (data) {
       console.log('get cat data', data);
       $scope.getCategoryList = data;
@@ -197,6 +198,7 @@ $('#nxt-testimonial').on('click', function(){
   $scope.userToken = $cookieStore.get('token');
   var count = 0;
   $scope.addToCart = function(productId) {
+    $scope.loading = true;
     if ($cookieStore.get('token')) {
 
         count++;
@@ -282,6 +284,7 @@ $('#nxt-testimonial').on('click', function(){
 
   //getCart items
   $scope.getcartItems = function () {
+    $scope.loading = true;
     // $scope.getUserId = localStorage.getItem('userId');
     // $scope.sessionId = "aa565asdasdy87sadasd987";
     //cookieStore
@@ -331,6 +334,7 @@ $('#nxt-testimonial').on('click', function(){
   //updateCart increment
   //$scope.countQuantity = 0;
   $scope.updateCartByIncrement = function(quantity,productId) {
+    $scope.loading = true;
     $scope.countQuantity =quantity + 1;
     console.log("countQuantity",$scope.countQuantity);
     $scope.getUserId = $cookieStore.get('userId');
@@ -452,6 +456,7 @@ $scope.showWishList = function(){
   //POST create wish list
   var count = 0;
   $scope.addWishList = function (productId) {
+    $scope.loading = true;
       if ($cookieStore.get('userId')) {
         count++;
         console.log("quantity count",count);
