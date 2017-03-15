@@ -46,12 +46,13 @@
 
 <div class="container-fluid myaccount-main" style="margin-bottom: 200px;">
   <div class="row" style="border-bottom: 1px solid #ddd;">
-    <div class="container tab_list" ng-init="showTab = 'profile'; getUserProfile(); getAddressMyAccount();">
+    <div class="container tab_list" ng-init=" getUserProfile(); getAddressMyAccount();">
       <div class="tab_item" ng-class="{'active' : showTab == 'profile'}" ng-click="showTab = 'profile'; getUserProfile(); getAddressMyAccount()">Profile</div>
       <div class="tab_item" ng-class="{'active' : showTab == 'orderHistory'}" ng-click="showTab = 'orderHistory'; getOrdersByUserId();">Order History</div>
       <div class="tab_item" ng-class="{'active' : showTab == 'feedback'}" ng-click="showTab = 'feedback'">Feedback</div>
       <div class="tab_item" ng-class="{'active' : showTab == 'termNcondition'}" ng-click="showTab = 'termNcondition'">Terms &amp; condition</div>
-      <div class="tab_item" ng-class="{'active' : showTab == 'contactNsupport'}" ng-click="showTab = 'contactNsupport'">Contact &amp; support</div>
+      <div class="tab_item" ng-class="{'active' : showTab == 'contactNsupport' }" ng-click="showTab = 'contactNsupport'">Contact &amp; support</div>
+      <!-- <div class="tab_item" ng-class="{'active' : showTab == 'contactNsupport'}" ng-show="ContactSupport" ng-click="showTab = 'contactNsupport'" >Contact &amp; support</div> -->
     </div>
   </div>
   <div class="row">
@@ -91,7 +92,7 @@
           </div>
           <div class="info_block col-sm-6">
             <lable>CHANGE PASSWORD</lable>
-            <p><a href="" ng-click="editPassword = true">Click here</a> to change password</p>
+            <p><a href="" ng-click="editPassword = true" data-toggle="modal" data-target="#myModal">Click here</a> to change password</p>
           </div>
           <div class="info_block col-sm-12">
             <lable>Address</lable>
@@ -100,7 +101,7 @@
           </div>
         </div>
 
-        <div ng-show="editPassword == true">
+        <!-- <div ng-show="editPassword == true">
           <p class="row terms_heading">Change password</p>
           <div class="row">
             <div class="col-lg-12">
@@ -117,7 +118,7 @@
               </form>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <br /><br /><br />
         <p class="row terms_heading">Update address</p>
@@ -208,51 +209,109 @@
 
       <div class="col-md-12 admin-content" id="Profile" ng-show="showTab == 'orderHistory'">
         <div class="row">
-          <div class="col-md-12">
-            <div class="row order_item" ng-class="{'card_layout' : showOrder[$index]}" ng-repeat="order in orderHistory">
-              <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = false" ng-click="showOrder[$index] = !showOrder[$index]">
-                <p><label>Order Date&nbsp;</label>{{order.orderDate | date:medium}}</p>
-                <p><label>Order Id&nbsp;</label>{{order._id}}</p>
-                <p><label>Order status&nbsp;</label>{{order.paymentStatus}}</p>
-              </div>
-              <div class="col-lg-12 order_detail" ng-show="showOrder[$index]">
-                <div class="row">
-                  <table class="table table-condensed table-orderList">
-                    <thead>
-                      <tr>
-                        <td class="text-left">Item</td>
-                        <td class="text-center">Quantity</td>
-                        <td class="text-right">Rate</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr ng-repeat="item in order.itmes">
-                        <td class="text-left item_detail">
-                          <div class="item_thumbnail" style="background-image:url({{item.product.mainImageUrl}})"></div>
-              						<div class="item_name"><strong>{{item.product.name}}</strong></div>
-                        </td>
-                        <td class="text-center">{{item.quantity}}</td>
-                        <td class="text-right"><strong>{{item.totalProductAmount}}&nbsp; AED</strong></td>
-                      </tr>
-                    </tbody>
-                  </table>
+          <!-- tabs -->
+            <ul class="nav nav-tabs order-nav" style="padding: 13px 0px 25px 52px;">
+            <!-- <li class="active"><a data-toggle="tab" href="#home">Home</a></li> -->
+                <li><a data-toggle="tab" data-target="#menu1" ng-click="liveOrders()">Live Orders</a></li>
+                <li><a data-toggle="tab" data-target="#menu2" ng-click="pastOrders()">Past Orders</a></li>
+            </ul>
+          <div class="tab-content">
+            <div id="menu1" class="" ng-show="showLiveOrders">
+                <div class="col-md-12">
+                  <div class="row order_item" ng-class="{'card_layout' : showOrder[$index]}" ng-repeat="orderLive in orderHistoryLive ">
+                    <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = false" ng-click="showOrder[$index] = !showOrder[$index]">
+                      <p><label>Order Date&nbsp;</label>{{orderLive.orderDate | date:medium}}</p>
+                      <p><label>Order Id&nbsp;</label>{{orderLive._id}}</p>
+                      <p><label>Order status&nbsp;</label>{{orderLive.orderStatus.name}}</p>
+                    </div>
+                    <div class="col-lg-12 order_detail" ng-show="showOrder[$index]">
+                      <div class="row">
+                        <table class="table table-condensed table-orderList">
+                          <thead>
+                            <tr>
+                              <td class="text-left">Item</td>
+                              <td class="text-center">Quantity</td>
+                              <td class="text-right">Rate</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="itemLive in orderLive.itmes">
+                              <td class="text-left item_detail">
+                                <div class="item_thumbnail" style="background-image:url({{itemLive.product.mainImageUrl}})"></div>
+                    						<div class="item_name"><strong>{{itemLive.product.name}}</strong></div>
+                              </td>
+                              <td class="text-center">{{itemLive.quantity}}</td>
+                              <td class="text-right"><strong>{{itemLive.totalProductAmount}}&nbsp; AED</strong></td>
+                            </tr>
+                          </tbody>
+                        </table>
 
-                  <div class="col-lg-12 order_footer">
-                    <div class="row">
-                      <div class="col-sm-8">
-                        {{order.address.houseNo}}, {{order.address.name}}, {{order.address.streetName}}, {{order.address.landmark}},<br>
-                        {{order.address.city}}, {{order.address.country}}
-                      </div>
-                      <div class="col-sm-4 text-right">
-                        <span>TOTAL PRICE</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <strong>{{order.orderAmount}}&nbsp;&nbsp;AED</strong>
+                        <div class="col-lg-12 order_footer">
+                          <div class="row">
+                            <div class="col-sm-8">
+                              {{orderLive.address.houseNo}}, {{orderLive.address.name}}, {{orderLive.address.streetName}}, {{orderLive.address.landmark}},<br>
+                              {{orderLive.address.city}}, {{orderLive.address.country}}
+                            </div>
+                            <div class="col-sm-4 text-right">
+                              <span>TOTAL PRICE</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                              <strong>{{orderLive.orderAmount}}&nbsp;&nbsp;AED</strong>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
-          </div>
+            <div id="menu2" ng-show="showPastOrders" >
+                <div class="col-md-12">
+                  <div class="row order_item" ng-class="{'card_layout' : showOrder[$index]}" ng-repeat="order in orderHistory | filter:{orderStatus:{name:'Completed'}}">
+                    <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = false" ng-click="showOrder[$index] = !showOrder[$index]">
+                      <p><label>Order Date&nbsp;</label>{{order.orderDate | date:medium}}</p>
+                      <p><label>Order Id&nbsp;</label>{{order._id}}</p>
+                      <p><label>Order status&nbsp;</label>{{order.orderStatus.name}}</p>
+                    </div>
+                    <div class="col-lg-12 order_detail" ng-show="showOrder[$index]">
+                      <div class="row">
+                        <table class="table table-condensed table-orderList">
+                          <thead>
+                            <tr>
+                              <td class="text-left">Item</td>
+                              <td class="text-center">Quantity</td>
+                              <td class="text-right">Rate</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="item in order.itmes">
+                              <td class="text-left item_detail">
+                                <div class="item_thumbnail" style="background-image:url({{item.product.mainImageUrl}})"></div>
+                    						<div class="item_name"><strong>{{item.product.name}}</strong></div>
+                              </td>
+                              <td class="text-center">{{item.quantity}}</td>
+                              <td class="text-right"><strong>{{item.totalProductAmount}}&nbsp; AED</strong></td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <div class="col-lg-12 order_footer">
+                          <div class="row">
+                            <div class="col-sm-8">
+                              {{order.address.houseNo}}, {{order.address.name}}, {{order.address.streetName}}, {{order.address.landmark}},<br>
+                              {{order.address.city}}, {{order.address.country}}
+                            </div>
+                            <div class="col-sm-4 text-right">
+                              <span>TOTAL PRICE</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                              <strong>{{order.orderAmount}}&nbsp;&nbsp;AED</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
         </div>
       </div>
 
@@ -295,8 +354,8 @@
             content of a page when looking at its layout It is a long established fact that </div>
           <br /><br />
 
-          <p><i class="fa fa-phone" aria-hidden="true"></i>+12 1234567890</p>
-          <p><i class="fa fa-envelope-o" aria-hidden="true"></i>krazymeals@gmail.com</p>
+          <p style="color: grey;"><i class="fa fa-phone" aria-hidden="true"></i>+12 1234567890</p>
+          <p style="color: grey;"><i class="fa fa-envelope-o" aria-hidden="true"></i>krazymeals@gmail.com</p>
         </div>
       </div>
     </div>
@@ -304,7 +363,7 @@
 </div>
 <div class="" id="contact">
   <!-- Footer -->
-<footer>
+<footer ng-controller="loginController">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -323,8 +382,8 @@
           <div class="col-sm-4">
             <ul style="cursor:pointer;">
               <li>Help Center</li>
-              <li ng-click="contactUs()">Email Support</li>
-              <li>Contact us</li>
+              <li ng-click="showContactUs()">Email Support</li>
+              <li ng-click="showContactUs()">Contact us</li>
             </ul>
           </div>
         </div>
@@ -367,4 +426,41 @@
   </div> -->
 </footer>
 
+</div>
+<!-- Modal change password -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="margin-top: 178px;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" tabindex="-1">&times;</button>
+        <h4 class="modal-title">Change Password</h4>
+      </div>
+      <div class="modal-body">
+        <div >
+
+          <div class="row">
+            <div class="col-lg-12">
+              <form ng-submit="changePassword()" class="col-lg-6">
+                <div class="form-group">
+                  <label for="usr">Old Password:</label>
+                  <input type="password" class="form-control" ng-model="oldPassword" id="usr">
+                </div>
+                <div class="form-group">
+                  <label for="pwd">New Password:</label>
+                  <input type="password" class="form-control" ng-model="newPassword" id="pwd">
+                </div>
+                <button type="submit" class="checkout-page__buttons active">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>

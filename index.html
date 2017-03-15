@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>bluerabbit</title>
+    <title>Krazy Meals</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <!-- CSS files -->
     <link rel="stylesheet" href="css/master.css">
@@ -20,13 +20,14 @@
 <body>
 
   <div ng-view></div>
+  <div ng-show="loading" style="text-align:center"><img src="images/loader.gif" width="500px" height="400px"/></div>
 <toast></toast>
   <div class="modal bd-example-modal-lg" id="loginmodal" ng-controller="loginController" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-container" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <span    style=" position: relative;font-size: 23px;left: 244px;font-weight: bold;">SignIn</span>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" tabindex='-1'>
 
           <span aria-hidden="true">&times;</span>
         </button>
@@ -75,7 +76,7 @@
     <div class="modal-content">
       <div class="modal-header">
           <span    style=" position: relative;font-size: 23px;left: 244px;font-weight: bold;">SignUp</span>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" tabindex='-1'>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

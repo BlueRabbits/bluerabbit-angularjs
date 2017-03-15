@@ -75,7 +75,74 @@
 			</div>
 		</div>
 		<div class="search-secction">
-			<!-- search result -->
+			<!-- particular Prod result -->
+			<div class="search-secction__content" ng-show="particularProduct">
+				<div class="search-secction__data row">
+					<div class="col-des col-sm-7">
+						<div class="search-section__image">
+							<div class="image__thumbnail" style="background-image:url({{search_result_product.mainImageUrl}})">
+							</div>
+						</div>
+						<div class="search-section__description">
+							<p class="product-name">{{search_result_product.name}}</p>
+							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
+							<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
+							<img class="product_heart" style="margin-bottom: 11px;" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(search_result_product._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(search_result_product._id)" ng-show="showFilledHeart" ng-click="deleteWishList(search_result_product._id)"></i>
+								<div class="product-view" ng-init="showHearts(search_result_product._id)">
+
+										<p class="view-more" ng-hide="showParticularProductsDiv === true"  ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View more</p>
+										<p class="view-more" ng-show="showParticularProductsDiv === true"  ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View less</p>
+								</div>
+						</div>
+					</div> <!-- sm7 -->
+					<div class="col-act col-sm-5">
+						<div class="product-price">
+							{{search_result_product.salePrice}}<span>&nbsp;AED</span>
+							<p class="products__offer">
+	              <span class="text-black strike">{{search_result_product.listPrice}}&nbsp;AED</span>
+	              <span class="text-success">{{search_result_product.discountedPrice}}%</span>
+	            </p>
+						</div>
+						<div class="search-secction__buttons">
+							<button ng-if="search_result_product.instock === 'yes'" type="button" name="button" ng-click="addToCart(search_result_product._id)">Add to Cart</button>
+							<button ng-if="search_result_product.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
+						</div>
+					</div> <!-- sm5 -->
+				</div>
+				<div class="description__section" ng-show="showParticularProductsDiv">
+					<div class="description__section--header">
+						<div class="description-list">
+							<!-- <p>Prep time:30 min</p>
+							<span>|</span>
+							<p>Calories: 100 Kcal</p> -->
+
+						</div>
+					</div>
+					<div class="share_options">
+						<span>Share</span>
+						<span>
+							<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
+							<a class="fa fa-twitter" aria-hidden="true"></a>
+							<a class="fa fa-google-plus" aria-hidden="true"></a>
+						</span>
+					</div>
+					<div class="description__section--content">
+						<p class="product-name">Product Description </p>
+						<p class="product-sub-title">
+							{{search_result_product.description}}
+						</p>
+						<p class="product-sub-title"></p>
+						<img src="{{search_result_product.s1}}" width="120px" ng-click="showImage(search_result_product._id)"/>
+						<img src="{{search_result_product.s2}}" width="120px" ng-click="showImage(search_result_product._id)"/>
+						<img src="{{search_result_product.s3}}" width="120px" ng-click="showImage(search_result_product._id)" />
+					</div>
+				</div>
+			</div>
+			<!-- End particular Prod result -->
+
+			<!-- Search Prod result -->
 			<div class="search-secction__content" ng-repeat="results in search_result" ng-show="searchPagelist">
 				<div class="search-secction__data row">
 					<div class="col-des col-sm-7">
@@ -92,7 +159,8 @@
 							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i>
 								<div class="product-view" ng-init="showHearts(results._id)">
 
-										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+									<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+									<p class="view-more" ng-show="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
 								</div>
 						</div>
 					</div> <!-- sm7 -->
@@ -139,6 +207,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- search list -->
 
 			<!-- Wish list -->
 			<div class="search-secction__content wish-list" ng-show="show_wishlist" ng-repeat="wishLists in getWishlistData">
@@ -209,7 +278,8 @@
 									<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
 								<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
 									<div class="product-view">
-										<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+										<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+										<p class="view-more" ng-show="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
 									</div>
 							</div>
 						</div> <!-- sm7 -->
@@ -260,7 +330,7 @@
 			<!-- menu result -->
 		</div>
 		<!-- Footer -->
-<footer>
+<footer ng-controller="loginController">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -279,8 +349,8 @@
           <div class="col-sm-4">
             <ul style="cursor:pointer;">
               <li>Help Center</li>
-              <li ng-click="contactUs()">Email Support</li>
-              <li>Contact us</li>
+              <li ng-click="showContactUs()">Email Support</li>
+              <li ng-click="showContactUs()">Contact us</li>
             </ul>
           </div>
         </div>

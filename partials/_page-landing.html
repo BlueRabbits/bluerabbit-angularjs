@@ -77,12 +77,12 @@
     <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
   </div>
   <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-    <div uib-slide ng-repeat="lists in getTodaysDealProduct" index="$index" class="banner-wrap">
+    <div uib-slide ng-repeat="banner in getBanners" index="$index" class="banner-wrap">
       <!-- <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%"> -->
-      <div class="banner-img" style="background-image:url({{lists.product.mainImageUrl}});"></div>
+      <div class="banner-img" style="background-image:url({{banner.banner_image}});"></div>
       <div class="carousel-caption" style="padding: 0px 660px 100px 2px; width: 75%;display: flex;flex-direction: column;align-items: center;">
-        <!-- <h2>{{lists.product.name}}</h2>
-        <p>{{lists.product.description}}</p> -->
+        <h2>{{banner.name}}</h2>
+        <p>{{banner.desc}}</p>
       </div>
     </div>
   </div>
@@ -105,7 +105,11 @@
           <p class="context l2">{{lists.name}}</p>
           <div class="row">
             <div class="col-sm-6">
-              <label class="creds l1">{{lists.salePrice}}AED</label>
+              <label class="creds l1">{{lists.salePrice}}&nbsp;AED</label>
+              <p class="products__offer">
+                <span class="strike">{{lists.listPrice}}&nbsp;AED</span>
+                <span class="text-success">{{lists.discountedPrice}}%</span>
+              </p>
             </div>
             <div class="col-sm-6">
               <button type="button" ng-click="addToCart(lists._id)" name="button">Add To Cart</button>
@@ -138,10 +142,12 @@
     <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
       <!-- 1-->
       <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
-        <div class="breakfast-products__image" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name,list.cat)"></div>
-        <div class="breakfast-products__content">
-          <img src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-          <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat)" style="cursor:pointer">
+        <div class="breakfast-products__image" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name,list.cat,list._id)"></div>
+        <div class="breakfast-products__content" ng-click="showProductSearchPage(list.name,list.cat,list._id)">
+          <!-- <img src="images/heart-icon-black.png" ng-click="addWishList(list._id)"> -->
+          <img  ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
+          <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
+          <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat,list._id)" style="cursor:pointer">
             <p>{{list.name}}</p>
             <!-- <p>{{list.description}}</p> -->
             <p class="products__price">{{list.salePrice}}&nbsp;AED</p>
@@ -353,7 +359,7 @@
 </div>
 <div class="" id="contact">
   <!-- Footer -->
-<footer>
+<footer ng-controller="loginController">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -372,8 +378,8 @@
           <div class="col-sm-4">
             <ul style="cursor:pointer;">
               <li>Help Center</li>
-              <li ng-click="contactUs()">Email Support</li>
-              <li>Contact us</li>
+              <li ng-click="showContactUs()">Email Support</li>
+              <li ng-click="showContactUs()">Contact us</li>
             </ul>
           </div>
         </div>

@@ -3004,7 +3004,14 @@ SMACSS: PAGE - LANDING
     .address-box .address-content h2 {
       margin: 0;
       text-transform: uppercase;
-      font-size: 24px; }
+      font-size: 24px;
+      font-family: Lato;
+      font-weight: 900;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: 2px;
+      color: #1d2028; }
     .address-box .address-content input {
       position: absolute;
       left: 10px; }
@@ -3133,6 +3140,26 @@ SMACSS: PAGE - LANDING
   height: 395.4px;
   background-repeat: no-repeat; }
 
+.address-content-details {
+  font-family: Lato;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: #514d4b; }
+
+.address-type-details {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 2px;
+  color: #1d2028; }
+
 .modal-container {
   margin: 150px auto !important; }
 
@@ -3197,11 +3224,13 @@ SMACSS: PAGE - LANDING
 
 .facebook {
   background: #3b5998;
-  color: #fff; }
+  color: #fff;
+  padding-top: 10px; }
 
 .google {
   background: #f64925;
-  color: #fff; }
+  color: #fff;
+  padding-top: 10px; }
 
 .section-header-menu {
   background-color: rgba(81, 83, 86, 0.85);
@@ -3992,6 +4021,9 @@ a.no-underline:hover {
       display: block;
       background-size: cover;
       background-repeat: no-repeat; }
+    #testimonial-list .slide-list .article_image:hover {
+      box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+      transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
     #testimonial-list .slide-list .bestoffertext {
       font-size: 14px;
       color: #515356;
@@ -4005,7 +4037,8 @@ a.no-underline:hover {
       #testimonial-list .slide-list .bestoffertext .creds {
         line-height: 30px;
         margin-bottom: 0px;
-        font-weight: normal; }
+        font-weight: normal;
+        margin-left: 7px; }
       #testimonial-list .slide-list .bestoffertext button {
         width: 100%;
         bottom: 0px;
@@ -4762,6 +4795,30 @@ button[disabled] {
   position: relative;
   right: 34px;
   cursor: pointer; }
+
+.order-nav > li {
+  text-align: center !important;
+  float: left !important;
+  margin-bottom: -1px !important;
+  width: 500px !important;
+  height: 36px !important;
+  object-fit: contain !important;
+  border-radius: 40px !important;
+  background-color: white !important;
+  border: 1px #dddddd solid !important; }
+
+.order-nav > li.active > a, .order-nav > li.active > a:hover {
+  text-align: center !important;
+  color: #555 !important;
+  cursor: default !important;
+  background-color: #fff !important;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent !important;
+  width: 500px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 40px;
+  background-color: #6f9d2f !important; }
 
 /*!
  * ngToast v2.0.0 (http://tameraydin.github.io/ngToast)
