@@ -451,7 +451,7 @@ $scope.showWishList = function(){
              console.log("no categories");
         });
   };
-  $scope.getTodaysDeal();
+  // $scope.getTodaysDeal();
 
   //POST create wish list
   var count = 0;
@@ -517,5 +517,17 @@ $scope.showWishList = function(){
         $location.path('/search-page');
         window.location.reload = true;
       }
+
+      //new Banner API
+      //NOTE : todays deal api
+      $scope.getAllBanner = function(){
+            Auth.getBanners().success (function (data) {
+              console.log('getBanners', data);
+              $scope.getBanners = data;
+            }).error(function(data){
+              console.log('data', data);
+            });
+      };
+      $scope.getAllBanner();
 
 })

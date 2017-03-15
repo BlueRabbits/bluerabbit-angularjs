@@ -247,6 +247,14 @@ app.factory('Auth', function($http, $window, $cookieStore) {
         }
       });
     },
+    getBanners : function() {
+      return $http.get(BASE_URL + '/api/banner', {
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+        }
+      });
+    },
 
 
   };

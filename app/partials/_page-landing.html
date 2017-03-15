@@ -35,12 +35,12 @@
     <div class="instagram-btn"><p>Instagram</p><img src="images/instagram-icon.png" alt="Instagram" /></div>
   </div>
   <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-    <div uib-slide ng-repeat="lists in getTodaysDealProduct" index="$index" class="banner-wrap">
+    <div uib-slide ng-repeat="banner in getBanners" index="$index" class="banner-wrap">
       <!-- <img ng-src="{{lists.mainImageUrl}}" style="margin:auto;width:100%"> -->
-      <div class="banner-img" style="background-image:url({{lists.product.mainImageUrl}});"></div>
+      <div class="banner-img" style="background-image:url({{banner.banner_image}});"></div>
       <div class="carousel-caption" style="padding: 0px 660px 100px 2px; width: 75%;display: flex;flex-direction: column;align-items: center;">
-        <!-- <h2>{{lists.product.name}}</h2>
-        <p>{{lists.product.description}}</p> -->
+        <h2>{{banner.name}}</h2>
+        <p>{{banner.desc}}</p>
       </div>
     </div>
   </div>
