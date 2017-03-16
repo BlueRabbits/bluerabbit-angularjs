@@ -220,7 +220,7 @@ $scope.logged = false;
 
   //get Profile of users
   $scope.getUserProfile = function() {
-       $scope.showTab == 'profile';
+       $scope.showTab = 'profile';
     $scope.userProfileShow =  true;
     Auth.userProfile().success(function(data) {
       $scope.userDetails = data;
@@ -413,6 +413,7 @@ $scope.getOrdersByUserId = function() {
   });
 };
 
+$scope.showLiveOrders = true;
 $scope.liveOrders = function(){
   $scope.showLiveOrders = true;
   $scope.showPastOrders = false;
@@ -536,7 +537,8 @@ $scope.editAddress = function(){
         }
         Auth.profileImageUpload(profileDetails)
           .success(function(data) {
-
+            $scope.getUserProfile();
+            $scope.showAvatar = false;
             console.log('profile updated data', data);
             $scope.emailId = data.email;
             $scope.userName = data.name;

@@ -25,15 +25,18 @@
       </div> -->
     <div class="container">
       <div class="col-md-12 admin-content" id="homes" ng-show="showTab == 'profile'">
-        <p class="row terms_heading">Basic info</p>
+        <p class="row terms_heading">User info</p>
         <div class="row basic_info">
           <div class="info_block col-sm-6">
             <div class="dropdown__myaccount">
               <div class="user_image" style="background-image: url({{BASE_URL}}/ecom{{userDetails.image_url}})"></div>
+              <div class="user_image" style="background-image: url('images/user_avatar.png')" ng-show="!userDetails.image_url">
+              </div>
               {{userDetails.name}}
+
               <img class="icon_img" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true">
               <img class="icon_img" ng-show="editImage==true" ng-click="editImage=false" src="images/close.svg" type="image/svg+xml" data-pin-nopin="true">
-
+              <input type="text" ng-model="userName" style="display: inline-block;" ng-show="editImage==true"/>
               <div class="edit_img" ng-show="editImage==true">
                 <input type="file" id="file1" name="file" multiple ng-files="getTheFiles($files)" style="display: inline-block;" />
                 <button class="checkout-page__buttons active" ng-class="{'btn-default' : !isDataAvailable}" ng-disabled="!isDataAvailable" ng-click="ProfileUpdate()" style="padding: 5px 17px; font-size: 10px;">Submit</button>
@@ -170,14 +173,14 @@
           <!-- tabs -->
             <ul class="nav nav-tabs order-nav" style="padding: 13px 0px 25px 52px;">
             <!-- <li class="active"><a data-toggle="tab" href="#home">Home</a></li> -->
-                <li><a data-toggle="tab" data-target="#menu1" ng-click="liveOrders()">Live Orders</a></li>
+                <li class="active"><a data-toggle="tab" data-target="#menu1" ng-click="liveOrders()">Live Orders</a></li>
                 <li><a data-toggle="tab" data-target="#menu2" ng-click="pastOrders()">Past Orders</a></li>
             </ul>
           <div class="tab-content">
-            <div id="menu1" class="" ng-show="showLiveOrders">
+            <div id="menu1" class="" ng-show="showLiveOrders == true">
                 <div class="col-md-12">
                   <div class="row order_item" ng-class="{'card_layout' : showOrder[$index]}" ng-repeat="orderLive in orderHistoryLive ">
-                    <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = false" ng-click="showOrder[$index] = !showOrder[$index]">
+                    <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = true" ng-click="showOrder[$index] = !showOrder[$index]">
                       <p><label>Order Date&nbsp;</label>{{orderLive.orderDate | date:medium}}</p>
                       <p><label>Order Id&nbsp;</label>{{orderLive._id}}</p>
                       <p><label>Order status&nbsp;</label>{{orderLive.orderStatus.name}}</p>
