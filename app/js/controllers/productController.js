@@ -80,6 +80,11 @@ $scope.init = function() {
   $scope.getWishList();
 }
 
+//invoke wishList on routeParams
+if($routeParams.show_wishlist){
+  $scope.show_wishlist = true;
+}
+
 $scope.initSetFirtsTab = function() {
   if($location.path() === '/search-page') {
 
@@ -428,9 +433,10 @@ console.log("$(window).height(); ",$(window).height());
       };
 
       $scope.wishListShow = function () {
+        $scope.show_wishlist  = true;
         $scope.searchPagelist = false;
         $scope.particularProduct = false;
-        $scope.show_wishlist  = true;
+
         $scope.showMenuResult  = false;
         $scope.getWishList();
       }
@@ -457,7 +463,7 @@ console.log("$(window).height(); ",$(window).height());
           // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
           //   // $scope.getWishListProductId[i]
           // }
-          $scope.showMenuResult  = true;
+        //  $scope.showMenuResult  = true;
         }).error(function(data) {
           // ngToast.create({
           //   className: 'warning',
@@ -688,10 +694,7 @@ console.log("$(window).height(); ",$(window).height());
           }
 
 
-        //invoke wishList on routeParams
-        if($routeParams.show_wishlist === true){
-          $scope.wishListShow();
-        }
+
 
         //delete wish list
         $scope.deleteWishList =  function(productId){

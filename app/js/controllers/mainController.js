@@ -428,7 +428,6 @@ $('#nxt-testimonial').on('click', function(){
 $scope.showWishList = function(){
   $location.path('/search-page').search({
     show_wishlist: true,
-
   });
 }
 
