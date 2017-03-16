@@ -335,4 +335,12 @@
   object-fit: contain;
   border-radius: 40px;
   background-color: #6f9d2f!important;
+  color: black !important;
+}
+
+.nav>li>a:focus, .nav>li>a:hover{
+  background-color:none;
+}
+.nav-tabs>li>a:hover{
+  border-color: none;
 }
