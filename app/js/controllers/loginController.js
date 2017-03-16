@@ -249,24 +249,36 @@ $scope.logged = false;
   //   "token" : authToken
   // }
   $scope.changePassword = function() {
-      // var authToken = 'Bearer '+$cookieStore.get('token');
-      // console.log("authToken chang pwd",authToken);
+      var PwdauthToken = $cookieStore.get('token');
+      $scope.userId = $cookieStore.get('userId');
     var passwordToChange = {
       "oldPassword": $scope.oldPassword,
       "newPassword": $scope.newPassword
     }
-    Auth.changePassword(passwordToChange).success(function(data) {
-      console.log('user profile', data.name);
-      $scope.userName = data.name;
-      $scope.userEmail = data.email;
-      // ngToast.create({
-      //   className: 'success',
-      //   content: 'Passowrd changed successfully'
-      // });
+
+      var BASE_URL = "http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com:9000";
+        var config = {
+            headers : {
+                'Authorization': 'Bearer '+PwdauthToken,
+                'Content-Type': 'application/json'
+            }
+        }
+
+        $http.post(BASE_URL +  '/api/users/'+$scope.userId+'/password', passwordToChange, config)
+        .success(function (data, status, headers, config) {
+            console.log('user profile', data.name);
+            $scope.userName = data.name;
+            $scope.userEmail = data.email;
+
+        })
+        .error(function (data, status, header, config) {
+            $scope.ResponseDetails = "Data: " + data +
+                "<hr />status: " + status +
+                "<hr />headers: " + header +
+                "<hr />config: " + config;
+        });
       $scope.editPassword = false;
-    }).error(function(data) {
-      console.log('data', data);
-    });
+
   }
 
   //NOTE : GooglePlus login

@@ -6,6 +6,7 @@ app.factory('Auth', function($http, $window, $cookieStore) {
   //var BASE_URL = "http://localhost:9000";
   //var BASE_URL = "http://192.168.0.84:9000";
     var authToken = $cookieStore.get('token');
+    console.log("authToken",authToken);
     var userId = $cookieStore.get('userId');
     console.log("serv",authToken);
     //var authToken = localStorage.getItem("authToken");
@@ -49,11 +50,11 @@ app.factory('Auth', function($http, $window, $cookieStore) {
       });
     },
 
-    changePassword : function (inputs) {
+    changePassword : function (inputs,PwdauthToken) {
       return $http.post(BASE_URL + '/api/users/'+userId+'/password',inputs,{
         header: {
-          'Authorization': 'Bearer '+authToken,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+PwdauthToken,
         }
       });
     },
