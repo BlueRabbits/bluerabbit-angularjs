@@ -81,6 +81,12 @@ $scope.init = function() {
 }
 
 //invoke wishList on routeParams
+if($routeParams.showMenuResult){
+  $scope.showMenuResult = true;
+  $scope.categoryNames = $routeParams.category;
+}
+
+//show menu
 if($routeParams.show_wishlist){
   $scope.show_wishlist = true;
 }

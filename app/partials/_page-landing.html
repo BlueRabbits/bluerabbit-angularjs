@@ -81,7 +81,7 @@
 
 <!-- Tab section -->
 <div class="tab_section" id="menu">
-  <a href="#/search-page" class="no-underline"><h1>Our Menu</h1></a>
+  <a href="" ng-click="ourMenu(categoryNames)" class="no-underline"><h1>Our Menu</h1></a>
   <div class="menu-tabs">
     <ul class="menu-tabs__list" id="tabs-menu">
       <li ng-repeat="categories in getCategoryList">
@@ -114,8 +114,8 @@
               <span class="text-success">{{list.discountedPrice}}%</span>
             </p>
           </div>
-          <button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add to cart</button>
-          <button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
+          <button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add To Cart</button>
+          <button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out Of Stock</button>
         </div>
       </div>
     </div>
@@ -124,7 +124,7 @@
 
 <!-- location section -->
 <div class="location-section" id="locations">
-  <p class="location-section-heading">Locations we deliver</p>
+  <p class="location-section-heading">Locations We Deliver</p>
   <div class="location-services">
     <div class="location-services__search">
       <p class="location-services-heading">

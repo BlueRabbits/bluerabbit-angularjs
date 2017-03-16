@@ -3979,13 +3979,14 @@ a.no-underline:hover {
         margin-left: 7px; }
       #testimonial-list .slide-list .bestoffertext button {
         width: 100%;
-        bottom: 0px;
+        bottom: -10px;
         color: #fff;
         height: 31px;
         font-size: 12px;
         border: none;
         border-radius: 40px;
-        background-color: #d92e4a; }
+        background-color: #d92e4a;
+        position: relative; }
 
 .l1 {
   text-overflow: ellipsis;
