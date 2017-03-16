@@ -1761,6 +1761,12 @@ $scope.showWishList = function(){
       product_id:productIds
     });
   }
+  $scope.ourMenu = function(catname){
+    $location.path('/search-page').search({
+      showMenuResult: true,
+      category: catname,
+    });
+  }
 
   //NOTE : todays deal api
   $scope.getTodaysDeal = function(){
@@ -2060,6 +2066,12 @@ $scope.init = function() {
 }
 
 //invoke wishList on routeParams
+if($routeParams.showMenuResult){
+  $scope.showMenuResult = true;
+  $scope.categoryNames = $routeParams.category;
+}
+
+//show menu
 if($routeParams.show_wishlist){
   $scope.show_wishlist = true;
 }
