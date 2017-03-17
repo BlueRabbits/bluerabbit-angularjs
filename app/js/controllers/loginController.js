@@ -335,6 +335,7 @@ $scope.fbLoginAuth = function() {
     // From now on you can use the Facebook service just as Facebook api says
     Facebook.login(function(response) {
       // Do something with response.
+        $scope.me();
       console.log("Facebook", response);
       $scope.getLoginStatus();
     });
@@ -343,13 +344,13 @@ $scope.fbLoginAuth = function() {
   $scope.getLoginStatus = function() {
     Facebook.getLoginStatus(function(response) {
       console.log(response);
-
-      if (response.status === 'connected') {
-        $scope.me();
-        $scope.loggedIn = true;
-      } else {
-        $scope.loggedIn = false;
-      }
+      $scope.me();
+      // if (response.status === 'connected') {
+      //   $scope.me();
+      //   $scope.loggedIn = true;
+      // } else {
+      //   $scope.loggedIn = false;
+      // }
     });
   };
   $scope.getLoginStatus();
