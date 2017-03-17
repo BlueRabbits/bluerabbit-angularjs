@@ -312,7 +312,7 @@ $scope.logged = false;
                    $('.modal').css("display", "none");
                    $('.modal-open').removeClass();
                    $scope.closeModal();
-                   //location.reload();
+                   location.reload();
                  }).error(function(data) {
                    console.log('data', data);
                  });
