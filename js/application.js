@@ -78,6 +78,7 @@ app.factory('Auth', function($http, $window, $cookieStore) {
   //var BASE_URL = "http://localhost:9000";
   //var BASE_URL = "http://192.168.0.84:9000";
     var authToken = $cookieStore.get('token');
+    console.log("authToken",authToken);
     var userId = $cookieStore.get('userId');
     console.log("serv",authToken);
     //var authToken = localStorage.getItem("authToken");
@@ -121,11 +122,11 @@ app.factory('Auth', function($http, $window, $cookieStore) {
       });
     },
 
-    changePassword : function (inputs) {
+    changePassword : function (inputs,PwdauthToken) {
       return $http.post(BASE_URL + '/api/users/'+userId+'/password',inputs,{
         header: {
-          'Authorization': 'Bearer '+authToken,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+PwdauthToken,
         }
       });
     },
@@ -946,24 +947,36 @@ $scope.logged = false;
   //   "token" : authToken
   // }
   $scope.changePassword = function() {
-      // var authToken = 'Bearer '+$cookieStore.get('token');
-      // console.log("authToken chang pwd",authToken);
+      var PwdauthToken = $cookieStore.get('token');
+      $scope.userId = $cookieStore.get('userId');
     var passwordToChange = {
       "oldPassword": $scope.oldPassword,
       "newPassword": $scope.newPassword
     }
-    Auth.changePassword(passwordToChange).success(function(data) {
-      console.log('user profile', data.name);
-      $scope.userName = data.name;
-      $scope.userEmail = data.email;
-      // ngToast.create({
-      //   className: 'success',
-      //   content: 'Passowrd changed successfully'
-      // });
+
+      var BASE_URL = "http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com:9000";
+        var config = {
+            headers : {
+                'Authorization': 'Bearer '+PwdauthToken,
+                'Content-Type': 'application/json'
+            }
+        }
+
+        $http.post(BASE_URL +  '/api/users/'+$scope.userId+'/password', passwordToChange, config)
+        .success(function (data, status, headers, config) {
+            console.log('user profile', data.name);
+            $scope.userName = data.name;
+            $scope.userEmail = data.email;
+
+        })
+        .error(function (data, status, header, config) {
+            $scope.ResponseDetails = "Data: " + data +
+                "<hr />status: " + status +
+                "<hr />headers: " + header +
+                "<hr />config: " + config;
+        });
       $scope.editPassword = false;
-    }).error(function(data) {
-      console.log('data', data);
-    });
+
   }
 
   //NOTE : GooglePlus login
@@ -997,7 +1010,7 @@ $scope.logged = false;
                    $('.modal').css("display", "none");
                    $('.modal-open').removeClass();
                    $scope.closeModal();
-                   //location.reload();
+                   location.reload();
                  }).error(function(data) {
                    console.log('data', data);
                  });
@@ -1020,6 +1033,7 @@ $scope.fbLoginAuth = function() {
     // From now on you can use the Facebook service just as Facebook api says
     Facebook.login(function(response) {
       // Do something with response.
+        $scope.me();
       console.log("Facebook", response);
       $scope.getLoginStatus();
     });
@@ -1028,13 +1042,13 @@ $scope.fbLoginAuth = function() {
   $scope.getLoginStatus = function() {
     Facebook.getLoginStatus(function(response) {
       console.log(response);
-
-      if (response.status === 'connected') {
-        $scope.me();
-        $scope.loggedIn = true;
-      } else {
-        $scope.loggedIn = false;
-      }
+      $scope.me();
+      // if (response.status === 'connected') {
+      //   $scope.me();
+      //   $scope.loggedIn = true;
+      // } else {
+      //   $scope.loggedIn = false;
+      // }
     });
   };
   $scope.getLoginStatus();
