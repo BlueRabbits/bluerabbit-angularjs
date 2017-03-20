@@ -472,6 +472,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
           signupcredintials = {
               name: $scope.name,
               email: $scope.email,
+              mobile_number:$scope.mobile_number,
               password: $scope.password,
             }
         Auth.register(signupcredintials).success(function(data) {
@@ -1720,9 +1721,11 @@ $scope.getWishList();
   }
 
       //show searchPage
-      $scope.showSearchPage = function(){
-        $location.path('/search-page');
-        window.location.reload = true;
+      $scope.showSearchPage = function(catname){
+        $location.path('/search-page').search({
+          showMenuResult: true,
+          category: catname,
+        });
       }
 
       //new Banner API

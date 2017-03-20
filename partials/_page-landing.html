@@ -60,7 +60,7 @@
         </div> -->
         <!-- <input type="search" class="search-box" placeholder="Find The Things What You Want Here">
         <img src="images/close-button@2x.png" class="close-icon" > -->
-        <a href="#/search-page"><img src="images/search-icon@2x.png" class="search-icon"></a>
+        <a ng-click="showSearchPage(categoryNames)"><img src="images/search-icon@2x.png" class="search-icon"></a>
         <p><a href="#/"> |</a></p>
         <img src="images/heart-icon@2x.png" ng-click="showWishList()">
     		<p ng-click="showWishList()" style="cursor:pointer">Favorites</p>
@@ -100,9 +100,9 @@
   <div id="carousel-wrap">
     <ul id="testimonial-list" class="clearfix">
       <li class="slide-list" ng-repeat="lists in allProducts  | filter:{p1:'yes'}">
-        <div class="article_image" style="background-image:url({{lists.mainImageUrl}});"></div>
+        <div class="article_image" style="background-image:url({{lists.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)"></div>
         <div class="bestoffertext">
-          <p class="context l2">{{lists.name}}</p>
+          <p class="context l2" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)" style="cursor:pointer">{{lists.name}}</p>
           <div class="row">
             <div class="col-sm-6">
               <label class="creds l1">{{lists.salePrice}}&nbsp;AED</label>
@@ -380,8 +380,8 @@
           <div class="col-sm-4">
             <ul style="cursor:pointer;">
               <li>Help Center</li>
-              <li ><a  href="#/landing#about">Email Support</a></li>
-              <li><a  href="#/landing#about">Contact us</a></li>
+              <li ><a style="color: #999999;" href="#/landing#about">Email Support</a></li>
+              <li ><a style="color: #999999;" href="#/landing#about">Contact us</a></li>
             </ul>
           </div>
         </div>
