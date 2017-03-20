@@ -137,16 +137,17 @@ console.log("$(window).height(); ",$(window).height());
           $scope.searchPagelist = false;
           $scope.particularProduct = true;
           $scope.show_wishlist  = false;
-          $scope.showMenuResult  = false;
+          $scope.showMenuResult  = true;
           $scope.hideAutocomplete = false;
 
           for (var i = 0; i < data.length; i++) {
-            if (id === data[i]._id) {
+            if (id == data[i]._id) {
               $scope.search_result_product = data[i];
 
             }
           }
               $scope.showParticularProductsDiv = true;
+
           console.log("$scope.search_result ",$scope.search_result_product );
           console.log("data[i]",$scope.search_result_product);
         }).error(function(data) {
@@ -161,7 +162,7 @@ console.log("$(window).height(); ",$(window).height());
   if($routeParams.show_productDetails){
     $scope.showParticularProducts($routeParams.product_id);
     $scope.showParticularProductsDiv = true;
-
+    $scope.categoryNames = $routeParams.category;
   }
 
   //minimum order value to be calculated to add delivery
@@ -729,19 +730,19 @@ console.log("$(window).height(); ",$(window).height());
           });
         }
         //Fb sharer
-        $scope.FbShare = function(){
-          FB.ui({
-            method: 'share_open_graph',
-            action_type: 'og.likes',
-            action_properties: JSON.stringify({
-              object:'https://developers.facebook.com/docs/',
-            })
+        $scope.FbShare = function(name,id){
+
+            FB.ui({
+              method: 'share',
+              display: 'popup',
+              href: 'http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/search-page?show_productDetails='+name+'&product_id='+id,
             }, function(response){});
+
           }
-        $scope.twitterShare = function(){
+        $scope.twitterShare = function(ids){
           var twitterHandle = 'Krazy Meals';
             //window.open("https://twitter.com/share?url="+encodeURIComponent(url));
-            window.open('https://twitter.com/share?url='+escape(window.location.href)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+            window.open('https://twitter.com/share?url='+escape('http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
           }
 
           //show mimage modal
