@@ -348,7 +348,7 @@ $scope.fbLoginAuth = function() {
       $('.modal').css("display", "none");
       $('.modal-open').removeClass();
       $scope.closeModal();
-    
+
       // if (response.status === 'connected') {
       //   $scope.me();
       //   $scope.loggedIn = true;
