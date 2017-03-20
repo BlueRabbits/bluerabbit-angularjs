@@ -2476,14 +2476,14 @@ console.log("$(window).height(); ",$(window).height());
             FB.ui({
               method: 'share',
               display: 'popup',
-              href: 'http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/search-page?show_productDetails='+name+'&product_id='+id,
+              href: 'http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/krazy-meals/#/search-page?show_productDetails='+name+'&product_id='+id,
             }, function(response){});
 
           }
         $scope.twitterShare = function(ids){
           var twitterHandle = 'Krazy Meals';
             //window.open("https://twitter.com/share?url="+encodeURIComponent(url));
-            window.open('https://twitter.com/share?url='+escape('http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+            window.open('https://twitter.com/share?url='+escape('http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/krazy-meals/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
           }
 
           //show mimage modal
