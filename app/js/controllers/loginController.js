@@ -345,6 +345,10 @@ $scope.fbLoginAuth = function() {
     Facebook.getLoginStatus(function(response) {
       console.log(response);
       $scope.me();
+      $('.modal').css("display", "none");
+      $('.modal-open').removeClass();
+      $scope.closeModal();
+    
       // if (response.status === 'connected') {
       //   $scope.me();
       //   $scope.loggedIn = true;
@@ -367,6 +371,7 @@ $scope.fbLoginAuth = function() {
         $cookieStore.put("emailId", $scope.emailId);
         $cookieStore.put('userName', $scope.userName);
         console.log("$scope.user",$scope.user);
+
 
       });
       var socailParams = {

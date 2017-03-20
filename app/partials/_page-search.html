@@ -268,9 +268,9 @@
 							<div class="share_options">
 								<span>Share</span>
 								<span>
-									<a class="fa fa-facebook"  ng-click="FbShare()"  aria-hidden="true"></a>
-									<a class="fa fa-twitter" ng-click="twitterShare()" aria-hidden="true"></a>
-									<a class="fa fa-google-plus" href="https://plus.google.com/share?url=YOUR_URL" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
+									<a class="fa fa-facebook"  ng-click="FbShare(list.name,list._id)" id="shareBtn" aria-hidden="true"></a>
+									<a class="fa fa-twitter" ng-click="twitterShare(list._id)" aria-hidden="true"></a>
+									<a class="fa fa-google-plus"  href="https://plus.google.com/share?url=http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/search-page?show_productDetails={{list.name}}" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
 								</span>
 							</div>
 							<p class="product-name">Product Description </p>
