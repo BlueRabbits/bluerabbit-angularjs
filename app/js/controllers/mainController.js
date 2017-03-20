@@ -487,38 +487,38 @@ $scope.showWishList = function(){
       });
       console.log("list of product ids",$scope.getProductIdList);
       console.log("$scope.getWishListProductId",$scope.getWishListProductId);
-      //objects heart to bind in UI
-      $scope.heartList = {};
-      for (var i = 0; i < $scope.getWishListProductId.length; i++) {
-        $scope.heartList[i] = $scope.getWishListProductId[i];
+      // //objects heart to bind in UI
+      // $scope.heartList = {};
+      // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
+      //   $scope.heartList[i] = $scope.getWishListProductId[i];
+      //
+      // }
+      // console.log("$scope.heartList;",$scope.heartList);
+      // //objects product to bind in UI
+      // $scope.productList = {};
+      // for (var i = 0; i < $scope.getProductIdList.length; i++) {
+      //   $scope.productList[i] = $scope.getProductIdList[i];
+      //
+      // }
+      // console.log("$scope.productList;",$scope.productList);
+      //
+      // //two level loops
+      // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
+      //   for (var i = 0; i < $scope.getProductIdList.length; i++) {
+      //       if ($scope.getWishListProductId[i] = $scope.getProductIdList[i]) {
+      //         $scope.showHeart = $scope.getWishListProductId;
+      //       }
+      //
+      //   }
+      //
+      // }
 
-      }
-      console.log("$scope.heartList;",$scope.heartList);
-      //objects product to bind in UI
-      $scope.productList = {};
-      for (var i = 0; i < $scope.getProductIdList.length; i++) {
-        $scope.productList[i] = $scope.getProductIdList[i];
-
-      }
-      console.log("$scope.productList;",$scope.productList);
-
-      //two level loops
-      for (var i = 0; i < $scope.getWishListProductId.length; i++) {
-        for (var i = 0; i < $scope.getProductIdList.length; i++) {
-            if ($scope.getWishListProductId[i] = $scope.getProductIdList[i]) {
-              $scope.showHeart = $scope.getWishListProductId;
-            }
-
-        }
-
-      }
-
-      //heart list
-      if ($scope.heartList = $scope.productList) {
-        $scope.showHeart = true;
-      } else {
-        $scope.showHeart = false;
-      }
+      // //heart list
+      // if ($scope.heartList = $scope.productList) {
+      //   $scope.showHeart = true;
+      // } else {
+      //   $scope.showHeart = false;
+      // }
     }).error(function(data){
       // ngToast.create({
       //   className: 'warning',
@@ -527,25 +527,25 @@ $scope.showWishList = function(){
     });
   };
 
-  //check the heart
-  $scope.hideWishlist= true;
-  $scope.isInWishlist = function(productId){
-    // for (var i = 0; i < $scope.getListOfFav.length; i++) {
-    //
-    //     if ($scope.getListOfFav[i].product._id == productId) {
-    //       $scope.hideWishlist= true;
-    //       $scope.showFilledHeart = true;
-    //       return true;
-    //     } else {
-    //       $scope.hideWishlist= true;
-    //         $scope.showFilledHeart = false;
-    //
-    //       // return false;
-    //     }
-    //
-    // }
-  }
+$scope.getWishList();
+        //check the heart
+        $scope.hideWishlist= true;
+        $scope.isInWishlist = function(productId){
+          for (var i = 0; i < $scope.getListOfFav.length; i++) {
 
+              if ($scope.getListOfFav[i].product._id == productId) {
+                $scope.hideWishlist= true;
+                $scope.showFilledHeart = true;
+                return true;
+              } else {
+                $scope.hideWishlist= true;
+                  $scope.showFilledHeart = false;
+
+                // return false;
+              }
+
+          }
+        }
   //POST create wish list
   // var count = 0;
   $scope.addWishList = function (productId) {
@@ -563,7 +563,7 @@ $scope.showWishList = function(){
         }
 
 
-        if ($scope.isProdSishList == false || $scope.getWishlistData.length === 0) {
+        if ($scope.isProdSishList == false || $scope.getWishlistData.length === '') {
           console.log("added to cart");
 
           var count = 1;
