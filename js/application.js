@@ -780,6 +780,10 @@ $scope.fbLoginAuth = function() {
     Facebook.getLoginStatus(function(response) {
       console.log(response);
       $scope.me();
+      $('.modal').css("display", "none");
+      $('.modal-open').removeClass();
+      $scope.closeModal();
+
       // if (response.status === 'connected') {
       //   $scope.me();
       //   $scope.loggedIn = true;
@@ -802,6 +806,7 @@ $scope.fbLoginAuth = function() {
         $cookieStore.put("emailId", $scope.emailId);
         $cookieStore.put('userName', $scope.userName);
         console.log("$scope.user",$scope.user);
+
 
       });
       var socailParams = {
@@ -1560,38 +1565,38 @@ $scope.showWishList = function(){
       });
       console.log("list of product ids",$scope.getProductIdList);
       console.log("$scope.getWishListProductId",$scope.getWishListProductId);
-      //objects heart to bind in UI
-      $scope.heartList = {};
-      for (var i = 0; i < $scope.getWishListProductId.length; i++) {
-        $scope.heartList[i] = $scope.getWishListProductId[i];
+      // //objects heart to bind in UI
+      // $scope.heartList = {};
+      // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
+      //   $scope.heartList[i] = $scope.getWishListProductId[i];
+      //
+      // }
+      // console.log("$scope.heartList;",$scope.heartList);
+      // //objects product to bind in UI
+      // $scope.productList = {};
+      // for (var i = 0; i < $scope.getProductIdList.length; i++) {
+      //   $scope.productList[i] = $scope.getProductIdList[i];
+      //
+      // }
+      // console.log("$scope.productList;",$scope.productList);
+      //
+      // //two level loops
+      // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
+      //   for (var i = 0; i < $scope.getProductIdList.length; i++) {
+      //       if ($scope.getWishListProductId[i] = $scope.getProductIdList[i]) {
+      //         $scope.showHeart = $scope.getWishListProductId;
+      //       }
+      //
+      //   }
+      //
+      // }
 
-      }
-      console.log("$scope.heartList;",$scope.heartList);
-      //objects product to bind in UI
-      $scope.productList = {};
-      for (var i = 0; i < $scope.getProductIdList.length; i++) {
-        $scope.productList[i] = $scope.getProductIdList[i];
-
-      }
-      console.log("$scope.productList;",$scope.productList);
-
-      //two level loops
-      for (var i = 0; i < $scope.getWishListProductId.length; i++) {
-        for (var i = 0; i < $scope.getProductIdList.length; i++) {
-            if ($scope.getWishListProductId[i] = $scope.getProductIdList[i]) {
-              $scope.showHeart = $scope.getWishListProductId;
-            }
-
-        }
-
-      }
-
-      //heart list
-      if ($scope.heartList = $scope.productList) {
-        $scope.showHeart = true;
-      } else {
-        $scope.showHeart = false;
-      }
+      // //heart list
+      // if ($scope.heartList = $scope.productList) {
+      //   $scope.showHeart = true;
+      // } else {
+      //   $scope.showHeart = false;
+      // }
     }).error(function(data){
       // ngToast.create({
       //   className: 'warning',
@@ -1600,25 +1605,25 @@ $scope.showWishList = function(){
     });
   };
 
-  //check the heart
-  $scope.hideWishlist= true;
-  $scope.isInWishlist = function(productId){
-    // for (var i = 0; i < $scope.getListOfFav.length; i++) {
-    //
-    //     if ($scope.getListOfFav[i].product._id == productId) {
-    //       $scope.hideWishlist= true;
-    //       $scope.showFilledHeart = true;
-    //       return true;
-    //     } else {
-    //       $scope.hideWishlist= true;
-    //         $scope.showFilledHeart = false;
-    //
-    //       // return false;
-    //     }
-    //
-    // }
-  }
+$scope.getWishList();
+        //check the heart
+        $scope.hideWishlist= true;
+        $scope.isInWishlist = function(productId){
+          for (var i = 0; i < $scope.getListOfFav.length; i++) {
 
+              if ($scope.getListOfFav[i].product._id == productId) {
+                $scope.hideWishlist= true;
+                $scope.showFilledHeart = true;
+                return true;
+              } else {
+                $scope.hideWishlist= true;
+                  $scope.showFilledHeart = false;
+
+                // return false;
+              }
+
+          }
+        }
   //POST create wish list
   // var count = 0;
   $scope.addWishList = function (productId) {
@@ -1636,7 +1641,7 @@ $scope.showWishList = function(){
         }
 
 
-        if ($scope.isProdSishList == false || $scope.getWishlistData.length === 0) {
+        if ($scope.isProdSishList == false || $scope.getWishlistData.length === '') {
           console.log("added to cart");
 
           var count = 1;
@@ -1873,16 +1878,17 @@ console.log("$(window).height(); ",$(window).height());
           $scope.searchPagelist = false;
           $scope.particularProduct = true;
           $scope.show_wishlist  = false;
-          $scope.showMenuResult  = false;
+          $scope.showMenuResult  = true;
           $scope.hideAutocomplete = false;
 
           for (var i = 0; i < data.length; i++) {
-            if (id === data[i]._id) {
+            if (id == data[i]._id) {
               $scope.search_result_product = data[i];
 
             }
           }
               $scope.showParticularProductsDiv = true;
+
           console.log("$scope.search_result ",$scope.search_result_product );
           console.log("data[i]",$scope.search_result_product);
         }).error(function(data) {
@@ -1897,7 +1903,7 @@ console.log("$(window).height(); ",$(window).height());
   if($routeParams.show_productDetails){
     $scope.showParticularProducts($routeParams.product_id);
     $scope.showParticularProductsDiv = true;
-
+    $scope.categoryNames = $routeParams.category;
   }
 
   //minimum order value to be calculated to add delivery
@@ -2465,19 +2471,19 @@ console.log("$(window).height(); ",$(window).height());
           });
         }
         //Fb sharer
-        $scope.FbShare = function(){
-          FB.ui({
-            method: 'share_open_graph',
-            action_type: 'og.likes',
-            action_properties: JSON.stringify({
-              object:'https://developers.facebook.com/docs/',
-            })
+        $scope.FbShare = function(name,id){
+
+            FB.ui({
+              method: 'share',
+              display: 'popup',
+              href: 'http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/search-page?show_productDetails='+name+'&product_id='+id,
             }, function(response){});
+
           }
-        $scope.twitterShare = function(){
+        $scope.twitterShare = function(ids){
           var twitterHandle = 'Krazy Meals';
             //window.open("https://twitter.com/share?url="+encodeURIComponent(url));
-            window.open('https://twitter.com/share?url='+escape(window.location.href)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+            window.open('https://twitter.com/share?url='+escape('http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
           }
 
           //show mimage modal
