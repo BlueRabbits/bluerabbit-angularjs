@@ -37,6 +37,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
           signupcredintials = {
               name: $scope.name,
               email: $scope.email,
+              mobile_number:$scope.mobile_number,
               password: $scope.password,
             }
         Auth.register(signupcredintials).success(function(data) {

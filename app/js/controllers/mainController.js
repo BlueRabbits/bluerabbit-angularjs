@@ -642,9 +642,11 @@ $scope.getWishList();
   }
 
       //show searchPage
-      $scope.showSearchPage = function(){
-        $location.path('/search-page');
-        window.location.reload = true;
+      $scope.showSearchPage = function(catname){
+        $location.path('/search-page').search({
+          showMenuResult: true,
+          category: catname,
+        });
       }
 
       //new Banner API
