@@ -611,7 +611,7 @@ console.log("$(window).height(); ",$(window).height());
                                         Auth.addWishList(wishListInfo)
                                         .success(function(data){
                                           //console.log('data', data);
-                                          $scope.getcartItems();
+                                          // $scope.getcartItems();
                                           $scope.getWishList();
 
 

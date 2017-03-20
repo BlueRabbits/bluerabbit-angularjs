@@ -25,7 +25,7 @@
       </div> -->
     <div class="container">
       <div class="col-md-12 admin-content" id="homes" ng-show="showTab == 'profile'">
-        <p class="row terms_heading">User info</p>
+        <p class="row terms_heading">Basic info</p>
         <div class="row basic_info">
           <div class="info_block col-sm-6">
             <div class="dropdown__myaccount">
@@ -57,8 +57,8 @@
           </div>
           <div class="info_block col-sm-12">
             <lable>Address</lable>
-            <p>{{getAddressByUserId[0].houseNo}}, {{getAddressByUserId[0].name}}, {{getAddressByUserId[0].streetName}}, {{getAddressByUserId[0].landmark}},</p>
-            <p>{{getAddressByUserId[0].city}}, {{getAddressByUserId[0].country}}</p>
+            <p>{{getAddressByUserId[0].houseNo}} {{getAddressByUserId[0].name}} {{getAddressByUserId[0].streetName}} {{getAddressByUserId[0].landmark}}</p>
+            <p>{{getAddressByUserId[0].city}} {{getAddressByUserId[0].country}}</p>
           </div>
         </div>
 
@@ -160,6 +160,7 @@
                     <input type="text" class="form-control" ng-model="country" id="pwd">
                     <br/>
                       <button type="submit" class="checkout-page__buttons active">Submit</button>
+                      <button ng-click="showEditAddressFields = false" class="checkout-page__buttons">Cancel</button>
                   </div>
 
               </form>
@@ -173,8 +174,8 @@
           <!-- tabs -->
             <ul class="nav nav-tabs order-nav" style="padding: 13px 0px 25px 52px;">
             <!-- <li class="active"><a data-toggle="tab" href="#home">Home</a></li> -->
-                <li class="active"><a data-toggle="tab" data-target="#menu1" ng-click="liveOrders()" style="color: #e40046 ">Live Orders</a></li>
-                <li><a data-toggle="tab" data-target="#menu2" ng-click="pastOrders()" style="color: #e40046 ">Past Orders</a></li>
+                <li class="active"><a data-toggle="tab" data-target="#menu1" ng-click="liveOrders()">Live Orders</a></li>
+                <li><a data-toggle="tab" data-target="#menu2" ng-click="pastOrders()">Past Orders</a></li>
             </ul>
           <div class="tab-content">
             <div id="menu1" class="" ng-show="showLiveOrders == true">
@@ -277,8 +278,8 @@
       </div>
 
       <div class="col-md-12 admin-content" id="Feedback" ng-show="showTab == 'feedback'">
-        <textarea class="text-feedback" ng-model="feedBackComments" placeholder="Write your feedback."></textarea>
-        <button class="checkout-page__buttons active pull-right" style="margin-top:15px" type="button" ng-click="feedBack()">submit</button>
+        <textarea class="text-feedback" ng-model="feedBackComments" ng-init="feedBackComments = ''" placeholder="Write your feedback."></textarea>
+        <button class="checkout-page__buttons pull-right" style="cursor:pointer" ng-class="{'active' : feedBackComments !== '', 'disabled' : feedBackComments === ''}" ng-disabled="feedBackComments === ''" style="margin-top:15px" type="button" ng-click="feedBack()">submit</button>
       </div>
 
       <div class="col-md-12 admin-content" id="Address" ng-show="showTab == 'termNcondition'">

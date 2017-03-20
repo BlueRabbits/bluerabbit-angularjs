@@ -246,8 +246,12 @@
 				</div>
 			</div> <!-- heading -->
 			<ul class="nav nav-tabs" role="tablist" style="padding-bottom: 18px;">
-				<li class="select-address-tab" ng-style="{color:saveAddressColor}" ng-class="{'active' : showDiv == 'savedAddress'}"><a  style="padding: 0px;border: none;color: #d92e4a;" role="tab" data-toggle="tab" ng-click="showDiv = 'savedAddress'">Saved address</a></li>
-				<li class="select-address-tab" style="margin-left: 30px;" ng-style="{color:saveAddressColor}" ng-class="{'active' : showDiv == 'newAddress'}"><a style="padding: 0px; color: #d92e4a;border: none;"  role="tab" data-toggle="tab" ng-click="showDiv = 'newAddress'" ng-click="getLocationDeliver()">Add Address</a></li>
+				<li class="select-address-tab" ng-show="getAddressByUserId.length" style="color:transparent">
+					<a class="switchAddressTab" role="tab"  ng-class="{'active' : showDiv == 'savedAddress'}" data-toggle="tab" ng-click="showDiv = 'savedAddress'">Saved address</a>
+				</li>
+				<li class="select-address-tab" style="margin-left: 30px; color:transparent">
+					<a class="switchAddressTab" role="tab" ng-class="{'active' : showDiv == 'newAddress'}" data-toggle="tab" ng-click="showDiv = 'newAddress'" ng-click="getLocationDeliver()">Add Address</a>
+				</li>
   		</ul>
 			<div class="row">
 	      <div class="col-md-12" ng-show="showDiv == 'savedAddress'">
@@ -297,6 +301,7 @@
 	          <div class="shipping-form__postal">
 	            <!-- <input type="text" name="name" value="" class=" form-inputs city-address" ng-model="city" placeholder="City" required> -->
 							<select class="form-inputs city-address" id="sel1" ng-model="city" required>
+						    <option ng-model="city">Select city</option>
 						    <option ng-repeat="locname in locationDeliverName" ng-model="city">{{locname.name}}</option>
 						  </select>
 	            <input type="text" name="name" value="" class=" form-inputs Zipcode" ng-model="pincode" placeholder="Zipcode" >
@@ -306,7 +311,7 @@
 	            <input type="text" name="name" value="" class=" form-inputs country-name" ng-model="country" placeholder="Country" required>
 	          </div>
 						<div style="margin: 20px 20px 20px 20px;">
-							<button class=" checkout-page__buttons" type="submit" ng-click="getAddressByUserId()">Add Address</button>
+							<button class="checkout-page__buttons active" type="submit" ng-click="getAddressByUserId()">Add Address</button>
 						</div>
 	        </form>
 				</div>

@@ -2846,6 +2846,9 @@ SMACSS: PAGE - LANDING
   .checkout-page__buttons:hover, .checkout-page__buttons:active, .checkout-page__buttons.active {
     background-color: #fbad18;
     color: #fff; }
+  .checkout-page__buttons.disabled:hover, .checkout-page__buttons.disabled:active, .checkout-page__buttons.disabled {
+    background-color: #636467;
+    color: #fff; }
 
 .card_layout {
   padding: 15px;
@@ -2924,7 +2927,7 @@ SMACSS: PAGE - LANDING
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 0.1px;
-  color: #b1b1b1; }
+  color: #565656; }
 
 .Street-address {
   width: 854px; }
@@ -2982,6 +2985,18 @@ SMACSS: PAGE - LANDING
 .vis {
   display: none; }
 
+.switchAddressTab {
+  padding: 0px !important;
+  border: none !important;
+  color: #b4b4b4 !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid transparent !important; }
+  .switchAddressTab.active, .switchAddressTab:hover {
+    border-bottom: 1px solid #d92e4a !important;
+    color: #d92e4a !important;
+    background-color: transparent !important;
+    padding-bottom: 5px; }
+
 .address-box {
   background-color: #fff;
   border: 1px solid #eaf1e8;
@@ -3001,7 +3016,6 @@ SMACSS: PAGE - LANDING
       margin: 0;
       text-transform: uppercase;
       font-size: 24px;
-      font-family: Lato;
       font-weight: 900;
       font-style: normal;
       font-stretch: normal;
@@ -3093,7 +3107,6 @@ SMACSS: PAGE - LANDING
   left: 20px; }
 
 .shipping-header {
-  font-family: Lato;
   font-size: 42px;
   font-weight: bold;
   font-style: normal;
@@ -3102,7 +3115,6 @@ SMACSS: PAGE - LANDING
   letter-spacing: -1px; }
 
 .select-address-tab {
-  font-family: Lato;
   font-size: 14px;
   font-weight: 900;
   font-style: normal;
@@ -3119,7 +3131,6 @@ SMACSS: PAGE - LANDING
 .thankyou-order {
   width: 457px;
   height: 50px;
-  font-family: Lato;
   font-size: 42px;
   font-weight: bold;
   font-style: normal;
@@ -3135,7 +3146,6 @@ SMACSS: PAGE - LANDING
   background-repeat: no-repeat; }
 
 .address-content-details {
-  font-family: Lato;
   font-size: 15px;
   font-weight: normal;
   font-style: normal;
@@ -3480,7 +3490,7 @@ a.no-underline:hover {
   background-image: url(../images/tab-section-bg.png);
   background-repeat: no-repeat;
   padding: 41px 100px;
-  /* background-size: cover; */
+  background-size: cover;
   background-position: center; }
   .tab_section h1 {
     font-size: 52px;
@@ -3497,15 +3507,17 @@ a.no-underline:hover {
     color: #fff;
     font-size: 12px;
     letter-spacing: 1.5px;
-    font-family: "Lato-Black";
-    font-weight: 900;
+    font-family: "Lato-Regular";
+    font-weight: 300;
     text-transform: uppercase;
     font-style: normal;
     font-stretch: normal; }
+  .menu-tabs__list a:hover,
   .menu-tabs__list a.active {
     color: #dbe272;
     border-bottom: 1px solid #dbe272;
-    text-decoration: none; }
+    text-decoration: none;
+    padding-bottom: 10px; }
   .menu-tabs__list button {
     background: none;
     height: 36px;
@@ -4090,15 +4102,15 @@ a.no-underline:hover {
   box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.2); }
   .search-list-dropdown li {
     height: 40px;
-    font-family: "Lato-Black";
+    font-family: "Lato-Regular";
     font-size: 13px;
     font-weight: 500;
     color: #000000;
     display: flex;
     align-items: center;
-    padding: 20px; }
+    padding: 22px 40px; }
     .search-list-dropdown li:hover {
-      background-color: #d8d8d8; }
+      background-color: #f5f5f5; }
 
 .sub-menu {
   display: flex;
@@ -4116,12 +4128,16 @@ a.no-underline:hover {
 
 .cart__search {
   height: 35px;
+  font-family: "Lato-Regular";
   border: none;
   background: none;
   width: 100%;
   outline: none;
-  color: white;
+  color: #ffffff;
   margin-left: 15px; }
+
+.cart__search::placeholder {
+  color: #eeeeee; }
 
 .sub-menu__favorites {
   display: flex;
@@ -4134,6 +4150,8 @@ a.no-underline:hover {
   padding: 0 48px; }
   .sub-menu__favorites p {
     margin: 0; }
+  .sub-menu__favorites img {
+    padding-right: 15px; }
 
 .search-page__tab-menu {
   padding: 0 50px;
@@ -4713,25 +4731,33 @@ button[disabled] {
   float: left !important;
   margin-bottom: -1px !important;
   width: 500px !important;
-  height: 36px !important;
+  height: 47px;
   object-fit: contain !important;
   border-radius: 40px !important;
   background-color: white !important;
   border: 1px #dddddd solid !important; }
+  .order-nav > li > a {
+    color: #b4b4b4; }
+  .order-nav > li > a:active,
+  .order-nav > li > a:hover {
+    background-color: transparent !important;
+    border: none;
+    border-radius: 40px !important;
+    cursor: pointer; }
 
 .order-nav > li.active > a, .order-nav > li.active > a:hover {
   text-align: center !important;
   color: #555 !important;
   cursor: default !important;
-  background-color: #fff !important;
-  border: 1px solid #ddd;
+  background-color: transparent !important;
   border-bottom-color: transparent !important;
+  border: none;
   width: 500px;
-  height: 36px;
-  object-fit: contain;
-  border-radius: 40px;
+  height: 47px;
+  border-radius: 40px !important;
+  overflow: hidden;
   background-color: #6f9d2f !important;
-  color: black !important; }
+  color: #fff !important; }
 
 .nav > li > a:focus, .nav > li > a:hover {
   background-color: none; }

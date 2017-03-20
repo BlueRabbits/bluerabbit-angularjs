@@ -336,7 +336,7 @@ a.no-underline:hover {
   background-image: url(../images/tab-section-bg.png);
   background-repeat: no-repeat;
   padding: 41px 100px;
-  /* background-size: cover; */
+  background-size: cover;
   background-position: center;
 
   h1 {
@@ -353,23 +353,23 @@ a.no-underline:hover {
   display: flex;
   justify-content: space-between;
 
-
-
    li a{
      color: $color-white;
      font-size: 12px;
      letter-spacing: 1.5px;
-     font-family: $font-Lato-black;
-     font-weight: 900;
+     font-family: $font-Lato-regular;
+     font-weight: 300;
      text-transform: uppercase;
      font-style: normal;
      font-stretch: normal;
    }
 
+   a:hover,
    a.active {
       color: #dbe272;
       border-bottom: 1px solid #dbe272;
       text-decoration: none;
+      padding-bottom: 10px;
     }
 
    button {

@@ -316,26 +316,36 @@
   float: left !important;
   margin-bottom: -1px !important;
   width: 500px !important;
-  height: 36px !important;
+  height: 47px;
   object-fit: contain !important;
   border-radius: 40px !important;
   background-color: white !important;
   border: 1px #dddddd solid !important;
+
+  >a { color: #b4b4b4; }
+
+  >a:active,
+  >a:hover {
+    background-color: transparent!important;
+    border: none;
+    border-radius: 40px !important;
+    cursor: pointer;
+  }
 }
 
 .order-nav>li.active>a, .order-nav>li.active>a:hover {
   text-align: center!important;
   color: #555 !important;
   cursor: default !important;
-  background-color: #fff !important;
-  border: 1px solid #ddd;
+  background-color: transparent!important;
   border-bottom-color: transparent !important;
+  border: none;
   width: 500px;
-  height: 36px;
-  object-fit: contain;
-  border-radius: 40px;
+  height: 47px;
+  border-radius: 40px !important;
+  overflow: hidden;
   background-color: #6f9d2f!important;
-  color: black !important;
+  color: #fff!important;
 }
 
 .nav>li>a:focus, .nav>li>a:hover{
