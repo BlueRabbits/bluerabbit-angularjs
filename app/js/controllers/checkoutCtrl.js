@@ -227,11 +227,11 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       .success(function(data){
         console.log("locationdeliver",data);
         $scope.locationDeliverName = data;
-        $scope.city = data[0].name;
-          }).error(function(data){
+        $scope.city = 'Select city';
+      }).error(function(data){
 
-          });
-    }
+      });
+}
     $scope.getLocationDeliver();
   //post address
   $scope.showDiv =  "display:none;";

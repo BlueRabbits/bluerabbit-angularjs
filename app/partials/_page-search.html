@@ -46,8 +46,8 @@
 							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
 							<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
 							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
-							<img class="product_heart" style="margin-bottom: 11px;" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(search_result_product._id)">
-							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(search_result_product._id)" ng-show="showFilledHeart" ng-click="deleteWishList(search_result_product._id)"></i>
+							<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(search_result_product._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(search_result_product._id)" ng-show="showFilledHeart" ng-click="deleteWishList(search_result_product._id)"></i>
 								<div class="product-view" ng-init="showHearts(search_result_product._id)">
 
 										<p class="view-more" ng-hide="showParticularProductsDiv === true"  ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View more</p>
@@ -78,15 +78,15 @@
 
 						</div>
 					</div>
-					<div class="share_options">
-						<span>Share</span>
-						<span>
-							<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
-							<a class="fa fa-twitter" aria-hidden="true"></a>
-							<a class="fa fa-google-plus" aria-hidden="true"></a>
-						</span>
-					</div>
 					<div class="description__section--content">
+						<div class="share_options">
+							<span>Share</span>
+							<span>
+								<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
+								<a class="fa fa-twitter" aria-hidden="true"></a>
+								<a class="fa fa-google-plus" aria-hidden="true"></a>
+							</span>
+						</div>
 						<p class="product-name">Product Description </p>
 						<p class="product-sub-title">
 							{{search_result_product.description}}
@@ -113,8 +113,8 @@
 							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
 							<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
 							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
-							<img class="product_heart" style="margin-bottom: 11px;" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i>
+							<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i>
 								<div class="product-view" ng-init="showHearts(results._id)">
 
 									<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
@@ -145,15 +145,15 @@
 
 						</div>
 					</div>
-					<div class="share_options">
-						<span>Share</span>
-						<span>
-							<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
-							<a class="fa fa-twitter" aria-hidden="true"></a>
-							<a class="fa fa-google-plus" aria-hidden="true"></a>
-						</span>
-					</div>
 					<div class="description__section--content">
+						<div class="share_options">
+							<span>Share</span>
+							<span>
+								<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
+								<a class="fa fa-twitter" aria-hidden="true"></a>
+								<a class="fa fa-google-plus" aria-hidden="true"></a>
+							</span>
+						</div>
 						<p class="product-name">Product Description </p>
 						<p class="product-sub-title">
 							{{results.description}}
@@ -232,8 +232,8 @@
 							<div class="search-section__description">
 								<p class="product-name">
 									{{list.name}}</p>
-									<img class="product_heart" style="margin-bottom: 11px;" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-									<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
+									<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
+									<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
 								<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
 									<div class="product-view">
 										<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
