@@ -82,9 +82,9 @@
 						<div class="share_options">
 							<span>Share</span>
 							<span>
-								<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
-								<a class="fa fa-twitter" aria-hidden="true"></a>
-								<a class="fa fa-google-plus" aria-hidden="true"></a>
+								<a class="fa fa-facebook"  ng-click="FbShare(search_result_product.name,search_result_product._id)" id="shareBtn" aria-hidden="true"></a>
+								<a class="fa fa-twitter" ng-click="twitterShare(search_result_product._id)" aria-hidden="true"></a>
+								<a class="fa fa-google-plus"  href="https://plus.google.com/share?url=http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/krazy-meals/#/search-page?show_productDetails={{search_result_product.name}}" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
 							</span>
 						</div>
 						<p class="product-name">Product Description </p>
@@ -149,9 +149,9 @@
 						<div class="share_options">
 							<span>Share</span>
 							<span>
-								<a class="fa fa-facebook" ng-click="FbShare()" aria-hidden="true"></a>
-								<a class="fa fa-twitter" aria-hidden="true"></a>
-								<a class="fa fa-google-plus" aria-hidden="true"></a>
+								<a class="fa fa-facebook"  ng-click="FbShare(results.name,results._id)" id="shareBtn" aria-hidden="true"></a>
+								<a class="fa fa-twitter" ng-click="twitterShare(results._id)" aria-hidden="true"></a>
+								<a class="fa fa-google-plus"  href="https://plus.google.com/share?url=http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/krazy-meals/#/search-page?show_productDetails={{results.name}}" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
 							</span>
 						</div>
 						<p class="product-name">Product Description </p>
@@ -270,7 +270,7 @@
 								<span>
 									<a class="fa fa-facebook"  ng-click="FbShare(list.name,list._id)" id="shareBtn" aria-hidden="true"></a>
 									<a class="fa fa-twitter" ng-click="twitterShare(list._id)" aria-hidden="true"></a>
-									<a class="fa fa-google-plus"  href="https://plus.google.com/share?url=http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/bluerabbit-angularjs/#/search-page?show_productDetails={{list.name}}" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
+									<a class="fa fa-google-plus"  href="https://plus.google.com/share?url=http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/krazy-meals/#/search-page?show_productDetails={{list.name}}" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
 								</span>
 							</div>
 							<p class="product-name">Product Description </p>
