@@ -29,7 +29,7 @@
         <div class="row basic_info">
           <div class="info_block col-sm-6">
             <div class="dropdown__myaccount">
-              <div class="user_image" style="background-image: url({{BASE_URL}}/ecom{{userDetails.image_url}})"></div>
+              <div class="user_image" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})"></div>
               <div class="user_image" style="background-image: url('images/user_avatar.png')" ng-show="!userDetails.image_url">
               </div>
               {{userDetails.name}}
@@ -44,21 +44,23 @@
             </div>
           </div>
           <div class="info_block col-sm-6">
+            <lable>Contact Number</lable>
+            <p ng-show="editImage==false">{{userDetails.mobile_number}}</p>
+              <input type="text" ng-model="mobile_number" style="display: inline-block;" ng-show="editImage==true"/>
+          </div>
+          <div class="info_block col-sm-6">
             <lable>Email</lable>
             <p>{{userDetails.email}}</p>
           </div>
-          <div class="info_block col-sm-6">
-            <lable>Contact Number</lable>
-            <p>{{getAddressByUserId[0].mobileNumber}}</p>
-          </div>
+
           <div class="info_block col-sm-6">
             <lable>CHANGE PASSWORD</lable>
             <p><a href="" ng-click="editPassword = true" data-toggle="modal" data-target="#myModal">Click here</a> to change password</p>
           </div>
-          <div class="info_block col-sm-12">
+          <div class="info_block col-sm-12" ng-hide="hideAddress">
             <lable>Address</lable>
-            <p>{{getAddressByUserId[0].houseNo}} {{getAddressByUserId[0].name}} {{getAddressByUserId[0].streetName}} {{getAddressByUserId[0].landmark}}</p>
-            <p>{{getAddressByUserId[0].city}} {{getAddressByUserId[0].country}}</p>
+            <!-- <p>{{getAddressByUserId[0].houseNo}} {{getAddressByUserId[0].name}} {{getAddressByUserId[0].streetName}} {{getAddressByUserId[0].landmark}}</p>
+            <p>{{getAddressByUserId[0].city}} {{getAddressByUserId[0].country}}</p> -->
           </div>
         </div>
 

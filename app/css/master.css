@@ -116,9 +116,12 @@ input {
 .clear-margin {
   margin: 0px; }
 
-.ng-toast--top {
-  top: 50px !important;
-  bottom: auto !important; }
+.ng-toast.ng-toast--right .ng-toast__list {
+  margin-right: 244px !important;
+  margin-top: -40px !important; }
+
+.ng-toast {
+  margin-top: 67px !important; }
 
 button {
   outline: none; }
