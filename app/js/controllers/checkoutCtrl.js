@@ -227,7 +227,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       .success(function(data){
         console.log("locationdeliver",data);
         $scope.locationDeliverName = data;
-        $scope.city = 'Select city';
+        $scope.city = 'Select Location';
       }).error(function(data){
 
       });
@@ -236,6 +236,8 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
   //post address
   $scope.showDiv =  "display:none;";
   $scope.country = "UAE";
+  $scope.state = "Dubai";
+  $scope.mobileNumber = "+971";
   $scope.addAddress = function () {
 
     $scope.getUserId = $cookieStore.get('userId');

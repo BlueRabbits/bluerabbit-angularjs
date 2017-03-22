@@ -3115,7 +3115,8 @@ SMACSS: PAGE - LANDING
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
-  letter-spacing: -1px; }
+  letter-spacing: -1px;
+  font-family: Lato-Bold; }
 
 .select-address-tab {
   font-size: 14px;
@@ -3140,7 +3141,8 @@ SMACSS: PAGE - LANDING
   font-stretch: normal;
   line-height: normal;
   letter-spacing: -1px;
-  color: #333333; }
+  color: #333333;
+  font-family: Lato-Bold; }
 
 .order-background {
   object-fit: contain;
