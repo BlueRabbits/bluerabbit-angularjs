@@ -15,7 +15,8 @@
     "angular-google-plus": "^0.1.3",
     "angular-facebook": "^0.2.3",
     "owl.carousel": "^2.2.0",
-    "angular-filter": "^0.5.15"
+    "angular-filter": "^0.5.15",
+    "angular-snapscroll": "^1.3.1"
   },
   "devDependencies": {},
   "overrides": {}

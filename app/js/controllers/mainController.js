@@ -1,6 +1,27 @@
 app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, ngToast ){
   'use strict';
   $scope.showTab = "Recommended";
+
+//   var prevScrollTop = 0;
+// var $scrollDiv    = $('div#content');
+// var $currentDiv   = $scrollDiv.children('div:first-child');
+// $scrollDiv.scroll(function(eventObj)
+// {
+//     var curScrollTop = $scrollDiv.scrollTop();
+//     if (prevScrollTop < curScrollTop)
+//     {
+//     // Scrolling down:
+//         $currentDiv = $currentDiv.next().scrollTo();
+//     }
+//     else if (prevScrollTop > curScrollTop)
+//     {
+//     // Scrolling up:
+//         $currentDiv = $currentDiv.prev().scrollTo();
+//     }
+//     prevScrollTop = curScrollTop;
+// });
+  //window.scroll(0,350);
+
   $(document).ready(function() {
     $('.products-tab').hide();
     $('.products-tab').first().show();
