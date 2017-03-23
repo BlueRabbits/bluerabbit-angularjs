@@ -116,9 +116,12 @@ input {
 .clear-margin {
   margin: 0px; }
 
-.ng-toast--top {
-  top: 50px !important;
-  bottom: auto !important; }
+.ng-toast.ng-toast--right .ng-toast__list {
+  margin-right: 244px !important;
+  margin-top: -40px !important; }
+
+.ng-toast {
+  margin-top: 67px !important; }
 
 button {
   outline: none; }
@@ -3128,7 +3131,8 @@ SMACSS: PAGE - LANDING
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
-  letter-spacing: -1px; }
+  letter-spacing: -1px;
+  font-family: Lato-Bold; }
 
 .select-address-tab {
   font-size: 14px;
@@ -3153,7 +3157,8 @@ SMACSS: PAGE - LANDING
   font-stretch: normal;
   line-height: normal;
   letter-spacing: -1px;
-  color: #333333; }
+  color: #333333;
+  font-family: Lato-Bold; }
 
 .order-background {
   object-fit: contain;

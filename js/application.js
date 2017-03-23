@@ -7,7 +7,7 @@ var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngTo
 
 app.constant('URL', {
   //BASE_URL: "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000"
-  BASE_URL: "http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com"
+  BASE_URL: "http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com:9000"
   //BASE_URL: "http://localhost:9000"
   //BASE_URL: "http://192.168.0.84:9000"
 });
@@ -299,7 +299,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       .success(function(data){
         console.log("locationdeliver",data);
         $scope.locationDeliverName = data;
-        $scope.city = 'Select city';
+        $scope.city = 'Select Location';
       }).error(function(data){
 
       });
@@ -308,6 +308,8 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
   //post address
   $scope.showDiv =  "display:none;";
   $scope.country = "UAE";
+  $scope.state = "Dubai";
+  $scope.mobileNumber = "+971";
   $scope.addAddress = function () {
 
     $scope.getUserId = $cookieStore.get('userId');
@@ -435,7 +437,7 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
 app.controller('loginController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, GooglePlus, Facebook, ngToast, URL){
   'use strict';
-
+  $scope.hideAddress = true;
   $scope.BASE_URL = URL.BASE_URL;
   $('.modal').on('hidden.bs.modal', function (e) {
     $(this).find("input").val('').end();
@@ -987,7 +989,8 @@ $scope.editAddress = function(){
         $scope.hideAvatar = false;
         var profileDetails = {
           "name": $scope.userName,
-          "image_url": $scope.profileImage
+          "image_url": $scope.profileImage,
+          "mobile_number":$scope.mobile_number
         }
         Auth.profileImageUpload(profileDetails)
           .success(function(data) {
@@ -996,6 +999,7 @@ $scope.editAddress = function(){
             console.log('profile updated data', data);
             $scope.emailId = data.email;
             $scope.userName = data.name;
+            $scop.editImage=false;
             // ngToast.create({
             //   className: 'success',
             //   content: "Successfully Updated the address"
@@ -1018,10 +1022,13 @@ $scope.editAddress = function(){
             $scope.feedBackComments = "";
             console.log('profile updated data', data);
 
-            // ngToast.create({
-            //   className: 'success',
-            //   content: "Feedback sent Successfully"
-            // });
+            ngToast.create({
+              className: 'success',
+              content: "Feedback Sent Successfully",
+              maxNumber:1,
+               timeout:1000,
+               dismissOnTimeout:	true
+            });
           }).error(function(data) {
             console.log(data);
             // ngToast.create({

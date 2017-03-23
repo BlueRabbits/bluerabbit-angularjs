@@ -23,7 +23,7 @@
 				<div class="dropdown__myaccount" id="menu1" type="button" >
 				 <div class="user_image" style="background-image: url('images/user_avatar.png')" ng-show="hideAvatar">
 				 </div>
-					<div class="user_image" style="background-image: url({{BASE_URL}}/ecom{{userDetails.image_url}})" ng-hide="hideAvatar"></div>
+					<div class="user_image" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})" ng-hide="hideAvatar"></div>
 					{{userName}}
 				 	<span class="caret"></span>
 				</div>

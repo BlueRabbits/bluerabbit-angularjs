@@ -174,7 +174,7 @@
 				<div class="dropdown__myaccount" id="menu1" type="button" >
 				 <div class="user_image" style="background-image: url('images/user_avatar.png')" ng-show="hideAvatar">
 				 </div>
-					<div class="user_image" style="background-image: url({{BASE_URL}}/ecom{{userDetails.image_url}})" ng-hide="hideAvatar"></div>
+					<div class="user_image" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})" ng-hide="hideAvatar"></div>
 					{{userName}}
 				 	<span class="caret"></span>
 				</div>
@@ -306,10 +306,10 @@
 										<img src="images/radio-button@3x.png"ng-show="addressIdSelected == address._id" style="position: relative;right: 361px;"  alt=""  width="20px" height="20px"/>
 										<div class="col-xs-8" style="margin-bottom: 9px;"><h2>{{address.addressType}}</h2></div>
 										<!-- <div class="col-xs-4"><span class="pull-right edit" ng-click="editAddress()">Edit</span></div> -->
-										<div class="col-xs-6 address-content-details" >
-											<p>{{address.houseNo}},{{address.name}}</p>
-											<p>{{address.streetName}},{{address.landmark}},</p>
-											<p>{{address.city}},{{address.country}}</p>
+										<div class="col-xs-11" >
+											<p>{{address.name}},{{address.houseNo}}</p>
+											<p>{{address.streetName}},{{address.landmark}},
+										{{address.city}},{{address.country}}</p>
 											<p>{{address.mobileNumber}}</p>
 										</div>
 									</div>
@@ -343,7 +343,7 @@
 	          <div class="shipping-form__postal">
 	            <!-- <input type="text" name="name" value="" class=" form-inputs city-address" ng-model="city" placeholder="City" required> -->
 							<select class="form-inputs city-address" id="sel1" ng-model="city" required>
-						    <option ng-model="city">Select city</option>
+						    <option ng-model="city">Select Location</option>
 						    <option ng-repeat="locname in locationDeliverName" ng-model="city">{{locname.name}}</option>
 						  </select>
 	            <input type="text" name="name" value="" class=" form-inputs Zipcode" ng-model="pincode" placeholder="Zipcode" >
@@ -371,7 +371,7 @@
     <div class="col-xs-12">
 			<div class="row">
 				<div class="col-sm-12">
-					<h2 class="text-center" style="margin:0px">Payment option</h2>
+					<h2 class="text-center shipping-header" style="margin:0px">Payment option</h2>
 				</div>
 			</div> <!-- heading -->
 			<div class="row">
