@@ -125,7 +125,9 @@
 <div class="tab_section" id="menu">
   <a href="" ng-click="ourMenu(categoryNames)" class="no-underline"><h1>Our Menu</h1></a>
   <div class="menu-tabs">
-    <ul class="menu-tabs__list" id="tabs-menu">
+
+    <ul class="menu-tabs__list scroll-menu" id="tabs-menu">
+
       <li ng-repeat="categories in getCategoryList">
         <a style="cursor:pointer;" data-toggle="tab"
             ng-class="{'active' : categories.name == categoryNames}"
@@ -133,13 +135,16 @@
               {{categories.name}}
         </a>
       </li>
+        <div id="next" class="nav-arrow left-arrow category-left-arrow" ng-hide="showArrow === true" ng-click="showArrow = !showArrow" > < </div>
+      <div id="prev" class="nav-arrow right-arrow category-right-arrow" ng-show="showArrow === true" ng-click="showArrow = !showArrow"> > </div>
       <!-- <button type="button" name="button">view all</button> -->
     </ul>
   </div>
   <div class="menu-tabs__products-list ">
     <a href="" ng-click="initSetTab('previous')"><img src="images/icon_arrow_left.png" class="arrow arrow_left" alt="left"></a>
     <a href="" ng-click="initSetTab('next')"><img src="images/icon_arrow_right.png" class="arrow arrow_right" alt="right"></a>
-    <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
+    <div class="shadow-effect">
+      <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
       <!-- 1-->
       <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
         <div class="breakfast-products__image" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name,list.cat,list._id)"></div>
@@ -162,7 +167,9 @@
           <button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out Of Stock</button>
         </div>
       </div>
+
     </div>
+  </div>
   </div>
 </div>
 
@@ -235,11 +242,53 @@
         Basically, the kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want.
         We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time
       </p>
+      <p id="descrption-2">
+        Although, today we’re even more excited to release our Wireframe Kit.
+        The name speaks for itself and how you could’ve already guessed,
+        Wireframe Kit is a perfect instrument for creating serious prototypes and complex web projects.
+        Basically, the kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want.
+        We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time
+      </p>
+      <p id="descrption-2">
+        Although, today we’re even more excited to release our Wireframe Kit.
+        The name speaks for itself and how you could’ve already guessed,
+        Wireframe Kit is a perfect instrument for creating serious prototypes and complex web projects.
+        Basically, the kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want.
+        We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time
+      </p>
     </div>
     <div class="vertical-line" style="width:70px;border-right: 1px solid white;margin: 0 11px;">
 
     </div>
     <div class="aboutus-team">
+      <div class="team-member__profile">
+        <div class="team-member-image">
+          <div class="team-member-image__thumbnail" style="background-image:url(images/fish.png)">
+
+          </div>
+        </div>
+        <div class="team-member-details">
+          <p class="member-name">Lula alexander</p>
+          <p class="member-designation">Head Of operation</p>
+          <p class="member-strength">
+            An excellent way of preparing a project’s wireframe and presenting
+          </p>
+        </div>
+      </div>
+      <div class="team-member__profile">
+        <div class="team-member-image">
+          <div class="team-member-image__thumbnail" style="background-image:url(images/fish.png)">
+
+          </div>
+        </div>
+        <div class="team-member-details">
+          <p class="member-name">Lula alexander</p>
+          <p class="member-designation">Head Of operation</p>
+          <p class="member-strength">
+            An excellent way of preparing a project’s wireframe and presenting
+          </p>
+        </div>
+      </div>
       <div class="team-member__profile">
         <div class="team-member-image">
           <div class="team-member-image__thumbnail" style="background-image:url(images/fish.png)">

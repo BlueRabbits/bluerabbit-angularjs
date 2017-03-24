@@ -3728,7 +3728,8 @@ a.no-underline:hover {
 
 .location-services__search {
   width: 50%;
-  padding: 35px 0 35px 35px; }
+  padding: 35px 0 35px 35px;
+  overflow: scroll; }
 
 .location-search-places {
   display: -ms-flexbox;
@@ -3759,7 +3760,6 @@ a.no-underline:hover {
 
 .aboutus-section {
   background-color: #d42841;
-  height: 468px;
   background-image: url(../images/aboutus-icon.png);
   background-repeat: no-repeat;
   background-size: 18%;
@@ -3771,10 +3771,12 @@ a.no-underline:hover {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: justify;
-  justify-content: space-between; }
+  justify-content: space-between;
+  height: 468px; }
 
 .aboutus-description {
-  width: 42%; }
+  width: 42%;
+  overflow: scroll; }
   .aboutus-description h1 {
     font-size: 52px;
     font-weight: 300;
@@ -3812,7 +3814,8 @@ a.no-underline:hover {
 
 .aboutus-team {
   margin-top: 35px;
-  width: 33%; }
+  width: 33%;
+  overflow: scroll; }
 
 .team-member__profile {
   display: -ms-flexbox;
@@ -4038,16 +4041,14 @@ a.no-underline:hover {
   left: 0; }
 
 #carousel-wrap {
-  width: 100%;
   overflow: hidden;
   text-align: center;
   left: 223px; }
 
 #testimonial-list {
   overflow: hidden;
-  width: 2000px;
-  display: -ms-flexbox;
-  display: flex; }
+  display: -ms-inline-flexbox;
+  display: inline-flex; }
   #testimonial-list .slide-list {
     width: 248px;
     padding: 0 10px; }
@@ -4057,9 +4058,6 @@ a.no-underline:hover {
       display: block;
       background-size: cover;
       background-repeat: no-repeat; }
-    #testimonial-list .slide-list .article_image:hover {
-      box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
-      transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
     #testimonial-list .slide-list .bestoffertext {
       font-size: 14px;
       color: #515356;
@@ -4085,6 +4083,9 @@ a.no-underline:hover {
         border-radius: 40px;
         background-color: #d92e4a;
         position: relative; }
+  #testimonial-list .slide-list:hover {
+    box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+    transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
 
 .l1 {
   text-overflow: ellipsis;
@@ -4166,6 +4167,47 @@ a.no-underline:hover {
   letter-spacing: normal;
   color: #000000;
   margin-top: 42px; }
+
+.multi-item-carousel .carousel-inner > .item {
+  transition: 500ms ease-in-out left; }
+
+.multi-item-carousel .carousel-inner .active.left {
+  left: -33%; }
+
+.multi-item-carousel .carousel-inner .active.right {
+  left: 33%; }
+
+.multi-item-carousel .carousel-inner .next {
+  left: 33%; }
+
+.multi-item-carousel .carousel-inner .prev {
+  left: -33%; }
+
+@media all and (transform-3d), (-webkit-transform-3d) {
+  .multi-item-carousel .carousel-inner > .item {
+    transition: 500ms ease-in-out left;
+    transition: 500ms ease-in-out all;
+    backface-visibility: visible;
+    transform: none !important; } }
+
+.multi-item-carousel .carouse-control.left, .multi-item-carousel .carouse-control.right {
+  background-image: none; }
+
+.shadow-effect:hover {
+  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+  transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
+
+.category-left-arrow {
+  color: white;
+  font-size: 21px;
+  cursor: pointer; }
+
+.category-right-arrow {
+  color: white;
+  font-size: 22px;
+  position: relative;
+  bottom: 8px;
+  cursor: pointer; }
 
 .search-order-section {
   display: -ms-flexbox;
@@ -4890,6 +4932,526 @@ button[disabled] {
 
 .nav-tabs > li > a:hover {
   border-color: none; }
+
+/* Slider */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent; }
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0; }
+
+.slick-list:focus {
+  outline: none; }
+
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand; }
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  transform: translate3d(0, 0, 0); }
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block; }
+
+.slick-track:before,
+.slick-track:after {
+  display: table;
+  content: ''; }
+
+.slick-track:after {
+  clear: both; }
+
+.slick-loading .slick-track {
+  visibility: hidden; }
+
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px; }
+
+[dir='rtl'] .slick-slide {
+  float: right; }
+
+.slick-slide img {
+  display: block; }
+
+.slick-slide.slick-loading img {
+  display: none; }
+
+.slick-slide.dragging img {
+  pointer-events: none; }
+
+.slick-initialized .slick-slide {
+  display: block; }
+
+.slick-loading .slick-slide {
+  visibility: hidden; }
+
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent; }
+
+.slick-arrow.slick-hidden {
+  display: none; }
+
+/* Slider */
+.slick-loading .slick-list {
+  background: #fff url("./ajax-loader.gif") center center no-repeat; }
+
+/* Icons */
+@font-face {
+  font-family: 'slick';
+  font-weight: normal;
+  font-style: normal;
+  src: url("./fonts/slick.eot");
+  src: url("./fonts/slick.eot?#iefix") format("embedded-opentype"), url("./fonts/slick.woff") format("woff"), url("./fonts/slick.ttf") format("truetype"), url("./fonts/slick.svg#slick") format("svg"); }
+
+/* Arrows */
+.slick-prev,
+.slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent; }
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  color: transparent;
+  outline: none;
+  background: transparent; }
+
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
+  opacity: 1; }
+
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: .25; }
+
+.slick-prev:before,
+.slick-next:before {
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: .75;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.slick-prev {
+  left: -25px; }
+
+[dir='rtl'] .slick-prev {
+  right: -25px;
+  left: auto; }
+
+.slick-prev:before {
+  content: '←'; }
+
+[dir='rtl'] .slick-prev:before {
+  content: '→'; }
+
+.slick-next {
+  right: -25px; }
+
+[dir='rtl'] .slick-next {
+  right: auto;
+  left: -25px; }
+
+.slick-next:before {
+  content: '→'; }
+
+[dir='rtl'] .slick-next:before {
+  content: '←'; }
+
+/* Dots */
+.slick-dotted.slick-slider {
+  margin-bottom: 30px; }
+
+.slick-dots {
+  position: absolute;
+  bottom: -25px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center; }
+
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer; }
+
+.slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: transparent; }
+
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+  outline: none; }
+
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before {
+  opacity: 1; }
+
+.slick-dots li button:before {
+  font-family: 'slick';
+  font-size: 6px;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  content: '•';
+  text-align: center;
+  opacity: .25;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.slick-dots li.slick-active button:before {
+  opacity: .75;
+  color: black; }
+
+/*! lightslider - v1.1.6 - 2016-10-25
+* https://github.com/sachinchoolur/lightslider
+* Copyright (c) 2016 Sachin N; Licensed MIT */
+/*! lightslider - v1.1.3 - 2015-04-14
+* https://github.com/sachinchoolur/lightslider
+* Copyright (c) 2015 Sachin N; Licensed MIT */
+/** /!!! core css Should not edit !!!/**/
+.lSSlideOuter {
+  overflow: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.lightSlider:before, .lightSlider:after {
+  content: " ";
+  display: table; }
+
+.lightSlider {
+  overflow: hidden;
+  margin: 0; }
+
+.lSSlideWrapper {
+  max-width: 100%;
+  overflow: hidden;
+  position: relative; }
+
+.lSSlideWrapper > .lightSlider:after {
+  clear: both; }
+
+.lSSlideWrapper .lSSlide {
+  transform: translate(0px, 0px);
+  -webkit-transition: all 1s;
+  transition-property: transform,height;
+  transition-duration: inherit !important;
+  transition-timing-function: inherit !important; }
+
+.lSSlideWrapper .lSFade {
+  position: relative; }
+
+.lSSlideWrapper .lSFade > * {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  margin-right: 0;
+  width: 100%; }
+
+.lSSlideWrapper.usingCss .lSFade > * {
+  opacity: 0;
+  transition-delay: 0s;
+  transition-duration: inherit !important;
+  transition-property: opacity;
+  transition-timing-function: inherit !important; }
+
+.lSSlideWrapper .lSFade > *.active {
+  z-index: 10; }
+
+.lSSlideWrapper.usingCss .lSFade > *.active {
+  opacity: 1; }
+
+/** /!!! End of core css Should not edit !!!/**/
+/* Pager */
+.lSSlideOuter .lSPager.lSpg {
+  margin: 10px 0 0;
+  padding: 0;
+  text-align: center; }
+
+.lSSlideOuter .lSPager.lSpg > li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 5px; }
+
+.lSSlideOuter .lSPager.lSpg > li a {
+  background-color: #222222;
+  border-radius: 30px;
+  display: inline-block;
+  height: 8px;
+  overflow: hidden;
+  text-indent: -999em;
+  width: 8px;
+  position: relative;
+  z-index: 99;
+  transition: all 0.5s linear 0s; }
+
+.lSSlideOuter .lSPager.lSpg > li:hover a, .lSSlideOuter .lSPager.lSpg > li.active a {
+  background-color: #428bca; }
+
+.lSSlideOuter .media {
+  opacity: 0.8; }
+
+.lSSlideOuter .media.active {
+  opacity: 1; }
+
+/* End of pager */
+/** Gallery */
+.lSSlideOuter .lSPager.lSGallery {
+  list-style: none outside none;
+  padding-left: 0;
+  margin: 0;
+  overflow: hidden;
+  transform: translate3d(0px, 0px, 0px);
+  -moz-transform: translate3d(0px, 0px, 0px);
+  -ms-transform: translate3d(0px, 0px, 0px);
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -o-transform: translate3d(0px, 0px, 0px);
+  -moz-transition-property: -moz-transform;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.lSSlideOuter .lSPager.lSGallery li {
+  overflow: hidden;
+  transition: border-radius 0.12s linear 0s 0.35s linear 0s; }
+
+.lSSlideOuter .lSPager.lSGallery li.active, .lSSlideOuter .lSPager.lSGallery li:hover {
+  border-radius: 5px; }
+
+.lSSlideOuter .lSPager.lSGallery img {
+  display: block;
+  height: auto;
+  max-width: 100%; }
+
+.lSSlideOuter .lSPager.lSGallery:before, .lSSlideOuter .lSPager.lSGallery:after {
+  content: " ";
+  display: table; }
+
+.lSSlideOuter .lSPager.lSGallery:after {
+  clear: both; }
+
+/* End of Gallery*/
+/* slider actions */
+.lSAction > a {
+  width: 32px;
+  display: block;
+  top: 50%;
+  height: 32px;
+  background-image: url("../img/controls.png");
+  cursor: pointer;
+  position: absolute;
+  z-index: 99;
+  margin-top: -16px;
+  opacity: 0.5;
+  transition: opacity 0.35s linear 0s; }
+
+.lSAction > a:hover {
+  opacity: 1; }
+
+.lSAction > .lSPrev {
+  background-position: 0 0;
+  left: 10px; }
+
+.lSAction > .lSNext {
+  background-position: -32px 0;
+  right: 10px; }
+
+.lSAction > a.disabled {
+  pointer-events: none; }
+
+.cS-hidden {
+  height: 1px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  overflow: hidden; }
+
+/* vertical */
+.lSSlideOuter.vertical {
+  position: relative; }
+
+.lSSlideOuter.vertical.noPager {
+  padding-right: 0px !important; }
+
+.lSSlideOuter.vertical .lSGallery {
+  position: absolute !important;
+  right: 0;
+  top: 0; }
+
+.lSSlideOuter.vertical .lightSlider > * {
+  width: 100% !important;
+  max-width: none !important; }
+
+/* vertical controlls */
+.lSSlideOuter.vertical .lSAction > a {
+  left: 50%;
+  margin-left: -14px;
+  margin-top: 0; }
+
+.lSSlideOuter.vertical .lSAction > .lSNext {
+  background-position: 31px -31px;
+  bottom: 10px;
+  top: auto; }
+
+.lSSlideOuter.vertical .lSAction > .lSPrev {
+  background-position: 0 -31px;
+  bottom: auto;
+  top: 10px; }
+
+/* vertical */
+/* Rtl */
+.lSSlideOuter.lSrtl {
+  direction: rtl; }
+
+.lSSlideOuter .lightSlider, .lSSlideOuter .lSPager {
+  padding-left: 0;
+  list-style: none outside none; }
+
+.lSSlideOuter.lSrtl .lightSlider, .lSSlideOuter.lSrtl .lSPager {
+  padding-right: 0; }
+
+.lSSlideOuter .lightSlider > *, .lSSlideOuter .lSGallery li {
+  float: left; }
+
+.lSSlideOuter.lSrtl .lightSlider > *, .lSSlideOuter.lSrtl .lSGallery li {
+  float: right !important; }
+
+/* Rtl */
+
+@keyframes rightEnd {
+  0% {
+    left: 0; }
+  50% {
+    left: -15px; }
+  100% {
+    left: 0; } }
+
+@keyframes topEnd {
+  0% {
+    top: 0; }
+  50% {
+    top: -15px; }
+  100% {
+    top: 0; } }
+
+@keyframes leftEnd {
+  0% {
+    left: 0; }
+  50% {
+    left: 15px; }
+  100% {
+    left: 0; } }
+
+@keyframes bottomEnd {
+  0% {
+    bottom: 0; }
+  50% {
+    bottom: -15px; }
+  100% {
+    bottom: 0; } }
+
+.lSSlideOuter .rightEnd {
+  animation: rightEnd 0.3s;
+  position: relative; }
+
+.lSSlideOuter .leftEnd {
+  animation: leftEnd 0.3s;
+  position: relative; }
+
+.lSSlideOuter.vertical .rightEnd {
+  animation: topEnd 0.3s;
+  position: relative; }
+
+.lSSlideOuter.vertical .leftEnd {
+  animation: bottomEnd 0.3s;
+  position: relative; }
+
+.lSSlideOuter.lSrtl .rightEnd {
+  animation: leftEnd 0.3s;
+  position: relative; }
+
+.lSSlideOuter.lSrtl .leftEnd {
+  animation: rightEnd 0.3s;
+  position: relative; }
+
+/*/  GRab cursor */
+.lightSlider.lsGrab > * {
+  cursor: -o-grab;
+  cursor: -ms-grab;
+  cursor: grab; }
+
+.lightSlider.lsGrabbing > * {
+  cursor: move;
+  cursor: -o-grabbing;
+  cursor: -ms-grabbing;
+  cursor: grabbing; }
 
 /*!
  * ngToast v2.0.0 (http://tameraydin.github.io/ngToast)
