@@ -14,13 +14,13 @@ var config = require('./config');
 gulp.task('build', function () {
 
     console.log(config.notify.update('\n--------- Build Development Mode  --------------------------------------\n'));
-    runSequence('html', 'scripts', 'styles', 'bundle-libraries', 'image', 'fonts', 'server', 'watch');
+    runSequence('html', 'scripts', 'styles', 'bundle-libraries', 'libs', 'image', 'fonts', 'server', 'watch');
 });
 
 gulp.task('prod', function () {
 
     console.log(config.notify.update('\n--------- Build Production Mode  ---------------------------------------\n'));
     config.production = true;
-    runSequence('html', 'scripts', 'styles', 'bundle-libraries', 'image', 'fonts', 'server', 'watch');
+    runSequence('html', 'scripts', 'styles', 'bundle-libraries', 'libs', 'image', 'fonts', 'server', 'watch');
 
 });

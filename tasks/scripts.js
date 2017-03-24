@@ -20,3 +20,9 @@ gulp.task('scripts', function () {
         .pipe(plugins.size())
         .pipe(gulp.dest(config.build.js));
 });
+
+gulp.task('libs', function() {
+    gulp.src([config.source.js + '/libs/**/*'])
+    .pipe(gulp.dest(config.build.js));
+
+});

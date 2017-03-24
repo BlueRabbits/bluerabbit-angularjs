@@ -35,5 +35,9 @@ MASTER: IMPORTING STYLESHEETS
 @import "pages/search-page";
 @import "pages/myaccount";
 
+@import "modules/slick";
+@import "modules/slick-theme";
+@import "modules/lightslider";
+
 @import "vendor/ngToast-animations";
 @import "vendor/ngToast";

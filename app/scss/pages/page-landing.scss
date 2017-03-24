@@ -920,7 +920,7 @@ transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
 }
 
 #carousel-wrap {
-  width: 100%;
+  // width: 100%;
   overflow: hidden;
   text-align: center;
   left: 223px;
@@ -929,8 +929,8 @@ transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
 
 #testimonial-list {
   overflow: hidden;
-  width: 2000px;
-  display: flex;
+  // width: 100%;
+  display: inline-flex;
 
   .slide-list {
     width: 248px;
