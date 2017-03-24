@@ -4130,10 +4130,7 @@ a.no-underline:hover {
 .category-left-arrow {
   color: white;
   font-size: 21px;
-  cursor: pointer;
-  position: relative;
-  right: 27px;
-  top: 52px; }
+  cursor: pointer; }
 
 .category-right-arrow {
   color: white;
