@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore, ngToast ){
+app.controller('mainController', function($scope, $location, $rootScope, $window, $http, Auth, $routeParams, $timeout, $cookies, $cookieStore,$interval, ngToast ){
   'use strict';
   $scope.showTab = "Recommended";
   $(document).ready(function() {
@@ -166,12 +166,31 @@ $('#prv-testimonial').on('click', function(){
     $last.animate({ 'margin-left': '0px' }, 1000);
 });
 
+$timeout(function() {
 $('#nxt-testimonial').on('click', function(){
     var $first = $('#testimonial-list .slide-list:first');
     $first.animate({ 'margin-left': '-248px' }, 1000, function() {
         $first.remove().css({ 'margin-left': '0px' });
         $('#testimonial-list .slide-list:last').after($first);
     });
+});
+}, 1000);
+
+
+//category scrooll
+$('#next').on('click',function(e){
+  e.preventDefault();
+  $('.scroll-menu').animate({'margin-left':'0px'}, 1000, function(){
+    // $('#next').addClass('hidden');
+    // $('#prev').removeClass('hidden');
+  });
+});
+$('#prev').on('click',function(e){
+  e.preventDefault();
+  $('.scroll-menu').animate({'margin-left':'-190px'}, 1000, function(){
+    // $('#prev').addClass('hidden');
+    // $('#next').removeClass('hidden');
+  });
 });
 
   //redirection

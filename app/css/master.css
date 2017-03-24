@@ -3567,11 +3567,6 @@ a.no-underline:hover {
   height: 180px;
   margin-bottom: 20px; }
 
-.breakfast-products :hover {
-  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
-  -webkit-transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67);
-  transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
-
 .breakfast-products__image {
   width: 55%;
   background-size: cover;
@@ -4126,6 +4121,23 @@ a.no-underline:hover {
 
 .multi-item-carousel .carouse-control.left, .multi-item-carousel .carouse-control.right {
   background-image: none; }
+
+.shadow-effect:hover {
+  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+  -webkit-transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67);
+  transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
+
+.category-left-arrow {
+  color: white;
+  font-size: 21px;
+  cursor: pointer; }
+
+.category-right-arrow {
+  color: white;
+  font-size: 22px;
+  position: relative;
+  bottom: 8px;
+  cursor: pointer; }
 
 .search-order-section {
   display: flex; }

@@ -416,11 +416,11 @@ a.no-underline:hover {
   margin-bottom: 20px;
 }
 
-.breakfast-products :hover {
-  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
--webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
-}
+// .breakfast-products :hover {
+//   box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+// -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+// transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+// }
 .breakfast-products__image {
   // background-image: url(../images/fish.png);
   width: 55%;
@@ -1118,4 +1118,26 @@ color: #000000;
       background-image: none;
     }
   }
+}
+.shadow-effect:hover {
+  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+  -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+  transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+}
+
+.category-left-arrow{
+  color: white;
+
+
+font-size: 21px;
+
+cursor: pointer;
+}
+
+.category-right-arrow {
+  color: white;
+font-size: 22px;
+position: relative;
+bottom: 8px;
+cursor: pointer;
 }

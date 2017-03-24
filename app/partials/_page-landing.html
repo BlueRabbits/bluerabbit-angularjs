@@ -83,7 +83,8 @@
 <div class="tab_section" id="menu">
   <a href="" ng-click="ourMenu(categoryNames)" class="no-underline"><h1>Our Menu</h1></a>
   <div class="menu-tabs">
-    <ul class="menu-tabs__list" id="tabs-menu">
+    <ul class="menu-tabs__list scroll-menu" id="tabs-menu">
+        <div id="next" class="nav-arrow left-arrow category-left-arrow" > < </div>
       <li ng-repeat="categories in getCategoryList">
         <a style="cursor:pointer;" data-toggle="tab"
             ng-class="{'active' : categories.name == categoryNames}"
@@ -91,13 +92,16 @@
               {{categories.name}}
         </a>
       </li>
+
+      <div id="prev" class="nav-arrow right-arrow category-right-arrow"> > </div>
       <!-- <button type="button" name="button">view all</button> -->
     </ul>
   </div>
   <div class="menu-tabs__products-list ">
     <a href="" ng-click="initSetTab('previous')"><img src="images/icon_arrow_left.png" class="arrow arrow_left" alt="left"></a>
     <a href="" ng-click="initSetTab('next')"><img src="images/icon_arrow_right.png" class="arrow arrow_right" alt="right"></a>
-    <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
+    <div class="shadow-effect">
+      <div class="menu-tabs__breakfast products-tab" ng-show="activeTab == activeTab">
       <!-- 1-->
       <div class="breakfast-products"  ng-repeat="list in allProducts | filter:{cat:categoryNames}:true | limitTo : 4">
         <div class="breakfast-products__image" style="background-image:url({{list.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(list.name,list.cat,list._id)"></div>
@@ -120,7 +124,9 @@
           <button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out Of Stock</button>
         </div>
       </div>
+
     </div>
+  </div>
   </div>
 </div>
 
