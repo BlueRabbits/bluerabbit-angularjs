@@ -3567,6 +3567,11 @@ a.no-underline:hover {
   height: 180px;
   margin-bottom: 20px; }
 
+.breakfast-products :hover {
+  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+  -webkit-transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67);
+  transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
+
 .breakfast-products__image {
   width: 55%;
   background-size: cover;
@@ -3673,7 +3678,8 @@ a.no-underline:hover {
 
 .location-services__search {
   width: 50%;
-  padding: 35px 0 35px 35px; }
+  padding: 35px 0 35px 35px;
+  overflow: scroll; }
 
 .location-search-places {
   display: flex;
@@ -3703,7 +3709,6 @@ a.no-underline:hover {
 
 .aboutus-section {
   background-color: #d42841;
-  height: 468px;
   background-image: url(../images/aboutus-icon.png);
   background-repeat: no-repeat;
   background-size: 18%;
@@ -3713,10 +3718,12 @@ a.no-underline:hover {
 .aboutus-section__content {
   padding: 0px 50px;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  height: 468px; }
 
 .aboutus-description {
-  width: 42%; }
+  width: 42%;
+  overflow: scroll; }
   .aboutus-description h1 {
     font-size: 52px;
     font-weight: 300;
@@ -3754,7 +3761,8 @@ a.no-underline:hover {
 
 .aboutus-team {
   margin-top: 35px;
-  width: 33%; }
+  width: 33%;
+  overflow: scroll; }
 
 .team-member__profile {
   display: flex; }
@@ -3985,10 +3993,6 @@ a.no-underline:hover {
       display: block;
       background-size: cover;
       background-repeat: no-repeat; }
-    #testimonial-list .slide-list .article_image:hover {
-      box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
-      -webkit-transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67);
-      transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
     #testimonial-list .slide-list .bestoffertext {
       font-size: 14px;
       color: #515356;
@@ -4014,6 +4018,10 @@ a.no-underline:hover {
         border-radius: 40px;
         background-color: #d92e4a;
         position: relative; }
+  #testimonial-list .slide-list:hover {
+    box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+    -webkit-transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67);
+    transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
 
 .l1 {
   text-overflow: ellipsis;
@@ -4095,6 +4103,31 @@ a.no-underline:hover {
   letter-spacing: normal;
   color: #000000;
   margin-top: 42px; }
+
+.multi-item-carousel .carousel-inner > .item {
+  transition: 500ms ease-in-out left; }
+
+.multi-item-carousel .carousel-inner .active.left {
+  left: -33%; }
+
+.multi-item-carousel .carousel-inner .active.right {
+  left: 33%; }
+
+.multi-item-carousel .carousel-inner .next {
+  left: 33%; }
+
+.multi-item-carousel .carousel-inner .prev {
+  left: -33%; }
+
+@media all and (transform-3d), (-webkit-transform-3d) {
+  .multi-item-carousel .carousel-inner > .item {
+    transition: 500ms ease-in-out left;
+    transition: 500ms ease-in-out all;
+    backface-visibility: visible;
+    transform: none !important; } }
+
+.multi-item-carousel .carouse-control.left, .multi-item-carousel .carouse-control.right {
+  background-image: none; }
 
 .search-order-section {
   display: flex; }

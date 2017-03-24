@@ -254,11 +254,11 @@ $('#nxt-testimonial').on('click', function(){
             .success(function(data) {
               //console.log('data', data);
               $scope.getcartItems();
-              // ngToast.create({
-              //   className: 'success',
-              //   content: 'Item Added to Cart',
-              //   timeout:1000
-              // });
+              ngToast.create({
+                className: 'success',
+                content: 'Item Added to Cart',
+                timeout:1000
+              });
 
               angular.forEach(data, function(value, key) {
                 var obj = {
