@@ -1141,3 +1141,88 @@ position: relative;
 bottom: 8px;
 cursor: pointer;
 }
+
+//meadi queries for slider
+/*-------------------------------------------------
+Media Quriers: Tablet to Desktop
+-------------------------------------------------*/
+
+
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    #testimonial-list .slide-list {
+        width: 249px;
+        padding: 0 10px;
+    }
+    .slider-section {
+          padding: 15px 95px;
+    }
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) {
+    #testimonial-list .slide-list {
+        width: 249px;
+        padding: 0 10px;
+    }
+    .slider-section {
+          padding: 15px 95px;
+    }
+}
+
+@media only screen
+and (min-width : 1224px) {
+  .slider-section {
+        padding: 15px 80px;
+  }
+}
+
+@media only screen
+and (min-width : 1398px) {
+  .slider-section {
+        padding: 15px 78px;
+  }
+}
+
+@media only screen
+and (min-width : 1440px) {
+  .slider-section {
+        padding: 15px 96px;
+  }
+}
+
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+  /* Styles */
+  .slider-section {
+        padding: 15px 200px;
+  }
+}
+/*-------------------------------------------------
+Media Quriers: Tablet to Desktop
+-------------------------------------------------*/
+
+
+/* ----------- iPad 1 and 2 ----------- */
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+ {
+    #testimonial-list .slide-list {
+        width: 259px;
+        padding: 0 10px;
+    }
+    .slider-section {
+          padding: 15px 180px;
+    }
+}
