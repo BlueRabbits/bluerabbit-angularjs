@@ -3210,19 +3210,20 @@ SMACSS: PAGE - LANDING
 .loginForm__inputs {
   margin-top: 10px; }
   .loginForm__inputs input {
-    background-color: #fff;
     border-radius: 2px;
-    border: solid 1px #ceced2;
     font-size: 1em;
     font-family: "Lato-Regular";
     height: 32px;
     margin-bottom: 16px;
     padding-left: 11px;
     position: relative;
-    width: 260px; }
+    width: 260px;
+    border-radius: 100px;
+    background-color: #ffffff;
+    border: solid 1px #dddddd; }
 
 .modal__submit {
-  background-color: #e40046;
+  background-color: #cf2727;
   border-radius: 2px;
   border: none;
   color: #fff;
@@ -3230,7 +3231,8 @@ SMACSS: PAGE - LANDING
   font-size: 1em;
   padding-bottom: 10px;
   padding-top: 10px;
-  width: 260px; }
+  width: 260px;
+  border-radius: 100px; }
 
 .social-login__buttons {
   display: -ms-flexbox;
@@ -3255,7 +3257,18 @@ SMACSS: PAGE - LANDING
   height: 42px;
   text-transform: uppercase;
   width: 260px;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  border-radius: 100px; }
+  .social-login__connect p {
+    font-family: HelveticaNeue;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff; }
 
 .facebook {
   background: #3b5998;
@@ -3266,6 +3279,20 @@ SMACSS: PAGE - LANDING
   background: #f64925;
   color: #fff;
   padding-top: 10px; }
+
+.not-customer-label {
+  text-align: center;
+  /* width: 449px; */
+  /* height: 17px; */
+  font-family: HelveticaNeue;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  /* text-align: left; */
+  color: #5f5f5f; }
 
 .section-header-menu {
   background-color: rgba(81, 83, 86, 0.85);
@@ -3617,6 +3644,10 @@ a.no-underline:hover {
   background-repeat: no-repeat;
   background-position: center; }
 
+.breakfast-products__image:hover {
+  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+  transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
+
 .breakfast-products__content {
   width: 50%;
   display: -ms-flexbox;
@@ -3648,6 +3679,10 @@ a.no-underline:hover {
       height: 12px;
       margin-right: 10px;
       cursor: pointer; }
+
+.breakfast-products__content:hover {
+  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+  transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
 
 .products__description {
   margin: 10px 20px;
@@ -4193,10 +4228,6 @@ a.no-underline:hover {
 .multi-item-carousel .carouse-control.left, .multi-item-carousel .carouse-control.right {
   background-image: none; }
 
-.shadow-effect:hover {
-  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
-  transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
-
 .category-left-arrow {
   color: white;
   font-size: 21px;
@@ -4208,6 +4239,55 @@ a.no-underline:hover {
   position: relative;
   bottom: 8px;
   cursor: pointer; }
+
+/*-------------------------------------------------
+Media Quriers: Tablet to Desktop
+-------------------------------------------------*/
+/* ----------- Non-Retina Screens ----------- */
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+  #testimonial-list .slide-list {
+    width: 249px;
+    padding: 0 10px; }
+  .slider-section {
+    padding: 15px 95px; } }
+
+/* ----------- Retina Screens ----------- */
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 2), screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+  #testimonial-list .slide-list {
+    width: 249px;
+    padding: 0 10px; }
+  .slider-section {
+    padding: 15px 95px; } }
+
+@media only screen and (min-width: 1224px) {
+  .slider-section {
+    padding: 15px 80px; } }
+
+@media only screen and (min-width: 1398px) {
+  .slider-section {
+    padding: 15px 78px; } }
+
+@media only screen and (min-width: 1440px) {
+  .slider-section {
+    padding: 15px 96px; } }
+
+/* Large screens ----------- */
+@media only screen and (min-width: 1824px) {
+  /* Styles */
+  .slider-section {
+    padding: 15px 200px; } }
+
+/*-------------------------------------------------
+Media Quriers: Tablet to Desktop
+-------------------------------------------------*/
+/* ----------- iPad 1 and 2 ----------- */
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  #testimonial-list .slide-list {
+    width: 259px;
+    padding: 0 10px; }
+  .slider-section {
+    padding: 15px 180px; } }
 
 .search-order-section {
   display: -ms-flexbox;
@@ -4932,6 +5012,30 @@ button[disabled] {
 
 .nav-tabs > li > a:hover {
   border-color: none; }
+
+.img-crop {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden; }
+
+.img-crop > canvas {
+  display: block;
+  width: 172px;
+  height: 200px;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent; }
+
+canvas {
+  margin-left: 77.0218px !important;
+  margin-top: 50px !important; }
+
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width: 500px;
+  height: 350px; }
 
 /* Slider */
 .slick-slider {
