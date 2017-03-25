@@ -576,18 +576,18 @@ console.log("$(window).height(); ",$(window).height());
         $scope.loading = true;
         //$scope.productIdWishList = productId;
         if ($cookieStore.get('userId')) {
-            for (var i = 0; i < $scope.getWishListProductId.length; i++) {
+            // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
+            //
+            //   if ($scope.getWishListProductId[i] == productId) {
+            //     $scope.isProdSishList = true;
+            //   } else {
+            //     $scope.isProdSishList = false;
+            //
+            //   }
+            // }
 
-              if ($scope.getWishListProductId[i] == productId) {
-                $scope.isProdSishList = true;
-              } else {
-                $scope.isProdSishList = false;
 
-              }
-            }
-
-
-            if ($scope.isProdSishList == false || $scope.getWishlistData.length === 0) {
+            // if ($scope.isProdSishList == false || $scope.getWishlistData.length === 0) {
               console.log("added to cart");
 
               var count = 1;
@@ -632,7 +632,7 @@ console.log("$(window).height(); ",$(window).height());
                                               // });
                                             });
 
-                        }
+                        // }
             } else {
                 $('#loginmodal').modal('toggle');
             }
