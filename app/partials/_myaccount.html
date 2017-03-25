@@ -29,16 +29,17 @@
         <div class="row basic_info">
           <div class="info_block col-sm-6">
             <div class="dropdown__myaccount">
-              <div class="user_image" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})"></div>
-              <div class="user_image" style="background-image: url('images/user_avatar.png')" ng-show="!userDetails.image_url">
+              <div class="user_image" ng-click="cropImages()" ng-hide="!myCroppedImage" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})"></div>
+              <div class="user_image" ng-click="cropImages()" style="background-image: url('images/user_avatar.png')" ng-show="!userDetails.image_url">
               </div>
+              <img class="user_image" ng-show="myCroppedImage" ng-src="{{myCroppedImage}}" />
               {{userDetails.name}}
 
               <img class="icon_img" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true">
               <img class="icon_img" ng-show="editImage==true" ng-click="editImage=false" src="images/close.svg" type="image/svg+xml" data-pin-nopin="true">
               <input type="text" ng-model="userName" style="display: inline-block;" ng-show="editImage==true"/>
               <div class="edit_img" ng-show="editImage==true">
-                <input type="file" id="file1" name="file" multiple ng-files="getTheFiles($files)" style="display: inline-block;" />
+                <!-- <input type="file" id="file1" name="file" multiple ng-files="getTheFiles($files)" style="display: inline-block;" /> -->
                 <button class="checkout-page__buttons active" ng-class="{'btn-default' : !isDataAvailable}" ng-disabled="!isDataAvailable" ng-click="ProfileUpdate()" style="padding: 5px 17px; font-size: 10px;">Submit</button>
               </div>
             </div>
@@ -365,3 +366,34 @@
 
   </div>
 </div>
+
+<!-- load image modal windo  -->
+<div class="modal fade" id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 88%;">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <!-- <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div> -->
+				<!-- image  -->
+        <div>Select an image file:
+           <!-- <input type="file" id="fileInput" name="file" multiple ng-files="getTheFiles($files)"/> -->
+           <input type="file" id="file1" name="file" multiple ng-files="getTheFiles($files)" style="display: inline-block;" />
+        </div>
+        <div class="cropArea">
+          <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+        </div>
+        <div>Cropped Image:</div>
+        <div>
+          <img ng-src="{{myCroppedImage}}" />
+        </div>
+        {{myCroppedImage}}
+
+        <button class="checkout-page__buttons" ng-click="selectedCropImage(myCroppedImage)" type="button">Done!</button>
+				<!-- image  -->
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- load image modal windo  -->

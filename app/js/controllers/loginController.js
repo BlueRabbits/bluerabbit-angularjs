@@ -529,6 +529,8 @@ $scope.editAddress = function(){
       var formdata = new FormData();
       $scope.isDataAvailable = false;
       $scope.getTheFiles = function($files) {
+        //load modal for crop
+        // $('#imageCropModal').modal('show');
         angular.forEach($files, function(value, key) {
           formdata.append(key, value);
           console.log(formdata);
@@ -546,7 +548,60 @@ $scope.editAddress = function(){
             console.log(data);
           });
       };
+      //crop image
+      $scope.cropImages = function(){
+          $('#imageCropModal').modal('show');
+      }
+      $scope.myImage = '';
+      $scope.myCroppedImage = '';
 
+      var handleFileSelect = function(evt) {
+        var file = evt.currentTarget.files[0];
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+          $scope.$apply(function($scope) {
+            $scope.myImage = evt.target.result;
+          //  console.log("evt.target.result",evt.target.result);
+          });
+        };
+        $scope.fileToForm = file;
+        reader.readAsDataURL(file);
+        console.log("file)", $scope.fileToForm);
+
+      };
+      angular.element(document.querySelector('#file1')).on('change', handleFileSelect);
+      //selct crop and preview
+      // $scope.showCropImage = false;
+      $scope.selectedCropImage = function(cropImg){
+        $scope.showCropImage = true;
+        $scope.croppedImage = cropImg;
+        //console.log("$scope.croppedImage",$scope.croppedImage);
+  $('#imageCropModal').modal('hide');
+        var base64_string = cropImg;
+        // $(function () {
+        //     var $img = $("<img/>");
+        //     $img.attr("src", "data:image/png;base64," + base64_string);
+        //      $("#img_preview").append($img);
+        //     console.log("$img",$img);
+        // });
+        // $scope.imagePreviewOfCrop = 'data:image/png;base64,' + cropImg;
+        // console.log("  $scope.imagePreviewOfCrop ",  $scope.imagePreviewOfCrop );
+        //api call
+        // var formdata = new FormData();
+        // formdata.append('file', formdata);
+        // console.log("formdata new",formdata);
+        // Auth.imageUpload(formdata)
+        //   .success(function(data) {
+        //     console.log('profile formdata', data);
+        //     $scope.profileImage = data.url;
+        //     $scope.isDataAvailable = true;
+        //     $('#imageCropModal').modal('hide');
+        //   }).error(function(data) {
+        //     console.log(data);
+        //   });
+      }
+
+  //image profile
       $scope.hideAvatar = true;
       $scope.ProfileUpdate = function() {
         $scope.hideAvatar = false;
@@ -562,7 +617,7 @@ $scope.editAddress = function(){
             console.log('profile updated data', data);
             $scope.emailId = data.email;
             $scope.userName = data.name;
-            $scop.editImage=false;
+            $scope.editImage=false;
             // ngToast.create({
             //   className: 'success',
             //   content: "Successfully Updated the address"

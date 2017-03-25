@@ -428,6 +428,11 @@ a.no-underline:hover {
   background-repeat: no-repeat;
   background-position: center;
 }
+.breakfast-products__image:hover{
+  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+  -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+  transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+}
 
 .breakfast-products__content {
   width: 50%;
@@ -459,6 +464,12 @@ a.no-underline:hover {
       cursor: pointer;
     }
 	}
+}
+
+.breakfast-products__content:hover{
+  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+  -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+  transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
 }
 
 .products__description {
@@ -1119,11 +1130,11 @@ color: #000000;
     }
   }
 }
-.shadow-effect:hover {
-  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
-  -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
-  transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
-}
+// .shadow-effect:hover {
+//   box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+//   -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+//   transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+// }
 
 .category-left-arrow{
   color: white;

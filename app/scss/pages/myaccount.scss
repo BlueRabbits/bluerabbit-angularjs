@@ -354,3 +354,32 @@
 .nav-tabs>li>a:hover{
   border-color: none;
 }
+
+//image crop
+.img-crop {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.img-crop > canvas {
+  display: block;
+  width: 172px;
+  height: 200px;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+canvas{
+
+  margin-left: 77.0218px !important;
+margin-top: 50px !important;
+}
+
+
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:500px;
+  height:350px;
+}
