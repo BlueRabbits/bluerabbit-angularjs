@@ -121,8 +121,8 @@
               <span class="text-success">{{list.discountedPrice}}%</span>
             </p>
           </div>
-          <button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add To Cart</button>
-          <button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out Of Stock</button>
+          <button ng-if="list.quantity > '0'" type="button" name="button" ng-click="addToCart(list._id)"><img src="images/add-cart-icon.png"> Add To Cart</button>
+          <button ng-if="list.quantity <= '0'" type="button" name="button" disabled>Out Of Stock</button>
         </div>
       </div>
 
