@@ -691,6 +691,38 @@ $scope.editAddress = function(){
             $scope.OldContactSupport = false;
           }
 
+          //cancel Order
+          $scope.cancelOrderByUser = function(orderId) {
+              var PwdauthToken = $cookieStore.get('token');
+              $scope.userId = $cookieStore.get('userId');
+            var orderDetails = {
+              "orderId": orderId
+            }
+
+              var BASE_URL = "http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com:9000";
+                var config = {
+                    headers : {
+                        'Authorization': 'Bearer '+PwdauthToken,
+                        'Content-Type': 'application/json'
+                    }
+                }
+
+                $http.put(BASE_URL +  '/api/orders/cancelOrdersByUser/'+$scope.userId, orderDetails, config)
+                .success(function (data, status, headers, config) {
+                    console.log('order Cancelled', data);
+                    $scope.getOrdersByUserId();
+
+                })
+                .error(function (data, status, header, config) {
+                    $scope.ResponseDetails = "Data: " + data +
+                        "<hr />status: " + status +
+                        "<hr />headers: " + header +
+                        "<hr />config: " + config;
+                });
+              $scope.editPassword = false;
+
+          }
+
 
 }).directive('ngFiles', ['$parse', function ($parse) {
 
