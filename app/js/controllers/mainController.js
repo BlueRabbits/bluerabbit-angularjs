@@ -749,4 +749,15 @@ $scope.getWishList();
       };
       $scope.getAllBanner();
 
+      setTimeout(function(){
+        $('#nxt-testimonial').on('click', function(){
+            var $first = $('#testimonial-list .slide-list:first');
+            $first.animate({ 'margin-left': '-248px' }, 1000, function() {
+                $first.remove().css({ 'margin-left': '0px' });
+                $('#testimonial-list .slide-list:last').after($first);
+            });
+        });
+
+    },5000);
+
 })
