@@ -106,8 +106,8 @@
 	            </p>
 						</div>
 						<div class="search-secction__buttons">
-							<button ng-if="search_result_product.instock === 'yes'" type="button" name="button" ng-click="addToCart(search_result_product._id)">Add to Cart</button>
-							<button ng-if="search_result_product.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
+							<button ng-if="search_result_product.quantity > '0'" type="button" name="button" ng-click="addToCart(search_result_product._id)">Add to Cart</button>
+							<button ng-if="search_result_product.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
 						</div>
 					</div> <!-- sm5 -->
 				</div>
@@ -173,8 +173,8 @@
 	            </p>
 						</div>
 						<div class="search-secction__buttons">
-							<button ng-if="results.instock === 'yes'" type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
-							<button ng-if="results.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
+							<button ng-if="results.quantity > '0'" type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
+							<button ng-if="results.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
 						</div>
 					</div> <!-- sm5 -->
 				</div>
@@ -235,8 +235,8 @@
 	            </p>
 						</div>
 						<div class="search-secction__buttons">
-							<button ng-if="wishLists.product.instock === 'yes'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
-							<button ng-if="wishLists.product.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
+							<button ng-if="wishLists.quantity > '0'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
+							<button ng-if="wishLists.product.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
 						</div>
 					</div>
 				</div>
@@ -293,8 +293,8 @@
 							</div>
 
 							<div class="search-secction__buttons">
-								<button ng-if="list.instock === 'yes'" type="button" name="button" ng-click="addToCart(list._id)">Add to Cart</button>
-								<button ng-if="list.instock === 'no'" type="button" name="button" disabled>Out of stock</button>
+								<button ng-if="list.quantity > '0'" type="button" name="button" ng-click="addToCart(list._id)">Add to Cart</button>
+								<button ng-if="list.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
 							</div>
 						</div> <!-- sm5 -->
 					</div>
