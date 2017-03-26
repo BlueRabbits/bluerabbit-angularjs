@@ -182,14 +182,14 @@ setTimeout(nextSlider, 8000);
 //category scrooll
 $('#next').on('click',function(e){
   e.preventDefault();
-  $('.scroll-menu').animate({'margin-left':'0px'}, 1000, function(){
+  $('.scroll-menu').animate({'margin-left':'3px'}, 1000, function(){
     // $('#next').addClass('hidden');
     // $('#prev').removeClass('hidden');
   });
 });
 $('#prev').on('click',function(e){
   e.preventDefault();
-  $('.scroll-menu').animate({'margin-left':'-190px'}, 1000, function(){
+  $('.scroll-menu').animate({'margin-left':'-290px'}, 1000, function(){
     // $('#prev').addClass('hidden');
     // $('#next').removeClass('hidden');
   });
