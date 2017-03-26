@@ -236,6 +236,10 @@ $scope.logged = false;
       $scope.userId = $cookieStore.get('userId');
       $scope.userName = $cookieStore.get('userName');
       $scope.userEmail = $cookieStore.get('emailId');
+      $scope.mobile_number = data.mobile_number;
+      if ($scope.mobile_number) {
+        $scope.isDataAvailable = true;
+      }
     }).error(function(data) {
       console.log('data', data);
     });
@@ -501,7 +505,7 @@ $scope.editAddress = function(){
   streetName: $scope.streetName,
   landmark: $scope.landmark,
   // street4: Near to hotel,
-  companyName: $scope.companyName,
+  // companyName: $scope.companyName,
   // officeNumber: 1234567890,
   mobileNumber: $scope.mobileNumber,
   landLineNumber: $scope.landLineNumber,

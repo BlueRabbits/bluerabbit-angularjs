@@ -76,7 +76,7 @@
   border-left: 1px solid #ddd;
 
   .info_block {
-    padding: 25px 30px;
+    padding: 14px 30px;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     min-height: 110px;
@@ -98,8 +98,12 @@
     }
 
     .icon_img {
-      height: 15px; float: right; margin-top: 15px; cursor:pointer;
+      height: 15px;
+      float: right;
+      margin-top: -26px;
+      cursor: pointer;
     }
+
 
     .edit_img {
       display: inline-block;
@@ -137,6 +141,15 @@
       padding: 15px 0;
     }
   }
+}
+
+.icon_img_info {
+  height: 15px;
+
+  cursor: pointer;
+  position: relative;
+  bottom: 44px;
+  left: 76px;
 }
 
 .table-orderList {

@@ -445,6 +445,8 @@ console.log("$(window).height(); ",$(window).height());
         $scope.particularProduct = false;
 
         $scope.showMenuResult  = false;
+        //deselect category names
+        $scope.categoryNames = "";
         $scope.getWishList();
       }
 

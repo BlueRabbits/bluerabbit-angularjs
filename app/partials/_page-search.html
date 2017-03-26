@@ -180,7 +180,9 @@
 							<!-- <p class="product-sub-title l2">{{wishLists.product.description}}</p> -->
 							<div class="product-view">
 								<!-- <img class="product_heart" src="images/heart-icon-black.png" > -->
-								<p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+								<!-- <p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p> -->
+								<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+								<p class="view-more" ng-show="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
 							</div>
 						</div>
 					</div>
@@ -193,7 +195,7 @@
 	            </p>
 						</div>
 						<div class="search-secction__buttons">
-							<button ng-if="wishLists.quantity > '0'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
+							<button ng-if="wishLists.product.quantity > '0'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
 							<button ng-if="wishLists.product.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
 						</div>
 					</div>
@@ -208,6 +210,14 @@
 						</div>
 					</div>
 					<div class="description__section--content">
+						<div class="share_options">
+							<span>Share</span>
+							<span>
+								<a class="fa fa-facebook"  ng-click="FbShare(list.name,list._id)" id="shareBtn" aria-hidden="true"></a>
+								<a class="fa fa-twitter" ng-click="twitterShare(list._id)" aria-hidden="true"></a>
+								<a class="fa fa-google-plus"  href="https://plus.google.com/share?url=http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/krazy-meals/#/search-page?show_productDetails={{list.name}}" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
+							</span>
+						</div>
 						<p class="product-name">Product Description </p>
 						<p class="product-sub-title">
 							{{wishLists.product.description}}
@@ -341,7 +351,7 @@
 
 <!-- load image modal windo  -->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="width: 43%;">
+  <div class="modal-dialog" style="width: 43%;margin-top: 150px;">
     <div class="modal-content">
       <div class="modal-body">
       	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

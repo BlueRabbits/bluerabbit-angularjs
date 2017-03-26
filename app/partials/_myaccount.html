@@ -26,6 +26,7 @@
     <div class="container">
       <div class="col-md-12 admin-content" id="homes" ng-show="showTab == 'profile'">
         <p class="row terms_heading">Basic info</p>
+          <img class="icon_img_info" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true">
         <div class="row basic_info">
           <div class="info_block col-sm-6">
             <div class="dropdown__myaccount">
@@ -33,21 +34,25 @@
               <div class="user_image" ng-click="cropImages()" style="background-image: url('images/user_avatar.png')" ng-show="!userDetails.image_url">
               </div>
               <img class="user_image" ng-show="myCroppedImage" ng-src="{{myCroppedImage}}" />
-              {{userDetails.name}}
+              <p ng-show="editImage==false" position: relative;left: 71px;bottom: 15px;margin-top: -21px;>{{userDetails.name}}</p>
 
-              <img class="icon_img" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true">
-              <img class="icon_img" ng-show="editImage==true" ng-click="editImage=false" src="images/close.svg" type="image/svg+xml" data-pin-nopin="true">
+              <!-- <img class="icon_img" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true"> -->
+              <!-- <img class="icon_img" ng-show="editImage==true" ng-click="editImage=false" src="images/close.svg" type="image/svg+xml" data-pin-nopin="true"> -->
               <input type="text" ng-model="userName" style="display: inline-block;" ng-show="editImage==true"/>
               <div class="edit_img" ng-show="editImage==true">
                 <!-- <input type="file" id="file1" name="file" multiple ng-files="getTheFiles($files)" style="display: inline-block;" /> -->
-                <button class="checkout-page__buttons active" ng-class="{'btn-default' : !isDataAvailable}" ng-disabled="!isDataAvailable" ng-click="ProfileUpdate()" style="padding: 5px 17px; font-size: 10px;">Submit</button>
+                <!-- <button class="checkout-page__buttons active" ng-class="{'btn-default' : !isDataAvailable}" ng-disabled="!isDataAvailable" ng-click="ProfileUpdate()" style="padding: 5px 17px; font-size: 10px;">Submit</button> -->
               </div>
             </div>
           </div>
           <div class="info_block col-sm-6">
             <lable>Contact Number</lable>
             <p ng-show="editImage==false">{{userDetails.mobile_number}}</p>
-              <input type="text" ng-model="mobile_number" style="display: inline-block;" ng-show="editImage==true"/>
+              <input type="text" ng-model="mobile_number"  style="display: inline-block;" ng-show="editImage==true"/>
+              <div class="edit_img" ng-show="editImage==true" style="position: relative;left: 50px;">
+              <button class="checkout-page__buttons active" ng-class="{'btn-default' : !isDataAvailable}" ng-disabled="!isDataAvailable" ng-click="ProfileUpdate()" style="padding: 5px 17px; font-size: 10px;">Submit</button>
+            </div>
+              <img class="icon_img" ng-show="editImage==true" ng-click="editImage=false" src="images/close.svg" type="image/svg+xml" data-pin-nopin="true">
           </div>
           <div class="info_block col-sm-6">
             <lable>Email</lable>
@@ -115,51 +120,51 @@
             <!-- edit address -->
             <form ng-submit="editAddress()" class="col-lg-10" ng-show="showEditAddressFields">
                   <div class="form-group col-lg-6">
-                    <label for="usr">name:</label>
+                    <label for="usr">Name:</label>
                     <input type="text" class="form-control" ng-model="name" id="usr">
                   </div>
                   <div class="form-group col-lg-6">
-                    <label for="pwd">houseNo:</label>
+                    <label for="pwd">House No:</label>
                     <input type="text" class="form-control" ng-model="houseNo" id="pwd">
                   </div>
                   <div class="form-group col-lg-6">
-                    <label for="pwd">streetName:</label>
+                    <label for="pwd">Street Name:</label>
                     <input type="text" class="form-control" ng-model="streetName" id="pwd">
                   </div>
                   <div class="form-group col-lg-6">
-                    <label for="pwd">landmark:</label>
+                    <label for="pwd">Landmark:</label>
                     <input type="text" class="form-control" ng-model="landmark" id="pwd">
                   </div>
-                  <div class="form-group col-lg-6">
-                    <label for="pwd">companyName:</label>
+                  <!-- <div class="form-group col-lg-6">
+                    <label for="pwd">Company Name:</label>
                     <input type="text" class="form-control" ng-model="companyName" id="pwd">
-                  </div>
+                  </div> -->
                   <!-- <div class="form-group col-lg-6">
                     <label for="pwd">officeNumber:</label>
                     <input type="text" class="form-control" ng-model="officeNumber" id="pwd">
                   </div> -->
                   <div class="form-group col-lg-6">
-                    <label for="pwd">mobileNumber:</label>
+                    <label for="pwd">Mobile Number:</label>
                     <input type="text" class="form-control" ng-model="mobileNumber" id="pwd">
                   </div>
                   <div class="form-group col-lg-6">
-                    <label for="pwd">landLineNumber:</label>
+                    <label for="pwd">LandLine Number:</label>
                     <input type="text" class="form-control" ng-model="landLineNumber" id="pwd">
                   </div>
                   <div class="form-group col-lg-6">
-                    <label for="pwd">pinCode:</label>
+                    <label for="pwd">Pin Code:</label>
                     <input type="text" class="form-control" ng-model="pinCode" id="pwd">
                   </div>
                   <div class="form-group col-lg-6">
-                    <label for="pwd">city:</label>
+                    <label for="pwd">City:</label>
                     <input type="text" class="form-control" ng-model="city" id="pwd">
                   </div>
                   <div class="form-group col-lg-6">
-                    <label for="pwd">state:</label>
+                    <label for="pwd">State:</label>
                     <input type="text" class="form-control" ng-model="state" id="pwd">
                   </div>
                   <div class="form-group col-lg-6">
-                    <label for="pwd">country:</label>
+                    <label for="pwd">Country:</label>
                     <input type="text" class="form-control" ng-model="country" id="pwd">
                     <br/>
                       <button type="submit" class="checkout-page__buttons active">Submit</button>
@@ -185,9 +190,9 @@
                 <div class="col-md-12">
                   <div class="row order_item" ng-class="{'card_layout' : showOrder[$index]}" ng-repeat="orderLive in orderHistoryLive | orderBy : '-orderDate' ">
                     <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = true" ng-click="showOrder[$index] = !showOrder[$index]">
-                      <p><label>Order Date&nbsp;</label>{{orderLive.orderDate | date:medium}}</p>
+                      <p><label>Order Date&nbsp;</label>{{orderLive.orderDate | date:medium}}&nbsp;{{orderLive.orderDate | date : "shortTime"}}  </p>
                       <p><label>Order Id&nbsp;</label>{{orderLive._id}}</p>
-                      <p><label>Order status&nbsp;</label>{{orderLive.orderStatus.name}}</p>
+                      <p><label>Order Status&nbsp;</label>{{orderLive.orderStatus.name}}</p>
                     </div>
                     <div class="col-lg-12 order_detail" ng-show="showOrder[$index]">
                       <div class="row">
@@ -386,7 +391,7 @@
         <div>
           <img ng-src="{{myCroppedImage}}" />
         </div>
-        {{myCroppedImage}}
+        <!-- {{myCroppedImage}} -->
 
         <button class="checkout-page__buttons" ng-click="selectedCropImage(myCroppedImage)" type="button">Done!</button>
 				<!-- image  -->
