@@ -167,16 +167,25 @@ $('#prv-testimonial').on('click', function(){
 });
 
 
-function nextSlider(){
+  //timeout auto scroll
+
+  $timeout(function() {
+      var $first = $('#testimonial-list .slide-list:first');
+      $first.animate({ 'margin-left': '-648px' }, 900, function() {
+          $first.remove().css({ 'margin-left': '0px' });
+          $('#testimonial-list .slide-list:last').after($first);
+      });
+    }, 5000);
+
+
   $('#nxt-testimonial').on('click', function(){
       var $first = $('#testimonial-list .slide-list:first');
-      $first.animate({ 'margin-left': '-248px' }, 1000, function() {
+      $first.animate({ 'margin-left': '-448px' }, 1000, function() {
           $first.remove().css({ 'margin-left': '0px' });
           $('#testimonial-list .slide-list:last').after($first);
       });
   });
-}
-setTimeout(nextSlider, 8000);
+
 
 
 //category scrooll
@@ -637,9 +646,9 @@ $scope.getWishList();
   //POST create wish list
   // var count = 0;
   $scope.addWishList = function (productId) {
-    $scope.loading = true;
     //$scope.productIdWishList = productId;
     if ($cookieStore.get('userId')) {
+          $scope.loadingIcon = true;
         // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
         //
         //   if ($scope.getWishListProductId[i] == productId) {
@@ -676,6 +685,8 @@ $scope.getWishList();
                                     Auth.addWishList(wishListInfo)
                                     .success(function(data){
                                       //console.log('data', data);
+                                      $scope.loadingIcon = false;
+                                      $scope.showFilledHeart = true;
                                       $scope.getcartItems();
                                       $scope.getWishList();
 
@@ -748,16 +759,5 @@ $scope.getWishList();
             });
       };
       $scope.getAllBanner();
-
-      setTimeout(function(){
-        $('#nxt-testimonial').on('click', function(){
-            var $first = $('#testimonial-list .slide-list:first');
-            $first.animate({ 'margin-left': '-248px' }, 1000, function() {
-                $first.remove().css({ 'margin-left': '0px' });
-                $('#testimonial-list .slide-list:last').after($first);
-            });
-        });
-
-    },5000);
 
 })

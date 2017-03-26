@@ -572,10 +572,13 @@ console.log("$(window).height(); ",$(window).height());
 
       //POST create wish list
       // var count = 0;
+      $scope.loadingIcon = false;
       $scope.addWishList = function (productId) {
         $scope.loading = true;
+
         //$scope.productIdWishList = productId;
         if ($cookieStore.get('userId')) {
+                $scope.loadingIcon = true;
             // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
             //
             //   if ($scope.getWishListProductId[i] == productId) {
@@ -611,6 +614,7 @@ console.log("$(window).height(); ",$(window).height());
                                         }
                                         Auth.addWishList(wishListInfo)
                                         .success(function(data){
+                                          $scope.loadingIcon = false;
                                           //console.log('data', data);
                                           // $scope.getcartItems();
                                           $scope.getWishList();
