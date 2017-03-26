@@ -185,9 +185,16 @@ button {
 .user__login {
   display: -ms-flexbox;
   display: flex;
-  font-size: 15px;
-  color: #ffffff;
-  margin-top: 10px; }
+  margin-top: 10px;
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff; }
 
 .dropdown {
   margin: 5px 12px !important;
