@@ -4786,7 +4786,7 @@ button[disabled] {
   border-top: 1px solid #ddd;
   border-left: 1px solid #ddd; }
   .basic_info .info_block {
-    padding: 25px 30px;
+    padding: 14px 30px;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     min-height: 110px;
@@ -4805,7 +4805,7 @@ button[disabled] {
     .basic_info .info_block .icon_img {
       height: 15px;
       float: right;
-      margin-top: 15px;
+      margin-top: -26px;
       cursor: pointer; }
     .basic_info .info_block .edit_img {
       display: inline-block; }
@@ -4833,6 +4833,13 @@ button[disabled] {
     .order_item .order_detail .order_footer {
       border-top: 1px solid #ddd;
       padding: 15px 0; }
+
+.icon_img_info {
+  height: 15px;
+  cursor: pointer;
+  position: relative;
+  bottom: 44px;
+  left: 76px; }
 
 .table-orderList {
   margin-bottom: 0px !important; }

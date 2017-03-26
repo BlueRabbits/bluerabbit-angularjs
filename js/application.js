@@ -673,6 +673,10 @@ $scope.logged = false;
       $scope.userId = $cookieStore.get('userId');
       $scope.userName = $cookieStore.get('userName');
       $scope.userEmail = $cookieStore.get('emailId');
+      $scope.mobile_number = data.mobile_number;
+      if ($scope.mobile_number) {
+        $scope.isDataAvailable = true;
+      }
     }).error(function(data) {
       console.log('data', data);
     });
@@ -938,7 +942,7 @@ $scope.editAddress = function(){
   streetName: $scope.streetName,
   landmark: $scope.landmark,
   // street4: Near to hotel,
-  companyName: $scope.companyName,
+  // companyName: $scope.companyName,
   // officeNumber: 1234567890,
   mobileNumber: $scope.mobileNumber,
   landLineNumber: $scope.landLineNumber,
@@ -1308,16 +1312,25 @@ $('#prv-testimonial').on('click', function(){
 });
 
 
-function nextSlider(){
+  //timeout auto scroll
+
+  $timeout(function() {
+      var $first = $('#testimonial-list .slide-list:first');
+      $first.animate({ 'margin-left': '-648px' }, 900, function() {
+          $first.remove().css({ 'margin-left': '0px' });
+          $('#testimonial-list .slide-list:last').after($first);
+      });
+    }, 5000);
+
+
   $('#nxt-testimonial').on('click', function(){
       var $first = $('#testimonial-list .slide-list:first');
-      $first.animate({ 'margin-left': '-248px' }, 1000, function() {
+      $first.animate({ 'margin-left': '-448px' }, 1000, function() {
           $first.remove().css({ 'margin-left': '0px' });
           $('#testimonial-list .slide-list:last').after($first);
       });
   });
-}
-setTimeout(nextSlider, 8000);
+
 
 
 //category scrooll
@@ -1778,9 +1791,9 @@ $scope.getWishList();
   //POST create wish list
   // var count = 0;
   $scope.addWishList = function (productId) {
-    $scope.loading = true;
     //$scope.productIdWishList = productId;
     if ($cookieStore.get('userId')) {
+          $scope.loadingIcon = true;
         // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
         //
         //   if ($scope.getWishListProductId[i] == productId) {
@@ -1817,6 +1830,8 @@ $scope.getWishList();
                                     Auth.addWishList(wishListInfo)
                                     .success(function(data){
                                       //console.log('data', data);
+                                      $scope.loadingIcon = false;
+                                      $scope.showFilledHeart = true;
                                       $scope.getcartItems();
                                       $scope.getWishList();
 
@@ -1889,17 +1904,6 @@ $scope.getWishList();
             });
       };
       $scope.getAllBanner();
-
-      setTimeout(function(){
-        $('#nxt-testimonial').on('click', function(){
-            var $first = $('#testimonial-list .slide-list:first');
-            $first.animate({ 'margin-left': '-248px' }, 1000, function() {
-                $first.remove().css({ 'margin-left': '0px' });
-                $('#testimonial-list .slide-list:last').after($first);
-            });
-        });
-
-    },5000);
 
 })
 
@@ -2350,6 +2354,8 @@ console.log("$(window).height(); ",$(window).height());
         $scope.particularProduct = false;
 
         $scope.showMenuResult  = false;
+        //deselect category names
+        $scope.categoryNames = "";
         $scope.getWishList();
       }
 
@@ -2477,10 +2483,13 @@ console.log("$(window).height(); ",$(window).height());
 
       //POST create wish list
       // var count = 0;
+      $scope.loadingIcon = false;
       $scope.addWishList = function (productId) {
         $scope.loading = true;
+
         //$scope.productIdWishList = productId;
         if ($cookieStore.get('userId')) {
+                $scope.loadingIcon = true;
             // for (var i = 0; i < $scope.getWishListProductId.length; i++) {
             //
             //   if ($scope.getWishListProductId[i] == productId) {
@@ -2516,6 +2525,7 @@ console.log("$(window).height(); ",$(window).height());
                                         }
                                         Auth.addWishList(wishListInfo)
                                         .success(function(data){
+                                          $scope.loadingIcon = false;
                                           //console.log('data', data);
                                           // $scope.getcartItems();
                                           $scope.getWishList();
