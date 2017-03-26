@@ -213,9 +213,9 @@
 							{{wishLists.product.description}}
 						</p>
 						<p class="product-sub-title"></p>
-						<!-- <img src="{{wishLists.product.s1}}" width="120px" />
-						<img src="{{wishLists.product.s2}}" width="120px" />
-						<img src="{{wishLists.product.s3}}" width="120px" /> -->
+						<img src="{{wishLists.product.s1}}" width="120px" ng-click="showImage(wishLists.product._id)"/>
+						<img src="{{wishLists.product.s2}}" width="120px" ng-click="showImage(wishLists.product._id)"/>
+						<img src="{{wishLists.product.s3}}" width="120px" ng-click="showImage(wishLists.product._id)" />
 					</div>
 				</div>
 			</div>
@@ -340,7 +340,7 @@
 
 <!-- load image modal windo  -->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="width: 88%;">
+  <div class="modal-dialog" style="width: 43%;">
     <div class="modal-content">
       <div class="modal-body">
       	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -348,7 +348,7 @@
 				<!-- image  -->
 				<div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -357,15 +357,15 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="{{ImageGallery.s1}}"  width= "100%" alt="First slide">
+                        <img src="{{ImageGallery.s1}}"  width= "600px" alt="First slide">
 
                     </div>
                     <div class="item">
-                        <img src="{{ImageGallery.s2}}" width= "100%" alt="Second slide">
+                        <img src="{{ImageGallery.s2}}" width= "600px" alt="Second slide">
 
                     </div>
                     <div class="item">
-                        <img src="{{ImageGallery.s3}}" width= "100%"  alt="Third slide">
+                        <img src="{{ImageGallery.s3}}" width= "600px"  alt="Third slide">
 
                     </div>
                 </div>
