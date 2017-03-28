@@ -4236,7 +4236,7 @@ a.no-underline:hover {
         position: relative;
         width: 200px; }
   #testimonial-list .slide-list:hover {
-    box-shadow: 0 2px 15px 0px rgba(4, 4, 4, 0.54);
+    box-shadow: 0 2px 15px 2px rgba(4, 4, 4, 0.54);
     -webkit-transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67);
     transition: box-shadow 0.2s cubic-bezier(0.15, 0.69, 0.83, 0.67); }
 
