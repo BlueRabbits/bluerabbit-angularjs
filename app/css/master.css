@@ -257,9 +257,15 @@ footer {
   font-stretch: normal;
   color: #999999; }
 
-.footer-menu li:first-child {
-  color: #fff;
-  font-family: "Lato-Black"; }
+.footer-menu li a {
+  font-family: "Lato-Regular";
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin: 5px 0;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #999999; }
 
 .footer-menu__lunch,
 .footer-menu__dinner,
