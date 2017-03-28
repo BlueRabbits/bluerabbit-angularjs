@@ -35,6 +35,17 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   	});
   });
 
+  //BX slider
+  $(document).ready(function(){
+    $('.bxslider').bxSlider({
+      autoControls: true,
+      minSlides: 3,
+      maxSlides: 5,
+      slideWidth: 170,
+      slideMargin: 10
+    });
+  });
+
   // $(document).ready(function() {
   //     $("#lightSlider").lightSlider({
   //         item: 5,
@@ -161,7 +172,7 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
 
 $('#prv-testimonial').on('click', function(){
     var $last = $('#testimonial-list .slide-list:last');
-    $last.remove().css({ 'margin-left': '-248px' });
+    $last.remove().css({ 'margin-left': '-200px' });
     $('#testimonial-list .slide-list:first').before($last);
     $last.animate({ 'margin-left': '0px' }, 1000);
 });
@@ -180,7 +191,7 @@ $('#prv-testimonial').on('click', function(){
 
   $('#nxt-testimonial').on('click', function(){
       var $first = $('#testimonial-list .slide-list:first');
-      $first.animate({ 'margin-left': '-448px' }, 1000, function() {
+      $first.animate({ 'margin-left': '-200px' }, function() {
           $first.remove().css({ 'margin-left': '0px' });
           $('#testimonial-list .slide-list:last').after($first);
       });

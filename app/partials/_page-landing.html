@@ -62,14 +62,14 @@
         <div class="bestoffertext">
           <p class="context l2" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)" style="cursor:pointer">{{lists.name}}</p>
           <div class="row">
-            <div class="col-sm-6">
+            <div class="" style="display: flex;align-items: baseline;justify-content: space-around;">
               <label class="creds l1">{{lists.salePrice}}&nbsp;AED</label>
               <p class="products__offer">
                 <span class="strike">{{lists.listPrice}}&nbsp;AED</span>
-                <span class="text-success">{{lists.discountedPrice}}%</span>
+                <span class="text-success">{{lists.discountedPrice}}% OFF</span>
               </p>
             </div>
-            <div class="col-sm-6">
+            <div class="" style="display: flex;justify-content: center;">
               <button type="button" ng-click="addToCart(lists._id)" name="button">Add To Cart</button>
             </div>
           </div>
@@ -78,7 +78,6 @@
     </ul>
   </div>
 </div>
-
 <!-- Tab section -->
 <div class="tab_section" id="menu">
   <a href="" ng-click="ourMenu(categoryNames)" class="no-underline"><h1>Our Menu</h1></a>
@@ -111,6 +110,7 @@
           <!-- <img ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(list._id)" style="cursor: pointer">
           <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i> -->
             <!-- <i class="fa fa-spinner fa-pulse fa-2x" ng-show="loadingIcon"  style="position: relative;top:21px;"></i>  -->
+
           <img  style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist" ng-disabled="!loadingIcon" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
           <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 27px;right: 1px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
           <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat,list._id)" style="cursor:pointer">
