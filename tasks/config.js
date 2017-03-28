@@ -30,7 +30,7 @@ var config =  function() {
     // Server Configuration
     var serverConfiguration = {
         host       : 'localhost',
-        port       : 3001,
+        port       : 3000,
         open       : true,
         livereload : {
             enable: true,
