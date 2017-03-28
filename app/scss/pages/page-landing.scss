@@ -414,6 +414,10 @@ a.no-underline:hover {
   width: 49%;
   height: 180px;
   margin-bottom: 20px;
+
+  &:hover {
+    box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+  }
 }
 
 // .breakfast-products :hover {
@@ -428,11 +432,11 @@ a.no-underline:hover {
   background-repeat: no-repeat;
   background-position: center;
 }
-.breakfast-products__image:hover{
-  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
-  -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
-  transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
-}
+// .breakfast-products__image:hover{
+//   box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+//   -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+//   transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+// }
 
 .breakfast-products__content {
   width: 50%;
@@ -466,11 +470,11 @@ a.no-underline:hover {
 	}
 }
 
-.breakfast-products__content:hover{
-  box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
-  -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
-  transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
-}
+// .breakfast-products__content:hover{
+//   box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
+//   -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+//   transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+// }
 
 .products__description {
   margin: 10px 20px;
@@ -496,6 +500,7 @@ a.no-underline:hover {
 .strike {text-decoration: line-through;}
 .products__offer {
   font-family: $font-Lato-regular!important;
+  font-size: 12px;
   > span {
     margin: 0 5px!important;
   }
@@ -939,9 +944,10 @@ a.no-underline:hover {
 }
 
 #testimonial-list {
-  overflow: hidden;
+  //overflow: hidden;
   // width: 100%;
   display: inline-flex;
+  margin-left: 10px;
 
   .slide-list {
     width: 248px;
@@ -990,13 +996,14 @@ a.no-underline:hover {
         border-radius: 40px;
         background-color: #d92e4a;
         position: relative;
+        width: 200px;
       }
     }
   }
     .slide-list:hover {
-      box-shadow: 0 2px 15px 5px rgba(4, 4, 4, 0.54);
--webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+      box-shadow: 0 2px 15px 2px rgba(4, 4, 4, 0.54);
+      -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+      transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
     }
 }
 .l1 {
@@ -1168,6 +1175,7 @@ Media Quriers: Tablet to Desktop
     #testimonial-list .slide-list {
         width: 249px;
         padding: 0 10px;
+        height: 225px;
     }
     .slider-section {
           padding: 15px 95px;
@@ -1183,6 +1191,7 @@ Media Quriers: Tablet to Desktop
     #testimonial-list .slide-list {
         width: 249px;
         padding: 0 10px;
+        height: 225px;
     }
     .slider-section {
           padding: 15px 95px;
@@ -1232,6 +1241,7 @@ Media Quriers: Tablet to Desktop
     #testimonial-list .slide-list {
         width: 259px;
         padding: 0 10px;
+        height: 225px;
     }
     .slider-section {
           padding: 15px 180px;
