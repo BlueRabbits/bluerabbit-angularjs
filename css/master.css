@@ -4703,8 +4703,7 @@ img.product_heart {
   .description__section .description__section--header {
     display: -ms-flexbox;
     display: flex;
-    background-color: #eff4f7;
-    padding: 15px 30px; }
+    background-color: #eff4f6; }
     .description__section .description__section--header .description-list {
       font-family: "Lato-Regular";
       font-size: 12px;
@@ -4728,7 +4727,7 @@ img.product_heart {
     .description__section .description__section--content .product-name {
       font-size: 24px;
       color: #636567;
-      font-family: "Lato-Regular";
+      font-family: "Lato-Semibold";
       font-weight: bolder; }
 
 .share_options {
