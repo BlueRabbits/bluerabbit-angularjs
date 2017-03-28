@@ -243,8 +243,8 @@ img.product_heart {margin-right: 8px;}
   //display: none;
   .description__section--header {
     display: flex;
-    background-color: #eff4f7;
-    padding: 15px 30px;
+    background-color: #eff4f6;
+    // padding: 15px 30px;
 
     .description-list {
       font-family: "Lato-Regular";
@@ -277,7 +277,7 @@ img.product_heart {margin-right: 8px;}
     .product-name {
       font-size: 24px;
       color: #636567;
-      font-family: $font-Lato-regular;
+      font-family: $font-Lato-Semibold;
       font-weight: bolder;
     }
   }
