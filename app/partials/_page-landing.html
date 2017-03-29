@@ -78,24 +78,53 @@
     </ul>
   </div>
 </div>
+
+<!-- <slick dots=true infinite=false speed=300 slides-to-show=5 touch-move=false slides-to-scroll=1> -->
+<!--
+  <ul id="testimonial-list" class="clearfix" slick-slider="{dots: false, arrows: true, draggable:
+  false, slidesToShow:3, infinite:false}">
+    <li class="slide-list" ng-repeat="lists in allProducts  | filter:{p1:'yes'}">
+      <div class="article_image" style="background-image:url({{lists.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)"></div>
+      <div class="bestoffertext">
+        <p class="context l2" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)" style="cursor:pointer">{{lists.name}}</p>
+        <div class="row">
+          <div class="" style="display: flex;align-items: baseline;justify-content: space-around;">
+            <label class="creds l1">{{lists.salePrice}}&nbsp;AED</label>
+            <p class="products__offer">
+              <span class="strike">{{lists.listPrice}}&nbsp;AED</span>
+              <span class="text-success">{{lists.discountedPrice}}% OFF</span>
+            </p>
+          </div>
+          <div class="" style="display: flex;justify-content: center;">
+            <button type="button" ng-click="addToCart(lists._id)" name="button">Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul> -->
+<!-- </slick> -->
 <!-- Tab section -->
 <div class="tab_section" id="menu">
   <a href="" ng-click="ourMenu(categoryNames)" class="no-underline"><h1>Our Menu</h1></a>
   <div class="menu-tabs">
-
-    <ul class="menu-tabs__list scroll-menu" id="tabs-menu">
-
-      <li ng-repeat="categories in getCategoryList">
-        <a style="cursor:pointer;" data-toggle="tab"
-            ng-class="{'active' : categories.name == categoryNames}"
-            ng-click="setActiveTab(categories._id,categories.name)">
-              {{categories.name}}
-        </a>
-      </li>
-        <div id="next" class="nav-arrow left-arrow category-left-arrow" ng-show="showArrow === true" ng-click="showArrow = !showArrow" > < </div>
-        <div id="prev" class="nav-arrow right-arrow category-right-arrow" ng-hide="showArrow === true" ng-click="showArrow = !showArrow"> > </div>
-      <!-- <button type="button" name="button">view all</button> -->
-    </ul>
+    <div class="clearfix slider-control">
+      <img src="images/arrow-left.svg" id="prv-menu" alt="PREV" style="margin-right:10px;"  />
+      <img src="images/arrow-right-active.svg" id="nxt-menu" alt="NEXT" />
+    </div>
+    <div id="carousel-wrap">
+        <ul class="menu-tabs__list scroll-menu" id="menu_item_list" style="display: inline-flex;margin-left: 10px;">
+          <li class="menu_slide-list" ng-repeat="categories in getCategoryList" style="width:200px;">
+            <a style="cursor:pointer;" data-toggle="tab"
+                ng-class="{'active' : categories.name == categoryNames}"
+                ng-click="setActiveTab(categories._id,categories.name)">
+                  {{categories.name}}
+            </a>
+          </li>
+            <!-- <div id="next" class="nav-arrow left-arrow category-left-arrow" ng-show="showArrow === true" ng-click="showArrow = !showArrow" > < </div>
+            <div id="prev" class="nav-arrow right-arrow category-right-arrow" ng-hide="showArrow === true" ng-click="showArrow = !showArrow"> > </div> -->
+          <!-- <button type="button" name="button">view all</button> -->
+        </ul>
+    </div>
   </div>
   <div class="menu-tabs__products-list ">
     <a href="" ng-click="initSetTab('previous')"><img src="images/icon_arrow_left.png" class="arrow arrow_left" alt="left"></a>
