@@ -39,8 +39,8 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   $(document).ready(function(){
     $('.bxslider').bxSlider({
       autoControls: true,
-      minSlides: 3,
-      maxSlides: 5,
+      minSlides: 5,
+      maxSlide: 7,
       slideWidth: 170,
       slideMargin: 10
     });
@@ -191,12 +191,63 @@ $('#prv-testimonial').on('click', function(){
 
   $('#nxt-testimonial').on('click', function(){
       var $first = $('#testimonial-list .slide-list:first');
-      $first.animate({ 'margin-left': '-200px' }, function() {
-          $first.remove().css({ 'margin-left': '0px' });
+      $first.animate({ 'margin-left': '-200px' },  function() {
+          $first.remove().css({ 'margin-left': '20px' });
           $('#testimonial-list .slide-list:last').after($first);
       });
   });
 
+  $scope.slickConfig = {
+      enabled: true,
+      autoplay: true,
+      draggable: false,
+      autoplaySpeed: 3000,
+      method: {},
+      event: {
+          beforeChange: function (event, slick, currentSlide, nextSlide) {
+          },
+          afterChange: function (event, slick, currentSlide, nextSlide) {
+          }
+      }
+  };
+
+$(document).ready(function(){
+$('.myclass').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+});
 
 
 //category scrooll
@@ -770,5 +821,24 @@ $scope.getWishList();
             });
       };
       $scope.getAllBanner();
+
+
+
+
+      $('#prv-menu').on('click', function(){
+          var $last_menu = $('#menu_item_list .menu_slide-list:last');
+          $last_menu.remove().css({ 'margin-left': '-200px' });
+          $('#menu_item_list .menu_slide-list:first').before($last_menu);
+          $last_menu.animate({ 'margin-left': '0px' }, 1000);
+      });
+
+
+        $('#nxt-menu').on('click', function(){
+            var $first_menu = $('#menu_item_list .menu_slide-list:first');
+            $first_menu.animate({ 'margin-left': '-200px' },  function() {
+                $first_menu.remove().css({ 'margin-left': '20px' });
+                $('#menu_item_list .menu_slide-list:last').after($first_menu);
+            });
+        });
 
 })
