@@ -579,6 +579,7 @@ $scope.editAddress = function(){
       $scope.selectedCropImage = function(cropImg){
         $scope.showCropImage = true;
         $scope.croppedImage = cropImg;
+        $scope.hideAvatar = false;
         //console.log("$scope.croppedImage",$scope.croppedImage);
   $('#imageCropModal').modal('hide');
         var base64_string = cropImg;
