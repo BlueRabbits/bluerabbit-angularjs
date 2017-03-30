@@ -1016,6 +1016,7 @@ $scope.editAddress = function(){
       $scope.selectedCropImage = function(cropImg){
         $scope.showCropImage = true;
         $scope.croppedImage = cropImg;
+        $scope.hideAvatar = false;
         //console.log("$scope.croppedImage",$scope.croppedImage);
   $('#imageCropModal').modal('hide');
         var base64_string = cropImg;
@@ -4942,7 +4943,8 @@ app.filter('trimSpaces', [function() {
 app.factory('Auth', function($http, $window, $cookieStore) {
   //var BASE_URL = "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000";
   //var BASE_URL = "http://ec2-54-187-15-116.us-west-2.compute.amazonaws.com:9000";
-  var BASE_URL = "http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com:9000";
+  //var BASE_URL = "http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com:9000";
+  var BASE_URL = "http://35.161.215.52:9000";
   //var BASE_URL = "http://localhost:9000";
   //var BASE_URL = "http://192.168.0.84:9000";
     var authToken = $cookieStore.get('token');
