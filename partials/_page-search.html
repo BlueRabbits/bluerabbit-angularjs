@@ -134,9 +134,11 @@
 							{{search_result_product.description}}
 						</p>
 						<p class="product-sub-title"></p>
-						<img src="{{search_result_product.s1}}" width="120px" ng-click="showImage(search_result_product._id)"/>
-						<img src="{{search_result_product.s2}}" width="120px" ng-click="showImage(search_result_product._id)"/>
-						<img src="{{search_result_product.s3}}" width="120px" ng-click="showImage(search_result_product._id)" />
+						<div class="description__section__images">
+							<img src="{{search_result_product.s1}}" width="120px" ng-click="showImage(search_result_product._id)"/>
+							<img src="{{search_result_product.s2}}" width="120px" ng-click="showImage(search_result_product._id)"/>
+							<img src="{{search_result_product.s3}}" width="120px" ng-click="showImage(search_result_product._id)" />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -201,9 +203,11 @@
 							{{results.description}}
 						</p>
 						<p class="product-sub-title"></p>
-						<img src="{{results.s1}}" width="120px" ng-click="showImage(results._id)"/>
-						<img src="{{results.s2}}" width="120px" ng-click="showImage(results._id)"/>
-						<img src="{{results.s3}}" width="120px" ng-click="showImage(results._id)" />
+						<div class="description__section__images">
+							<img src="{{results.s1}}" width="120px" ng-click="showImage(results._id)"/>
+							<img src="{{results.s2}}" width="120px" ng-click="showImage(results._id)"/>
+							<img src="{{results.s3}}" width="120px" ng-click="showImage(results._id)" />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -265,9 +269,11 @@
 							{{wishLists.product.description}}
 						</p>
 						<p class="product-sub-title"></p>
-						<img src="{{wishLists.product.s1}}" width="120px" ng-click="showImage(wishLists.product._id)"/>
-						<img src="{{wishLists.product.s2}}" width="120px" ng-click="showImage(wishLists.product._id)"/>
-						<img src="{{wishLists.product.s3}}" width="120px" ng-click="showImage(wishLists.product._id)" />
+						<div class="description__section__images">
+							<img src="{{wishLists.product.s1}}" width="120px" ng-click="showImage(wishLists.product._id)"/>
+							<img src="{{wishLists.product.s2}}" width="120px" ng-click="showImage(wishLists.product._id)"/>
+							<img src="{{wishLists.product.s3}}" width="120px" ng-click="showImage(wishLists.product._id)" />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -331,9 +337,12 @@
 								{{list.description}}
 							</p>
 							<p class="product-sub-title"></p>
-							<img src="{{list.s1}}" width="120px" ng-click="showImage(list._id)" />
-							<img src="{{list.s2}}" width="120px" ng-click="showImage(list._id)"/>
-							<img src="{{list.s3}}" width="120px" ng-click="showImage(list._id)"/>
+							<div class="description__section__images">
+								<img src="{{list.s1}}" width="120px" ng-click="showImage(list._id)" />
+								<img src="{{list.s2}}" width="120px" ng-click="showImage(list._id)"/>
+								<img src="{{list.s3}}" width="120px" ng-click="showImage(list._id)"/>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -419,7 +428,7 @@
 					<li></li>
 				</ul>
 			</div>
-			<div style="overflow: scroll;position: absolute;width: 100%;top: 142px;" ng-style="{height: '{{cartHeight}}px'}">
+			<div class="cart_section_data_scroll" ng-style="{height: '{{cartHeight}}px'}">
 				<div class="cart-section__data" ng-repeat="cartList in allCartItems">
 					<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
 					<p class="product-item__name">{{cartList.product.name}}</p>
@@ -437,11 +446,11 @@
 		</div>
 	</div>
 		<div class="cart-section__footer">
-			<div class="total-section">
+			<div class="total-section total-section_sizes">
 				<p>Sub Total</p>
 				<p class="total-section__cost"><span>AED</span>{{subTotalCost}}</p>
 			</div>
-			<div class="total-section" ng-if="showDeliveryCost">
+			<div class="total-section total-section_sizes" ng-if="showDeliveryCost">
 				<p>Delivery Cost</p>
 				<p class="total-section__cost"><span>AED</span>{{deliveryOrderAmount}}</p>
 			</div>
@@ -457,9 +466,11 @@
 <!-- load image modal windo  -->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width: 43%;margin-top: 150px;">
-    <div class="modal-content">
+    <div class="modal-content image_view_slider">
       <div class="modal-body">
-      	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      	<button type="button" class="close close_button" data-dismiss="modal">
+					<span aria-hidden="true" class="close_popup">&times;</span><span class="sr-only">Close</span>
+				</button>
       <!-- <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div> -->
 				<!-- image  -->
 				<div class="container">

@@ -149,12 +149,12 @@
 <div class="tab_section" id="menu">
   <a href="" ng-click="ourMenu(categoryNames)" class="no-underline"><h1>Our Menu</h1></a>
   <div class="menu-tabs">
-    <div class="clearfix slider-control">
-      <img src="images/arrow-left.svg" id="prv-menu" alt="PREV" style="margin-right:10px;"  />
-      <img src="images/arrow-right-active.svg" id="nxt-menu" alt="NEXT" />
+    <div class="clearfix slider-control" style="padding:0;">
+      <img src="images/left-arrow.png" id="prv-menu" alt="PREV" style="margin-right:10px;"  height="30px"/>
+      <img src="images/right-arrow.png" id="nxt-menu" alt="NEXT" height="30px"/>
     </div>
     <div id="carousel-wrap">
-        <ul class="menu-tabs__list scroll-menu" id="menu_item_list" style="display: inline-flex;margin-left: 10px;">
+        <ul class="menu-tabs__list scroll-menu" id="menu_item_list" style="display: inline-flex;margin-left:-36px;">
           <li class="menu_slide-list" ng-repeat="categories in getCategoryList" style="width:200px;">
             <a style="cursor:pointer;" data-toggle="tab"
                 ng-class="{'active' : categories.name == categoryNames}"

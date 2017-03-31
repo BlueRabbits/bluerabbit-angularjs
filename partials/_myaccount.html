@@ -71,12 +71,12 @@
           <img class="icon_img_info" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true">
         <div class="row basic_info">
           <div class="info_block col-sm-6">
-            <div class="dropdown__myaccount">
+            <div class="dropdown__myaccount" style="display:flex;align-items:center">
               <div class="user_image" ng-click="cropImages()" ng-hide="!myCroppedImage" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})"></div>
               <div class="user_image" ng-click="cropImages()" ng-hide="!hideAvatar" style="background-image: url('images/user_avatar.png')" ng-show="!userDetails.image_url">
               </div>
               <img class="user_image" ng-show="myCroppedImage" ng-src="{{myCroppedImage}}" />
-              <p ng-show="editImage==false" position: relative;left: 71px;bottom: 15px;margin-top: -21px;>{{userDetails.name}}</p>
+              <p ng-show="editImage==false" style="margin:0;">{{userDetails.name}}</p>
 
               <!-- <img class="icon_img" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true"> -->
               <!-- <img class="icon_img" ng-show="editImage==true" ng-click="editImage=false" src="images/close.svg" type="image/svg+xml" data-pin-nopin="true"> -->
@@ -151,7 +151,7 @@
   											<p>{{address.name}},{{address.houseNo}}</p>
   											<p>{{address.streetName}},{{address.landmark}},
   										{{address.city}},{{address.country}}</p>
-  											<p>{{address.mobileNumber}}</p>
+  											<p>Phone.No:{{address.mobileNumber}}</p>
   										</div>
   									</div>
   								</div>
@@ -222,7 +222,7 @@
       <div class="col-md-12 admin-content" id="Profile" ng-show="showTab == 'orderHistory'">
         <div class="row">
           <!-- tabs -->
-            <ul class="nav nav-tabs order-nav" style="padding: 13px 0px 25px 52px;">
+            <ul class="nav nav-tabs order-nav" style="padding:15px;display:flex;justify-content:space-between">
             <!-- <li class="active"><a data-toggle="tab" href="#home">Home</a></li> -->
                 <li class="active"><a data-toggle="tab" data-target="#menu1" ng-click="liveOrders()">Live Orders</a></li>
                 <li><a data-toggle="tab" data-target="#menu2" ng-click="pastOrders()">Past Orders</a></li>
@@ -231,10 +231,11 @@
             <div id="menu1" class="" ng-show="showLiveOrders == true">
                 <div class="col-md-12">
                   <div class="row order_item" ng-class="{'card_layout' : showOrder[$index]}" ng-repeat="orderLive in orderHistoryLive | orderBy : '-orderDate' ">
+                    <!-- <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = true"> -->
                     <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = true" ng-click="showOrder[$index] = !showOrder[$index]">
-                      <p><label>Order Date&nbsp;</label>{{orderLive.orderDate | date:medium}}&nbsp;{{orderLive.orderDate | date : "shortTime"}}  </p>
-                      <p><label>Order Id&nbsp;</label>{{orderLive._id}}</p>
-                      <p><label>Order Status&nbsp;</label>{{orderLive.orderStatus.name}}</p>
+                      <p><label>Order Date:&nbsp;</label><span>{{orderLive.orderDate | date:medium}}&nbsp;{{orderLive.orderDate | date : "shortTime"}}</span></p>
+                      <p><label>Order Id:&nbsp;</label><span>{{orderLive._id}}</span></p>
+                      <p><label>Order Status:&nbsp;</label><span>{{orderLive.orderStatus.name}}</span></p>
                     </div>
                     <div class="col-lg-12 order_detail" ng-show="showOrder[$index]">
                       <div class="row">
@@ -254,7 +255,7 @@
                               </td>
                               <td class="text-center">{{itemLive.quantity}}</td>
                               <td class="text-right"><strong>{{itemLive.totalProductAmount}}&nbsp; AED</strong></td>
-                              <td class="text-right"><span style="width: 20px;height: 24px;object-fit: contain;  font-size: 20px;" ng-click="cancelOrderByUser(orderLive._id)">X</span></td>
+                              <!-- <td class="text-right"><span style="width: 20px;height: 24px;object-fit: contain;  font-size: 20px;" ng-click="cancelOrderByUser(orderLive._id)">X</span></td> -->
                             </tr>
                           </tbody>
                         </table>
@@ -267,7 +268,7 @@
                             </div>
                             <div class="col-sm-4 text-right">
                               <span>TOTAL PRICE</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                              <strong>{{orderLive.orderAmount}}&nbsp;&nbsp;AED</strong>
+                              <strong style="font-size:24px;">{{orderLive.orderAmount}}&nbsp;&nbsp;AED</strong>
                             </div>
                           </div>
                         </div>
@@ -480,7 +481,7 @@
 
 <!-- load image modal windo  -->
 <div class="modal fade" id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="width: 88%;">
+  <div class="modal-dialog" style="width: 47%;">
     <div class="modal-content">
       <div class="modal-body">
       	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -490,16 +491,20 @@
            <!-- <input type="file" id="fileInput" name="file" multiple ng-files="getTheFiles($files)"/> -->
            <input type="file" id="file1" name="file" multiple ng-files="getTheFiles($files)" style="display: inline-block;" />
         </div>
-        <div class="cropArea">
-          <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+        <div class="croping_popup_images">
+          <div class="cropArea">
+            <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+          </div>
+          <div class="image_preview">
+            <h3>Image Preview:</h3>
+            <img ng-src="{{myCroppedImage}}" />
+          </div>
         </div>
-        <div>Cropped Image:</div>
-        <div>
-          <img ng-src="{{myCroppedImage}}" />
+        <div class="image_crop_popup_button">
+          <button class="checkout-page__buttons" ng-click="selectedCropImage(myCroppedImage)" type="button">Done!</button>
         </div>
         <!-- {{myCroppedImage}} -->
 
-        <button class="checkout-page__buttons" ng-click="selectedCropImage(myCroppedImage)" type="button">Done!</button>
 				<!-- image  -->
 
 
