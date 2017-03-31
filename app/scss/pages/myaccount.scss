@@ -76,7 +76,7 @@
   border-left: 1px solid #ddd;
 
   .info_block {
-    padding: 14px 30px;
+    padding: 24px 30px;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     min-height: 110px;
@@ -113,7 +113,8 @@
 
 // order history
 .order_item {
-  padding: 10px 20px;
+  padding: 0px 20px;
+  box-shadow: 0 7px 15px 0 rgba(141, 139, 139, 0.5);
 
   &.card_layout {
     margin-bottom: 25px;
@@ -129,7 +130,17 @@
     cursor: pointer;
     border-bottom: 1px solid #ddd;
 
-    p {margin-bottom: 0px;}
+    p {
+      margin-bottom: 0px;
+      label {
+        color: grey;
+      }
+
+      span {
+        font-size: 20px;
+      }
+    }
+
   }
 
   .order_detail {
@@ -174,7 +185,7 @@
 
     .item_thumbnail {
       height: 60px;
-      width: 60px;
+      width: 94px;
       background-size: cover;
       margin-right: 25px;
     }
@@ -393,6 +404,25 @@ margin-top: 50px !important;
 .cropArea {
   background: #E4E4E4;
   overflow: hidden;
-  width:500px;
-  height:350px;
+  width:334px;
+  //height:350px;
+}
+
+.croping_popup_images {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+}
+.image_crop_popup_button {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.image_preview {
+  h3 {
+    margin: 0px;
+    text-align: left;
+    margin-bottom: 10px;
+  }
 }
