@@ -381,6 +381,16 @@ a.no-underline:hover {
     width: 117px;
     color: #dbe272;
    }
+
+}
+
+.menu_slider_control {
+  display: block;
+  text-align: right;
+  margin-top: 22px;
+  width: 76px;
+  float: right;
+  margin-left: 28px;
 }
 
 .menu-tabs__breakfast {
@@ -620,7 +630,7 @@ a.no-underline:hover {
 }
 
 .aboutus-description {
-  width: 42%;
+  width: 46%;
   overflow: scroll;
   h1 {
     font-size: 52px;
@@ -957,6 +967,7 @@ a.no-underline:hover {
     .article_image {
       min-height: 100px;
       width: 100%;
+      margin-top: 10px;
       display: block;
       background-size: cover;
       background-repeat: no-repeat;
@@ -1175,7 +1186,7 @@ Media Quriers: Tablet to Desktop
     #testimonial-list .slide-list {
         width: 249px;
         padding: 0 10px;
-        height: 225px;
+        height: 240px;
     }
     .slider-section {
           padding: 15px 95px;
@@ -1191,7 +1202,7 @@ Media Quriers: Tablet to Desktop
     #testimonial-list .slide-list {
         width: 249px;
         padding: 0 10px;
-        height: 225px;
+        height: 240px;
     }
     .slider-section {
           padding: 15px 95px;
@@ -1241,7 +1252,7 @@ Media Quriers: Tablet to Desktop
     #testimonial-list .slide-list {
         width: 259px;
         padding: 0 10px;
-        height: 225px;
+        height: 240px;
     }
     .slider-section {
           padding: 15px 180px;
