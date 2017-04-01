@@ -38,7 +38,7 @@
 .text-feedback {
   width: 100%;
   min-height: 250px;
-  border: 1px solid #333;
+  border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px 20px;
 }
@@ -71,6 +71,17 @@
 }
 
 // profile
+.basic_info_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  p {
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
 .basic_info {
   border-top: 1px solid #ddd;
   border-left: 1px solid #ddd;
@@ -156,11 +167,10 @@
 
 .icon_img_info {
   height: 15px;
-
   cursor: pointer;
-  position: relative;
-  bottom: 44px;
-  left: 76px;
+  // position: relative;
+  // bottom: 44px;
+  // left: 76px;
 }
 
 .table-orderList {
