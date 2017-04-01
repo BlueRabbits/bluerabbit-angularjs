@@ -3351,7 +3351,6 @@ SMACSS: PAGE - LANDING
   border: none; }
 
 .thankyou-order {
-  width: 457px;
   height: 50px;
   font-size: 42px;
   font-weight: bold;
@@ -3360,7 +3359,12 @@ SMACSS: PAGE - LANDING
   line-height: normal;
   letter-spacing: -1px;
   color: #333333;
-  font-family: Lato-Bold; }
+  font-family: "Lato-Bold"; }
+
+.addressType {
+  font-size: 17px;
+  font-family: "Lato-Bold";
+  text-transform: uppercase; }
 
 .order-background {
   object-fit: contain;
@@ -3811,6 +3815,14 @@ a.no-underline:hover {
     width: 117px;
     color: #dbe272; }
 
+.menu_slider_control {
+  display: block;
+  text-align: right;
+  margin-top: 22px;
+  width: 76px;
+  float: right;
+  margin-left: 28px; }
+
 .menu-tabs__breakfast {
   display: -ms-flexbox;
   display: flex;
@@ -4007,7 +4019,7 @@ a.no-underline:hover {
   height: 468px; }
 
 .aboutus-description {
-  width: 42%;
+  width: 46%;
   overflow: scroll; }
   .aboutus-description h1 {
     font-size: 52px;
@@ -4287,6 +4299,7 @@ a.no-underline:hover {
     #testimonial-list .slide-list .article_image {
       min-height: 100px;
       width: 100%;
+      margin-top: 10px;
       display: block;
       background-size: cover;
       background-repeat: no-repeat; }
@@ -4446,7 +4459,7 @@ Media Quriers: Tablet to Desktop
   #testimonial-list .slide-list {
     width: 249px;
     padding: 0 10px;
-    height: 225px; }
+    height: 240px; }
   .slider-section {
     padding: 15px 95px; } }
 
@@ -4455,7 +4468,7 @@ Media Quriers: Tablet to Desktop
   #testimonial-list .slide-list {
     width: 249px;
     padding: 0 10px;
-    height: 225px; }
+    height: 240px; }
   .slider-section {
     padding: 15px 95px; } }
 
@@ -4486,7 +4499,7 @@ Media Quriers: Tablet to Desktop
   #testimonial-list .slide-list {
     width: 259px;
     padding: 0 10px;
-    height: 225px; }
+    height: 240px; }
   .slider-section {
     padding: 15px 180px; } }
 
@@ -4984,7 +4997,7 @@ button[disabled] {
 .text-feedback {
   width: 100%;
   min-height: 250px;
-  border: 1px solid #333;
+  border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px 20px; }
 
@@ -5008,6 +5021,19 @@ button[disabled] {
   font-weight: 300; }
   .contactNsupport p i {
     margin-right: 25px; }
+
+.basic_info_header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 20px 0; }
+  .basic_info_header p {
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-top: 0; }
 
 .basic_info {
   border-top: 1px solid #ddd;
@@ -5068,10 +5094,7 @@ button[disabled] {
 
 .icon_img_info {
   height: 15px;
-  cursor: pointer;
-  position: relative;
-  bottom: 44px;
-  left: 76px; }
+  cursor: pointer; }
 
 .table-orderList {
   margin-bottom: 0px !important; }

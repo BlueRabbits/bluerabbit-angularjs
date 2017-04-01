@@ -67,8 +67,11 @@
       </div> -->
     <div class="container">
       <div class="col-md-12 admin-content" id="homes" ng-show="showTab == 'profile'">
-        <p class="row terms_heading">Basic info</p>
+        <div class="basic_info_header">
+          <p class=" terms_heading">Basic info</p>
           <img class="icon_img_info" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true">
+          <img class="icon_img_info" ng-show="editImage==true" ng-click="editImage=false" src="images/close.svg" type="image/svg+xml" data-pin-nopin="true">
+        </div>
         <div class="row basic_info">
           <div class="info_block col-sm-6">
             <div class="dropdown__myaccount" style="display:flex;align-items:center">
@@ -94,7 +97,6 @@
               <div class="edit_img" ng-show="editImage==true" style="position: relative;left: 50px;">
               <button class="checkout-page__buttons active" ng-class="{'btn-default' : !isDataAvailable}" ng-disabled="!isDataAvailable" ng-click="ProfileUpdate()" style="padding: 5px 17px; font-size: 10px;">Submit</button>
             </div>
-              <img class="icon_img" ng-show="editImage==true" ng-click="editImage=false" src="images/close.svg" type="image/svg+xml" data-pin-nopin="true">
           </div>
           <div class="info_block col-sm-6">
             <lable>Email</lable>
@@ -224,8 +226,12 @@
           <!-- tabs -->
             <ul class="nav nav-tabs order-nav" style="padding:15px;display:flex;justify-content:space-between">
             <!-- <li class="active"><a data-toggle="tab" href="#home">Home</a></li> -->
-                <li class="active"><a data-toggle="tab" data-target="#menu1" ng-click="liveOrders()">Live Orders</a></li>
-                <li><a data-toggle="tab" data-target="#menu2" ng-click="pastOrders()">Past Orders</a></li>
+                <li class="active" style="text-transform: uppercase;display: flex;align-items: center;justify-content: center;">
+                  <a data-toggle="tab" data-target="#menu1" ng-click="liveOrders()">Live Orders</a>
+                </li>
+                <li style="text-transform: uppercase;display: flex;align-items: center;justify-content: center;">
+                  <a data-toggle="tab" data-target="#menu2" ng-click="pastOrders()">Past Orders</a>
+                </li>
             </ul>
           <div class="tab-content">
             <div id="menu1" class="" ng-show="showLiveOrders == true">
