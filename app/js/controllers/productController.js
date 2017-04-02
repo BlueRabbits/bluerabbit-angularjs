@@ -77,7 +77,7 @@ function moveScroller() {
 
 $scope.init = function() {
   $scope.product();
-  $scope.getWishList();
+  // $scope.getWishList();
 }
 
 //invoke wishList on routeParams
@@ -151,6 +151,7 @@ console.log("$(window).height(); ",$(window).height());
 
           console.log("$scope.search_result ",$scope.search_result_product );
           console.log("data[i]",$scope.search_result_product);
+
         }).error(function(data) {
         });
       }
@@ -164,7 +165,7 @@ console.log("$(window).height(); ",$(window).height());
     $scope.showParticularProducts($routeParams.product_id);
     $scope.showParticularProductsDiv = true;
     $scope.categoryNames = $routeParams.category;
-    $scope.emptyFav = false;
+
   }
 
   //minimum order value to be calculated to add delivery
@@ -461,7 +462,7 @@ console.log("$(window).height(); ",$(window).height());
         Auth.products().success(function(data) {
           $scope.allProducts = data;
           console.log("data",data);
-          $scope.getWishList();
+          // $scope.getWishList();
           //loop to get product id
           $scope.getProductIdList = [];
           angular.forEach($scope.allProducts, function (value, key) {
