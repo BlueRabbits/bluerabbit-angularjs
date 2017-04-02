@@ -79,13 +79,13 @@
   </div>
 </div>
 
-  <div class="modal fade bd-example-modal-lg" id="signupmodal" ng-controller="loginController" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal bd-example-modal-lg" id="signupmodal" ng-controller="loginController" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-container" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <img id="signup_logo" src='images/logo-icon.png' />
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" tabindex='-1'>
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true" ng-click="closeModal();">&times;</span>
         </button>
       </div>
       <div class="modal-body modal-container__body">
@@ -124,7 +124,7 @@
       <div class="modal-footer">
         <div >
           <p class="not-customer-label">Already have an account?</p>
-          <a style="display: flex;justify-content: center;" href="" ng-click="signupModal()">Signin for Krazy Meals!</a>
+          <a style="display: flex;justify-content: center;" href="" ng-click="signupModal()" >Signin for Krazy Meals!</a>
       </div>
       </div>
     </div>
