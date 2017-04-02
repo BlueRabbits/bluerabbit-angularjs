@@ -139,6 +139,7 @@ console.log("$(window).height(); ",$(window).height());
           $scope.show_wishlist  = false;
           $scope.showMenuResult  = true;
           $scope.hideAutocomplete = false;
+          $scope.emptyFav = false;
 
           for (var i = 0; i < data.length; i++) {
             if (id == data[i]._id) {
@@ -163,6 +164,7 @@ console.log("$(window).height(); ",$(window).height());
     $scope.showParticularProducts($routeParams.product_id);
     $scope.showParticularProductsDiv = true;
     $scope.categoryNames = $routeParams.category;
+    $scope.emptyFav = false;
   }
 
   //minimum order value to be calculated to add delivery
@@ -298,6 +300,7 @@ console.log("$(window).height(); ",$(window).height());
       $scope.show_wishlist  = false;
       $scope.showMenuResult  = false;
       $scope.hideAutocomplete = true;
+      $scope.emptyFav = false;
       //NOTE : uncomment if know more is creating a issue
       // $location.search('show_productDetails', null)
       console.log('autcomplete data', data);
@@ -316,6 +319,7 @@ console.log("$(window).height(); ",$(window).height());
       $scope.show_wishlist  = false;
       $scope.showMenuResult  = false;
       $scope.hideAutocomplete = false;
+      $scope.emptyFav = false;
       $scope.categoryNames = $routeParams.category;
       console.log('search data', data);
       $scope.search_result = data;
@@ -503,6 +507,13 @@ console.log("$(window).height(); ",$(window).height());
           console.log(data.length);
           $scope.getWishlistData = data;
           $scope.getListOfFav = data;
+          if ($scope.getWishlistData.length === 0) {
+            $scope.emptyFav = true;
+            $scope.searchPagelist = false;
+            $scope.particularProduct = false;
+            $scope.showMenuResult  = false;
+            $scope.hideAutocomplete = false;
+          }
           $scope.getWishListProductId = [];
           angular.forEach($scope.getWishlistData, function (value, key) {
             var obj = {
@@ -684,6 +695,7 @@ console.log("$(window).height(); ",$(window).height());
               $scope.show_wishlist  = false;
               $scope.showMenuResult  = true;
               $scope.showdiv = false;
+              $scope.emptyFav = false;
               // $scope.activeTab = tabToSet;
               // $scope.categoryNames = categoryName;
               // console.log("clicked",tabToSet);
