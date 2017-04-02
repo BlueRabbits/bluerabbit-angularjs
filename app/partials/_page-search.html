@@ -116,7 +116,7 @@
 							<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
 							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
 							<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i>
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-init="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i>
 								<div class="product-view" ng-init="showHearts(results._id)">
 
 									<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
@@ -172,6 +172,7 @@
 			<!-- search list -->
 
 			<!-- Wish list -->
+			<div ng-show="emptyFav" class="fav-empty">No Favorites</div>
 			<div class="search-secction__content wish-list" ng-show="show_wishlist" ng-repeat="wishLists in getWishlistData">
 				<div class="search-secction__data row">
 					<div class="col-des col-sm-7">
@@ -287,7 +288,7 @@
 								<span>
 									<a class="fa fa-facebook"  ng-click="FbShare(list.name,list._id)" id="shareBtn" aria-hidden="true"></a>
 									<a class="fa fa-twitter" ng-click="twitterShare(list._id)" aria-hidden="true"></a>
-									<a class="fa fa-google-plus"  href="https://plus.google.com/share?url=http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/krazy-meals/#/search-page?show_productDetails={{list.name}}" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
+									<a class="fa fa-google-plus"  href="https://plus.google.com/share?url=http://35.161.215.52/krazy-meals/#/search-page?show_productDetails={{list.name}}" onclick="window.open(this.href, 'Google+', 'width=490,height=530'); return false;" aria-hidden="true"></a>
 								</span>
 							</div>
 							<p class="product-name">PRODUCT DESCRIPTION  </p>
