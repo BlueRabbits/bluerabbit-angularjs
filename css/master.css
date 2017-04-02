@@ -4966,6 +4966,23 @@ button[disabled] {
     font-family: "Lato-Bold";
     font-size: 20px; }
 
+.fav-empty {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  /* background-color: grey; */
+  /* width: 300px; */
+  /* height: 52px; */
+  /* margin: 85px 100px 10px 16px; */
+  /* margin-left: 314px; */
+  margin-top: 100px;
+  /* text-align: center; */
+  -ms-flex-align: center;
+  align-items: center;
+  color: red;
+  font-size: 30px; }
+
 /*!
  * bootstrap-vertical-tabs - v1.1.0
  * https://dbtek.github.io/bootstrap-vertical-tabs

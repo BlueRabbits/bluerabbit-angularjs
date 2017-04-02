@@ -1865,24 +1865,34 @@ $scope.showWishList = function(){
   };
 
 $scope.getWishList();
-        //check the heart
+//check the heart
+$scope.hideWishlist= true;
+$scope.isInWishlist = function(productId){
+  //for each
+  $scope.getListOfFavourites = [];
+  angular.forEach($scope.getWishlistData, function (value, key) {
+    var obj = {
+      "productIds":value.product._id,
+    };
+    $scope.getListOfFavourites.push(obj.productIds);
+
+  });
+
+  for (var i = 0; i < $scope.getListOfFavourites.length; i++) {
+
+      if ($scope.getListOfFavourites[i] === productId) {
         $scope.hideWishlist= true;
-        $scope.isInWishlist = function(productId){
-          for (var i = 0; i < $scope.getListOfFav.length; i++) {
+        $scope.showFilledHeart = true;
+        return true;
+      } else {
+        $scope.hideWishlist= true;
+          $scope.showFilledHeart = false;
 
-              if ($scope.getListOfFav[i].product._id == productId) {
-                $scope.hideWishlist= true;
-                $scope.showFilledHeart = true;
-                return true;
-              } else {
-                $scope.hideWishlist= true;
-                  $scope.showFilledHeart = false;
+        // return false;
+      }
 
-                // return false;
-              }
-
-          }
-        }
+  }
+}
   //POST create wish list
   // var count = 0;
   $scope.addWishList = function (productId) {
@@ -2100,7 +2110,7 @@ function moveScroller() {
 
 $scope.init = function() {
   $scope.product();
-  $scope.getWishList();
+  // $scope.getWishList();
 }
 
 //invoke wishList on routeParams
@@ -2162,6 +2172,7 @@ console.log("$(window).height(); ",$(window).height());
           $scope.show_wishlist  = false;
           $scope.showMenuResult  = true;
           $scope.hideAutocomplete = false;
+          $scope.emptyFav = false;
 
           for (var i = 0; i < data.length; i++) {
             if (id == data[i]._id) {
@@ -2173,6 +2184,7 @@ console.log("$(window).height(); ",$(window).height());
 
           console.log("$scope.search_result ",$scope.search_result_product );
           console.log("data[i]",$scope.search_result_product);
+
         }).error(function(data) {
         });
       }
@@ -2186,6 +2198,7 @@ console.log("$(window).height(); ",$(window).height());
     $scope.showParticularProducts($routeParams.product_id);
     $scope.showParticularProductsDiv = true;
     $scope.categoryNames = $routeParams.category;
+
   }
 
   //minimum order value to be calculated to add delivery
@@ -2321,6 +2334,7 @@ console.log("$(window).height(); ",$(window).height());
       $scope.show_wishlist  = false;
       $scope.showMenuResult  = false;
       $scope.hideAutocomplete = true;
+      $scope.emptyFav = false;
       //NOTE : uncomment if know more is creating a issue
       // $location.search('show_productDetails', null)
       console.log('autcomplete data', data);
@@ -2339,6 +2353,7 @@ console.log("$(window).height(); ",$(window).height());
       $scope.show_wishlist  = false;
       $scope.showMenuResult  = false;
       $scope.hideAutocomplete = false;
+      $scope.emptyFav = false;
       $scope.categoryNames = $routeParams.category;
       console.log('search data', data);
       $scope.search_result = data;
@@ -2480,7 +2495,7 @@ console.log("$(window).height(); ",$(window).height());
         Auth.products().success(function(data) {
           $scope.allProducts = data;
           console.log("data",data);
-          $scope.getWishList();
+          // $scope.getWishList();
           //loop to get product id
           $scope.getProductIdList = [];
           angular.forEach($scope.allProducts, function (value, key) {
@@ -2517,15 +2532,22 @@ console.log("$(window).height(); ",$(window).height());
         $scope.sessionId = $cookieStore.get('sessionId');
 
         $scope.gettingCartData =[];
-        console.log('cart page');
+        //console.log('cart page');
         Auth.getWishList({
           UserId : $scope.getUserId,
           sessionID: $scope.sessionId
         })
         .success(function (data) {
-          console.log(data.length);
+        //  console.log(data.length);
           $scope.getWishlistData = data;
           $scope.getListOfFav = data;
+          if ($scope.getWishlistData.length === 0) {
+            $scope.emptyFav = true;
+            $scope.searchPagelist = false;
+            $scope.particularProduct = false;
+            $scope.showMenuResult  = false;
+            $scope.hideAutocomplete = false;
+          }
           $scope.getWishListProductId = [];
           angular.forEach($scope.getWishlistData, function (value, key) {
             var obj = {
@@ -2534,22 +2556,22 @@ console.log("$(window).height(); ",$(window).height());
             $scope.getWishListProductId.push(obj.productIds);
 
           });
-          console.log("list of product ids",$scope.getProductIdList);
-          console.log("$scope.getWishListProductId",$scope.getWishListProductId);
+          // console.log("list of product ids",$scope.getProductIdList);
+          // console.log("$scope.getWishListProductId",$scope.getWishListProductId);
           //objects heart to bind in UI
           $scope.heartList = {};
           for (var i = 0; i < $scope.getWishListProductId.length; i++) {
             $scope.heartList[i] = $scope.getWishListProductId[i];
 
           }
-          console.log("$scope.heartList;",$scope.heartList);
+          //console.log("$scope.heartList;",$scope.heartList);
           //objects product to bind in UI
           $scope.productList = {};
           for (var i = 0; i < $scope.getProductIdList.length; i++) {
             $scope.productList[i] = $scope.getProductIdList[i];
 
           }
-          console.log("$scope.productList;",$scope.productList);
+          //console.log("$scope.productList;",$scope.productList);
 
           //two level loops
           for (var i = 0; i < $scope.getWishListProductId.length; i++) {
@@ -2579,9 +2601,19 @@ console.log("$(window).height(); ",$(window).height());
       //check the heart
       $scope.hideWishlist= true;
       $scope.isInWishlist = function(productId){
-        for (var i = 0; i < $scope.getListOfFav.length; i++) {
+        //for each
+        $scope.getListOfFavourites = [];
+        angular.forEach($scope.getWishlistData, function (value, key) {
+          var obj = {
+            "productIds":value.product._id,
+          };
+          $scope.getListOfFavourites.push(obj.productIds);
 
-            if ($scope.getListOfFav[i].product._id == productId) {
+        });
+
+        for (var i = 0; i < $scope.getListOfFavourites.length; i++) {
+
+            if ($scope.getListOfFavourites[i] === productId) {
               $scope.hideWishlist= true;
               $scope.showFilledHeart = true;
               return true;
@@ -2707,6 +2739,7 @@ console.log("$(window).height(); ",$(window).height());
               $scope.show_wishlist  = false;
               $scope.showMenuResult  = true;
               $scope.showdiv = false;
+              $scope.emptyFav = false;
               // $scope.activeTab = tabToSet;
               // $scope.categoryNames = categoryName;
               // console.log("clicked",tabToSet);
@@ -2764,14 +2797,14 @@ console.log("$(window).height(); ",$(window).height());
             FB.ui({
               method: 'share',
               display: 'popup',
-              href: 'http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/krazy-meals/#/search-page?show_productDetails='+name+'&product_id='+id,
+              href: 'http://35.161.215.52/krazy-meals/#/search-page?show_productDetails='+name+'&product_id='+id,
             }, function(response){});
 
           }
         $scope.twitterShare = function(ids){
           var twitterHandle = 'Krazy Meals';
             //window.open("https://twitter.com/share?url="+encodeURIComponent(url));
-            window.open('https://twitter.com/share?url='+escape('http://ec2-35-164-239-44.us-west-2.compute.amazonaws.com/krazy-meals/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+            window.open('https://twitter.com/share?url='+escape('http://35.161.215.52/krazy-meals/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
           }
 
           //show mimage modal
