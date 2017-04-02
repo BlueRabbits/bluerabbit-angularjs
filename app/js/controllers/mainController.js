@@ -687,24 +687,34 @@ $scope.showWishList = function(){
   };
 
 $scope.getWishList();
-        //check the heart
+//check the heart
+$scope.hideWishlist= true;
+$scope.isInWishlist = function(productId){
+  //for each
+  $scope.getListOfFavourites = [];
+  angular.forEach($scope.getWishlistData, function (value, key) {
+    var obj = {
+      "productIds":value.product._id,
+    };
+    $scope.getListOfFavourites.push(obj.productIds);
+
+  });
+
+  for (var i = 0; i < $scope.getListOfFavourites.length; i++) {
+
+      if ($scope.getListOfFavourites[i] === productId) {
         $scope.hideWishlist= true;
-        $scope.isInWishlist = function(productId){
-          for (var i = 0; i < $scope.getListOfFav.length; i++) {
+        $scope.showFilledHeart = true;
+        return true;
+      } else {
+        $scope.hideWishlist= true;
+          $scope.showFilledHeart = false;
 
-              if ($scope.getListOfFav[i].product._id == productId) {
-                $scope.hideWishlist= true;
-                $scope.showFilledHeart = true;
-                return true;
-              } else {
-                $scope.hideWishlist= true;
-                  $scope.showFilledHeart = false;
+        // return false;
+      }
 
-                // return false;
-              }
-
-          }
-        }
+  }
+}
   //POST create wish list
   // var count = 0;
   $scope.addWishList = function (productId) {
