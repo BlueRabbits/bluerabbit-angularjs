@@ -257,6 +257,7 @@ console.log("$(window).height(); ",$(window).height());
     $scope.getUserId = $cookieStore.get('userId');
     Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
     .success(function(data){
+      $scope.loadingTillAdded = false;
       console.log('updated resp', data);
       $scope.getcartItems();
         }).error(function(data){
@@ -370,8 +371,11 @@ console.log("$(window).height(); ",$(window).height());
 
         if ($scope.incrementQty === true) {
           console.log('add to quantity');
+          $scope.loadingTillAdded = true;
           $scope.updateCartByIncrement($scope.cartQuantity, $scope.cartIds);
         } else if($scope.incrementQty === false && $scope.addCart === true || $scope.allCartItems.length === 0) {
+          $scope.loading = true;
+          $scope.loadingTillAdded = true;
           // do add to cart if not matching
           console.log('add new item');
           var addQuantity = 1;
@@ -387,6 +391,7 @@ console.log("$(window).height(); ",$(window).height());
           Auth.addCart(productInfo)
             .success(function(data) {
               //console.log('data', data);
+              $scope.loadingTillAdded = false;
               $scope.getcartItems();
               // ngToast.create({
               //   className: 'success',
