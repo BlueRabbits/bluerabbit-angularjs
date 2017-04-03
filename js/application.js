@@ -3309,6 +3309,14 @@ $scope.editAddress = function(){
 
           }
 
+          //onlcik cart icon
+          $scope.ourMenu = function(){
+            $location.path('/search-page').search({
+              showMenuResult: true,
+              category: "Recommended",
+            });
+          }
+
 
 }).directive('ngFiles', ['$parse', function ($parse) {
 
