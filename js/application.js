@@ -454,6 +454,11 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
     $scope.not__logged = true;
   }
 
+  if ($cookieStore.get('loggedIn') === false) {
+    $cookieStore.remove("token");
+    $cookieStore.remove("userId");
+    $cookieStore.remove("email");
+  }
 
   $scope.regexEmail = new RegExp(/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/);
   $scope.Signupform = function(signupform) {
@@ -754,6 +759,7 @@ $scope.logged = false;
                    $('.modal').css("display", "none");
                    $('.modal-open').removeClass();
                    $scope.closeModal();
+                   $scope.loginModal();
                    location.reload();
                  }).error(function(data) {
                    console.log('data', data);
@@ -787,9 +793,9 @@ $scope.fbLoginAuth = function() {
     Facebook.getLoginStatus(function(response) {
       console.log(response);
       $scope.me();
-      $('.modal').css("display", "none");
-      $('.modal-open').removeClass();
-      $scope.closeModal();
+      // $('.modal').css("display", "none");
+      // $('.modal-open').removeClass();
+      // $scope.closeModal();
 
       // if (response.status === 'connected') {
       //   $scope.me();
@@ -828,6 +834,7 @@ $scope.fbLoginAuth = function() {
         $('.modal').css("display", "none");
         $('.modal-open').removeClass();
         $scope.closeModal();
+        $scope.loginModal();
         location.reload(true);
       }).error(function(data) {
         console.log('data', data);
