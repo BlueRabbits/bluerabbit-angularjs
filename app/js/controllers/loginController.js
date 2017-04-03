@@ -321,6 +321,7 @@ $scope.logged = false;
                      $cookieStore.put("userId", data._id);
                      $cookieStore.put("emailId", $scope.emailId);
                      $cookieStore.put('userName', data.name);
+                      $cookieStore.put('loggedIn', true);
 
                      $('.modal').css("display", "none");
                      $('.modal-open').removeClass();
@@ -330,7 +331,7 @@ $scope.logged = false;
                    }).error(function(data) {
                      console.log('data', data);
                    });
-                } 
+                }
              });
 
          }, function (err) {
@@ -400,6 +401,7 @@ $scope.fbLoginAuth = function() {
           $cookieStore.put("token", data.token);
           $cookieStore.put("userId", data._id);
           $cookieStore.put('userName', data.name);
+           $cookieStore.put('loggedIn', true);
           $('.modal').css("display", "none");
           $('.modal-open').removeClass();
           $scope.closeModal();
