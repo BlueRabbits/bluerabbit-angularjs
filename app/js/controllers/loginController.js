@@ -393,7 +393,7 @@ $scope.fbLoginAuth = function() {
         "email": $scope.emailId,
         "name": $scope.userName
       }
-      if ($scope.user) {
+      if (!response.error) {
 
 
         Auth.socailLogin(socailParams).success(function(data) {
