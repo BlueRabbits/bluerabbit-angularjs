@@ -312,22 +312,25 @@ $scope.logged = false;
                    "email": $scope.emailId,
                    "name": $scope.userName
                  }
-                 Auth.socailLogin(socailParams).success(function(data) {
-                   console.log('social Resp', data);
-                   $cookieStore.put("token", data.token);
-                   $cookieStore.put("userId", data._id);
-                   $cookieStore.put("emailId", $scope.emailId);
-                   $cookieStore.put('userName', data.name);
+                 if (data) {
 
-                   $('.modal').css("display", "none");
-                   $('.modal-open').removeClass();
-                   $scope.closeModal();
-                   $scope.loginModal();
-                   location.reload();
-                 }).error(function(data) {
-                   console.log('data', data);
-                 });
 
+                   Auth.socailLogin(socailParams).success(function(data) {
+                     console.log('social Resp', data);
+                     $cookieStore.put("token", data.token);
+                     $cookieStore.put("userId", data._id);
+                     $cookieStore.put("emailId", $scope.emailId);
+                     $cookieStore.put('userName', data.name);
+
+                     $('.modal').css("display", "none");
+                     $('.modal-open').removeClass();
+                     $scope.closeModal();
+                     $scope.loginModal();
+                     location.reload();
+                   }).error(function(data) {
+                     console.log('data', data);
+                   });
+                } 
              });
 
          }, function (err) {
@@ -389,20 +392,23 @@ $scope.fbLoginAuth = function() {
         "email": $scope.emailId,
         "name": $scope.userName
       }
-      Auth.socailLogin(socailParams).success(function(data) {
-        console.log('social Resp', data);
-        $cookieStore.put("token", data.token);
-        $cookieStore.put("userId", data._id);
-        $cookieStore.put('userName', data.name);
-        $('.modal').css("display", "none");
-        $('.modal-open').removeClass();
-        $scope.closeModal();
-        $scope.loginModal();
-        location.reload(true);
-      }).error(function(data) {
-        console.log('data', data);
-      });
+      if ($scope.user) {
 
+
+        Auth.socailLogin(socailParams).success(function(data) {
+          console.log('social Resp', data);
+          $cookieStore.put("token", data.token);
+          $cookieStore.put("userId", data._id);
+          $cookieStore.put('userName', data.name);
+          $('.modal').css("display", "none");
+          $('.modal-open').removeClass();
+          $scope.closeModal();
+          $scope.loginModal();
+          location.reload(true);
+        }).error(function(data) {
+          console.log('data', data);
+        });
+      }
     });
   };
 };
