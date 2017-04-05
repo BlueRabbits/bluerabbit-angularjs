@@ -266,7 +266,7 @@ $scope.logged = false;
       "newPassword": $scope.newPassword
     }
 
-      var BASE_URL = "http://35.161.215.52:9000";
+      var BASE_URL = "http://34.206.42.77:9000";
         var config = {
             headers : {
                 'Authorization': 'Bearer '+PwdauthToken,
@@ -715,7 +715,7 @@ $scope.editAddress = function(){
               "orderId": orderId
             }
 
-              var BASE_URL = "http://35.161.215.52:9000";
+              var BASE_URL = "http://34.206.42.77:9000";
                 var config = {
                     headers : {
                         'Authorization': 'Bearer '+PwdauthToken,

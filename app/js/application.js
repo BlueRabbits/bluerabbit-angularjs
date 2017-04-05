@@ -7,7 +7,7 @@ var app = angular.module('bluerabbit', ['ngRoute','ngResource','ngCookies','ngTo
 
 app.constant('URL', {
   //BASE_URL: "http://ec2-35-164-152-22.us-west-2.compute.amazonaws.com:9000"
-  BASE_URL: "http://35.161.215.52:9000"
+  BASE_URL: "http://34.206.42.77:9000"
   //BASE_URL: "http://localhost:9000"
   //BASE_URL: "http://192.168.0.84:9000"
 });

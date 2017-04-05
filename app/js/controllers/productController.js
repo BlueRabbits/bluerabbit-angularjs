@@ -603,7 +603,7 @@ console.log("$(window).height(); ",$(window).height());
       // var count = 0;
       $scope.loadingIcon = false;
       $scope.addWishList = function (productId) {
-        $scope.loading = true;
+
 
         //$scope.productIdWishList = productId;
         if ($cookieStore.get('userId')) {
@@ -631,7 +631,7 @@ console.log("$(window).height(); ",$(window).height());
               $scope.sessionId = $cookieStore.get('sessionId');
               //check if already added to wish list
 
-
+                                        $scope.loading = true;
                                         $scope.cartlist =[];
                                         var wishListInfo = {
                                           product:productId,
@@ -644,6 +644,7 @@ console.log("$(window).height(); ",$(window).height());
                                         Auth.addWishList(wishListInfo)
                                         .success(function(data){
                                           $scope.loadingIcon = false;
+                                            $scope.loading = false;
                                           //console.log('data', data);
                                           // $scope.getcartItems();
                                           $scope.getWishList();
@@ -769,14 +770,14 @@ console.log("$(window).height(); ",$(window).height());
             FB.ui({
               method: 'share',
               display: 'popup',
-              href: 'http://35.161.215.52/krazy-meals/#/search-page?show_productDetails='+name+'&product_id='+id,
+              href: 'http://34.206.42.77/krazy-meals/#/search-page?show_productDetails='+name+'&product_id='+id,
             }, function(response){});
 
           }
         $scope.twitterShare = function(ids){
           var twitterHandle = 'Krazy Meals';
             //window.open("https://twitter.com/share?url="+encodeURIComponent(url));
-            window.open('https://twitter.com/share?url='+escape('http://35.161.215.52/krazy-meals/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+            window.open('https://twitter.com/share?url='+escape('http://34.206.42.77/krazy-meals/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
           }
 
           //show mimage modal
