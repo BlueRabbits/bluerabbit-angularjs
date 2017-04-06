@@ -583,6 +583,7 @@ $scope.editAddress = function(){
           //  console.log("evt.target.result",evt.target.result);
           });
         };
+          $scope.userProfileShow = false;
         $scope.fileToForm = file;
         reader.readAsDataURL(file);
         console.log("file)", $scope.fileToForm);
@@ -595,6 +596,7 @@ $scope.editAddress = function(){
         $scope.showCropImage = true;
         $scope.croppedImage = cropImg;
         $scope.hideAvatar = false;
+        $scope.userProfileShow = false;
         //console.log("$scope.croppedImage",$scope.croppedImage);
   $('#imageCropModal').modal('hide');
         var base64_string = cropImg;
@@ -638,6 +640,8 @@ $scope.editAddress = function(){
             $scope.emailId = data.email;
             $scope.userName = data.name;
             $scope.editImage=false;
+            $scope.showCropImage = true;
+            $scope.userProfileShow = false;
             // ngToast.create({
             //   className: 'success',
             //   content: "Successfully Updated the address"
