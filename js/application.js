@@ -59,7 +59,7 @@ app.config(['GooglePlusProvider','FacebookProvider', function(GooglePlusProvider
        apiKey: 'eMDg9klaLT6SqzxwEDDjXupk'
      });
      FacebookProvider.init({
-         appId:'1345822332143405'
+         appId:'1272767759478704'
     });
 }]);
 
