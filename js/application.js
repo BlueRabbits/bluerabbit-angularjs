@@ -3153,6 +3153,7 @@ $scope.editAddress = function(){
           //  console.log("evt.target.result",evt.target.result);
           });
         };
+          $scope.userProfileShow = false;
         $scope.fileToForm = file;
         reader.readAsDataURL(file);
         console.log("file)", $scope.fileToForm);
@@ -3165,6 +3166,7 @@ $scope.editAddress = function(){
         $scope.showCropImage = true;
         $scope.croppedImage = cropImg;
         $scope.hideAvatar = false;
+        $scope.userProfileShow = false;
         //console.log("$scope.croppedImage",$scope.croppedImage);
   $('#imageCropModal').modal('hide');
         var base64_string = cropImg;
@@ -3208,6 +3210,8 @@ $scope.editAddress = function(){
             $scope.emailId = data.email;
             $scope.userName = data.name;
             $scope.editImage=false;
+            $scope.showCropImage = true;
+            $scope.userProfileShow = false;
             // ngToast.create({
             //   className: 'success',
             //   content: "Successfully Updated the address"
@@ -4959,14 +4963,14 @@ console.log("$(window).height(); ",$(window).height());
             FB.ui({
               method: 'share',
               display: 'popup',
-              href: 'http://34.206.42.77/krazy-meals/#/search-page?show_productDetails='+name+'&product_id='+id,
+              href: 'http://34.206.42.77/krazymeals/#/search-page?show_productDetails='+name+'&product_id='+id,
             }, function(response){});
 
           }
         $scope.twitterShare = function(ids){
           var twitterHandle = 'Krazy Meals';
             //window.open("https://twitter.com/share?url="+encodeURIComponent(url));
-            window.open('https://twitter.com/share?url='+escape('http://34.206.42.77/krazy-meals/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+            window.open('https://twitter.com/share?url='+escape('http://34.206.42.77/krazymeals/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
           }
 
           //show mimage modal
