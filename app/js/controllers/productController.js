@@ -774,10 +774,13 @@ console.log("$(window).height(); ",$(window).height());
             }, function(response){});
 
           }
-        $scope.twitterShare = function(ids){
-          var twitterHandle = 'Krazy Meals';
-            //window.open("https://twitter.com/share?url="+encodeURIComponent(url));
-            window.open('https://twitter.com/share?url='+escape('http://34.206.42.77/krazymeals/#/search-page?show_productDetails='+ids)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+        $scope.twitterShare = function(name,ids){
+        
+              var url = 'http://34.206.42.77/krazymeals/#/search-page?show_productDetails='+name+'&product_id='+ids;
+              var myurl = encodeURI(url);
+              var text = "Krazy Meals";
+              window.open('http://twitter.com/share?url='+encodeURIComponent(myurl)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+                // window.open('https://twitter.com/share?url='+encodeURIComponent(urls)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
           }
 
           //show mimage modal
