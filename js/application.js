@@ -2845,6 +2845,17 @@ console.log("$(window).height(); ",$(window).height());
                 // window.open('https://twitter.com/share?url='+encodeURIComponent(urls)+'&text='+document.title + ' via @' + twitterHandle, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
           }
 
+        $scope.gPlusShare = function(prodName,prodId){
+
+              var url = 'http://34.206.42.77/krazymeals/#/search-page?show_productDetails='+prodName+'&product_id='+prodId;
+              var myurl = encodeURI(url);
+                    console.log(myurl);
+              var sharelink = "https://plus.google.com/share?url="+myurl;
+              window.open(sharelink, 'Google+', 'width=490,height=530'); return false;
+              
+
+          }
+
           //show mimage modal
           $scope.showImage = function(prodId){
             console.log("prodId",prodId);
