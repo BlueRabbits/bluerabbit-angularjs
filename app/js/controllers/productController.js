@@ -766,16 +766,18 @@ console.log("$(window).height(); ",$(window).height());
         }
         //Fb sharer
         $scope.FbShare = function(name,id){
+            var urls = 'http://34.206.42.77/krazymeals/#/search-page?show_productDetails='+name+'&product_id='+id;
+            var fbUrl = encodeURI(urls);
 
             FB.ui({
               method: 'share',
               display: 'popup',
-              href: 'http://34.206.42.77/krazymeals/#/search-page?show_productDetails='+name+'&product_id='+id,
+              href: fbUrl,
             }, function(response){});
 
           }
         $scope.twitterShare = function(name,ids){
-        
+
               var url = 'http://34.206.42.77/krazymeals/#/search-page?show_productDetails='+name+'&product_id='+ids;
               var myurl = encodeURI(url);
               var text = "Krazy Meals";
