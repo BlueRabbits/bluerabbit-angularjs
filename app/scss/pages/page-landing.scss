@@ -556,6 +556,7 @@ a.no-underline:hover {
   width: 485px;
   height: 45.6px;
   padding: 10px;
+  padding-left: 25px;
   object-fit: contain;
   border-radius: 100px;
   background-color: #eff4f6;
@@ -584,7 +585,7 @@ a.no-underline:hover {
   }
 
   p {
-    width: 200px;
+    //width: 200px;
     font-family: $font-Lato-regular;
     font-size: 13px;
     line-height: 1.33;
@@ -599,7 +600,7 @@ a.no-underline:hover {
 }
 
 .search-place__address {
-  width: 47%;
+  //width: 47%;
 }
 
 .location-services__map {
@@ -619,6 +620,18 @@ a.no-underline:hover {
   background-size: 18%;
   background-position: right;
   padding: 72px 84px;
+  h1 {
+    font-size: 52px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.19;
+    letter-spacing: -1.3px;
+    color: #ffffff;
+    margin: 0;
+    height: 72px;
+    padding-left: 50px;
+  }
 }
 
 .aboutus-section__content {
@@ -632,23 +645,13 @@ a.no-underline:hover {
 .aboutus-description {
   width: 46%;
   overflow: scroll;
-  h1 {
-    font-size: 52px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.19;
-    letter-spacing: -1.3px;
-    color: #ffffff;
-    margin: 0;
-    height: 72px;
-  }
+
 }
 
 #descrption-1 {
   width: 530px;
   height: 91px;
-  font-family: Lato-Regular;
+  font-family: $font-Lato-regular;
   font-size: 20px;
   font-weight: normal;
   font-style: normal;
@@ -660,7 +663,7 @@ a.no-underline:hover {
 #descrption-2 {
   width: 508px;
   height: 176px;
-  font-family: Lato-Regular;
+  font-family: $font-Lato-regular;
   font-size: 16px;
   font-weight: normal;
   font-style: normal;
@@ -1186,7 +1189,7 @@ Media Quriers: Tablet to Desktop
     #testimonial-list .slide-list {
         width: 249px;
         padding: 0 10px;
-        height: 240px;
+        height: 268px;
     }
     .slider-section {
           padding: 15px 95px;
@@ -1202,7 +1205,7 @@ Media Quriers: Tablet to Desktop
     #testimonial-list .slide-list {
         width: 249px;
         padding: 0 10px;
-        height: 240px;
+        height: 268px;
     }
     .slider-section {
           padding: 15px 95px;
@@ -1252,7 +1255,7 @@ Media Quriers: Tablet to Desktop
     #testimonial-list .slide-list {
         width: 259px;
         padding: 0 10px;
-        height: 240px;
+        height: 268px;
     }
     .slider-section {
           padding: 15px 180px;

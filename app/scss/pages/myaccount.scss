@@ -355,6 +355,9 @@
   border-radius: 40px !important;
   background-color: white !important;
   border: 1px #dddddd solid !important;
+  &:active {
+    background-color: #6f9d2f!important;
+  }
 
   >a { color: #b4b4b4; }
 
@@ -373,7 +376,8 @@
   cursor: default !important;
   background-color: transparent!important;
   border-bottom-color: transparent !important;
-  border: none;
+  border: none !important;
+  margin: 0;
   width: 500px;
   height: 47px;
   border-radius: 40px !important;

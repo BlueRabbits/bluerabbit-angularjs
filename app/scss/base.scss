@@ -30,3 +30,8 @@ input {
 button{
       outline: none;
 }
+
+.carousel-control.left,
+.carousel-control.right {
+  background: none !important;
+}

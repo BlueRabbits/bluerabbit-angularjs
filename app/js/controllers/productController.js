@@ -449,6 +449,7 @@ console.log("$(window).height(); ",$(window).height());
         });
       };
 
+
       $scope.wishListShow = function () {
         $scope.show_wishlist  = true;
         $scope.searchPagelist = false;
@@ -459,6 +460,7 @@ console.log("$(window).height(); ",$(window).height());
         $scope.categoryNames = "";
         $scope.getWishList();
       }
+
 
       //get all products in landing page
       $scope.product = function() {
@@ -792,7 +794,7 @@ console.log("$(window).height(); ",$(window).height());
                     console.log(myurl);
               var sharelink = "https://plus.google.com/share?url="+myurl;
               window.open(sharelink, 'Google+', 'width=490,height=530'); return false;
-              
+
 
           }
 

@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, Auth,  $cookies, $cookieStore, ngToast) {
+app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $timeout, $routeParams, Auth,  $cookies, $cookieStore, ngToast) {
   // Activate Next Step
   $(document).ready(function() {
 
@@ -163,8 +163,11 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
       //continue shipping
       $scope.continueShipping = function(){
+          $scope.getcartItems();
           $location.path('/search-page')
+          $scope.showMenuResult  = true;
       }
+
 
     //get address by userId
     $scope.getAddressByUserId = function(){
