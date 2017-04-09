@@ -10,6 +10,10 @@
 .setup-panel--steps {
 	padding: 0 !important;
 	border-radius: 22px !important;
+
+	li {
+		text-transform: uppercase;
+	}
 }
 
 .checkout-page__forms {

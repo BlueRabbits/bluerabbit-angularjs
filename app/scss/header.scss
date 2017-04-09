@@ -44,18 +44,23 @@
     width: 23px;
     text-align: center;
     position: relative;
+		cursor: pointer;
 
 	 	&:before {
 			content: " ";
 	    background-color: #515356;
-	    width: 23px;
-	    height: 23px;
+	    width: 18px;
+	    height: 18px;
 	    position: absolute;
 	    border-radius: 50%;
 	    left: 0px;
 		}
 
-		span { position: relative; top: 1px; }
+		span {
+			position: relative;
+			top: -2px;
+			right: 2px;
+		}
 	}
 
 	img {
@@ -70,7 +75,7 @@
 	// font-size: 15px;
 	// color: #ffffff;
 	margin-top: 10px;
-	font-family: Lato;
+	font-family: $font-Lato-black;
 	font-size: 12px;
 	font-weight: 900;
 	font-style: normal;
@@ -78,6 +83,7 @@
 	line-height: normal;
 	letter-spacing: normal;
 	text-align: left;
+	text-transform: uppercase;
 	color: #ffffff;
 }
 .dropdown {

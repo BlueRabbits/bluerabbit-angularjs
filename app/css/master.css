@@ -126,6 +126,10 @@ input {
 button {
   outline: none; }
 
+.carousel-control.left,
+.carousel-control.right {
+  background: none !important; }
+
 .header {
   background-color: #e40046;
   height: 97px;
@@ -161,18 +165,20 @@ button {
     color: #fff;
     width: 23px;
     text-align: center;
-    position: relative; }
+    position: relative;
+    cursor: pointer; }
     .profile_details .cart-with-num:before {
       content: " ";
       background-color: #515356;
-      width: 23px;
-      height: 23px;
+      width: 18px;
+      height: 18px;
       position: absolute;
       border-radius: 50%;
       left: 0px; }
     .profile_details .cart-with-num span {
       position: relative;
-      top: 1px; }
+      top: -2px;
+      right: 2px; }
   .profile_details img {
     margin-left: 10px;
     margin-top: -5px;
@@ -182,7 +188,7 @@ button {
 .user__login {
   display: flex;
   margin-top: 10px;
-  font-family: Lato;
+  font-family: "Lato-Black";
   font-size: 12px;
   font-weight: 900;
   font-style: normal;
@@ -190,6 +196,7 @@ button {
   line-height: normal;
   letter-spacing: normal;
   text-align: left;
+  text-transform: uppercase;
   color: #ffffff; }
 
 .dropdown {
@@ -2993,6 +3000,8 @@ SMACSS: PAGE - LANDING
 .setup-panel--steps {
   padding: 0 !important;
   border-radius: 22px !important; }
+  .setup-panel--steps li {
+    text-transform: uppercase; }
 
 .checkout-page__forms {
   padding: 20px;
@@ -3447,7 +3456,6 @@ SMACSS: PAGE - LANDING
   .social-login__connect p {
     font-family: HelveticaNeue;
     font-size: 12px;
-    font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -3909,6 +3917,7 @@ a.no-underline:hover {
   width: 485px;
   height: 45.6px;
   padding: 10px;
+  padding-left: 25px;
   object-fit: contain;
   border-radius: 100px;
   background-color: #eff4f6;
@@ -3931,7 +3940,6 @@ a.no-underline:hover {
   .location-search-places img {
     height: 52px; }
   .location-search-places p {
-    width: 200px;
     font-family: "Lato-Regular";
     font-size: 13px;
     line-height: 1.33;
@@ -3940,9 +3948,6 @@ a.no-underline:hover {
     color: #474442; }
   .location-search-places:last-child {
     border-bottom: none; }
-
-.search-place__address {
-  width: 47%; }
 
 .location-services__map {
   width: 50%;
@@ -3957,6 +3962,17 @@ a.no-underline:hover {
   background-size: 18%;
   background-position: right;
   padding: 72px 84px; }
+  .aboutus-section h1 {
+    font-size: 52px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.19;
+    letter-spacing: -1.3px;
+    color: #ffffff;
+    margin: 0;
+    height: 72px;
+    padding-left: 50px; }
 
 .aboutus-section__content {
   padding: 0px 50px;
@@ -3967,21 +3983,11 @@ a.no-underline:hover {
 .aboutus-description {
   width: 46%;
   overflow: scroll; }
-  .aboutus-description h1 {
-    font-size: 52px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.19;
-    letter-spacing: -1.3px;
-    color: #ffffff;
-    margin: 0;
-    height: 72px; }
 
 #descrption-1 {
   width: 530px;
   height: 91px;
-  font-family: Lato-Regular;
+  font-family: "Lato-Regular";
   font-size: 20px;
   font-weight: normal;
   font-style: normal;
@@ -3993,7 +3999,7 @@ a.no-underline:hover {
 #descrption-2 {
   width: 508px;
   height: 176px;
-  font-family: Lato-Regular;
+  font-family: "Lato-Regular";
   font-size: 16px;
   font-weight: normal;
   font-style: normal;
@@ -4392,7 +4398,7 @@ Media Quriers: Tablet to Desktop
   #testimonial-list .slide-list {
     width: 249px;
     padding: 0 10px;
-    height: 240px; }
+    height: 268px; }
   .slider-section {
     padding: 15px 95px; } }
 
@@ -4401,7 +4407,7 @@ Media Quriers: Tablet to Desktop
   #testimonial-list .slide-list {
     width: 249px;
     padding: 0 10px;
-    height: 240px; }
+    height: 268px; }
   .slider-section {
     padding: 15px 95px; } }
 
@@ -4432,7 +4438,7 @@ Media Quriers: Tablet to Desktop
   #testimonial-list .slide-list {
     width: 259px;
     padding: 0 10px;
-    height: 240px; }
+    height: 268px; }
   .slider-section {
     padding: 15px 180px; } }
 
@@ -5160,6 +5166,8 @@ button[disabled] {
   border-radius: 40px !important;
   background-color: white !important;
   border: 1px #dddddd solid !important; }
+  .order-nav > li:active {
+    background-color: #6f9d2f !important; }
   .order-nav > li > a {
     color: #b4b4b4; }
   .order-nav > li > a:active,
@@ -5175,7 +5183,8 @@ button[disabled] {
   cursor: default !important;
   background-color: transparent !important;
   border-bottom-color: transparent !important;
-  border: none;
+  border: none !important;
+  margin: 0;
   width: 500px;
   height: 47px;
   border-radius: 40px !important;
