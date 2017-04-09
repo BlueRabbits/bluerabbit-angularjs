@@ -33,7 +33,7 @@
 		 	</div>
 		</div>
 
-		<a ng-click="ourMenu()" style="margin-top: 5px;">
+		<a ng-click="ourMenu()" style="margin-top: 5px;cursor:pointer;">
 			<img src="images/basket@2x.png" height="30px" ng-click="getcartItems()">
 		</a>
 		<p class="cart-with-num" ng-hide="hideCartValue">
@@ -155,7 +155,7 @@
     </div>
     <div id="carousel-wrap">
         <ul class="menu-tabs__list scroll-menu" id="menu_item_list" style="display: inline-flex;margin-left:-36px;">
-          <li class="menu_slide-list" ng-repeat="categories in getCategoryList" style="width:200px;">
+          <li class="menu_slide-list" ng-repeat="categories in getCategoryList" style="min-width:177px;">
             <a style="cursor:pointer;" data-toggle="tab"
                 ng-class="{'active' : categories.name == categoryNames}"
                 ng-click="setActiveTab(categories._id,categories.name)">
@@ -214,18 +214,21 @@
       <input type="text" name="search-box" ng-model="search" class="location-search" placeholder="Search">
       <br/>
       <br/>
-      <div class="location-search-places" ng-repeat="locname in locationDeliver  | filter:search">
-        <img src="images/pin-icon.png" alt="" />
-        <div class="search-place__address">
-          <p>
-            {{locname.name}}
-          </p>
+      <div class="location_overflow">
+        <div class="location-search-places" ng-repeat="locname in locationDeliver  | filter:search">
+          <img src="images/pin-icon.png" alt="" />
+          <div class="search-place__address">
+            <p>
+              {{locname.name}}
+            </p>
+          </div>
+          <!-- <div class="search-place__contact">
+            <p>hello@basis.com</p>
+            <p>+1 650-253-0000</p>
+          </div> -->
         </div>
-        <!-- <div class="search-place__contact">
-          <p>hello@basis.com</p>
-          <p>+1 650-253-0000</p>
-        </div> -->
       </div>
+
       <!-- <div class="location-search-places">
         <img src="images/pin-icon.png" alt="" />
         <div class="search-place__address">
@@ -258,9 +261,11 @@
 </div>
 <!-- About us section -->
 <div class="aboutus-section" id="about">
+    <h1>About us</h1>
   <div class="aboutus-section__content">
+
     <div class="aboutus-description">
-      <h1>About us</h1>
+
       <p id="descrption-1">
         The kit consists of
         more than a hundred ready-to-use elements that you can combine to get the exact prototype you want

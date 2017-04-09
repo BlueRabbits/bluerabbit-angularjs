@@ -32,7 +32,7 @@
 		 	</div>
 		</div>
 
-		<a ng-click="ourMenu()" style="margin-top: 5px;">
+		<a ng-click="ourMenu()" style="margin-top: 5px;cursor:pointer;">
 			<img src="images/basket@2x.png" height="30px" ng-click="getcartItems()">
 		</a>
 		<p class="cart-with-num" ng-hide="hideCartValue">
@@ -75,7 +75,7 @@
         <div class="row basic_info">
           <div class="info_block col-sm-6">
             <div class="dropdown__myaccount" style="display:flex;align-items:center">
-              <div class="user_image" ng-click="cropImages()" ng-show="userProfileShow" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})"></div>
+              <!-- <div class="user_image" ng-click="cropImages()" ng-show="userProfileShow" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})"></div> -->
               <div class="user_image" ng-click="cropImages()" ng-hide="!hideAvatar" style="background-image: url('images/user_avatar.png')" ng-show="!userDetails.image_url">
               </div>
               <img class="user_image" ng-show="myCroppedImage" ng-src="{{myCroppedImage}}" />
@@ -153,7 +153,7 @@
   											<p>{{address.name}},{{address.houseNo}}</p>
   											<p>{{address.streetName}},{{address.landmark}},
   										{{address.city}},{{address.country}}</p>
-  											<p>Phone.No:{{address.mobileNumber}}</p>
+  											<p>Phone:{{address.mobileNumber}}</p>
   										</div>
   									</div>
   								</div>

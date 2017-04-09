@@ -34,7 +34,7 @@
 		 	</div>
 		</div>
 
-		<a ng-click="ourMenu()" style="margin-top: 5px;">
+		<a ng-click="ourMenu()" style="margin-top: 5px;cursor:pointer;">
 			<img src="images/basket@2x.png" height="30px" ng-click="getcartItems()">
 		</a>
 		<p class="cart-with-num" ng-hide="hideCartValue">
@@ -311,7 +311,7 @@
 							</div>
 
 							<div class="search-secction__buttons">
-								<button ng-if="list.quantity > '0'" type="button" name="button" ng-disabled="loadingTillAdded" ng-click="addToCart(list._id)">Add to Cart</button>
+								<button class="disabled_button" ng-if="list.quantity > '0'" type="button" name="button" ng-disabled="loadingTillAdded" ng-click="addToCart(list._id)">Add to Cart</button>
 								<button ng-if="list.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
 							</div>
 						</div> <!-- sm5 -->
