@@ -89,6 +89,7 @@ if($routeParams.showMenuResult){
 //show menu
 if($routeParams.show_wishlist){
   $scope.show_wishlist = true;
+//  $scope.wishListShow();
 }
 
 $scope.initSetFirtsTab = function() {
@@ -258,6 +259,7 @@ console.log("$(window).height(); ",$(window).height());
     Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.countQuantity}, productId)
     .success(function(data){
       $scope.loadingTillAdded = false;
+      $scope.loadingIndicator = false;
       console.log('updated resp', data);
       $scope.getcartItems();
         }).error(function(data){
@@ -334,7 +336,7 @@ console.log("$(window).height(); ",$(window).height());
   //POST create add to cart
   var count = 0;
   $scope.addToCart = function(productId) {
-    $scope.loading = true;
+    $scope.loadingIndicator = true;
     if ($cookieStore.get('token')) {
         count++;
         //cookieStore
@@ -371,10 +373,11 @@ console.log("$(window).height(); ",$(window).height());
 
         if ($scope.incrementQty === true) {
           console.log('add to quantity');
-          $scope.loadingTillAdded = true;
+          $scope.loadingTillAdded = false;
           $scope.updateCartByIncrement($scope.cartQuantity, $scope.cartIds);
         } else if($scope.incrementQty === false && $scope.addCart === true || $scope.allCartItems.length === 0) {
           $scope.loading = true;
+          $scope.loadingIndicator = true;
           $scope.loadingTillAdded = true;
           // do add to cart if not matching
           console.log('add new item');
@@ -392,6 +395,7 @@ console.log("$(window).height(); ",$(window).height());
             .success(function(data) {
               //console.log('data', data);
               $scope.loadingTillAdded = false;
+              $scope.loadingIndicator = false;
               $scope.getcartItems();
               // ngToast.create({
               //   className: 'success',

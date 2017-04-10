@@ -554,3 +554,31 @@ button[disabled] {
     color: red;
     font-size: 30px;
 }
+
+.loader-style{
+  text-align: center;
+  background-color: rgba(128, 128, 128, 0.77);
+  height: 100%;
+  top: 5%;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+}
+
+.loading-Indicator {
+
+      width: 20%;
+      position: absolute;
+      top: 195px;
+      /* bottom: 0; */
+      /* height: auto; */
+      left: 40%;
+      right: 50%;
+      /* background-color: rgba(128, 128, 128, 0.77); */
+      /* width: 600px; */
+      /* overflow: hidden; */
+      z-index: 22;
+      /* height: 100%; */
+      /* min-width: 99px; */
+      /* background-position: 60%; */
+}
