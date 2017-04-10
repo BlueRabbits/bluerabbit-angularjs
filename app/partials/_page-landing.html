@@ -60,7 +60,7 @@
       <li class="slide-list" ng-repeat="lists in allProducts  | filter:{p1:'yes'}">
         <div class="article_image" style="background-image:url({{lists.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)"></div>
         <div class="bestoffertext">
-          <p class="context l2" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)" style="cursor:pointer">{{lists.name}}</p>
+          <p class="context l2" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)" style="cursor:pointer;height:40px">{{lists.name}}</p>
           <div class="row">
             <div class="" style="display: flex;align-items: baseline;justify-content: space-around;">
               <label class="creds l1">{{lists.salePrice}}&nbsp;AED</label>
@@ -113,7 +113,7 @@
     </div>
     <div id="carousel-wrap">
         <ul class="menu-tabs__list scroll-menu" id="menu_item_list" style="display: inline-flex;margin-left:-36px;">
-          <li class="menu_slide-list" ng-repeat="categories in getCategoryList" style="min-width:177px;">
+          <li class="menu_slide-list" ng-repeat="categories in getCategoryList" style="min-width:190px;">
             <a style="cursor:pointer;" data-toggle="tab"
                 ng-class="{'active' : categories.name == categoryNames}"
                 ng-click="setActiveTab(categories._id,categories.name)">
@@ -140,8 +140,8 @@
           <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i> -->
             <!-- <i class="fa fa-spinner fa-pulse fa-2x" ng-show="loadingIcon"  style="position: relative;top:21px;"></i>  -->
 
-          <img  style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist" ng-disabled="!loadingIcon" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-          <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 27px;right: 1px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
+          <img  style=" cursor:pointer" ng-show="hideWishlist" ng-disabled="!loadingIcon" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
+          <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 15px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
           <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat,list._id)" style="cursor:pointer">
             <p>{{list.name}}</p>
             <!-- <p>{{list.description}}</p> -->
