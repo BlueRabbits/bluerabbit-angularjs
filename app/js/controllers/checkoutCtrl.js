@@ -163,9 +163,11 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
 
       //continue shipping
       $scope.continueShipping = function(){
-          $scope.getcartItems();
-          $location.path('/search-page')
-          $scope.showMenuResult  = true;
+        $scope.showMenuResult = true;
+          $location.path('/search-page').search({
+            showMenuResult: true,
+            category: catname,
+          });
       }
 
 

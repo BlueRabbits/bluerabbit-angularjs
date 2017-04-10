@@ -473,17 +473,22 @@ $scope.getAddressMyAccount = function(){
 //delete Address by Address ID
 $scope.deleteAddress = function(addressId){
   console.log(addressId);
-  Auth.deleteAddress(addressId)
-  .success(function(data){
-    $scope.getAddressMyAccount();
-    console.log('address deleted', data);
-    // ngToast.create({
-    //   className: 'success',
-    //   content: data.message
-    // });
-      }).error(function(data){
-        console.log(data);
+  var result = confirm("Are you sure that you want to delete this Address?");
+  if (result) {
+    //Logic to delete the item
+    Auth.deleteAddress(addressId)
+    .success(function(data){
+      $scope.getAddressMyAccount();
+      console.log('address deleted', data);
+      ngToast.create({
+        className: 'success',
+        content: data.message
       });
+        }).error(function(data){
+          console.log(data);
+        });
+    }
+
 }
 //edit Address by Address ID
 $scope.showEditAddressFields = false;

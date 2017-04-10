@@ -456,7 +456,7 @@ a.no-underline:hover {
   justify-content: center;
 
   > img {
-    height: 20px;
+    height: 17px;
   }
 
   button {
@@ -576,12 +576,15 @@ a.no-underline:hover {
 
 .location-search-places {
   display: flex;
+  align-items: center;
   // padding: 13px 0px 10px;
   border-bottom: 1px solid white;
-  margin-bottom: 14px;
+  //margin-bottom: 14px;
+
 
   img {
     height: 52px;
+    margin-top: 30px;
   }
 
   p {
