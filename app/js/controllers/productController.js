@@ -194,7 +194,7 @@ console.log("$(window).height(); ",$(window).height());
     $scope.gettingCartData =[];
     console.log('cart page');
     Auth.getCartList({
-      UserId : $scope.getUserId,
+      UserID : $scope.getUserId,
       sessionID: $scope.sessionId,
     })
     .success(function (data) {
