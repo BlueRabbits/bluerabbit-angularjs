@@ -334,6 +334,9 @@
 						<input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
 						<input type="text" name="TextBox" id="TextBox" class="textbox" ng-value="cartList.quantity" ng-model="cartList.quantity" />
 						<input type="Button" id='AddButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
+					<!--<input type="Button" ng-hide="cartList.product.quantity === 0" ng-if="cartList.product.quantity < cartList.quantity" ng-value="cartList.product.quantity" value="Update" ng-click="updateCartOnCheckout(cartList.product.quantity, cartList._id)"/> -->
+						<button type="button"  ng-hide="cartList.product.quantity === 0" ng-if="cartList.product.quantity <= cartList.quantity" ng-value="cartList.product.quantity" value="Update" ng-click="updateCartOnCheckout(cartList.product.quantity, cartList._id)"  name="button">Update Qty : {{cartList.product.quantity}}</button>
+						<input type="Button" ng-if="cartList.product.quantity === 0" value="OutOfStock"/>
 					</div>
 					<p class="product-cart__price"><span>AED</span>{{cartList.product.salePrice * cartList.quantity}}</p>
 					<!-- <p>{{cartList.product.salePrice}}</p> -->
