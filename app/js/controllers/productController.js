@@ -721,7 +721,7 @@ console.log("$(window).height(); ",$(window).height());
                   alert("outofstock");
                   $scope.showOutOfStockBtn = true;
                   $scope.showUpdateCartBtn = false;
-
+                  window.location = "#/search-page";
                 }
                 // if ($scope.gettingCartQty[i].prodQty === 0) {
                 //   alert("outofstock");
