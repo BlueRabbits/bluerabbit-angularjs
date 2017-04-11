@@ -680,6 +680,8 @@ console.log("$(window).height(); ",$(window).height());
 
 
           //checkout
+          $scope.showOutOfStockBtn = false;
+          $scope.showUpdateCartBtn = false;
           $scope.checkout = function() {
             if($cookieStore.get('userId')){
               if ($scope.allCartItems.length == 0) {
@@ -689,13 +691,65 @@ console.log("$(window).height(); ",$(window).height());
                 //   timeout:1000
                 // });
               } else {
-                window.location = "#/checkout";
+                // window.location = "#/checkout";
+              }
+              //check the quantity of cart with product's quantity
+              $scope.getcartItems();
+              $scope.gettingCartQty = [];
+              angular.forEach($scope.allCartItems, function (value, key) {
+                var obj = {
+                  "qty":value.quantity,
+                  "prodQty" : value.product.quantity,
+                  "productIds" : value.product._id
+                };
+                $scope.gettingCartQty.push(obj);
+
+              });
+              console.log("gettingCartQty",$scope.gettingCartQty);
+              for (var i = 0; i < $scope.gettingCartQty.length; i++) {
+                if ($scope.gettingCartQty[i].prodQty >= $scope.gettingCartQty[i].qty) {
+                  console.log("just checkout");
+                  window.location = "#/checkout";
+                } else{
+
+                  alert("update carts quantity ")
+                  $scope.showUpdateCartBtn = true;
+                  $scope.showOutOfStockBtn = false;
+                  window.location = "#/search-page";
+                }
+                 if ($scope.gettingCartQty[i].prodQty === 0) {
+                  alert("outofstock");
+                  $scope.showOutOfStockBtn = true;
+                  $scope.showUpdateCartBtn = false;
+
+                }
+                // if ($scope.gettingCartQty[i].prodQty === 0) {
+                //   alert("outofstock");
+                //   $scope.showOutOfStockBtn = true;
+                //   $scope.showUpdateCartBtn = false;
+                // }
               }
             } else {
               console.log("Please Login");
               // window.location = "#/landing";
               $('#loginmodal').modal('toggle');
             }
+          }
+          //click to update cart
+          $scope.updateCartOnCheckout = function(prodQuantity, cartId){
+            $scope.cartListQuantity = prodQuantity;
+            Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.cartListQuantity}, cartId)
+            .success(function(data){
+              // $scope.loadingTillAdded = false;
+              // $scope.loadingIndicator = false;
+              console.log('updated resp', data);
+              $scope.getcartItems();
+                }).error(function(data){
+                  // ngToast.create({
+                  //   className: 'warning',
+                  //   content: 'Problem in incrementing cart'
+                  // });
+                });
           }
 
           $scope.clearSpaces = function(string) {
