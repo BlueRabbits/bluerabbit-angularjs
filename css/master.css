@@ -183,7 +183,8 @@ button {
     .profile_details .cart-with-num span {
       position: relative;
       top: -2px;
-      right: 2px; }
+      right: 2px;
+      font-size: 11px; }
   .profile_details img {
     margin-left: 10px;
     margin-top: -5px;
@@ -234,7 +235,7 @@ button {
   min-width: 120px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 12px;
-  font-family: "Lato-Black";
+  font-family: "Lato-Regular";
   font-size: 12px;
   font-weight: 900;
   font-style: normal;
@@ -3447,7 +3448,8 @@ SMACSS: PAGE - LANDING
   padding-bottom: 10px;
   padding-top: 10px;
   width: 260px;
-  border-radius: 100px; }
+  border-radius: 100px;
+  text-transform: uppercase; }
 
 .social-login__buttons {
   display: -ms-flexbox;
@@ -3879,7 +3881,7 @@ a.no-underline:hover {
   -ms-flex-pack: center;
   justify-content: center; }
   .breakfast-products__content > img {
-    height: 20px; }
+    height: 17px; }
   .breakfast-products__content button {
     width: 130px;
     height: 35px;
@@ -3987,10 +3989,12 @@ a.no-underline:hover {
 .location-search-places {
   display: -ms-flexbox;
   display: flex;
-  border-bottom: 1px solid white;
-  margin-bottom: 14px; }
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid white; }
   .location-search-places img {
-    height: 52px; }
+    height: 52px;
+    margin-top: 30px; }
   .location-search-places p {
     font-family: "Lato-Regular";
     font-size: 13px;
@@ -4655,7 +4659,8 @@ Media Quriers: Tablet to Desktop
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
-  align-items: center; }
+  align-items: center;
+  margin-top: 13px; }
   .product-view p {
     margin: 0;
     cursor: pointer;
@@ -4988,6 +4993,31 @@ button[disabled] {
   align-items: center;
   color: red;
   font-size: 30px; }
+
+.loader-style {
+  text-align: center;
+  background-color: rgba(128, 128, 128, 0.77);
+  height: 100%;
+  top: 5%;
+  width: 100%;
+  position: absolute;
+  z-index: 3; }
+
+.loading-Indicator {
+  width: 20%;
+  position: absolute;
+  top: 195px;
+  /* bottom: 0; */
+  /* height: auto; */
+  left: 40%;
+  right: 50%;
+  /* background-color: rgba(128, 128, 128, 0.77); */
+  /* width: 600px; */
+  /* overflow: hidden; */
+  z-index: 22;
+  /* height: 100%; */
+  /* min-width: 99px; */
+  /* background-position: 60%; */ }
 
 /*!
  * bootstrap-vertical-tabs - v1.1.0
