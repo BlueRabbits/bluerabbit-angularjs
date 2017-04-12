@@ -709,7 +709,7 @@ console.log("$(window).height(); ",$(window).height());
               for (var i = 0; i < $scope.gettingCartQty.length; i++) {
                 if ($scope.gettingCartQty[i].prodQty >= $scope.gettingCartQty[i].qty) {
                   console.log("just checkout");
-                  window.location = "#/checkout";
+                  //window.location = "#/checkout";
                 } else{
 
                   alert("update carts quantity ")
@@ -722,6 +722,11 @@ console.log("$(window).height(); ",$(window).height());
                   $scope.showOutOfStockBtn = true;
                   $scope.showUpdateCartBtn = false;
                   window.location = "#/search-page";
+                }
+                 if ($scope.gettingCartQty[i].prodQty === $scope.gettingCartQty[i].qty) {
+                   console.log("just checkout");
+                   alert("just checkout");
+                   window.location = "#/checkout";
                 }
                 // if ($scope.gettingCartQty[i].prodQty === 0) {
                 //   alert("outofstock");
