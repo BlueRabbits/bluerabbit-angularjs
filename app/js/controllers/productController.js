@@ -707,27 +707,29 @@ console.log("$(window).height(); ",$(window).height());
               });
               console.log("gettingCartQty",$scope.gettingCartQty);
               for (var i = 0; i < $scope.gettingCartQty.length; i++) {
-                if ($scope.gettingCartQty[i].prodQty >= $scope.gettingCartQty[i].qty) {
-                  console.log("just checkout");
-                  //window.location = "#/checkout";
-                } else{
+                if ($scope.gettingCartQty[i].prodQty < $scope.gettingCartQty[i].qty) {
 
+                  //window.location = "#/checkout";
                   alert("update carts quantity ")
                   $scope.showUpdateCartBtn = true;
                   $scope.showOutOfStockBtn = false;
                   window.location = "#/search-page";
+                } else{
+                  console.log("just checkout");
+                  window.location = "#/checkout";
+
                 }
                  if ($scope.gettingCartQty[i].prodQty === 0) {
-                  alert("outofstock");
+                  alert("outofstock plz remove");
                   $scope.showOutOfStockBtn = true;
                   $scope.showUpdateCartBtn = false;
                   window.location = "#/search-page";
                 }
-                 if ($scope.gettingCartQty[i].prodQty === $scope.gettingCartQty[i].qty) {
-                   console.log("just checkout");
-                   alert("just checkout");
-                   window.location = "#/checkout";
-                }
+                //  if ($scope.gettingCartQty[i].prodQty >= $scope.gettingCartQty[i].qty) {
+                //    console.log("just checkout");
+                //    alert("just checkout");
+                //    window.location = "#/checkout";
+                // }
                 // if ($scope.gettingCartQty[i].prodQty === 0) {
                 //   alert("outofstock");
                 //   $scope.showOutOfStockBtn = true;
