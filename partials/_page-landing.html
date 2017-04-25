@@ -22,7 +22,7 @@
 				<div class="dropdown__myaccount" id="menu1" type="button" >
 				 <div class="user_image" style="background-image: url('images/user_avatar.png')" ng-show="hideAvatar">
 				 </div>
-					<div class="user_image" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})" ng-hide="hideAvatar"></div>
+					<div class="user_image" style="background-image: url({{userDetails.image_url}})" ng-hide="hideAvatar"></div>
 					{{userName}}
 				 	<span class="caret"></span>
 				</div>
@@ -42,6 +42,7 @@
 
 	</div>
 </div>
+
 
   <div class="section-main-content">
     <div class="section-header-menu" style="z-index: 5;">
@@ -63,7 +64,7 @@
         <a ng-click="showSearchPage(categoryNames)"><img src="images/search-icon@2x.png" class="search-icon"></a>
         <p><a href="#/"> |</a></p>
         <img src="images/heart-icon@2x.png" ng-click="showWishList()">
-    		<p ng-click="showWishList()" style="cursor:pointer">Favorites</p>
+    		<p ng-click="showWishList()" style="cursor:pointer">Favourites</p>
       </div>
     </div>
   </div>
@@ -94,15 +95,15 @@
 <div class="slider-section">
   <div class="clearfix slider-control">
     <span class="pull-left h2 clear-margin" style="margin: 0px; font-weight:normal">Best Sellers</span>
-    <img src="images/arrow-left.svg" id="prv-testimonial" alt="PREV" style="margin-right:10px;"  />
-    <img src="images/arrow-right-active.svg" id="nxt-testimonial" alt="NEXT" />
+    <img src="images/icon_arrow_right_gray.png" id="prv-testimonial" alt="PREV" style="margin-right:10px;-webkit-transform:rotate(180deg);"  />
+    <img src="images/icon_arrow_right_gray.png" id="nxt-testimonial" alt="NEXT" />
   </div>
   <div id="carousel-wrap">
     <ul id="testimonial-list" class="clearfix">
       <li class="slide-list" ng-repeat="lists in allProducts  | filter:{p1:'yes'}">
         <div class="article_image" style="background-image:url({{lists.mainImageUrl}});cursor:pointer" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)"></div>
         <div class="bestoffertext">
-          <p class="context l2" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)" style="cursor:pointer;height:40px">{{lists.name}}</p>
+          <p class="context l2" ng-click="showProductSearchPage(lists.name,lists.cat,lists._id)" >{{lists.name}}</p>
           <div class="row">
             <div class="" style="display: flex;align-items: baseline;justify-content: space-around;">
               <label class="creds l1">{{lists.salePrice}}&nbsp;AED</label>
@@ -149,13 +150,14 @@
 <div class="tab_section" id="menu">
   <a href="" ng-click="ourMenu(categoryNames)" class="no-underline"><h1>Our Menu</h1></a>
   <div class="menu-tabs">
-    <div class="clearfix slider-control menu_slider_control" style="padding:0;">
-      <img src="images/left-arrow.png" id="prv-menu" alt="PREV" style="margin-right:10px;"  height="30px"/>
-      <img src="images/right-arrow.png" id="nxt-menu" alt="NEXT" height="30px"/>
+    <div class="clearfix  menu_slider_control">
+      <img src="images/left-arrow.png" id="prv-menu" alt="PREV" style="margin-right:10px;" height="30px" />
+      <img src="images/right-arrow.png" id="nxt-menu" alt="NEXT" height="30px" />
     </div>
+
     <div id="carousel-wrap">
-        <ul class="menu-tabs__list scroll-menu" id="menu_item_list" style="display: inline-flex;margin-left:-36px;">
-          <li class="menu_slide-list" ng-repeat="categories in getCategoryList" style="min-width:190px;">
+        <ul class="menu-tabs__list scroll-menu" id="menu_item_list" ng-style="{'width':getCategoryList.length*190}">
+          <li class="menu_slide-list" ng-repeat="categories in getCategoryList" >
             <a style="cursor:pointer;" data-toggle="tab"
                 ng-class="{'active' : categories.name == categoryNames}"
                 ng-click="setActiveTab(categories._id,categories.name)">
@@ -167,6 +169,10 @@
           <!-- <button type="button" name="button">view all</button> -->
         </ul>
     </div>
+
+  </div>
+  <div ng-show="loadingIcon" style="text-align:center" class="loader-style">
+    <img src="images/loader.gif" class="loading-Indicator" />
   </div>
   <div class="menu-tabs__products-list ">
     <a href="" ng-click="initSetTab('previous')"><img src="images/icon_arrow_left.png" class="arrow arrow_left" alt="left"></a>
@@ -180,10 +186,13 @@
           <!-- <img src="images/heart-icon-black.png" ng-click="addWishList(list._id)"> -->
           <!-- <img ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(list._id)" style="cursor: pointer">
           <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px;" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i> -->
-            <!-- <i class="fa fa-spinner fa-pulse fa-2x" ng-show="loadingIcon"  style="position: relative;top:21px;"></i>  -->
+            <!-- <i class="fa fa-spinner fa-pulse fa-2x" ng-show="loadingIcon"  style="position: relative;top:21px;"></i> -->
 
-          <img  style=" cursor:pointer" ng-show="hideWishlist" ng-disabled="!loadingIcon" src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-          <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 15px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
+          <img  ng-show="hideWishlist" ng-disabled="!loadingIcon" src="images/heart-icon.png" ng-click="addWishList(list._id)">
+          <img  class="red-heart" src="images/heart-fav-icon.png" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)">
+
+          <!-- <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 8px;line-height:0; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i> -->
+
           <div class="products__description" ng-click="showProductSearchPage(list.name,list.cat,list._id)" style="cursor:pointer">
             <p>{{list.name}}</p>
             <!-- <p>{{list.description}}</p> -->
@@ -452,6 +461,7 @@
         <div class="row footer-menu">
           <div class="col-sm-3">
             <img src="images/footer-logo-icon.png" alt="" />
+
           </div>
           <div class="col-sm-4">
             <ul style="cursor:pointer;">
@@ -465,7 +475,7 @@
             <ul style="cursor:pointer;">
               <li>Help Center</li>
               <li ><a style="color: #999999;" href="#/landing#about">Email Support</a></li>
-              <li ><a style="color: #999999;" href="#/landing#about">Contact us</a></li>
+              <li ><a style="color: #999999;" href="#/landing#about">Contact Us</a></li>
             </ul>
           </div>
         </div>
@@ -488,6 +498,7 @@
               <div class="ring"><i class="fa fa-mobile" aria-hidden="true"></i></div>
               <div class="ring"><i class="fa fa-play" aria-hidden="true"></i></div>
             </div>
+              <p style="color: #fff;">Powered by Mozayc. <br/>All rights reserved.</p>
           </div>
         </div>
       </div>

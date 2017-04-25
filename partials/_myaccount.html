@@ -21,7 +21,7 @@
 				<div class="dropdown__myaccount" id="menu1" type="button" >
 				 <div class="user_image" style="background-image: url('images/user_avatar.png')" ng-show="hideAvatar">
 				 </div>
-					<div class="user_image" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})" ng-hide="hideAvatar"></div>
+					<div class="user_image" style="background-image: url({{userDetails.image_url}})" ng-hide="hideAvatar"></div>
 					{{userName}}
 				 	<span class="caret"></span>
 				</div>
@@ -43,7 +43,9 @@
 </div>
 
 </div>
-
+<div ng-show="loadingIndicator" style="text-align:center" class="loader-style">
+	<img src="images/loader.gif" class="loading-Indicator" />
+</div>
 <div class="container-fluid myaccount-main" style="margin-bottom: 200px;">
   <div class="row" style="border-bottom: 1px solid #ddd;">
     <div class="container tab_list" ng-init=" getUserProfile(); getAddressMyAccount();">
@@ -75,10 +77,10 @@
         <div class="row basic_info">
           <div class="info_block col-sm-6">
             <div class="dropdown__myaccount" style="display:flex;align-items:center">
-              <!-- <div class="user_image" ng-click="cropImages()" ng-show="userProfileShow" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})"></div> -->
-              <div class="user_image" ng-click="cropImages()" ng-hide="!hideAvatar" style="background-image: url('images/user_avatar.png')" ng-show="!userDetails.image_url">
+              <div class="user_image" ng-class="{active:editImage}" ng-click="cropImages()" ng-show="userProfileShow" ng-if="userDetails.image_url" style="background-image: url({{userDetails.image_url}})"></div>
+              <div class="user_image" ng-class="{active:editImage}" ng-click="cropImages()" ng-hide="!hideAvatar" style="background-image: url('images/user_avatar.png')" ng-if="!userDetails.image_url">
               </div>
-              <img class="user_image" ng-show="myCroppedImage" ng-src="{{myCroppedImage}}" />
+              <img class="user_image" ng-click="cropImages()" ng-show="myCroppedImage && !userProfileShow && !hideAvatar" ng-src="{{myCroppedImage}}" />
               <p ng-show="editImage==false" style="margin:0;">{{userDetails.name}}</p>
 
               <!-- <img class="icon_img" ng-show="editImage==false" ng-click="editImage=true" ng-init="editImage=false" src="images/pencil.svg" type="image/svg+xml" data-pin-nopin="true"> -->
@@ -94,10 +96,13 @@
             <lable>Contact Number</lable>
             <p ng-show="editImage==false">{{userDetails.mobile_number}}</p>
               <input type="text" ng-model="mobile_number"  style="display: inline-block;" ng-show="editImage==true"/>
-              <div class="edit_img" ng-show="editImage==true" style="position: relative;left: 50px;">
+              <!-- <div class="edit_img" ng-show="editImage==true" style="position: relative;left: 50px;">
               <button class="checkout-page__buttons active" ng-class="{'btn-default' : !isDataAvailable}" ng-disabled="!isDataAvailable" ng-click="ProfileUpdate()" style="padding: 5px 17px; font-size: 10px;">Submit</button>
-            </div>
+            </div> -->
           </div>
+          <div class="edit_img col-sm-12" ng-show="editImage==true" >
+          <button class="checkout-page__buttons active" ng-class="{'btn-default' : !isDataAvailable}" ng-disabled="!isDataAvailable" ng-click="ProfileUpdate()" style="padding: 5px 17px; font-size: 10px;">Submit</button>
+        </div>
           <div class="info_block col-sm-6">
             <lable>Email</lable>
             <p>{{userDetails.email}}</p>
@@ -134,7 +139,7 @@
         </div> -->
 
         <br /><br /><br />
-        <p class="row terms_heading">Update address</p>
+        <p class="row terms_heading" ng-if="getAddressByUserId.length">Update address</p>
         <div class="row">
           <div class="col-lg-12">
             <!-- get address -->
@@ -236,6 +241,7 @@
           <div class="tab-content">
             <div id="menu1" class="" ng-show="showLiveOrders == true">
                 <div class="col-md-12">
+                  <div class="no-orders" ng-if="orderHistoryLive.length == 0"><img src="/images/no-content.png" /><p>No Live Orders</p></div>
                   <div class="row order_item" ng-class="{'card_layout' : showOrder[$index]}" ng-repeat="orderLive in orderHistoryLive | orderBy : '-orderDate' ">
                     <!-- <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = true"> -->
                     <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = true" ng-click="showOrder[$index] = !showOrder[$index]">
@@ -285,6 +291,7 @@
             </div>
             <div id="menu2" ng-show="showPastOrders" >
                 <div class="col-md-12">
+                    <div class="no-orders" ng-if="orderHistory.length == 0"><img src="/images/no-content.png" /><p>No Past Orders</p></div>
                   <div class="row order_item" ng-class="{'card_layout' : showOrder[$index]}" ng-repeat="order in orderHistory | filter:{orderStatus:{name:'Completed'}}">
                     <div class="col-lg-12 order_meta" ng-init="showOrder[$index] = false" ng-click="showOrder[$index] = !showOrder[$index]">
                       <p><label>Order Date&nbsp;</label>{{order.orderDate | date:medium}}</p>
@@ -390,6 +397,7 @@
         <div class="row footer-menu">
           <div class="col-sm-3">
             <img src="images/footer-logo-icon.png" alt="" />
+
           </div>
           <div class="col-sm-4">
             <ul style="cursor:pointer;">
@@ -403,7 +411,7 @@
             <ul style="cursor:pointer;">
               <li>Help Center</li>
               <li ><a style="color: #999999;" href="#/landing#about">Email Support</a></li>
-              <li ><a style="color: #999999;" href="#/landing#about">Contact us</a></li>
+              <li ><a style="color: #999999;" href="#/landing#about">Contact Us</a></li>
             </ul>
           </div>
         </div>
@@ -426,6 +434,7 @@
               <div class="ring"><i class="fa fa-mobile" aria-hidden="true"></i></div>
               <div class="ring"><i class="fa fa-play" aria-hidden="true"></i></div>
             </div>
+              <p style="color: #fff;">Powered by Mozayc. <br/>All rights reserved.</p>
           </div>
         </div>
       </div>
@@ -488,25 +497,25 @@
 <!-- load image modal windo  -->
 <div class="modal fade" id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width: 47%;">
-    <div class="modal-content">
+    <div class="modal-content pull-left" style="height: 100%;padding:10px;">
       <div class="modal-body">
       	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
       <!-- <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div> -->
 				<!-- image  -->
-        <div>Select an image file:
-           <!-- <input type="file" id="fileInput" name="file" multiple ng-files="getTheFiles($files)"/> -->
-           <input type="file" id="file1" name="file" multiple ng-files="getTheFiles($files)" style="display: inline-block;" />
-        </div>
         <div class="croping_popup_images">
           <div class="cropArea">
             <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
           </div>
           <div class="image_preview">
-            <h3>Image Preview:</h3>
+            <h3>Image Preview</h3>
             <img ng-src="{{myCroppedImage}}" />
           </div>
         </div>
-        <div class="image_crop_popup_button">
+        <div class="col-md-8">
+           <!-- <input type="file" id="fileInput" name="file" multiple ng-files="getTheFiles($files)"/> -->
+           <input type="file"  id="file1" name="file" multiple ng-files="getTheFiles($files)" style="display: inline-block;" />
+        </div>
+        <div class="pull-right">
           <button class="checkout-page__buttons" ng-click="selectedCropImage(myCroppedImage)" type="button">Done!</button>
         </div>
         <!-- {{myCroppedImage}} -->

@@ -12,9 +12,9 @@
         <div ng-show="erroralert" style="padding-bottom: 10px; color: red;text-align:center">
         {{errorMessage}}
       </div>
-        <form class="loginform" ng-submit="loginform()" name="krazyloginform" method="POST" novalidate>
+        <form class="loginform" ng-submit="loginform()" style="cursor:pointer"  name="krazyloginform" method="POST" novalidate>
           <div class="social-login__buttons">
-            <div class="social-login__connect facebook" ng-click="fbLoginAuth()">
+            <div class="social-login__connect facebook" style="cursor:pointer"  ng-click="fbLoginAuth()">
               <p>Facebook</p>
             </div>
             <div  ng-click="googlePlusLogin()">
@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="loginform__manually">
-            <span style="position: relative; font-size: 20px; margin-bottom: 15px;">SignIn</span>
+            <span style="position: relative; font-size: 20px;bottom: 13px;right: 39px;">SignIn</span>
             <div class="loginForm--fields">
               <div class="loginForm__inputs loginForm__username">
                 <input type="text" class="loginForm__inputs--username" name="username" ng-model="email" placeholder="Email Address" required>
@@ -41,7 +41,7 @@
       <div class="modal-footer">
         <div >
           <p class="not-customer-label">Not a customer yet?</p>
-          <a style="display: flex;justify-content: center;" href="" ng-click="loginModal()">Sign up for Krazy Meals!</a>
+          <a style="display: flex;justify-content: center;" href="" ng-click="loginModal()">SignUp for Krazy Meals!</a>
       </div>
       </div>
     </div>

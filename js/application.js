@@ -340,7 +340,8 @@ app.controller('checkoutCtrl', function($scope, $location, $rootScope, $http, $t
       pinCode: $scope.pincode,
       city:$scope.city,
       state: $scope.state,
-      country:$scope.country
+      country:$scope.country,
+      isDeleted:false
     }
     Auth.addAddress(addressDetails)
     .success(function(data){
@@ -486,6 +487,7 @@ app.controller('loginController', function($scope, $location, $rootScope, $windo
               email: $scope.email,
               mobile_number:$scope.mobile_number,
               password: $scope.password,
+              device_type:"web"
             }
         Auth.register(signupcredintials).success(function(data) {
         // localStorage.setItem("token", data.token);
@@ -676,6 +678,7 @@ $scope.logged = false;
         $scope.hideAvatar = false;
       } else {
         $scope.hideAvatar = true;
+        $scope.userProfileShow =  false;
       }
       console.log('user profile',data.name);
       $cookieStore.put('userName', data.name);
@@ -752,7 +755,8 @@ $scope.logged = false;
                  console.log("$scope.imageUrls",$scope.imageUrls);
                  var socailParams = {
                    "email": $scope.emailId,
-                   "name": $scope.userName
+                   "name": $scope.userName,
+                   "device_type":"web"
                  }
                  if (data) {
 
@@ -833,7 +837,8 @@ $scope.fbLoginAuth = function() {
       });
       var socailParams = {
         "email": $scope.emailId,
-        "name": $scope.userName
+        "name": $scope.userName,
+        "device_type":"web"
       }
       if (!response.error) {
 
@@ -875,7 +880,8 @@ $scope.loginModal = function(){
 
 //order getOrderBuYUserId
 $scope.getOrdersByUserId = function() {
-
+  $scope.orderHistoryLive=[];
+  $scope.orderHistory = [];
   Auth.getOrdersByUserId().success(function(data) {
     $scope.orderHistoryLive = data;
     $scope.orderHistory = data;
@@ -887,7 +893,7 @@ $scope.getOrdersByUserId = function() {
     }
 
     console.log('user orders', $scope.orderHistory);
-    console.log('user orders', $scope.orderHistoryLive);
+    console.log('user orders23', $scope.orderHistoryLive);
   }).error(function(data) {
     console.log('data', data);
   });
@@ -918,7 +924,7 @@ $scope.deleteAddress = function(addressId){
   var result = confirm("Are you sure that you want to delete this Address?");
   if (result) {
     //Logic to delete the item
-    Auth.deleteAddress(addressId)
+    Auth.deleteAddress(addressId,{isDeleted:true})
     .success(function(data){
       $scope.getAddressMyAccount();
       console.log('address deleted', data);
@@ -974,7 +980,8 @@ $scope.editAddress = function(){
   pinCode: $scope.pinCode,
   city: $scope.city,
   state: $scope.state,
-  country: $scope.country
+  country: $scope.country,
+  isDeleted:false
   // isDefault: True
 };
   Auth.editAddress($scope.getAddressId,addressDetails)
@@ -992,30 +999,59 @@ $scope.editAddress = function(){
 }
 
 //upload formdata imageUrls
-      var formdata = new FormData();
+
+
+var formdata = new FormData();
+
       $scope.isDataAvailable = false;
       $scope.getTheFiles = function($files) {
+
         //load modal for crop
         // $('#imageCropModal').modal('show');
-        angular.forEach($files, function(value, key) {
-          formdata.append(key, value);
-          console.log(formdata);
-        });
-        console.log($('#file1').val());
-        console.log(formdata);
-        formdata.append('file', formdata);
-        Auth.imageUpload(formdata)
-          .success(function(data) {
-            console.log('profile formdata', data);
-            $scope.profileImage = data.url;
-            $scope.isDataAvailable = true;
-
-          }).error(function(data) {
-            console.log(data);
-          });
+        // angular.forEach($files, function(value, key) {
+        //   formdata.append(key, value);
+        //   console.log(formdata);
+        // });
+        // console.log($('#file1').val());
+        // console.log(formdata);
+        // formdata.append('file', formdata);
+        // var blob = $scope.dataURItoBlob($scope.myCroppedImage);
+        // formdata.append("file", blob,"filename.png");
+        // Auth.imageUpload(formdata)
+        //   .success(function(data) {
+        //     console.log('profile formdata', data);
+        //     $scope.profileImage = data.url;
+        //     $scope.isDataAvailable = true;
+        //
+        //   }).error(function(data) {
+        //     console.log(data);
+        //   });
       };
+
+
+      $scope.dataURItoBlob = function(dataURI) {
+          // convert base64/URLEncoded data component to raw binary data held in a string
+          var byteString;
+          if (dataURI.split(',')[0].indexOf('base64') >= 0)
+            byteString = atob(dataURI.split(',')[1]);
+          /*else
+            byteString = unescape(dataURI.split(',')[1]);*/
+
+          // separate out the mime component
+          var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+          // write the bytes of the string to a typed array
+          var ia = new Uint8Array(byteString.length);
+          for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+          }
+
+          return new Blob([ia], { type: mimeString });
+        }
+
       //crop image
       $scope.cropImages = function(){
+        if($scope.editImage == true)
           $('#imageCropModal').modal('show');
       }
       $scope.myImage = '';
@@ -1045,7 +1081,7 @@ $scope.editAddress = function(){
         $scope.hideAvatar = false;
         $scope.userProfileShow = false;
         //console.log("$scope.croppedImage",$scope.croppedImage);
-  $('#imageCropModal').modal('hide');
+        $('#imageCropModal').modal('hide');
         var base64_string = cropImg;
         // $(function () {
         //     var $img = $("<img/>");
@@ -1056,29 +1092,46 @@ $scope.editAddress = function(){
         // $scope.imagePreviewOfCrop = 'data:image/png;base64,' + cropImg;
         // console.log("  $scope.imagePreviewOfCrop ",  $scope.imagePreviewOfCrop );
         //api call
-        // var formdata = new FormData();
-        // formdata.append('file', formdata);
-        // console.log("formdata new",formdata);
-        // Auth.imageUpload(formdata)
-        //   .success(function(data) {
-        //     console.log('profile formdata', data);
-        //     $scope.profileImage = data.url;
-        //     $scope.isDataAvailable = true;
-        //     $('#imageCropModal').modal('hide');
-        //   }).error(function(data) {
-        //     console.log(data);
-        //   });
+        var formdata = new FormData();
+        var blob = $scope.dataURItoBlob(base64_string);
+         formdata.append("file", blob,"filename.png");
+        //formdata.append('file', formdata);
+        console.log("formdata new",formdata);
+        $scope.loadingIndicator = true;
+        Auth.imageUpload(formdata)
+          .success(function(data) {
+
+            console.log('profile formdata', data);
+            $scope.profileImage = data.url;
+            $scope.loadingIndicator = false;
+            $scope.isDataAvailable = true;
+
+          }).error(function(data) {
+            console.log(data);
+          });
       }
 
   //image profile
+  var BASE_URL = "http://34.206.42.77:9000";
       $scope.hideAvatar = true;
       $scope.ProfileUpdate = function() {
         $scope.hideAvatar = false;
-        var profileDetails = {
-          "name": $scope.userName,
-          "image_url": $scope.profileImage,
-          "mobile_number":$scope.mobile_number
+        if ($scope.profileImage) {
+          var profileDetails = {
+            "name": $scope.userName,
+            "image_url": BASE_URL+'/api/users'+$scope.profileImage,
+            "mobile_number":$scope.mobile_number
+          }
+        } else {
+          var profileDetails = {
+            "name": $scope.userName,
+            "image_url": $scope.userDetails.image_url,
+            "mobile_number":$scope.mobile_number
+          }
+
         }
+
+        $scope.loadingIndicator = true;
         Auth.profileImageUpload(profileDetails)
           .success(function(data) {
             $scope.getUserProfile();
@@ -1088,7 +1141,8 @@ $scope.editAddress = function(){
             $scope.userName = data.name;
             $scope.editImage=false;
             $scope.showCropImage = true;
-            $scope.userProfileShow = false;
+            $scope.userProfileShow = true;
+            $scope.loadingIndicator = false;
             // ngToast.create({
             //   className: 'success',
             //   content: "Successfully Updated the address"
@@ -1166,7 +1220,7 @@ $scope.editAddress = function(){
               "orderId": orderId
             }
 
-              var BASE_URL = "http://34.206.42.77:9000";
+
                 var config = {
                     headers : {
                         'Authorization': 'Bearer '+PwdauthToken,
@@ -1386,29 +1440,34 @@ app.controller('mainController', function($scope, $location, $rootScope, $window
   //slider
 
 $('#prv-testimonial').on('click', function(){
-    var $last = $('#testimonial-list .slide-list:last');
-    $last.remove().css({ 'margin-left': '-200px' });
-    $('#testimonial-list .slide-list:first').before($last);
-    $last.animate({ 'margin-left': '0px' }, 1000);
+    var $visibleList = $('#testimonial-list .slide-list:gt(-6)');
+     $visibleList.remove().css({ 'margin-left': '-250px' });
+      $('#testimonial-list .slide-list:first').before($visibleList);
+     $visibleList.animate({ 'margin-left': '0px' });
 });
+
+$interval(function() {
+    $('#nxt-testimonial').trigger('click');
+    }, 5000);
 
 
   //timeout auto scroll
 
-  $timeout(function() {
-      var $first = $('#testimonial-list .slide-list:first');
-      $first.animate({ 'margin-left': '-648px' }, 900, function() {
-          $first.remove().css({ 'margin-left': '0px' });
-          $('#testimonial-list .slide-list:last').after($first);
-      });
-    }, 5000);
+  // $timeout(function() {
+  //     var $first = $('#testimonial-list .slide-list:first');
+  //     $first.animate({ 'margin-left': '-648px' }, 900, function() {
+  //         $first.remove().css({ 'margin-left': '0px' });
+  //         $('#testimonial-list .slide-list:last').after($first);
+  //     });
+  //   }, 5000);
 
 
   $('#nxt-testimonial').on('click', function(){
-      var $first = $('#testimonial-list .slide-list:first');
-      $first.animate({ 'margin-left': '-200px' },  function() {
-          $first.remove().css({ 'margin-left': '20px' });
-          $('#testimonial-list .slide-list:last').after($first);
+    var $visibleList = $('#testimonial-list .slide-list:lt(5)');
+      //var $visibleList = $('#testimonial-list .slide-list:first');
+      $visibleList.animate({ 'margin-left': '-250px' },  function() {
+          $visibleList.remove().css({ 'margin-left': '1px' });
+          $('#testimonial-list .slide-list:last').after($visibleList);
       });
   });
 
@@ -2010,8 +2069,10 @@ $scope.isInWishlist = function(productId){
     }
     console.log("$scope.wishListId",$scope.wishListId);
     $scope.getUserId = $cookieStore.get('userId');
+      $scope.loadingIcon = true;
     console.log($scope.getUserId );
     Auth.deleteWishList($scope.wishListId,{UserID:$scope.getUserId,product:productId, isDeleted: "true"}).success(function(data) {
+        $scope.loadingIcon = false;
       $scope.deltedWishList = data;
       $scope.getWishList();
       console.log("done delted");
@@ -2019,6 +2080,7 @@ $scope.isInWishlist = function(productId){
       $scope.showFilledHeart = false
       // $scope.getCategoriesList();
       $scope.showMenuResult  = true;
+
     }).error(function(data) {
       // ngToast.create({
       //   className: 'warning',
@@ -2052,7 +2114,7 @@ $scope.isInWishlist = function(productId){
 
       $('#prv-menu').on('click', function(){
           var $last_menu = $('#menu_item_list .menu_slide-list:last');
-          $last_menu.remove().css({ 'margin-left': '-200px' });
+          $last_menu.remove().css({ 'margin-left': '0px' });
           $('#menu_item_list .menu_slide-list:first').before($last_menu);
           $last_menu.animate({ 'margin-left': '0px' }, 1000);
       });
@@ -2060,8 +2122,8 @@ $scope.isInWishlist = function(productId){
 
         $('#nxt-menu').on('click', function(){
             var $first_menu = $('#menu_item_list .menu_slide-list:first');
-            $first_menu.animate({ 'margin-left': '-200px' },  function() {
-                $first_menu.remove().css({ 'margin-left': '20px' });
+            $first_menu.animate({ 'margin-left': '0px' },  function() {
+                $first_menu.remove().css({ 'margin-left': '0px' });
                 $('#menu_item_list .menu_slide-list:last').after($first_menu);
             });
         });
@@ -2147,12 +2209,14 @@ function moveScroller() {
 
 $scope.init = function() {
   $scope.product();
-  // $scope.getWishList();
+   $scope.getWishList();
+   $scope.getcartItems();
 }
 
 //invoke wishList on routeParams
 if($routeParams.showMenuResult){
   $scope.showMenuResult = true;
+  $scope.emptyFav = false;
   $scope.categoryNames = $routeParams.category;
 }
 
@@ -2238,6 +2302,7 @@ console.log("$(window).height(); ",$(window).height());
     $scope.categoryNames = $routeParams.category;
 
   }
+
 
   //minimum order value to be calculated to add delivery
   $scope.getMinimumOrder = function() {
@@ -2502,11 +2567,15 @@ console.log("$(window).height(); ",$(window).height());
     $scope.getUserId = $cookieStore.get('userId');
     $scope.userToken = $cookieStore.get('token');
     $scope.sessionId = $cookieStore.get('sessionId');
-
+    $scope.loadingIndicator = true;
     Auth.deleteCart({UserID:$scope.getUserId,sessionID : $scope.sessionId,isDeleted: true}, productId)
     .success(function(data){
       console.log('deleted resp', data);
       $scope.getcartItems();
+      $scope.getMinimumOrder();
+      $scope.loadingIndicator = false;
+      $scope.totalCost = 0;
+      $scope.deliveryOrderAmount = 0;
       // ngToast.create({
       //   className: 'success',
       //   content: 'Item Deleted from Cart'
@@ -2532,6 +2601,13 @@ console.log("$(window).height(); ",$(window).height());
         $scope.showMenuResult  = false;
         //deselect category names
         $scope.categoryNames = "";
+        if ($scope.getWishlistData.length === 0) {
+          $scope.emptyFav = true;
+          $scope.searchPagelist = false;
+          $scope.particularProduct = false;
+          $scope.showMenuResult  = false;
+          $scope.hideAutocomplete = false;
+        }
         $scope.getWishList();
       }
 
@@ -2543,7 +2619,9 @@ console.log("$(window).height(); ",$(window).height());
         Auth.products().success(function(data) {
           $scope.allProducts = data;
           console.log("data",data);
-          // $scope.getWishList();
+           $scope.getWishList();
+           $scope.getcartItems();
+
           //loop to get product id
           $scope.getProductIdList = [];
           angular.forEach($scope.allProducts, function (value, key) {
@@ -2589,13 +2667,13 @@ console.log("$(window).height(); ",$(window).height());
         //  console.log(data.length);
           $scope.getWishlistData = data;
           $scope.getListOfFav = data;
-          if ($scope.getWishlistData.length === 0) {
-            $scope.emptyFav = true;
-            $scope.searchPagelist = false;
-            $scope.particularProduct = false;
-            $scope.showMenuResult  = false;
-            $scope.hideAutocomplete = false;
-          }
+          // if ($scope.getWishlistData.length === 0) {
+          //   $scope.emptyFav = true;
+          //   $scope.searchPagelist = false;
+          //   $scope.particularProduct = false;
+          //   $scope.showMenuResult  = false;
+          //   $scope.hideAutocomplete = false;
+          // }
           $scope.getWishListProductId = [];
           angular.forEach($scope.getWishlistData, function (value, key) {
             var obj = {
@@ -2717,6 +2795,7 @@ console.log("$(window).height(); ",$(window).height());
                                           authToken: $scope.userToken,
                                           isDeleted: false
                                         }
+                                        $scope.loadingIndicator = true;
                                         Auth.addWishList(wishListInfo)
                                         .success(function(data){
                                           $scope.loadingIcon = false;
@@ -2735,6 +2814,7 @@ console.log("$(window).height(); ",$(window).height());
                                                 $scope.cartlist.push(obj);
                                                 console.log("cart",$scope.cartlist);
                                               });
+                                              $scope.loadingIndicator = false;
                                             }).error(function(data){
                                               // ngToast.create({
                                               //   className: 'warning',
@@ -2753,6 +2833,7 @@ console.log("$(window).height(); ",$(window).height());
           $scope.showOutOfStockBtn = false;
           $scope.showUpdateCartBtn = false;
           $scope.checkout = function() {
+
             if($cookieStore.get('userId')){
               if ($scope.allCartItems.length == 0) {
                 // ngToast.create({
@@ -2764,9 +2845,24 @@ console.log("$(window).height(); ",$(window).height());
                 // window.location = "#/checkout";
               }
               //check the quantity of cart with product's quantity
-              $scope.getcartItems();
+              $scope.product();
+              //cookieStore
+              $scope.getUserId = $cookieStore.get('userId');
+              $scope.userToken = $cookieStore.get('token');
+              $scope.sessionId = $cookieStore.get('sessionId');
+
+              $scope.gettingCartData =[];
+              console.log('cart page');
+              Auth.getCartList({
+                UserID : $scope.getUserId,
+                sessionID: $scope.sessionId,
+              })
+              .success(function (data) {
+                console.log("date",data);
+
+              //update
               $scope.gettingCartQty = [];
-              angular.forEach($scope.allCartItems, function (value, key) {
+              angular.forEach(data, function (value, key) {
                 var obj = {
                   "qty":value.quantity,
                   "prodQty" : value.product.quantity,
@@ -2776,51 +2872,66 @@ console.log("$(window).height(); ",$(window).height());
 
               });
               console.log("gettingCartQty",$scope.gettingCartQty);
+
+              //update cart
               for (var i = 0; i < $scope.gettingCartQty.length; i++) {
-                if ($scope.gettingCartQty[i].prodQty < $scope.gettingCartQty[i].qty) {
 
-                  //window.location = "#/checkout";
-                  alert("update carts quantity ")
-                  $scope.showUpdateCartBtn = true;
-                  $scope.showOutOfStockBtn = false;
-                  window.location = "#/search-page";
-                } else{
-                  console.log("just checkout");
-                  window.location = "#/checkout";
-
-                }
-                 if ($scope.gettingCartQty[i].prodQty === 0) {
-                  alert("outofstock plz remove");
+                if ($scope.gettingCartQty[i].prodQty === 0) {
+                  //alert("outofstock2!");
                   $scope.showOutOfStockBtn = true;
                   $scope.showUpdateCartBtn = false;
-                  window.location = "#/search-page";
+                    window.location = "#/search-page";
                 }
-                //  if ($scope.gettingCartQty[i].prodQty >= $scope.gettingCartQty[i].qty) {
-                //    console.log("just checkout");
-                //    alert("just checkout");
-                //    window.location = "#/checkout";
-                // }
-                // if ($scope.gettingCartQty[i].prodQty === 0) {
-                //   alert("outofstock");
-                //   $scope.showOutOfStockBtn = true;
-                //   $scope.showUpdateCartBtn = false;
-                // }
+
+
+
+
+                           if ($scope.gettingCartQty[i].prodQty < $scope.gettingCartQty[i].qty) {
+
+                              $scope.getcartItems();
+                             //alert("update carts quantity ")
+                            $scope.showUpdateCartBtn = true;
+                            $scope.showOutOfStockBtn = false;
+                            window.location = "#/search-page";
+                            $scope.gettingCartQty.length=0;
+
+                          }
+
+                          if ($scope.gettingCartQty[i].prodQty >= $scope.gettingCartQty[i].qty) {
+                            console.log("just checkout");
+                        //    alert("just checkout");
+                            window.location = "#/checkout";
+                         }
+
+
+
+
               }
+
+            }).error(function(data) {
+
+      });
+
             } else {
               console.log("Please Login");
               // window.location = "#/landing";
               $('#loginmodal').modal('toggle');
             }
+
           }
+
           //click to update cart
           $scope.updateCartOnCheckout = function(prodQuantity, cartId){
             $scope.cartListQuantity = prodQuantity;
+            $scope.loadingIndicator = true;
+
             Auth.updateCart({UserID:$scope.getUserId, "quantity": $scope.cartListQuantity}, cartId)
             .success(function(data){
               // $scope.loadingTillAdded = false;
               // $scope.loadingIndicator = false;
               console.log('updated resp', data);
               $scope.getcartItems();
+                $scope.loadingIndicator = false;
                 }).error(function(data){
                   // ngToast.create({
                   //   className: 'warning',
@@ -2886,6 +2997,7 @@ console.log("$(window).height(); ",$(window).height());
           console.log("$scope.wishListId",$scope.wishListId);
           $scope.getUserId = $cookieStore.get('userId');
           console.log($scope.getUserId );
+          $scope.loadingIndicator = true;
           Auth.deleteWishList($scope.wishListId,{UserID:$scope.getUserId,product:productId, isDeleted: "true"}).success(function(data) {
             $scope.deltedWishList = data;
             $scope.getWishList();
@@ -2894,6 +3006,7 @@ console.log("$(window).height(); ",$(window).height());
             $scope.showFilledHeart = false
             // $scope.getCategoriesList();
             $scope.showMenuResult  = true;
+            $scope.loadingIndicator = false;
           }).error(function(data) {
             // ngToast.create({
             //   className: 'warning',
@@ -5262,8 +5375,8 @@ app.factory('Auth', function($http, $window, $cookieStore) {
         }
       });
     },
-    deleteAddress : function(addressId) {
-      return $http.delete(BASE_URL + '/api/address/'+addressId , {
+    deleteAddress : function(addressId, inputs) {
+      return $http.put(BASE_URL + '/api/address/'+addressId ,inputs, {
       headers: {
         'Authorization': 'Bearer '+authToken,
         'Content-Type': 'application/json'

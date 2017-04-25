@@ -13,15 +13,15 @@
       </div>
         <form class="loginform" ng-submit="Signupform(signupform)" name="signupform" method="POST" novalidate>
           <div class="social-login__buttons">
-            <div class="social-login__connect facebook">
+            <div class="social-login__connect facebook" style="cursor:pointer" ng-click="fbLoginAuth()">
               <p>Facebook</p>
             </div>
-            <div class="social-login__connect google">
+            <div class="social-login__connect google" style="cursor:pointer"  ng-click="googlePlusLogin()">
               <p>Google +</p>
             </div>
           </div>
           <div class="loginform__manually">
-            <span style="position: relative; font-size: 20px; margin-bottom: 15px;">SignUp</span>
+            <span style="position: relative; font-size: 20px;bottom: 13px;right: 40px;">SignUp</span>
             <div class="loginForm--fields">
               <div class="loginForm__inputs loginForm__username">
                 <input type="text" class="loginForm__inputs--username" name="username" ng-model="name" placeholder="Name" required>
@@ -43,7 +43,7 @@
       <div class="modal-footer">
         <div >
           <p class="not-customer-label">Already have an account?</p>
-          <a style="display: flex;justify-content: center;" href="" ng-click="signupModal()" >Signin for Krazy Meals!</a>
+          <a style="display: flex;justify-content: center;" href="" ng-click="signupModal()" >SignIn for Krazy Meals!</a>
       </div>
       </div>
     </div>

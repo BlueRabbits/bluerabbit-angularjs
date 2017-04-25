@@ -1,9 +1,10 @@
 <div ng-show="loadingIndicator" style="text-align:center" class="loader-style">
-	<img src="images/loader.gif" class="loading-Indicator"/></div>
+	<img src="images/loader.gif" class="loading-Indicator" />
+</div>
 <div class="search-order-section">
 	<div class="search-page">
 		<div class="search-page__header" id="sub-menu1">
-		  <!-- Header -->
+			<!-- Header -->
 <div class="header" ng-controller="loginController">
 	<div class="logo" ng-init="getUserProfile()">
 		<a href="" ng-click="redirectLanding()"><img src="images/l-o-g-o@2x.png"></a>
@@ -25,7 +26,7 @@
 				<div class="dropdown__myaccount" id="menu1" type="button" >
 				 <div class="user_image" style="background-image: url('images/user_avatar.png')" ng-show="hideAvatar">
 				 </div>
-					<div class="user_image" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})" ng-hide="hideAvatar"></div>
+					<div class="user_image" style="background-image: url({{userDetails.image_url}})" ng-hide="hideAvatar"></div>
 					{{userName}}
 				 	<span class="caret"></span>
 				</div>
@@ -52,7 +53,7 @@
 			<div class="search-page-menu sub-menu" id="sub-menu">
 				<div class="sub-menu__search">
 					<img src="images/search-icon@2x.png" class="search-icon" ng-click="autocompleteSearch(searchitem)">
-					<input type="search" class="cart__search" ng-model="searchitem" ng-change="autocompleteSearch(searchitem)" placeholder="Find The Things What You Want Here" >
+					<input type="search" class="cart__search" ng-model="searchitem" ng-change="autocompleteSearch(searchitem)" placeholder="Find The Things What You Want Here">
 				</div>
 				<div class="sub-menu__favorites">
 					<img src="images/heart-icon@2x.png" style="cursor:pointer;" ng-click="wishListShow()">
@@ -68,291 +69,299 @@
 			<div class="search-page__tab-menu">
 				<ul class="search-page__tab-list" id="tabs-menu">
 					<li ng-repeat="(key, val) in allProducts | groupBy:'cat'">
-						<a  ng-attr-id="{{key | trimSpaces}}-a"
-								ng-class="{'active' : key == categoryNames}"
-								ng-click="setActiveTab(key)"> {{key}}</a></li>
+						<a ng-attr-id="{{key | trimSpaces}}-a" ng-class="{'active' : key == categoryNames}" ng-click="setActiveTab(key)"> {{key}}</a></li>
 				</ul>
-				<div id="next" class="nav-arrow left-arrow" > < </div>
-				<div id="prev" class="nav-arrow right-arrow"> > </div>
-			</div>
-		</div>
-		<div class="search-secction">
-			<!-- particular Prod result -->
-			<div class="search-secction__content" ng-show="particularProduct">
-				<div class="search-secction__data row">
-					<div class="col-des col-sm-7">
-						<div class="search-section__image">
-							<div class="image__thumbnail" style="background-image:url({{search_result_product.mainImageUrl}})">
-							</div>
-						</div>
-						<div class="search-section__description">
-							<p class="product-name">{{search_result_product.name}}</p>
-							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
-							<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
-							<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(search_result_product._id)">
-							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(search_result_product._id)" ng-show="showFilledHeart" ng-click="deleteWishList(search_result_product._id)"></i>
-								<div class="product-view" ng-init="showHearts(search_result_product._id)">
-
-										<p class="view-more" ng-hide="showParticularProductsDiv === true"  ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View more</p>
-										<p class="view-more" ng-show="showParticularProductsDiv === true"  ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View less</p>
-								</div>
-						</div>
-					</div> <!-- sm7 -->
-					<div class="col-act col-sm-5">
-						<div class="product-price">
-							{{search_result_product.salePrice}}<span>&nbsp;AED</span>
-							<p class="products__offer">
-	              <span class="text-black strike">{{search_result_product.listPrice}}&nbsp;AED</span>
-	              <span class="text-success">{{search_result_product.discountedPrice}}%</span>
-	            </p>
-						</div>
-						<div class="search-secction__buttons">
-							<button ng-if="search_result_product.quantity > '0'" type="button" name="button" ng-click="addToCart(search_result_product._id)">Add to Cart</button>
-							<button ng-if="search_result_product.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
-						</div>
-					</div> <!-- sm5 -->
-				</div>
-				<div class="description__section" ng-show="showParticularProductsDiv">
-					<div class="description__section--header">
-						<div class="description-list">
-							<!-- <p>Prep time:30 min</p>
-							<span>|</span>
-							<p>Calories: 100 Kcal</p> -->
-
-						</div>
-					</div>
-					<div class="description__section--content">
-						<div class="share_options">
-							<span>Share</span>
-							<span>
-								<a class="fa fa-facebook"  ng-click="FbShare(search_result_product.name,search_result_product._id)" id="shareBtn" aria-hidden="true"></a>
-								<a class="fa fa-twitter" ng-click="twitterShare(search_result_product.name,search_result_product._id)" aria-hidden="true"></a>
-								<a class="fa fa-google-plus"   ng-click="gPlusShare(search_result_product.name,search_result_product._id)" aria-hidden="true"></a>
-							</span>
-						</div>
-						<p class="product-name">PRODUCT DESCRIPTION </p>
-						<p class="product-sub-title">
-							{{search_result_product.description}}
-						</p>
-						<p class="product-sub-title"></p>
-						<div class="description__section__images">
-							<img src="{{search_result_product.s1}}" width="120px" ng-click="showImage(search_result_product._id)"/>
-							<img src="{{search_result_product.s2}}" width="120px" ng-click="showImage(search_result_product._id)"/>
-							<img src="{{search_result_product.s3}}" width="120px" ng-click="showImage(search_result_product._id)" />
-						</div>
-					</div>
+				<div id="next" class="nav-arrow left-arrow">
+					< </div>
+						<div id="prev" class="nav-arrow right-arrow"> > </div>
 				</div>
 			</div>
-			<!-- End particular Prod result -->
-
-			<!-- Search Prod result -->
-			<div class="search-secction__content" ng-repeat="results in search_result" ng-show="searchPagelist">
-				<div class="search-secction__data row">
-					<div class="col-des col-sm-7">
-						<div class="search-section__image">
-							<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
-							</div>
-						</div>
-						<div class="search-section__description">
-							<p class="product-name">{{results.name}}</p>
-							<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
-							<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
-							<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
-							<i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-init="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i>
-								<div class="product-view" ng-init="showHearts(results._id)">
-
-									<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
-									<p class="view-more" ng-show="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
-								</div>
-						</div>
-					</div> <!-- sm7 -->
-					<div class="col-act col-sm-5">
-						<div class="product-price">
-							{{results.salePrice}}<span>&nbsp;AED</span>
-							<p class="products__offer">
-	              <span class="text-black strike">{{results.listPrice}}&nbsp;AED</span>
-	              <span class="text-success">{{results.discountedPrice}}%</span>
-	            </p>
-						</div>
-						<div class="search-secction__buttons">
-							<button ng-if="results.quantity > '0'" type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
-							<button ng-if="results.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
-						</div>
-					</div> <!-- sm5 -->
-				</div>
-				<div class="description__section" ng-show="showdiv">
-					<div class="description__section--header">
-						<div class="description-list">
-							<!-- <p>Prep time:30 min</p>
-							<span>|</span>
-							<p>Calories: 100 Kcal</p> -->
-
-						</div>
-					</div>
-					<div class="description__section--content">
-						<div class="share_options">
-							<span>Share</span>
-							<span>
-								<a class="fa fa-facebook"  ng-click="FbShare(results.name,results._id)" id="shareBtn" aria-hidden="true"></a>
-								<a class="fa fa-twitter" ng-click="twitterShare(results.name,results._id)" aria-hidden="true"></a>
-								<a class="fa fa-google-plus"  ng-click="gPlusShare(results.name,results._id)" aria-hidden="true"></a>
-							</span>
-						</div>
-						<p class="product-name">PRODUCT DESCRIPTION </p>
-						<p class="product-sub-title">
-							{{results.description}}
-						</p>
-						<p class="product-sub-title"></p>
-						<div class="description__section__images">
-							<img src="{{results.s1}}" width="120px" ng-click="showImage(results._id)"/>
-							<img src="{{results.s2}}" width="120px" ng-click="showImage(results._id)"/>
-							<img src="{{results.s3}}" width="120px" ng-click="showImage(results._id)" />
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- search list -->
-
-			<!-- Wish list -->
-			<div ng-show="emptyFav" class="fav-empty">No Favorites</div>
-			<div class="search-secction__content wish-list" ng-show="show_wishlist" ng-repeat="wishLists in getWishlistData">
-				<div class="search-secction__data row">
-					<div class="col-des col-sm-7">
-						<div class="search-section__image">
-							<div class="image__thumbnail" style="background-image:url({{wishLists.product.mainImageUrl}})">
-							</div>
-						</div>
-						<div class="search-section__description">
-							<p class="product-name">{{wishLists.product.name}}</p>
-							<!-- <p class="product-sub-title l2">{{wishLists.product.description}}</p> -->
-							<div class="product-view">
-								<!-- <img class="product_heart" src="images/heart-icon-black.png" > -->
-								<!-- <p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p> -->
-								<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
-								<p class="view-more" ng-show="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-act col-sm-5">
-						<div class="product-price">
-							{{wishLists.product.salePrice}}<span>&nbsp;AED</span>
-							<p class="products__offer">
-	              <span class="text-black strike">{{wishLists.product.listPrice}}&nbsp;AED</span>
-	              <span class="text-success">{{wishLists.product.discountedPrice}}%</span>
-	            </p>
-						</div>
-						<div class="search-secction__buttons">
-							<button ng-if="wishLists.product.quantity > '0'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
-							<button ng-if="wishLists.product.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
-						</div>
-					</div>
-				</div>
-				<div class="description__section" ng-show="showdiv">
-					<div class="description__section--header">
-						<div class="description-list">
-							<!-- <p>Prep time:30 min</p>
-							<span>|</span>
-							<p>Calories: 100 Kcal</p> -->
-
-						</div>
-					</div>
-					<div class="description__section--content">
-						<div class="share_options">
-							<span>Share</span>
-							<span>
-								<a class="fa fa-facebook"  ng-click="FbShare(list.name,list._id)" id="shareBtn" aria-hidden="true"></a>
-								<a class="fa fa-twitter" ng-click="twitterShare(list.name,list._id)" aria-hidden="true"></a>
-								<a class="fa fa-google-plus"  ng-click="gPlusShare(list.name,list._id)" aria-hidden="true"></a>
-							</span>
-						</div>
-						<p class="product-name">PRODUCT DESCRIPTION </p>
-						<p class="product-sub-title">
-							{{wishLists.product.description}}
-						</p>
-						<p class="product-sub-title"></p>
-						<div class="description__section__images">
-							<img src="{{wishLists.product.s1}}" width="120px" ng-click="showImage(wishLists.product._id)"/>
-							<img src="{{wishLists.product.s2}}" width="120px" ng-click="showImage(wishLists.product._id)"/>
-							<img src="{{wishLists.product.s3}}" width="120px" ng-click="showImage(wishLists.product._id)" />
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- menu result -->
-			<div ng-show="showMenuResult" ng-repeat="(key, val) in allProducts | groupBy:'cat'">
-				<p class="target" ng-attr-id="{{key | trimSpaces}}">{{ key }}</p>
-				<div class="search-secction__content wish-list" ng-repeat="list in val">
+			<div class="search-secction">
+				<!-- particular Prod result -->
+				<div class="search-secction__content" ng-show="particularProduct">
 					<div class="search-secction__data row">
 						<div class="col-des col-sm-7">
 							<div class="search-section__image">
-								<div class="image__thumbnail" style="background-image:url({{list.mainImageUrl}})"></div>
+								<div class="image__thumbnail" style="background-image:url({{search_result_product.mainImageUrl}})">
+								</div>
 							</div>
 							<div class="search-section__description">
-								<p class="product-name">
-									{{list.name}}</p>
-									<!-- <i class="fa fa-spinner fa-pulse fa-lg" ng-show="loadingIcon" style="position: relative;bottom: 9px;left: 21px;"></i> -->
-									<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist"  src="images/heart-icon-black.png" ng-click="addWishList(list._id)">
-									<i class="fa fa-heart fa-lg" ng-hide="loadingIcon" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"></i>
-								<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
-									<div class="product-view">
-										<p class="view-more" ng-hide="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
-										<p class="view-more" ng-show="showdiv === true"  ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
-									</div>
+								<p class="product-name">{{search_result_product.name}}</p>
+								<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
+								<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
+								<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist" src="images/heart-icon.png" ng-click="addWishList(search_result_product._id)">
+								<img class="red-heart" style="margin-bottom: 11px; cursor:pointer" src="images/heart-fav-icon.png" ng-if="isInWishlist(search_result_product._id)" ng-show="showFilledHeart" ng-click="deleteWishList(search_result_product._id)">
+								<!-- <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(search_result_product._id)" ng-show="showFilledHeart" ng-click="deleteWishList(search_result_product._id)"></i> -->
+								<div class="product-view" ng-init="showHearts(search_result_product._id)">
+
+									<p class="view-more" ng-hide="showParticularProductsDiv === true" ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View more</p>
+									<p class="view-more" ng-show="showParticularProductsDiv === true" ng-class="{'active' : showParticularProductsDiv}" ng-click="showParticularProductsDiv = !showParticularProductsDiv">View less</p>
+								</div>
 							</div>
-						</div> <!-- sm7 -->
+						</div>
+						<!-- sm7 -->
 						<div class="col-act col-sm-5">
 							<div class="product-price">
-								{{list.salePrice}}<span>&nbsp;AED</span>
+								{{search_result_product.salePrice}}<span>&nbsp;AED</span>
 								<p class="products__offer">
-		              <span class="text-black strike">{{list.listPrice}}&nbsp;AED</span>
-		              <span class="text-success">{{list.discountedPrice}}%</span>
-		            </p>
+									<span class="text-black strike">{{search_result_product.listPrice}}&nbsp;AED</span>
+									<span class="text-success">{{search_result_product.discountedPrice}}%</span>
+								</p>
 							</div>
-
 							<div class="search-secction__buttons">
-								<button class="disabled_button" ng-if="list.quantity > '0'" type="button" name="button" ng-disabled="loadingTillAdded" ng-click="addToCart(list._id)">Add to Cart</button>
-								<button ng-if="list.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
+								<button ng-if="search_result_product.quantity > '0'" type="button" name="button" ng-click="addToCart(search_result_product._id)">Add to Cart</button>
+								<button ng-if="search_result_product.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
 							</div>
-						</div> <!-- sm5 -->
+						</div>
+						<!-- sm5 -->
 					</div>
-					<div class="description__section" ng-show="showdiv">
+					<div class="description__section" ng-show="showParticularProductsDiv">
 						<div class="description__section--header">
 							<div class="description-list">
 								<!-- <p>Prep time:30 min</p>
-								<span>|</span>
-								<p>Calories: 100 Kcal</p> -->
+							<span>|</span>
+							<p>Calories: 100 Kcal</p> -->
+
 							</div>
 						</div>
 						<div class="description__section--content">
 							<div class="share_options">
 								<span>Share</span>
 								<span>
+								<a class="fa fa-facebook"  ng-click="FbShare(search_result_product.name,search_result_product._id)" id="shareBtn" aria-hidden="true"></a>
+								<a class="fa fa-twitter" ng-click="twitterShare(search_result_product.name,search_result_product._id)" aria-hidden="true"></a>
+								<a class="fa fa-google-plus"   ng-click="gPlusShare(search_result_product.name,search_result_product._id)" aria-hidden="true"></a>
+							</span>
+							</div>
+							<p class="product-name">PRODUCT DESCRIPTION </p>
+							<p class="product-sub-title">
+								{{search_result_product.description}}
+							</p>
+							<p class="product-sub-title"></p>
+							<div class="description__section__images">
+								<img src="{{search_result_product.s1}}" width="120px" ng-click="showImage(search_result_product._id)" />
+								<img src="{{search_result_product.s2}}" width="120px" ng-click="showImage(search_result_product._id)" />
+								<img src="{{search_result_product.s3}}" width="120px" ng-click="showImage(search_result_product._id)" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End particular Prod result -->
+
+				<!-- Search Prod result -->
+				<div class="search-secction__content" ng-repeat="results in search_result" ng-show="searchPagelist">
+					<div class="search-secction__data row">
+						<div class="col-des col-sm-7">
+							<div class="search-section__image">
+								<div class="image__thumbnail" style="background-image:url({{results.mainImageUrl}})">
+								</div>
+							</div>
+							<div class="search-section__description">
+								<p class="product-name">{{results.name}}</p>
+								<!-- <p class="product-sub-title l2">{{results.description}}</p> -->
+								<!-- <img class="product_heart" ng-if="productIdWishList != results._id" style="margin-bottom: 11px;" src="images/heart-icon-black.png" ng-click="addWishList(results._id)">
+							<i class="fa fa-heart fa-lg" style="color: #d92e4a;width: 27px; margin-bottom: 11px;" aria-hidden="true" ng-if="productIdWishList == results._id" ng-click="deleteWishList(results._id)"></i> -->
+								<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist" src="images/heart-icon.png" ng-click="addWishList(results._id)">
+								<img class="red-heart" style="margin-bottom: 11px; cursor:pointer" src="images/heart-icon.png" ng-if="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)">
+								<!-- <i class="fa fa-heart fa-lg" style="color: #d92e4a;position: relative;bottom: 6px;right: 28px; cursor:pointer" aria-hidden="true" ng-init="isInWishlist(results._id)" ng-show="showFilledHeart" ng-click="deleteWishList(results._id)"></i> -->
+								<div class="product-view" ng-init="showHearts(results._id)">
+
+									<p class="view-more" ng-hide="showdiv === true" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+									<p class="view-more" ng-show="showdiv === true" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
+								</div>
+							</div>
+						</div>
+						<!-- sm7 -->
+						<div class="col-act col-sm-5">
+							<div class="product-price">
+								{{results.salePrice}}<span>&nbsp;AED</span>
+								<p class="products__offer">
+									<span class="text-black strike">{{results.listPrice}}&nbsp;AED</span>
+									<span class="text-success">{{results.discountedPrice}}%</span>
+								</p>
+							</div>
+							<div class="search-secction__buttons">
+								<button ng-if="results.quantity > '0'" type="button" name="button" ng-click="addToCart(results._id)">Add to Cart</button>
+								<button ng-if="results.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
+							</div>
+						</div>
+						<!-- sm5 -->
+					</div>
+					<div class="description__section" ng-show="showdiv">
+						<div class="description__section--header">
+							<div class="description-list">
+								<!-- <p>Prep time:30 min</p>
+							<span>|</span>
+							<p>Calories: 100 Kcal</p> -->
+
+							</div>
+						</div>
+						<div class="description__section--content">
+							<div class="share_options">
+								<span>Share</span>
+								<span>
+								<a class="fa fa-facebook"  ng-click="FbShare(results.name,results._id)" id="shareBtn" aria-hidden="true"></a>
+								<a class="fa fa-twitter" ng-click="twitterShare(results.name,results._id)" aria-hidden="true"></a>
+								<a class="fa fa-google-plus"  ng-click="gPlusShare(results.name,results._id)" aria-hidden="true"></a>
+							</span>
+							</div>
+							<p class="product-name">PRODUCT DESCRIPTION </p>
+							<p class="product-sub-title">
+								{{results.description}}
+							</p>
+							<p class="product-sub-title"></p>
+							<div class="description__section__images">
+								<img src="{{results.s1}}" width="120px" ng-click="showImage(results._id)" />
+								<img src="{{results.s2}}" width="120px" ng-click="showImage(results._id)" />
+								<img src="{{results.s3}}" width="120px" ng-click="showImage(results._id)" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- search list -->
+
+				<!-- Wish list -->
+				<div ng-show="emptyFav" class="fav-empty">No Favorites</div>
+				<div class="search-secction__content wish-list" ng-show="show_wishlist" ng-repeat="wishLists in getWishlistData">
+					<div class="search-secction__data row">
+						<div class="col-des col-sm-7">
+							<div class="search-section__image">
+								<div class="image__thumbnail" style="background-image:url({{wishLists.product.mainImageUrl}})">
+								</div>
+							</div>
+							<div class="search-section__description">
+								<p class="product-name">{{wishLists.product.name}}</p>
+								<!-- <p class="product-sub-title l2">{{wishLists.product.description}}</p> -->
+								<div class="product-view">
+									<!-- <img class="product_heart" src="images/heart-icon-black.png" > -->
+									<!-- <p class="view-more" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p> -->
+									<p class="view-more" ng-hide="showdiv === true" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+									<p class="view-more" ng-show="showdiv === true" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-act col-sm-5">
+							<div class="product-price">
+								{{wishLists.product.salePrice}}<span>&nbsp;AED</span>
+								<p class="products__offer">
+									<span class="text-black strike">{{wishLists.product.listPrice}}&nbsp;AED</span>
+									<span class="text-success">{{wishLists.product.discountedPrice}}%</span>
+								</p>
+							</div>
+							<div class="search-secction__buttons">
+								<button ng-if="wishLists.product.quantity > '0'" type="button" name="button" ng-click="addToCart(wishLists.product._id)">Add to Cart</button>
+								<button ng-if="wishLists.product.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
+							</div>
+						</div>
+					</div>
+					<div class="description__section" ng-show="showdiv">
+						<div class="description__section--header">
+							<div class="description-list">
+								<!-- <p>Prep time:30 min</p>
+							<span>|</span>
+							<p>Calories: 100 Kcal</p> -->
+
+							</div>
+						</div>
+						<div class="description__section--content">
+							<div class="share_options">
+								<span>Share</span>
+								<span>
+								<a class="fa fa-facebook"  ng-click="FbShare(list.name,list._id)" id="shareBtn" aria-hidden="true"></a>
+								<a class="fa fa-twitter" ng-click="twitterShare(list.name,list._id)" aria-hidden="true"></a>
+								<a class="fa fa-google-plus"  ng-click="gPlusShare(list.name,list._id)" aria-hidden="true"></a>
+							</span>
+							</div>
+							<p class="product-name">PRODUCT DESCRIPTION </p>
+							<p class="product-sub-title">
+								{{wishLists.product.description}}
+							</p>
+							<p class="product-sub-title"></p>
+							<div class="description__section__images">
+								<img src="{{wishLists.product.s1}}" width="120px" ng-click="showImage(wishLists.product._id)" />
+								<img src="{{wishLists.product.s2}}" width="120px" ng-click="showImage(wishLists.product._id)" />
+								<img src="{{wishLists.product.s3}}" width="120px" ng-click="showImage(wishLists.product._id)" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- menu result -->
+				<div ng-show="showMenuResult" ng-repeat="(key, val) in allProducts | groupBy:'cat'">
+					<p class="target" ng-attr-id="{{key | trimSpaces}}">{{ key }}</p>
+					<div class="search-secction__content wish-list" ng-repeat="list in val">
+						<div class="search-secction__data row">
+							<div class="col-des col-sm-7">
+								<div class="search-section__image">
+									<div class="image__thumbnail" style="background-image:url({{list.mainImageUrl}})"></div>
+								</div>
+								<div class="search-section__description">
+									<p class="product-name">
+										{{list.name}}</p>
+									<!-- <i class="fa fa-spinner fa-pulse fa-lg" ng-show="loadingIcon" style="position: relative;bottom: 9px;left: 21px;"></i> -->
+									<img class="product_heart" style="margin-bottom: 11px; cursor:pointer" ng-show="hideWishlist" src="images/heart-icon.png" ng-click="addWishList(list._id)">
+									<img class="red-heart" src="images/heart-fav-icon.png" ng-hide="loadingIcon" style="color: #d92e4a;position: relative;bottom: 6px;right:33px; cursor:pointer" aria-hidden="true" ng-if="isInWishlist(list._id)" ng-show="showFilledHeart" ng-click="deleteWishList(list._id)"
+									/>
+									<!-- <p class="product-sub-title l2">{{list.description}}</p> -->
+									<div class="product-view">
+										<p class="view-more" ng-hide="showdiv === true" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View more</p>
+										<p class="view-more" ng-show="showdiv === true" ng-class="{'active' : showdiv}" ng-click="showdiv = !showdiv">View less</p>
+									</div>
+								</div>
+							</div>
+							<!-- sm7 -->
+							<div class="col-act col-sm-5">
+								<div class="product-price">
+									{{list.salePrice}}<span>&nbsp;AED</span>
+									<p class="products__offer">
+										<span class="text-black strike">{{list.listPrice}}&nbsp;AED</span>
+										<span class="text-success">{{list.discountedPrice}}%</span>
+									</p>
+								</div>
+
+								<div class="search-secction__buttons">
+									<button class="disabled_button" ng-if="list.quantity > '0'" type="button" name="button" ng-disabled="loadingTillAdded" ng-click="addToCart(list._id)">Add to Cart</button>
+									<button ng-if="list.quantity <= '0'" type="button" name="button" disabled>Out of stock</button>
+								</div>
+							</div>
+							<!-- sm5 -->
+						</div>
+						<div class="description__section" ng-show="showdiv">
+							<div class="description__section--header">
+								<div class="description-list">
+									<!-- <p>Prep time:30 min</p>
+								<span>|</span>
+								<p>Calories: 100 Kcal</p> -->
+								</div>
+							</div>
+							<div class="description__section--content">
+								<div class="share_options">
+									<span>Share</span>
+									<span>
 									<a class="fa fa-facebook"  ng-click="FbShare(list.name,list._id)" id="shareBtn" aria-hidden="true"></a>
 									<a class="fa fa-twitter" ng-click="twitterShare(list.name,list._id)" aria-hidden="true"></a>
 									<a class="fa fa-google-plus"  ng-click="gPlusShare(list.name,list._id)" aria-hidden="true"></a>
 								</span>
-							</div>
-							<p class="product-name">PRODUCT DESCRIPTION  </p>
-							<p class="product-sub-title">
-								{{list.description}}
-							</p>
-							<p class="product-sub-title"></p>
-							<div class="description__section__images">
-								<img src="{{list.s1}}" width="120px" ng-click="showImage(list._id)" />
-								<img src="{{list.s2}}" width="120px" ng-click="showImage(list._id)"/>
-								<img src="{{list.s3}}" width="120px" ng-click="showImage(list._id)"/>
-							</div>
+								</div>
+								<p class="product-name">PRODUCT DESCRIPTION </p>
+								<p class="product-sub-title">
+									{{list.description}}
+								</p>
+								<p class="product-sub-title"></p>
+								<div class="description__section__images">
+									<img src="{{list.s1}}" width="120px" ng-click="showImage(list._id)" />
+									<img src="{{list.s2}}" width="120px" ng-click="showImage(list._id)" />
+									<img src="{{list.s3}}" width="120px" ng-click="showImage(list._id)" />
+								</div>
 
+							</div>
 						</div>
 					</div>
 				</div>
+				<!-- menu result -->
 			</div>
-			<!-- menu result -->
-		</div>
-		<!-- Footer -->
+			<!-- Footer -->
 <footer ng-controller="loginController">
   <div class="">
     <div class="row">
@@ -360,6 +369,7 @@
         <div class="row footer-menu">
           <div class="col-sm-3">
             <img src="images/footer-logo-icon.png" alt="" />
+
           </div>
           <div class="col-sm-4">
             <ul style="cursor:pointer;">
@@ -373,7 +383,7 @@
             <ul style="cursor:pointer;">
               <li>Help Center</li>
               <li ><a style="color: #999999;" href="#/landing#about">Email Support</a></li>
-              <li ><a style="color: #999999;" href="#/landing#about">Contact us</a></li>
+              <li ><a style="color: #999999;" href="#/landing#about">Contact Us</a></li>
             </ul>
           </div>
         </div>
@@ -396,6 +406,7 @@
               <div class="ring"><i class="fa fa-mobile" aria-hidden="true"></i></div>
               <div class="ring"><i class="fa fa-play" aria-hidden="true"></i></div>
             </div>
+              <p style="color: #fff;">Powered by Mozayc. <br/>All rights reserved.</p>
           </div>
         </div>
       </div>
@@ -416,110 +427,139 @@
   </div> -->
 </footer>
 
-	</div>
+		</div>
 
-	<div class="order-section">
-		<div class="">
-			<div class="cart-section__header">
-				<p>MY CART</p>
-			</div>
-			<div class="cart-section__sub-header">
-				<ul class="cart-header__list">
-					<li style="position: relative;left: 7px">ITEM</li>
-					<li style="position: relative;left: 98px;">QUANTITY</li>
-					<li style="position: relative;left: 158px;">RATE</li>
-					<li></li>
-				</ul>
-			</div>
-			<div class="cart_section_data_scroll" ng-style="{height: '{{cartHeight}}px'}">
-				<div class="cart-section__data" ng-repeat="cartList in allCartItems">
-					<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
-					<p class="product-item__name">{{cartList.product.name}}</p>
-					<div class="cart__quantity">
-						<input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
-						<input type="text" name="TextBox" id="TextBox" class="textbox" ng-value="cartList.quantity" ng-model="cartList.quantity" />
-						<input type="Button" id='AddButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)"/>
-					<!--<input type="Button" ng-hide="cartList.product.quantity === 0" ng-if="cartList.product.quantity < cartList.quantity" ng-value="cartList.product.quantity" value="Update" ng-click="updateCartOnCheckout(cartList.product.quantity, cartList._id)"/> -->
-						<button type="button"  ng-hide="cartList.product.quantity === 0" ng-if="cartList.product.quantity <= cartList.quantity" ng-value="cartList.product.quantity" value="Update" ng-click="updateCartOnCheckout(cartList.product.quantity, cartList._id)"  name="button">Update Qty : {{cartList.product.quantity}}</button>
-						<input type="Button" ng-if="cartList.product.quantity === 0" value="OutOfStock"/>
-					</div>
-					<p class="product-cart__price"><span>AED</span>{{cartList.product.salePrice * cartList.quantity}}</p>
-					<!-- <p>{{cartList.product.salePrice}}</p> -->
-					<div class="cancel-button" style="cursor:pointer">
-						<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)"/>
+		<div class="order-section">
+			<div class="">
+				<div class="cart-section__header">
+					<p>MY CART</p>
+				</div>
+				<div class="cart-section__sub-header">
+					<div class="cart-section__data sub-header">
+						<p>ITEM</p>
+
+						<p>QUANTITY</p>
+						<p>RATE</p>
+						<p>&nbsp;</p>
+
 					</div>
 				</div>
+				<div class="cart_section_data_scroll" ng-style="{height: '{{cartHeight}}px'}">
+					<div ng-repeat="cartList in allCartItems">
+						<div class="overlay" ng-if="cartList.product.quantity === 0"></div>
+						<div class="overlay" ng-if="cartList.product.quantity != 0 && cartList.product.quantity < cartList.quantity"></div>
+						<div class="cart-section__data" ng-class="{'overlay-skin':cartList.product.quantity == 0 || cartList.product.quantity < cartList.quantity}">
+							<!-- <p>{{cartList.product.name}}</p> ng-repeat="cartList in allCartItems"-->
+							<p class="product-item__name">{{cartList.product.name}}</p>
+							<div class="cart__quantity">
+								<input type="Button" id='minusButton' value="-" ng-click="updateCartByDecrementing(cartList.quantity, cartList._id)" />
+								<input type="text" name="TextBox" id="TextBox" class="textbox" ng-value="cartList.quantity" ng-model="cartList.quantity" />
+								<input type="Button" id='AddButton' value="+" ng-click="updateCartByIncrement(cartList.quantity, cartList._id)" />
+								<!--<input type="Button" ng-hide="cartList.product.quantity === 0" ng-if="cartList.product.quantity < cartList.quantity" ng-value="cartList.product.quantity" value="Update" ng-click="updateCartOnCheckout(cartList.product.quantity, cartList._id)"/> -->
+								<!-- <button type="button"  ng-hide="cartList.product.quantity === 0" ng-if="cartList.product.quantity <= cartList.quantity" ng-value="cartList.product.quantity" value="Update" ng-click="updateCartOnCheckout(cartList.product.quantity, cartList._id)"  name="button">Update Qty : {{cartList.product.quantity}}</button> -->
+								<!-- <input type="Button" ng-if="cartList.product.quantity === 0" value="OutOfStock"/> -->
+							</div>
+							<p class="product-cart__price"><span>AED</span>{{cartList.product.salePrice * cartList.quantity}}</p>
+
+							<!-- <p>{{cartList.product.salePrice}}</p> -->
+							<div class="cancel-button" style="cursor:pointer">
+								<img src="images/close-button@2x.png" alt="" ng-click="deleteCart(cartList._id,cartList.quantity)" />
+							</div>
+
+
+						</div>
+
+						<div class="cart-notices"  ng-if="cartList.product.quantity === 0">
+							<label>This product is Out of Stock</label>
+							<div class="cancel-button" style="cursor:pointer">
+								<div ng-click="deleteCart(cartList._id,cartList.quantity)">Remove</div>
+							</div>
+						</div>
+						<div class="cart-notices update" ng-hide="cartList.product.quantity === 0" ng-if="cartList.product.quantity < cartList.quantity">
+							<label >Available Quantity : {{cartList.product.quantity}}</label>
+							<div class="cancel-button" style="cursor:pointer">
+								<div  ng-click="updateCartOnCheckout(cartList.product.quantity, cartList._id)">Update</div>
+							</div>
+
+						</div>
+
+						<div class="hr"></div>
+					</div>
+
+
+				</div>
+			</div>
+			<div class="cart-section__footer">
+				<div class="total-section total-section_sizes">
+					<p>Sub Total</p>
+					<p class="total-section__cost"><span>AED</span>{{subTotalCost}}</p>
+				</div>
+				<div class="total-section total-section_sizes" ng-if="showDeliveryCost">
+					<p>Delivery Cost</p>
+					<p class="total-section__cost"><span>AED</span>{{deliveryOrderAmount}}</p>
+				</div>
+				<div class="total-section">
+					<p>Total</p>
+					<p class="total-section__cost"><span>AED</span>{{totalCost}}</p>
+				</div>
+				<button type="button" ng-click="checkout()" name="button">Checkout</button>
+			</div>
 		</div>
 	</div>
-		<div class="cart-section__footer">
-			<div class="total-section total-section_sizes">
-				<p>Sub Total</p>
-				<p class="total-section__cost"><span>AED</span>{{subTotalCost}}</p>
-			</div>
-			<div class="total-section total-section_sizes" ng-if="showDeliveryCost">
-				<p>Delivery Cost</p>
-				<p class="total-section__cost"><span>AED</span>{{deliveryOrderAmount}}</p>
-			</div>
-			<div class="total-section">
-				<p>Total</p>
-				<p class="total-section__cost"><span>AED</span>{{totalCost}}</p>
-			</div>
-			<button type="button" ng-click="checkout()" name="button">Checkout</button>
-		</div>
-	</div>
-</div>
 
-<!-- load image modal windo  -->
-<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="width: 43%;margin-top: 150px;">
-    <div class="modal-content image_view_slider">
-      <div class="modal-body">
-      	<button type="button" class="close close_button" data-dismiss="modal">
-					<span aria-hidden="true" class="close_popup">&times;</span><span class="sr-only">Close</span>
-				</button>
-      <!-- <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div> -->
-				<!-- image  -->
-				<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="{{ImageGallery.s1}}"  width= "600px" alt="First slide">
+	<!-- load image modal windo  -->
+	<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 43%;margin-top: 150px;">
+			<div class="modal-content image_view_slider">
+				<div class="modal-body">
 
-                    </div>
-                    <div class="item">
-                        <img src="{{ImageGallery.s2}}" width= "600px" alt="Second slide">
+					<!-- <div>  <img ng-src="{{imageGallery1}}" class="imagepreview" style="width: 100%;" ></div> -->
+					<!-- image  -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
 
-                    </div>
-                    <div class="item">
-                        <img src="{{ImageGallery.s3}}" width= "600px"  alt="Third slide">
+								<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+									<button type="button" class="close close_button" data-dismiss="modal">
+							<span aria-hidden="true" class="close_popup">&times;</span><span class="sr-only">Close</span>
+						</button>
+									<ol class="carousel-indicators">
+										<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+										<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+										<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+									</ol>
+									<div class="carousel-inner">
+										<div class="item active">
+											<img src="{{ImageGallery.s1}}" width="600px" alt="First slide">
 
-                    </div>
-                </div>
-                <a class="left carousel-control" id="prevImage" href="#carousel-example-generic" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-								</a>
-								<a class="right carousel-control" id="nextImage" href="#carousel-example-generic" data-slide="next">
-												<span class="glyphicon glyphicon-chevron-right">
+										</div>
+										<div class="item">
+											<img src="{{ImageGallery.s2}}" width="600px" alt="Second slide">
+
+										</div>
+										<div class="item">
+											<img src="{{ImageGallery.s3}}" width="600px" alt="Third slide">
+
+										</div>
+									</div>
+									<a class="left carousel-control" style="top:10%;" id="prevImage" href="#carousel-example-generic" data-slide="prev">
+										<span class="glyphicon glyphicon-chevron-left"></span>
+									</a>
+									<a class="right carousel-control" style="top:10%;" id="nextImage" href="#carousel-example-generic" data-slide="next">
+										<span class="glyphicon glyphicon-chevron-right">
                         </span>
 									</a>
-            </div>
+								</div>
 
-        </div>
-    </div>
-</div>
+							</div>
+						</div>
+					</div>
 
-				<!-- image  -->
+					<!-- image  -->
 
 
-      </div>
-    </div>
-  </div>
-</div>
-<!-- load image modal windo  -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- load image modal windo  -->

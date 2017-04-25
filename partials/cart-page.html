@@ -174,7 +174,7 @@
 				<div class="dropdown__myaccount" id="menu1" type="button" >
 				 <div class="user_image" style="background-image: url('images/user_avatar.png')" ng-show="hideAvatar">
 				 </div>
-					<div class="user_image" style="background-image: url({{BASE_URL}}/api/users{{userDetails.image_url}})" ng-hide="hideAvatar"></div>
+					<div class="user_image" style="background-image: url({{userDetails.image_url}})" ng-hide="hideAvatar"></div>
 					{{userName}}
 				 	<span class="caret"></span>
 				</div>
@@ -452,6 +452,7 @@
         <div class="row footer-menu">
           <div class="col-sm-3">
             <img src="images/footer-logo-icon.png" alt="" />
+
           </div>
           <div class="col-sm-4">
             <ul style="cursor:pointer;">
@@ -465,7 +466,7 @@
             <ul style="cursor:pointer;">
               <li>Help Center</li>
               <li ><a style="color: #999999;" href="#/landing#about">Email Support</a></li>
-              <li ><a style="color: #999999;" href="#/landing#about">Contact us</a></li>
+              <li ><a style="color: #999999;" href="#/landing#about">Contact Us</a></li>
             </ul>
           </div>
         </div>
@@ -488,6 +489,7 @@
               <div class="ring"><i class="fa fa-mobile" aria-hidden="true"></i></div>
               <div class="ring"><i class="fa fa-play" aria-hidden="true"></i></div>
             </div>
+              <p style="color: #fff;">Powered by Mozayc. <br/>All rights reserved.</p>
           </div>
         </div>
       </div>
